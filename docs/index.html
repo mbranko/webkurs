@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Kurs iz web programiranja</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/branko.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <section class="vcenter">
+          <h1>Programiranje za web</h1>
+          <h3>Front-end, back-end i sve između</h3>
+          <p>
+            <small>Branko Milosavljević<br/> <a href="http://mbranko.github.io/webkurs">http://mbranko.github.io/webkurs</a></small>
+          </p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Sadržaj kursa</h2>
+          <div style="width: 30%; float: left">
+            <h3>Prednja strana</h3>
+            <ul>
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>SASS</li>
+              <li>JavaScript</li>
+              <li>jQuery</li>
+              <li>TypeScript</li>
+              <li>AngularJS</li>
+            </ul>
+          </div>
+          <div style="width: 25%; float: left">
+            <h3>Između</h3>
+            <ul>
+              <li>JSON</li>
+              <li>HTTP</li>
+              <li>REST</li>
+              <li>XML</li>
+              <li>WebSockets</li>
+            </ul>
+          </div>
+          <div style="width: 44%; float: left">
+            <h3>Zadnja strana</h3>
+            <ul>
+              <li>inverzija kontrole</li>
+              <li>ubrizgavanje zavisnosti</li>
+              <li>rukovanje deljenim resursima</li>
+              <li>AOP</li>
+              <li>konvencija vs konfiguracija</li>
+              <li>baze podataka i ORM</li>
+              <li>transakcije</li>
+              <li>asinhrono izvršavanje</li>
+              <li>performanse, klasteri, oblak</li>
+            </ul>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        history: true,
+
+        // 16:9 aspect ratio
+        width: 1280,
+        height: 720,
+        margin: 0.02,
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+    </script>
+  </body>
+</html>

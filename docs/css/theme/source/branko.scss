@@ -1,0 +1,56 @@
+/**
+ * Branko theme for reveal.js.
+ *
+ * Copyright (C) 2011-2012 Hakim El Hattab, http://hakim.se
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+// Include theme-specific fonts
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,700&subset=latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Fira+Mono&subset=latin-ext');
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,400italic,700italic&subset=latin-ext);
+
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: #111;
+
+$mainFont: 'Open Sans', sans-serif;
+$linkColor: #e7ad52;
+$linkColorHover: lighten( $linkColor, 20% );
+$headingFont: 'Fira Sans', Impact, sans-serif;
+$headingTextShadow: none;
+$headingLetterSpacing: -0.05em;
+$headingTextTransform: none;
+$selectionBackgroundColor: #e7ad52;
+$mainFontSize: 30px;
+
+$headingFontWeight: bold;
+$headingColor: #e7ad52;
+
+.reveal h2 {
+	text-align: left;
+}
+
+.reveal section.valigntop {
+	height: 100%;
+	width: 100%;
+}
+
+.reveal section.vcenter {
+    vertical-align: center;
+}
+
+.reveal pre code {
+	font-family: 'Fira Mono', monospace;
+}
+
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
