@@ -620,6 +620,130 @@ ctx.stroke();
           </ul>
         </section>
 
+        <section class="valigntop">
+          <h2>Tabele</h2>
+          <ul>
+            <li>nekada korišćene za raspoređivanje sadržaja po stranici</li>
+            <li>danas se koriste za prikaz tabelarnih podataka</li>
+            <li>u osnovnom obliku uvek formiraju matricu ćelija</li>
+            <li>izmenom atributa ili spajanjem ćelija moguće je napraviti složenu strukturu</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Tabele</h2>
+          <ul>
+            <li>osnovni element <code>table</code> sadrži
+              <ul>
+                <li><code>tr</code> - red tabele koji sadrži</li>
+                <li><code>th</code> - ćeliju zaglavlja tabele ili</li>
+                <li><code>td</code> - ćeliju sa podacima.</li>
+              </ul>
+            </li>
+          </ul>
+          <div style="font-size: 30pt; width: 50%; margin-left: 25%">
+            <pre><code>
+&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Zaglavlje 1&lt;/th&gt;
+    &lt;th&gt;Zaglavlje 2&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Ćelija 1&lt;/td&gt;
+    &lt;td&gt;Ćelija 2&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+            </code></pre>
+          </div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Tabele</h2>
+          <ul>
+            <li><code>thead</code>, <code>tbody</code>, <code>tfoot</code> elementi</li>
+            <li>naglašavaju smisao delova tabele</li>
+            <li>skrolovanje tela nezavisno od zaglavlja i podnožja</li>
+            <li>ponavljanje zaglavlja i podnožja pri štampanju</li>
+          </ul>
+          <div>
+            <img src="img/html/table-thead-tbody-tfoot.png"/>
+          </div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Spajanje ćelija tabele</h2>
+          <ul>
+            <li>atribut <code>colspan</code> za spajanje preko više kolona</li>
+            <li>atribut <code>rowspan</code> za spajanje preko više redova</li>
+          </ul>
+          <div>
+            <img src="img/html/html-table-row-col-merge.png"/>
+          </div>
+        </section>
+
+        <section class="valigntop">
+          <h2>HTML forme</h2>
+          <ul>
+            <li>neophodne za unos podataka</li>
+            <li>bez njih ne bi postojale web aplikacije!</li>
+            <li><code>form</code> element je kontejner koji sadrži<br/> različite tipove polja za unos podataka<br/><br/></li>
+            <li>pravilnim izborom polja može se<br/> unaprediti UI web aplikacije</li>
+            <li>pogrešan izbor polja može otežati korišćenje</li>
+            <li>relativno bogat izbor tipova polja tek u HTML5</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Koraci u korišćenju HTML forme</h2>
+          <ol>
+            <li>korisnik unosi podatke</li>
+            <li>validacija unetih podataka</li>
+            <li>slanje podataka serveru</li>
+            <li>korisniku se saopštava status obrade podataka (uspešno/neuspešno)</li>
+            <li>u slučaju greške, osim poruke o grešci, korisnik se vraća na formu za unos, a njena polja se automatski popune unesenim podacima</li>
+          </ol>
+
+          <p style="text-align: left">1 i 3 - neophodni koraci<br/>ostali - poželjni, bez njih je korišćenje nezgodno</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Element form</h2>
+          <ul>
+            <li>element <code>form</code> nije podrazumevano vidljiv</li>
+            <li>vidljiva su polja za unos unutar njega</li>
+            <li>atributi bliže određuju ponašanje forme</li>
+          </ul>
+          <div style="font-size: 30pt; width: 50%; margin-left: 25%">
+            <pre><code>
+&lt;form [atributi]&gt;
+  ... elementi forme ...
+&lt;/form&gt;
+            </code></pre>
+          </div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Atributi elementa form</h2>
+          <ul>
+            <li><code>name</code> - naziv forme, korisno ako stranica ima više formi</li>
+            <li><code>action</code> - URL na koji treba poslati podatke</li>
+            <li><code>method</code> - način slanja podataka, može biti GET ili POST</li>
+            <li><code>enctype</code> - način kodiranja poslatih podataka</li>
+            <li><code>accept-charset</code> - koji kodni raspored prihvataju elementi forme</li>
+            <li><code>autocomplete</code> - da li browser nudi pomoć prilikom popunjavanja</li>
+            <li><code>novalidate</code> - da browser ne pokušava validaciju polja</li>
+            <li><code>target</code> - prozor u kome će se otvoriti nova stranica</li>
+          </ul>
+          <div style="font-size: 30pt;">
+            <pre><code>
+&lt;form action=&quot;&quot; method=&quot;POST&quot; name=&quot;mojaforma&quot;&gt;
+  ...
+&lt;/form&gt;
+            </code></pre>
+          </div>
+        </section>
+
+
       </div>
     </div>
 
