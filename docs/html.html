@@ -1,0 +1,388 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>HTML</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/branko.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <section class="vcenter">
+          <h1>HTML</h1>
+          <h3>HyperText Markup Language</h3>
+          <p>
+            <small><a href="http://mbranko.github.io/webkurs">http://mbranko.github.io/webkurs</a></small>
+          </p>
+          <p>
+            <small>Ovo je deo <a href="index.html#/1">web kursa</a></small>
+          </p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Literatura</h2>
+          <ul>
+            <li>Jon Duckett: <a href="http://www.htmlandcssbook.com/">HTML &amp; CSS</a></li>
+            <li>Dan Cederholm: <a href="http://vault.simplebits.com/publications/bulletproof/">Bulletproof Web Design</a></li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Kako se pristupa webu</h2>
+          <ul>
+            <li><strong>web browser</strong>: program za pregled web stranica</li>
+            <ul>
+              <li>Firefox, Internet Explorer, Chrome, Safari, Opera, ...</li>
+            </ul>
+            <li>različiti <strong>uređaji</strong></li>
+            <ul>
+              <li>telefon, tablet, laptop, desktop, TV, ...</li>
+            </ul>
+            <li><strong>screen reader</strong>: program koji čita sadržaj stranice</li>
+            <ul>
+              <li>text to speech</li>
+            </ul>
+            <li><strong>web server</strong>: računar na kome se nalazi sadržaj</li>
+            <ul>
+              <li>komunikacija putem računarske mreže</li>
+            </ul>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Šta sajtovi sadrže</h2>
+          <ul>
+            <li>web stranice</li>
+            <ul>
+              <li>struktura, tekstualni sadržaj i veze: HTML</li>
+              <li>vizuelni izgled: CSS</li>
+              <li>dinamičko ponašanje: JavaScript</li>
+            </ul>
+            <li>slike</li>
+            <li>video zapise</li>
+            <li>Flash</li>
+            <li>...</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>HTML: osnovni pojmovi</h2>
+          <ul>
+            <li><strong>HyperText Markup Lanugage</strong>: jezik za označavanje</li>
+            <li>označava delove dokumenta <strong>tagovima</strong></li>
+            <li>tag = oznaka, ključna reč između znakova &lt; i &gt;</li>
+          </ul>
+          <div style="width: 50%; margin-left: 25%; font-size: 30pt">
+            <pre><code>
+&lt;html&gt;
+  &lt;head&gt;
+    ...
+  &lt;/head&gt;
+  &lt;body&gt;
+    ...
+  &lt;/body&gt;
+&lt;/html&gt;
+            </code></pre>
+          </div>
+        </section>
+
+        <section class="valigntop">
+          <h2>HTML tag</h2>
+          <ul>
+            <li>svaki otvoreni tag ima svoj zatvoreni</li>
+            <li>izuzeci postoje ali je bolje biti striktan</li>
+            <li>između tagova nalazi se <strong>sadržaj</strong></li>
+          </ul>
+          <div style="width: 50%; margin-left: 25%; font-size: 50pt">
+            <pre><code>
+      &lt;p&gt; ... &lt;/p&gt;
+            </code></pre>
+          </div>
+        </section>
+
+        <section class="valigntop">
+          <h2>HTML tag: prazan sadržaj</h2>
+          <ul>
+            <li>sadržaj taga može biti prazan</li>
+            <li>dva načina da se to zapiše</li>
+          </ul>
+          <div style="width: 50%; margin-left: 25%; font-size: 50pt">
+            <pre><code>
+        &lt;p&gt;&lt;/p&gt;
+            </code></pre>
+          </div>
+          <div style="width: 50%; margin-left: 25%; font-size: 50pt">
+            <pre><code>
+        &lt;p/&gt;
+            </code></pre>
+          </div>
+        </section>
+
+        <section class="valigntop">
+          <h2>HTML dokument je stablo</h2>
+          <ul>
+            <li>čvorovi stabla su <strong>elementi</strong></li>
+            <li>elementi se u fajlu zapisuju pomoću tagova</li>
+            <li>sadržaj elementa navodi se između otvarajućeg i zatvarajućeg taga</li>
+            <li>stablo dokumenta se serijalizuje u fajl pomoću tagova</li>
+          </ul>
+          <div style="width: 50%; font-size: 30pt; float: left">
+            <pre><code>
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Naslov&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Web kurs&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+            </code></pre>
+          </div>
+          <div style="float: left; width: 50%">
+            <img src="img/html/element-tree.png"/>
+          </div>
+        </section>
+
+        <section class="valigntop">
+          <h2>HTML atributi</h2>
+          <ul>
+            <li>elementi mogu imati <strong>atribute</strong></li>
+            <li>atributi se navode u otvarajućem tagu</li>
+            <li>atribut se definiše parom <code>naziv="vrednost"</code></li>
+            <li>ne mogu postojati dva atributa sa istim imenom u jednom elementu</li>
+          </ul>
+          <div style="font-size: 40pt">
+            <pre><code>
+    &lt;img src=&quot;images/img001.png&quot; width=&quot;100%&quot;/&gt;
+            </code></pre>
+          </div>
+        </section>
+
+        <section class="valigntop">
+          <h2>HTML editori</h2>
+          <ul>
+            <li>HTML dokument je tekstualni dokument</li>
+            <li>bilo koji tekst editor može poslužiti za pisanje</li>
+            <li>napredni editori mogu pomoći</li>
+            <li>vizuelni editori su dobri ali je često potrebno ručno intervenisati</li>
+            <li>=> možda ipak bolje koristiti tekst editore :)</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Istorija HTML-a</h2>
+          <ul>
+            <li><strong>HTML 1.0</strong> (1991) - Prvi javno dostupan dokument "HTML Tags" opisuje inicijalnih 18 elemenata. Nastao u CERN-u kao sredstvo za razmenu i objavljivanje dokumenata.</li>
+            <li><strong>HTML 2.0</strong> (1995) - Objavljen kao standard IETF RFC 1866.</li>
+            <li><strong>HTML 3.0</strong> - Nikad zapravo nije ni postojao kao standard; u toku je bio "rat browsera" i svaki proizvođač (Netscape, Microsoft) je dodavao svoje tagove.</li>
+            <li><strong>HTML 3.2</strong> (januar 1997) - Prvi standard pod okriljem W3C; neki browser-specific elementi izbačeni a neki zadržani</li>
+            <li><strong>HTML 4.0</strong> (decembar 1997) - Omogućavao je rad u 3 režima:
+              <ul>
+                <li><em>strict</em>: zastareli elementi se ne smeju koristiti</li>
+                <li><em>transitional</em>: zastareli elementi smeju da se koriste</li>
+                <li><em>frameset</em>: dozvoljena je upotreba samo frame orijentisanih elemenata</li>
+              </ul>
+            </li>
+            <li><strong>HTML 4.01</strong> (decembar 1999) - Iz ove specifikacije je razvijen i XHTML</li>
+            <li><strong>HTML 5</strong> (prvi predlog 2008, usvojen 2014) - Poboljšanja u semantičkim elementima i podršci za različite tipove uređaja</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>HTML 5</h2>
+          <ul>
+            <li>zvaničan W3C standard<br/>
+              <a href="http://www.w3.org/TR/html5/">http://www.w3.org/TR/html5/</a>
+            </li>
+            <li>vrlo koristan sajt sa pregledom svih elemenata<br/>
+              <a href="http://www.w3schools.com/html/default.asp">http://www.w3schools.com/html/default.asp</a>
+            </li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Minimalni HTML dokument</h2>
+          <div style="font-size: 30pt">
+            <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"/&gt;
+    &lt;link href="css/some-stylesheet.css" rel="stylesheet" type="text/css"/&gt;
+    &lt;script src="scripts/some-script.js"/&gt;
+    &lt;title&gt;Ovo je naslov&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    ... Sadržaj stranice ... 
+  &lt;/body&gt;
+&lt;/html&gt;
+            </code></pre>
+          </div>
+          <ul>
+            <li><code>html</code> i <code>body</code> su obavezni</li>
+            <li><code>title</code> i <code>lang</code> tretirati kao obavezne</li>
+            <li>ostali su opcioni</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Minimalni HTML dokument</h2>
+          <ul>
+            <li><code>&lt;!DOCTYPE html&gt;</code> - oznaka tipa dokumenta; ako je nema browseri mogu ući u nestandardni režim rada</li>
+            <li>sadržaj između <code>&lt;html&gt;</code> i <code>&lt;/html&gt;</code> opisuje HTML dokument; ne postoji default jezik dokumenta pa se preporučuje da se to navede, npr. <code>lang="en"</code> ili <code>lang="sr"</code></li>
+            <li>između <code>&lt;head&gt;</code> i <code>&lt;/head&gt;</code> su dodatni podaci o dokumentu - metapodaci</li>
+            <li><code>&lt;meta charset="utf8"/&gt;</code> određuje kodni raspored kojim je dokument napisan</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Minimalni HTML dokument</h2>
+          <ul>
+            <li><code>&lt;link href="css/some-stylesheet.css" rel="stylesheet"/&gt;</code> - opcioni element, povezuje dokument sa pripadajućim CSS fajlom koji definiše stil prikaza. Danas je skoro nemoguće naći dokument koji ne koristi CSS.</li>
+            <li>&lt;script src="scripts/some-script.js"/> - opcioni element, povezuje dokument sa JavaScript dokumentom, u kome se nalazi programski kod koji se izvršava u browseru - većina dokumenata danas koristi JavaScript.</li>
+            <li><code>&lt;title&gt;Ovo je naslov&lt;/title&gt;</code> - naslov dokumenta; NE PRIKAZUJE se u okviru prikaza dokumenta u browseru, već kao naslov prozora browsera, ili njegovog taba.</li>
+            <li><code>&lt;body&gt;</code> - sav vidljivi sadržaj dokumenta se definiše unutar ovog elementa.</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Block i inline elementi</h2>
+          <ul>
+            <li><strong>block</strong> elementi - uvek počinju u sledećem slobodnom redu (vertikalno ispod prethodnog sadržaja, i automatski zauzimaju maksimalnu raspoloživu širinu.
+              <ul>
+                <li>npr. pasus, ...</li>
+              </ul>
+            </li>
+            <li><strong>inline</strong> elementi - nastavljaju se na postojeći sadržaj i automatski podešavaju svoju širinu po sadržaju koji treba da prikažu.
+              <ul>
+                <li>npr. niz slova u jednom redu teksta, ...</li>
+              </ul>
+            </li>
+            <li>podrazumevano ponašanje se može podesiti u CSS-u</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Block elementi</h2>
+          <div style="width: 33%; float: left; font-size: 20pt;">
+            <ul>
+              <li><code>&lt;address&gt;</code> contact information</li>
+              <li><code>&lt;article&gt;</code> article content</li>
+              <li><code>&lt;aside&gt;</code> aside content</li>
+              <li><code>&lt;blockquote&gt;</code> long ("block") quotation</li>
+              <li><code>&lt;canvas&gt;</code> drawing canvas</li>
+              <li><code>&lt;dd&gt;</code> definition description</li>
+              <li><code>&lt;div&gt;</code> document division</li>
+              <li><code>&lt;dl&gt;</code> definition list</li>
+              <li><code>&lt;fieldset&gt;</code> field set label</li>
+              <li><code>&lt;figcaption&gt;</code> figure caption</li>
+            </ul>
+          </div>
+          <div style="width: 35%; float: left; font-size: 20pt;">
+            <ul>
+              <li><code>&lt;figure&gt;</code> groups media content with a caption</li>
+              <li><code>&lt;footer&gt;</code> section or page footer</li>
+              <li><code>&lt;form&gt;</code> input form</li>
+              <li><code>&lt;h1&gt;...&lt;h6&gt</code> heading levels 1-6</li>
+              <li><code>&lt;header&gt;</code> section or page header</li>
+              <li><code>&lt;hgroup&gt;</code> groups header information</li>
+              <li><code>&lt;hr&gt;</code> horizontal rule (dividing line)</li>
+              <li><code>&lt;main&gt;</code> contains the central content unique to this document</li>
+            </ul>
+          </div>
+          <div style="width: 31%; float: left; font-size: 20pt;">
+            <ul>
+              <li><code>&lt;nav&gt;</code> contains navigation links</li>
+              <li><code>&lt;noscript&gt;</code> content to use if scripting is not supported or turned off</li>
+              <li><code>&lt;ol&gt;</code> ordered list</li>
+              <li><code>&lt;output&gt;</code> form output</li>
+              <li><code>&lt;p&gt;</code> paragraph</li>
+              <li><code>&lt;pre&gt;</code> preformatted text</li>
+              <li><code>&lt;section&gt;</code> section of a web page</li>
+              <li><code>&lt;table&gt;</code> table</li>
+              <li><code>&lt;tfoot&gt;</code> table footer</li>
+              <li><code>&lt;ul&gt;</code> unordered list</li>
+              <li><code>&lt;video&gt;</code> video player</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Inline elementi</h2>
+          <ul>
+            <li>b, i, small</li>
+            <li>abbr, cite, code, dfn, em, kbd, strong, samp, var</li>
+            <li>a, bdo, br, img, map, object, q, script, span, sub, sup</li>
+            <li>button, input, label, select, textarea</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Najčešće korišćeni elementi za tekstualni sadržaj</h2>
+          <ul>
+            <li>naslovi: <code>h1</code>, ..., <code>h6</code>
+              <ul>
+                <li>Definišu šest nivoa naslova. Koriste se samo ako tekst u njima zaista predstavlja naslov. Search engines posebno analiziraju naslove.</li>
+              </ul>
+            </li>
+            <li>paragraf (pasus): <code>p</code>
+              <ul>
+                <li>Standardni element za korpus teksta. Višestruki razmaci i novi redovi se ignorišu. Browseri standardno dodaju po jedan prazan red pre i posle pasusa.</li>
+              </ul>
+            </li>
+            <li>prinudni prelazak u novi red: <code>br</code>
+              <ul>
+                <li>Ovaj element nema sadržaj. Pojavljuje se kao <code>&lt;br/&gt;</code></li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        history: true,
+
+        // 16:9 aspect ratio
+        width: 1280,
+        height: 720,
+        margin: 0.02,
+
+        // don't piss people off
+        transition: 'none',
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+    </script>
+  </body>
+</html>

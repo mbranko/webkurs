@@ -50,6 +50,15 @@ $headingColor: #e7ad52;
 	font-family: 'Fira Mono', monospace;
 }
 
+.reveal strong {
+    color: #e7ad52;
+    font-style: normal;
+}
+
+.reveal li code {
+    color: lighten( $linkColor, 20% );
+}
+
 
 // Theme template ------------------------------
 @import "../template/theme";

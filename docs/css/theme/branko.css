@@ -19,6 +19,13 @@
 .reveal pre code {
   font-family: 'Fira Mono', monospace; }
 
+.reveal strong {
+  color: #e7ad52;
+  font-style: normal; }
+
+.reveal li code {
+  color: #f3d7ac; }
+
 /*********************************************
  * GLOBAL STYLES
  *********************************************/
