@@ -55,6 +55,10 @@ $headingColor: #e7ad52;
     font-style: normal;
 }
 
+.reveal em {
+    color: #e7ad52;    
+}
+
 .reveal li code {
     color: lighten( $linkColor, 20% );
 }

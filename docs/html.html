@@ -355,6 +355,270 @@
           </ul>
         </section>
 
+        <section class="valigntop">
+          <h2>Nabrajanja</h2>
+          <ul>
+            <li><code>ol</code> - ordered list
+              <ul>
+                <li>Numerisana (1, 2, 3, ...) lista stavki.</li>
+              </ul>
+            </li>
+            <li><code>ul</code> - unordered list
+              <ul>
+                <li>Lista stavki bez numeracije (kao ova)</li>
+              </ul>
+            </li>
+            <li>stavke (podelementi) ovih lista su <code>li</code> elementi</li>
+          </ul>
+          <div style="font-size: 30pt; width: 50%; float: left;">
+            <pre><code>
+&lt;ol&gt;
+  &lt;li&gt;Stavka 1&lt;/li&gt;
+  &lt;li&gt;Stavka 2&lt;/li&gt;
+&lt;/ol&gt;
+            </code></pre>
+          </div>
+          <div style="font-size: 30pt; width: 50%; float: left;">
+            <pre><code>
+&lt;ul&gt;
+  &lt;li&gt;Stavka 1&lt;/li&gt;
+  &lt;li&gt;Stavka 2&lt;/li&gt;
+&lt;/ul&gt;
+            </code></pre>
+          </div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Formatiranje teksta</h2>
+          <ul>
+            <li><code>b</code> - bold <b>tekst</b> bez posebnog značenja</li>
+            <li><code>strong</code> - bold <strong>tekst</strong> za pojmove sa naglašenom važnošću</li>
+            <li><code>i</code> - italic <i>tekst</i> bez posebnog značenja</li>
+            <li><code>em</code> - italic <em>tekst</em> za tekst koji se ističe</li>
+            <li><code>small</code> - <small>tekst</small> koji će biti prikazan umanjeno</li>
+            <li><code>mark</code> - markirani (highlighted) <mark>tekst</mark></li>
+            <li><code>del</code> - obrisani, uklonjeni <del>tekst</del></li>
+            <li><code>ins</code> - novi dodati <ins>tekst</ins></li>
+            <li><code>sub</code> - indeks <sub>2</sub></li>
+            <li><code>sup</code> - eksponent <sup>2</sup></li>
+            <li><code>pre</code> - prethodno formatirani tekst, očuvan whitespace</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Link element</h2>
+          <p style="text-align: left">opšti oblik linka:</p>
+          <div style="font-size: 30pt;">
+            <pre><code>
+&lt;a href=&quot;adresa_sadržaja&quot; target=&quot;_blank&quot;&gt; vidljivi link &lt;/a&gt;  
+            </code></pre>
+          </div>
+          <ul>
+            <li><code>href</code> je obavezan atribut</li>
+            <li>adresa sadržaja može biti
+              <ul>
+                <li>apsolutna putanja: <code>http://www.google.com</code></li>
+                <li>relativna putanja: <code>docs/somedoc.html</code></li>
+                <li>veza do drugog elementa u istom dokumentu: <code>#ident</code>
+                  <ul>
+                    <li>u dokumentu postoji drugi element sa atributom <code>id="ident"</code></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><code>target</code> je naziv prozora u kome će se otvoriti linkovani sadržaj</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Elementi opšte namene</h2>
+          <ul>
+            <li>većina elemenata nosi značenje: <code>p</code> - pasus, <code>h1</code> - glavni naslov</li>
+            <li><code>div</code> i <code>span</code> su elementi opšte namene</li>
+            <li>vrlo često se koriste za strukturiranje sadržaja</li>
+            <li><code>div</code> je blok element</li>
+            <li><code>span</code> je inline element</li>
+            <li>koriste se za stilizaciju sadržaja pomoću CSS-a</li>
+          </ul>
+          <div style="font-size: 30pt;">
+            <pre><code>
+&lt;div class=&quot;...&quot;&gt;
+  ...
+&lt;/div&gt;
+
+&lt;span class=&quot;...&quot;&gt; ... &lt;/span&gt;
+            </code></pre>
+          </div>
+        </section>
+
+        <section class="valigntop">
+          <h2>HTML5 elementi za strukturiranje sadržaja</h2>
+          <ul>
+            <li>jasnije definišu značenje delova dokumenta</li>
+            <li>jasnije je <code>&lt;nav&gt;...&lt;/nav&gt;</code> umesto <code>&lt;div class=&quot;nav&quot;&gt;&lt;/div&gt;</code></li>
+          </ul>
+          <p> </p>
+          <div style="width: 30%; float: left;">
+            <ul>
+              <li><code>&lt;article&gt;</code></li>
+              <li><code>&lt;aside&gt;</code></li>
+              <li><code>&lt;details&gt;</code></li>
+              <li><code>&lt;figcaption&gt;</code></li>
+              <li><code>&lt;figure&gt;</code></li>
+              <li><code>&lt;footer&gt;</code></li>
+              <li><code>&lt;header&gt;</code></li>
+            </ul>
+          </div>
+          <div style="width: 30%; float: left;">
+            <ul>
+              <li><code>&lt;main&gt;</code></li>
+              <li><code>&lt;mark&gt;</code></li>
+              <li><code>&lt;nav&gt;</code></li>
+              <li><code>&lt;section&gt;</code></li>
+              <li><code>&lt;summary&gt;</code></li>
+              <li><code>&lt;time&gt;</code></li>
+            </ul>
+          </div>
+          <div style="width: 40%; float: left;">
+            <img src="img/html/page-layout.jpg">
+          </div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Prikaz slika</h2>
+          <ul>
+            <li>koriste se rasterski formati: GIF, PNG, JPEG</li>
+            <li>element <code>img</code> ima osnovni oblik<br/>
+            <pre><code>
+    &lt;img src=&quot;putanja_do_fajla_slike&quot;/&gt;
+            </code></pre></li>
+            <li>dodatni atributi: <code>width</code>, <code>height</code>, <code>alt</code>, <code>title</code></li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Prikaz slika</h2>
+          <ul>
+            <li><code>figure</code> je nov u HTML5</li>
+            <li>noseći element za slike</li>
+            <li>grupisanje informacija o slici i opisa (caption)</li>
+            <li>opis nije obavezan</li>
+          </ul>
+          <div style="font-size: 30pt;">
+            <pre><code>
+&lt;figure&gt;
+  &lt;img src=&quot;slika.jpg&quot; alt=&quot;Alternativni tekst&quot;/&gt;
+  &lt;figcaption&gt;Sl. 1 - Opis slike 1&lt;/figcaption&gt;
+&lt;/figure&gt;
+            </code></pre>
+          </div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Prikaz slika</h2>
+          <ul>
+            <li><code>canvas</code> prostor na kome se programski iscrtava sadržaj</li>
+            <li>iscrtavanje se piše u JavaScriptu</li>
+            <li>pogodan za grafikone</li>
+            <li>ovaj element po pravilu ima <code>id</code> atribut</li>
+            <li>primer: <a href="http://www.w3schools.com/tags/ref_canvas.asp">http://www.w3schools.com/tags/ref_canvas.asp</a></li>
+          </ul>
+          <div style="font-size: 30pt;">
+            <pre><code>
+&lt;canvas id=&quot;myCanvas&quot; width=&quot;200&quot; height=&quot;200&quot;/&gt;
+            </code></pre>
+          </div>
+          <div style="font-size: 30pt;">
+            <pre><code>
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext('2d');
+ctx.moveTo(0,0);
+ctx.lineTo(200,100);
+ctx.stroke();
+            </code></pre>
+          </div>
+        </section>
+
+        <section class="valigntop">
+          <h2>SVG slike</h2>
+          <ul>
+            <li>SVG - Scalable Vector Graphics</li>
+            <li>XML notacija za zapisivanje vektorskih crteža</li>
+            <li>programi za vektorsko crtanje podržavaju export u SVG format</li>
+            <li>HTML5 element <code>svg</code> omogućava ubacivanje SVG slika</li>
+            <li>popularno za ikonice, delove interfejsa, itd.</li>
+          </ul>
+          <div style="font-size: 30pt;">
+            <pre><code>
+&lt;svg width=&quot;100&quot; height=&quot;100&quot;&gt;
+  &lt;circle cx=&quot;50&quot; cy=&quot;50&quot; r=&quot;40&quot; stroke=&quot;green&quot; stroke-width=&quot;4&quot; fill=&quot;yellow&quot; /&gt;
+&lt;/svg&gt;
+            </code></pre>
+          </div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Zvučni zapisi</h2>
+          <ul>
+            <li>element <code>audio</code> je dodat u HTML5</li>
+            <li>nema više potrebe za različitim plug-in playerima</li>
+            <li>atributi: <code>autoplay</code>, <code>controls</code>, <code>loop</code>, <code>muted</code>, <code>preload</code>, <code>src</code></li>
+          </ul>
+          <div style="font-size: 30pt;">
+            <pre><code>
+&lt;audio&gt;
+  &lt;source src=&quot;horse.ogg&quot; type=&quot;audio/ogg&quot;&gt; 
+  &lt;source src=&quot;horse.mp3&quot; type=&quot;audio/mpeg&quot;&gt; 
+  Vaš stari browser ne podržava audio tag.
+&lt;/audio&gt;
+            </code></pre>
+          </div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Zvučni zapisi</h2>
+          <ul>
+            <li>nema još opšte kompatibilnosti svih browsera i audio formata
+              <ul>
+                <li>mp3 - svi browseri</li>
+                <li>wav - svi osim IE</li>
+                <li>ogg - Chrome, Firefox, Opera</li>
+              </ul>
+            </li>
+            <li>mora se navesti i MIME tip zvučnog zapisa
+              <ul>
+                <li>mp3 - <code>audio/mpeg</code></li>
+                <li>ogg - <code>audio/ogg</code></li>
+                <li>wav - <code>audio/wav</code></li>
+              </ul>
+            </li>
+            <li>za starije browsere potrebno je obezbediti <i>fallback</i></li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Video zapisi</h2>
+          <ul>
+            <li>element <code>video</code> je dodat u HTML5</li>
+            <li>nema više potrebe za različitim plug-in playerima</li>
+            <li>podržani formati
+              <ul>
+                <li>MP4: MPEG4 sa H.264 video i AAC audio kodiranjem</li>
+                <li>WebM: WebM sa VP8 video i Vorbis audio kodiranjem</li>
+                <li>Ogg: Ogg sa Theora video i Vorbis audio kodiranjem</li>
+              </ul>
+            </li>
+            <li>mora se navesti i MIME tip zvučnog zapisa
+              <ul>
+                <li>MP4 - <code>video/mp4</code></li>
+                <li>WebM - <code>video/webm</code></li>
+                <li>Ogg - <code>video/ogg</code></li>
+              </ul>
+            </li>
+            <li>isti atributi kao za <code>audio</code> tag, uz još <code>width</code>, <code>height</code> i <code>poster</code></li>
+            <li>za YouTube potreban je njihov <code>embed</code> element!
+          </ul>
+        </section>
 
       </div>
     </div>

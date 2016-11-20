@@ -23,6 +23,9 @@
   color: #e7ad52;
   font-style: normal; }
 
+.reveal em {
+  color: #e7ad52; }
+
 .reveal li code {
   color: #f3d7ac; }
 
