@@ -27,7 +27,6 @@
 
         <section class="vcenter">
           <h1>JavaScript</h1>
-          <h2>ili ECMAScript</h2>
           <p>
             <small><a href="http://mbranko.github.io/webkurs">http://mbranko.github.io/webkurs</a></small>
           </p>
@@ -103,7 +102,7 @@
           <p>Neke osobine se kasnije pokazale kao dobre :)</p>
         </section>
 
-        <section class="valigntop">
+        <section>
           <h1>JavaScript: obične stvari</h1>
         </section>
 
@@ -1544,23 +1543,23 @@ submitButton.addEventListener("click", function(event) {
       <p class="credit">Photo credit: <a href="http://www.flickr.com/photos/sunface13/988453859/" target="_blank">sunface13</a> <a href="http://creativecommons.org/licenses/by-nc/2.0/" target="_blank">cc</a></p>
     </section>
 
-    <section class="valigntop">
-      <h2>Resources</h2>
-      <ul>
-        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide" target="_blank">JavaScript Guide</a>, from the Mozilla Developers Network.</li>
-        <li><a href="http://www.codecademy.com/tracks/javascript" target="_blank">Code Academy</a>, with interactive JavaScript lessons to help you review.</li>
-        <li><a href="https://www.khanacademy.org/computing/cs/programming">Khan Academy</a> has a lot more information abut drawing and animations.</li>
-      </ul>
-    </section>
+        <section class="valigntop">
+          <h2>Resources</h2>
+          <ul>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide" target="_blank">JavaScript Guide</a>, from the Mozilla Developers Network.</li>
+            <li><a href="http://www.codecademy.com/tracks/javascript" target="_blank">Code Academy</a>, with interactive JavaScript lessons to help you review.</li>
+            <li><a href="https://www.khanacademy.org/computing/cs/programming">Khan Academy</a> has a lot more information abut drawing and animations.</li>
+          </ul>
+        </section>
 
-    <section class="valigntop">
-      <h2>Questions?</h2>
-    </section>
-
+        <section overlay="img/javascript/test.svg">
+          <h1>JavaScript: neobične stvari</h1>
+        </section>
 
 
       </div>
     </div>
+    <div id="overlay"></div>
 
     <script src="lib/js/head.min.js"></script>
     <script src="js/reveal.js"></script>
@@ -1586,6 +1585,23 @@ submitButton.addEventListener("click", function(event) {
           { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
         ]
       });
+
+      // moze i pomocu
+      // window.onhashchange = function() {
+      //   ...
+      // }
+      Reveal.addEventListener('slidechanged', function(event) {
+        var overlayDiv = document.getElementById("overlay");
+        var currSlide = Reveal.getCurrentSlide();
+        var overlayImg = currSlide.getAttribute("overlay");
+        if (overlayImg != '') {
+          overlayDiv.style.display = 'block';
+          overlayDiv.style.backgroundImage = 'url("' + overlayImg + '")';
+        } else {
+          overlayDiv.style.display = 'none';
+        }
+      });
+
     </script>
   </body>
 </html>

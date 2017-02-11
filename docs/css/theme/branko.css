@@ -41,6 +41,18 @@
 .reveal li p code {
   text-decoration: underline; }
 
+#overlay {
+  position: fixed !important;
+  top: 0px;
+  left: 0px;
+  padding: 0 0 0 0;
+  background: url(../../img/javascript/test.svg) no-repeat top left;
+  z-index: 1;
+  display: none;
+  height: 100%;
+  width: 100%;
+}
+
 /*********************************************
  * GLOBAL STYLES
  *********************************************/
