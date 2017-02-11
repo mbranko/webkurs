@@ -29,6 +29,18 @@
 .reveal li code {
   color: #f3d7ac; }
 
+.reveal p code {
+  color: #f3d7ac; }
+
+.reveal td code {
+  color: #f3d7ac; }
+
+.reveal li a code {
+  text-decoration: underline; }
+
+.reveal li p code {
+  text-decoration: underline; }
+
 /*********************************************
  * GLOBAL STYLES
  *********************************************/
