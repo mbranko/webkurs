@@ -1552,8 +1552,25 @@ submitButton.addEventListener("click", function(event) {
           </ul>
         </section>
 
-        <section overlay="img/javascript/test.svg">
+        <section>
           <h1>JavaScript: neobične stvari</h1>
+        </section>
+
+        <section class="valigntop">
+          <h2>Podsećanje: promenljive</h2>
+          <p><strong>Promenljiva</strong> je imenovani kontejner za <strong>vrednost</strong>.</p>
+          <p>Ime se zove i <strong>identifikator</strong>.</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Podsećanje: promenljive</h2>
+          <pre><code>
+var x;
+var y = "Hello JS!";
+var z;
+          </code></pre>
+          <p>Crvene kutije su <strong>promenljive</strong> i svaka od njih ima <strong>vrednost</strong>.</p>
+          <p>U njima se može nalaziti bilo koja JavaScript vrednost.</p>
         </section>
 
 
@@ -1594,11 +1611,14 @@ submitButton.addEventListener("click", function(event) {
         var overlayDiv = document.getElementById("overlay");
         var currSlide = Reveal.getCurrentSlide();
         var overlayImg = currSlide.getAttribute("overlay");
-        if (overlayImg != '') {
+        if (overlayImg != null) {
+          alert('x');
           overlayDiv.style.display = 'block';
           overlayDiv.style.backgroundImage = 'url("' + overlayImg + '")';
+          overlayDiv.style.zIndex = 1;
         } else {
           overlayDiv.style.display = 'none';
+          overlayDiv.style.zIndex = -1;
         }
       });
 
@@ -1607,15 +1627,20 @@ submitButton.addEventListener("click", function(event) {
 </html>
 <!--
 
-Linkovi
-
+Obicne stvari
 http://www.teaching-materials.org/javascript/
 
-https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f
+Neobicne stvari
 https://slides.com/concise/js/fullscreen#/
+https://gist.github.com/concise/a20b3e5d7e9c61dfbcc5
 http://slides.com/gsklee/functional-programming-in-5-minutes#/
+
+Good parts vs bad parts
 http://johnkpaul.github.io/presentations/empirejs/javascript-bad-parts/#/
+
 http://brendaneich.github.io/Strange-Loop-2012/#/
 
 http://es6-features.org
+
+https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f
 -->
