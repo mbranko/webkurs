@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>JavaScript</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/branko.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <section class="vcenter">
+          <h1>JavaScript: dobra praksa</h1>
+          <p>
+            <small><a href="http://mbranko.github.io/webkurs">http://mbranko.github.io/webkurs</a></small>
+          </p>
+          <p>
+            <small>Ovo je deo <a href="index.html#/1">web kursa</a></small>
+          </p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Literatura</h2>
+          <ul>
+            <li>JavaScript Programmers Reference</li>
+            <li>JavaScript: The Good Parts</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide" target="_blank">JavaScript Guide</a> od Mozilla Developers Network.</li>
+            <li><a href="http://www.codecademy.com/tracks/javascript" target="_blank">Code Academy</a> sa interaktivnim JavaScript lekcijama.</li>
+            <li><a href="https://www.khanacademy.org/computing/cs/programming">Khan Academy</a> ima puno informacija o crtanju i animaciji.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>#1: podaci u memoriji</h1>
+        </section>
+
+        <!--
+          cascade
+          JavaScript Programmers Reference
+          JavaScript The Good Parts
+          https://www.safaribooksonline.com/library/view/javascript-the-good/9780596517748/ch04s13.html
+
+          modules
+          http://eloquentjavascript.net/10_modules.html
+
+          callbacks
+          http://cwbuecheler.com/web/tutorials/2013/javascript-callbacks/
+          http://callbackhell.com
+          http://javascriptissexy.com/understand-javascript-callback-functions-and-use-them/
+          
+          promise objects
+          https://scotch.io/tutorials/javascript-promises-for-dummies
+          https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+          https://developers.google.com/web/fundamentals/getting-started/primers/promises
+
+          generators ES6
+
+          Iz knjige
+          Efikasno učitavanje skriptova
+          Asinhrona komunikacija
+          Cross-domain techniques
+          Data caching
+          Toolchain
+
+        -->
+
+
+
+      </div>
+    </div>
+    <div id="overlay"></div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        history: true,
+
+        // 16:9 aspect ratio
+        width: 1280,
+        height: 720,
+        margin: 0.02,
+
+        // don't piss people off
+        transition: 'none',
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+
+      // moze i pomocu
+      // window.onhashchange = function() {
+      //   ...
+      // }
+      Reveal.addEventListener('slidechanged', function(event) {
+        var overlayDiv = document.getElementById("overlay");
+        var currSlide = Reveal.getCurrentSlide();
+        var overlayImg = currSlide.getAttribute("overlay");
+        if (overlayImg != null) {
+          alert('x');
+          overlayDiv.style.display = 'block';
+          overlayDiv.style.backgroundImage = 'url("' + overlayImg + '")';
+          overlayDiv.style.zIndex = 1;
+        } else {
+          overlayDiv.style.display = 'none';
+          overlayDiv.style.zIndex = -1;
+        }
+      });
+
+    </script>
+  </body>
+</html>
+<!--
+
+Obicne stvari
+http://www.teaching-materials.org/javascript/
+
+Neobicne stvari
+https://slides.com/concise/js/fullscreen#/
+https://gist.github.com/concise/a20b3e5d7e9c61dfbcc5
+http://slides.com/gsklee/functional-programming-in-5-minutes#/
+
+Good parts vs bad parts
+http://johnkpaul.github.io/presentations/empirejs/javascript-bad-parts/#/
+
+http://brendaneich.github.io/Strange-Loop-2012/#/
+
+http://es6-features.org
+
+https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f
+-->

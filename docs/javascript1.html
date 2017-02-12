@@ -1,0 +1,1566 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>JavaScript</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/branko.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <section class="vcenter">
+          <h1>JavaScript: obične stvari</h1>
+          <p>
+            <small><a href="http://mbranko.github.io/webkurs">http://mbranko.github.io/webkurs</a></small>
+          </p>
+          <p>
+            <small>Ovo je deo <a href="index.html#/1">web kursa</a></small>
+          </p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Literatura</h2>
+          <ul>
+            <li>JavaScript Programmers Reference</li>
+            <li>JavaScript: The Good Parts</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide" target="_blank">JavaScript Guide</a> od Mozilla Developers Network.</li>
+            <li><a href="http://www.codecademy.com/tracks/javascript" target="_blank">Code Academy</a> sa interaktivnim JavaScript lekcijama.</li>
+            <li><a href="https://www.khanacademy.org/computing/cs/programming">Khan Academy</a> ima puno informacija o crtanju i animaciji.</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Istorija</h2>
+          <ul>
+            <li><strong>1995</strong>: Brendan Eich kreirao jezik Mocha za Netscape</li>
+            <ul>
+              <li>rename: Mocha -&gt; LiveScript -&gt; JavaScript</li>
+              <li>"Java" u imenu iz marketinških razloga</li>
+            </ul>
+            <li><strong>1996</strong>: predat na standardizaciju u ECMA</li>
+            <li><strong>1997</strong>: ECMA-262: ECMAScript</li>
+            <li><strong>1998</strong>: ECMAScript 2</li>
+            <li><strong>1999</strong>: ECMAScript 3</li>
+            <li><strong>2000</strong>: JavaScript 2 / ECMAScript 4</li>
+            <ul>
+              <li>Microsoft ignorisao, imao svoje Jscript i vbscript jezike</li>
+              <li>nije zaživeo</li>
+            </ul>
+            <li><strong>2005</strong>: Mozilla ulazi u Ecma</li>
+            <ul>
+              <li>Macromedia Flash: ActionScript 3</li>
+              <li>Adobe preuzima Macromedia</li>
+            </ul>
+            <li><strong>2005</strong>: pojam AJAX</li>
+            <ul>
+              <li>nastanak jQuery, Prototype, Mootools, Dojo</li>
+            </ul>
+            <li><strong>2009</strong>: ECMAScript 5</li>
+            <ul>
+              <li>čak i Microsoft podržao</li>
+            </ul>
+            <li><strong>2015</strong>: ECMAScript 6</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>JavaScript nastao za 10 dana</h2>
+          <p>Konfuzni zahtevi i besane noći rezultovali biserima</p>
+          <ul>
+            <li>automatsko dodavanje tačka-zarez</li>
+            <li>automatska konverzija tipova</li>
+            <li>nema block scoping</li>
+            <li>nema klase</li>
+            <li>nema module</li>
+            <li>neobično nasleđivanje</li>
+          </ul>
+          <p>Neke osobine se kasnije pokazale kao dobre :)</p>
+        </section>
+
+        <section>
+          <h1>JavaScript: obične stvari</h1>
+        </section>
+
+        <section class="valigntop">
+          <h2>script tag</h2>
+          <p>Možemo mešati JavaScript i HTML. Tag <code>script</code> sadrži JavaScript u HTML dokumentu.</p>
+
+          <pre><code>
+&lt;script&gt;
+// ovde pišemo JavaScript kod
+&lt;/script&gt;
+          </code></pre>
+        </section>
+
+        <section class="valigntop">
+          <h2>script tag</h2>
+          <p>Kao i CSS, dugačak JavaScript kod možemo smestiti u poseban fajl.</p>
+
+          <pre><code>
+&lt;script src="path/to/file.js"&gt;&lt;/script&gt;
+          </code></pre>
+        </section>
+
+        <section class="valigntop">
+          <h2>Prvi primer</h2>
+          <p>Snimiti ovaj HTML fajl pod imenom <code>index.html</code> i otvoriti u čitaču.</p>
+
+          <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Test stranica&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;p&gt;Ovo je prvi JavaScript kod.&lt;/p&gt;
+    &lt;script&gt;
+      alert('Hello World!');
+      console.log('Secret message');
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+          </code></pre>
+        </section>
+
+        <section class="valigntop">
+          <h2>Konzola u čitaču</h2>
+          <img src="img/javascript/console-panel.png" width="60%">
+          <p>Otvaranje konzole za Chrome:
+          <ul>
+            <li>Windows/Linux: Ctrl + Shift + J</li>
+            <li>Mac: Cmd + Option + J</li>
+          </p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Naredbe</h2>
+          <p>JavaScript program se sastoji od naredbi</p>
+          <pre><code class="javascript">
+console.log('Hello World!');
+console.log('I am glad to meet you');
+console.log('I am fuzzy');
+          </code></pre>
+        </section>
+
+        <section class="valigntop">
+          <h2>Komentari</h2>
+          <p>Komentari u kodu se igonorišu prilikom izvršavanja.</p>
+          <pre><code>
+/*
+Višelinijski 
+komentar
+*/
+
+console.log('Hello World!'); // jednolinijski komentar
+          </code></pre>
+        </section>
+
+        <section class="valigntop">
+          <h2>Ispisivanje poruka</h2>
+          <p>Otvori prozor sa porukom.</p>
+          <pre><code class="javascript">
+alert('Hello World!');
+          </code></pre>
+          <p>Ispiši poruku na konzoli.</p>
+          <pre><code>
+console.log('Hello World!');
+          </code></pre>
+          <p>Dodaj tekst u HTML stranicu.</p>
+          <pre><code>
+document.write('Hello World!');
+          </code></pre>
+        </section>
+
+        <section class="valigntop">
+          <h2>Zadatak</h2>
+          <ol>
+            <li>Otvori <code>index.html</code> iz prethodnog primera.</li>
+            <li>Dodaj komentar u kod.</li>
+            <li>Isprobaj različite načine ispisivanja poruke.</li>
+            <li>Kreiraj novi fajl nazvan <code>mycode.js</code>.</li>
+            <li>Premesti JavaScript kod u novi fajl.</li>
+          </ol>
+        </section>
+
+        <section class="valigntop">
+          <h2>Promenljive</h2>
+          <p>Promenljiva je ime memorijske lokacije koja sadrži neki podatak (vrednost).</p> 
+        </section>
+
+        <section class="valigntop">
+          <h2>Deklaracija promenljive</h2>
+          <p>Deklaracija (kreiranje) promenljive: napiši <code>var</code> i ime promenljive.</p> 
+          <pre><code class="javascript">
+var numberOfKittens;
+          </code></pre>
+          <p>Promenljiva se odmah može inicijalizovati - dodeliti joj se početna vrednost.</p> 
+          <pre><code class="javascript">
+var numberOfKittens = 5;
+          </code></pre>
+        </section>
+ 
+        <section class="valigntop">
+          <h2>Vrednosti promenljivih</h2>
+          <ul>
+            <li>Kada se promenljiva kreira ona nema vrednost (ona je <code>undefined</code>).</li>
+            <li>Promenljivoj se može dodeliti vrednost.</li>
+            <li>Promenljive mogu sadržati podatke <strong>različitog tipa</strong>.</li>
+            <li>Vrednost promenljive može se menjati tokom vremena.</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Nazivi promenljivih</h2>
+          <ul>
+            <li>Razlikuju se velika i mala slova (case-sensitive).</li>
+            <li>Nova promenljiva bi trebala da ima jedinstveno ime.</li>
+            <li>Imena moraju početi slovom, <code>$</code> ili <code>_</code>.</li>
+            <li>Ne možemo koristiti <strong>rezervisane reči</strong>.</li>
+            <li>Ime bi trebalo da nosi jasno značenje.</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Korišćenje promenljivih</h2>
+          <p>Nakon kreiranja, promenljivu koristimo u kodu navođenjem njenog imena.</p> 
+          <pre><code class="javascript">
+var numberOfKittens = 5;
+console.log(numberOfKittens);
+          </code></pre>
+        </section>
+ 
+        <section class="valigntop">
+          <h2>Zadatak</h2>
+          <p>U fajlu <code>mycode.js</code> kreiraj promenljivu, dodeli joj vrednost i prikaži je.</p> 
+        </section>
+
+        <section class="valigntop">
+          <h2>Tipovi podataka</h2>
+          <ul>
+            <li><strong>string</strong> niz znakova
+              <pre><code class="javascript">var userName = 'John Doe';</code></pre>
+            </li>
+            <li><strong>number</strong> integer ili floating point
+              <pre><code class="javascript">var myAge = 30;</code></pre>
+            </li>
+            <li><strong>boolean</strong> <code>true</code> ili <code>false</code>
+              <pre><code class="javascript">var catsAreBest = true;</code></pre>
+            </li>
+            <li><strong>undefined</strong> vrednost još nije definisana
+              <pre><code class="javascript">var favoriteThings;</code></pre>
+            </li>
+            <li><strong>null</strong> eksplicitno prazna vrednost
+              <pre><code class="javascript">var goodDieselCars = null;</code></pre>
+            </li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Brojevi</h2>
+          <p>Promenljive mogu sadržati brojeve - cele ili u pokretnom zarezu.</p>
+          <pre><code class="javascript">
+var numberOfKittens = 5;
+var cutenessRating = 9.6;
+          </code></pre>
+          <p>JavaScript automatski konvertuje cele u decimalne</p>
+          <p><code>NaN</code> = Not-A-Number</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Aritmetički operatori</h2>
+          <p>Osnovne matematičke operacije</p>
+          <pre><code class="javascript">
+var numberOfKittens = 5;
+var numberOfPuppies = 4;
+var numberOfAnimals = numberOfKittens + numberOfPuppies;
+          </code></pre>
+        </section>
+
+        <section class="valigntop">
+          <h2>Aritmetički operatori</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Primer</th>
+                <th>Ime</th>
+                <th>Rezultat</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>-a</code></td>
+                <td>Negacija</td>
+                <td>Suprotan znak od <code>a</code>.</td>
+              </tr>
+              <tr>
+                <td><code>a + b</code></td>
+                <td>Sabiranje</td>
+                <td>Zbir <code>a</code> i <code>b</code>.</td>
+              </tr>
+              <tr>
+                <td><code>a - b</code></td>
+                <td>Oduzimanje</td>
+                <td>Razlika <code>a</code> i <code>b</code>.</td>
+              </tr>
+              <tr>
+                <td><code>a * b</code></td>
+                <td>Množenje</td>
+                <td>Proizvod <code>a</code> i <code>b</code>.</td>
+              </tr>
+              <tr>
+                <td><code>a / b</code></td>
+                <td>Deljenje</td>
+                <td>Količnik <code>a</code> i <code>b</code>.</td>
+              </tr>
+              <tr>
+                <td><code>a % b</code></td>
+                <td>Moduo</td>
+                <td>Ostatak pri deljenju <code>a</code> i <code>b</code>.</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="valigntop">
+          <h2>Zadatak</h2>
+          <p>Kreiraj dve promenljive i isprobaj aritmetičke operacije. Prikaži rezultate.</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Stringovi</h2>
+          <p>Promenljive mogu sadržati stringove.</p>
+          <p>Stringovi su omeđeni jednostrukim ili dvostrukim navodnicima.</p>
+          <pre><code class="javascript">
+var kittensName = 'Fluffy';
+          </code></pre>
+          <p>Ako navodnik treba da bude deo stringa, navodimo ga uz obrnutu kosu crtu (backslash).</p>
+          <pre><code class="javascript">
+console.log('I\'d like to use an apostrophe');
+          </code></pre>
+        </section>
+
+        <section class="valigntop">
+          <h2>String operatori</h2>
+          <p>Možemo spojiti dva stringa pomoću <code>+</code>, operatora <strong>konkatenacije</strong>.</p>
+          <pre><code class="javascript">
+var kittensName = 'Fluffy ';
+var fullName = kittensName + 'McDougle';
+console.log(fullName); // Outputs 'Fluffy McDougle'
+          </code></pre>
+        </section>
+
+        <section class="valigntop">
+          <h2>String operatori</h2>
+          <p>Možemo koristiti i <code>+=</code> za konkatenaciju i dodelu vrednosti.</p>
+          <pre><code class="javascript">
+var kittensName = 'Admiral ';
+kittensName += 'Snuggles';
+console.log(kittensName); // Outputs 'Admiral Snuggles'
+          </code></pre>
+        </section>
+
+        <section class="valigntop">
+          <h2>Zadatak</h2>
+          <p>Kreiraj dve promenljive, ime i prezime, i spoj ih da čine puno ime. Prikaži rezultat!</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Konkatenacija stringova i brojeva</h2>
+          <p>Konkatenacija se može primeniti na string i broj. JavaScript će tretirati broj kao string.</p>
+          <pre><code class="javascript">
+var numberOfFruit = 6;
+var typeOfFruit = 'bananas';
+var allTheFruit = 'I have ' + numberOfFruit + ' ' + typeOfFruit + '!';
+console.log(allTheFruit);
+          </code></pre>
+        </section>
+
+        <section class="valigntop">
+          <h2>Zadatak</h2>
+          <p>Kreiraj program koji će izračunati napojnicu u restoranu. Zahtevi:</p>
+          <ul>
+            <li>Napravi promenljive <em>osnovna cena</em> i <em>procenat napojnice</em>.</li>
+            <li>Izračunaj ukupnu sumu.</li>
+            <li>Ispiši rečenicu kao "Vaš ukupan račun, sa napojnicom, je &euro;14.75".</li>
+            <li>Možeš da koristiš <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed" target="_blank"><code>toFixed()</code></a> za zaokruživanje na dve decimale.</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Analiza koda</h2>
+          <p>U ovom kodu uoči komentare, promenljive i operatore.</p>
+          <pre><code class="javascript">
+var billPreTip = 10;
+var tipPercent = 0.15; // Can be changed
+
+var billTip = billPreTip * tipPercent;
+var receipt = 'Meal: ' + billPreTip + ' Tip: ' + billTip + ' Total: ' + (billPreTip + billTip);
+
+console.log(receipt);
+          </code></pre>
+        </section>
+
+        <section class="valigntop">
+          <h2>Funkcije</h2>
+          <p>Funkcije su blokovi koda koji se mogu pozvati - koristiti više puta.
+        </section>
+
+        <section class="valigntop">
+          <h2>Deklaracija funkcije</h2>
+          <p>Prilikom kreiranja funkcije možemo joj dati ime i navesti njen kod unutar vitičastih zagrada.</p>
+          <pre><code class="javascript">
+function parrotFacts() {
+  console.log('Some parrot species can live for over 80 years');
+  console.log('Kakapos are a critically endangered flightless parrot');
+}
+          </code></pre>
+          <p>Funkcije mogu imati više redova i više naredbi.</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Korišćenje funkcija</h2>
+          <p>Prilikom pozivanja funkcije navodimo njeno ime praćeno zagradama <code>()</code></p>
+<pre><code class="javascript">
+parrotFacts();
+</code></pre>
+          <p>Za sada su nam zagrade prazne.</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Šta se dešava ovde?</h2>
+          <p>Funkciju možemo <strong>pozvati</strong> više puta.</p>
+          <p>Kada pozovemo funkciju po njenom imenu, čitač će izvršavati kod u njenom telu (definiciji).</p>
+          <p>Funkcija se mora deklarisati pre korišćenja.</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Zadatak</h2>
+          <p>Napiši funkciju koja ispisuje jednu rečenicu. Zatim pozovi tu funkciju u okviru svog koda.</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Argumenti / parametri</h2>
+          <p>Funkcije mogu primati vrednosti kao <strong>parametre</strong>.</p>
+          <pre><code class="javascript">
+function callKitten(kittenName){
+  console.log('Come here, ' + kittenName + '!');
+}
+
+callKitten('Fluffy'); // outputs 'Come here, Fluffy!'
+
+function addNumbers(a, b){
+  console.log(a + b);
+}
+
+addNumbers(5, 7);  // outputs 12
+addNumbers(9, 12); // outputs 21
+</code></pre>
+        </section>
+
+        <section class="valigntop">
+          <h2>Argumenti / parametri</h2>
+          <p>Možemo proslediti <strong>promenljive</strong> prilikom poziva funkcije. Promenljiva ne mora imati isto ime kao parametar funkcije.</p>
+          <pre><code class="javascript">
+function addOne(num){
+  var newNumber = num + 1;
+  console.log('You now have ' + newNumber);
+}
+
+// Declare variables
+var numberOfKittens = 5;
+var numberOfPuppies = 4;
+
+// Use them in functions
+addOne(numberOfKittens);
+addOne(numberOfPuppies);
+</code></pre>
+        </section>
+
+        <section class="valigntop">
+          <h2>Zadatak</h2>
+          <p>Napiši program koji će konkatenirati ime i prezime unutar funkcije i pozvati je. Onda izmeni funkciju tako da primi ime i prezime kao parametre.</p>
+        </section>
+
+      <!-- returning values -->
+        <section class="valigntop">
+          <h2>Rezultat funkcije</h2>
+          <p>Funkcija može da vrati rezultat.</p>
+          <pre><code class="javascript">
+function square(num) {
+  return num * num;
+}
+
+console.log(square(4));       // outputs '16'
+
+var squareOfFive = square(5); // squareOfFive equals '25'
+          </code></pre>
+          <p><code>return</code> će prekinuti dalje izvršavanje funkcije, izazvati povratak na mesto poziva i vratiti datu vrednost (ako je ima).</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Zadatak</h2>
+          <p>Dodaj <code>return</code> naredbu funkciji. Upotrebi tu funkciju da dodeliš vrednost promenljivoj.</p>
+        </section>
+
+      <!-- Variable Scope -->
+        <section class="valigntop">
+          <h2>Opseg vidljivosti promenljivih</h2>
+          <p>Opseg vidljivosti određuje gde je promenljiva dostupna u programu.</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Globalni opseg</h2>
+          <p>Promenljiva deklarisana izvan funkcije ima <strong>globalni opseg</strong> i može joj se pristupiti sa bilo kog mesta, čak i unutar funkcija.</p>
+          <pre><code class="javascript">
+var awesomeGroup = 'webstudents';  // global scope
+
+function whatIsAwesome() {
+  console.log(awesomeGroup + ' is pretty awesome.');  // will work
+}
+
+whatIsAwesome();
+          </code></pre>
+        </section>
+
+        <section class="valigntop">
+          <h2>Lokalni opseg</h2>
+          <p>Promenljiva deklarisana unutar funkcije ima <strong>lokalni opseg</strong> i može joj se pristupiti samo unutar te funkcije.</p>
+          <pre><code class="javascript">
+function whatIsAwesome() {
+  var awesomeGroup = 'webstudents'; // Local scope
+  console.log(awesomeGroup + ' is pretty awesome.'); // Will work
+}
+
+whatIsAwesome();
+
+console.log(awesomeGroup + ' is pretty awesome.'); // Won't work
+</code></pre>
+        </section>
+
+        <section class="valigntop">
+          <h2>Logičke promenljive</h2>
+          <p>Logičke promenljive sadrže vrednosti <code>true</code> ili <code>false</code>.</p>
+          <pre><code class="javascript">
+var catsAreBest = true;
+var dogsRule = false;
+          </code></pre>
+        </section>
+
+        <section class="valigntop">
+          <h2>Logičke promenljive</h2>
+          <p>Neke vrednosti drugih tipova se smatraju za <strong><a href="https://developer.mozilla.org/en-US/docs/Glossary/Falsy">falsy</a></strong> i tretiraće se kao <code>false</code> u logičkom kontekstu.</p>
+          <pre><code class="javascript">
+// the following variables will evaluate as false
+
+var myName = '';
+var numOfKids = 0;
+var isMarried;     // remember a variable with no value is undefined
+          </code></pre>
+          <p><code>null</code> i <code>NaN</code> će se takođe tretirati kao <code>false</code>.</p>
+          <p>Sve ostalo se tretira kao <code>true</code>.</p>
+          </section>
+
+      <!--If/Then-->
+        <section class="valigntop">
+          <h2>Kontrola toka programa</h2>
+          <p>Kontrola toka = grananje i petlje</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>if naredba</h2>
+          <p>Pomoću <code>if</code> naredbe odlučujemo koje linije koda će se izvršiti na osnovu nekog uslova.</p>
+          <pre><code class="javascript">
+if (condition) {
+  // statements to execute
+}
+          </code></pre>
+          <pre><code class="javascript">
+var age = 30;
+
+if (age &gt; 18) {
+  console.log('You are an adult');
+}
+          </code></pre>
+        </section>
+
+        <section class="valigntop">
+          <h2>Operatori poređenja</h2>
+          <table class="smalltext">
+            <thead>
+              <tr>
+                <th>Primer</th>
+                <th>Ime</th>
+                <th>Rezultat</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>a == b</code></td>
+                <td>jednako</td>
+                <td><code>true</code> ako je <code>a</code> jednako <code>b</code> (mogu biti različitog tipa).</td>
+              </tr>
+              <tr>
+                <td><code>a === b</code></td>
+                <td>identično</td>
+                <td><code>true</code> ako je <code>a</code> jednako <code>b</code>, i istog su tipa. </td>
+              </tr>
+              <tr>
+                <td><code>a != b</code></td>
+                <td>nije jednako</td>
+                <td><code>true</code> ako je <code>a</code> različito od <code>b</code> (mogu biti različitog tipa).</td>
+              </tr>
+              <tr>
+                <td><code>a !== b</code></td>
+                <td>nije identično</td>
+                <td><code>true</code> ako je <code>a</code> različito od <code>b</code>, ili nisu istog tipa.</td>
+              </tr>
+              <tr>
+                <td><code>a &lt; b</code></td>
+                <td>manje</td>
+                <td><code>true</code> ako je <code>a</code> manje od <code>b</code>.</td>
+              </tr>
+              <tr>
+                <td><code>a &gt; b</code></td>
+                <td>veće</td>
+                <td><code>true</code> ako je <code>a</code> veće od <code>b</code>.</td>
+              </tr>
+              <tr>
+                <td><code>a &lt;= b</code></td>
+                <td>manje ili jednako</td>
+                <td><code>true</code> ako je <code>a</code> manje ili jednako <code>b</code>.</td>
+              </tr>
+              <tr>
+                <td><code>a &gt;= b</code></td>
+                <td>veće ili jednako </td>
+                <td><code>true</code> ako je <code>a</code> veće ili jednako <code>b</code>.</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="valigntop">
+          <h2>Pažnja!</h2>
+          <p>Ne treba mešati <code>=</code> i <code>==</code> i <code>===</code>!</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Zadatak</h2>
+          <p>Deklariši promenljivu <code>temperature</code>. Napiši kod koji će ti reći da li da obučeš jaknu (ako je manje od 15 stepeni).</p>
+        </section>
+
+      <!--If/else -->
+        <section class="valigntop">
+          <h2>Dvostruko i višestruko grananje</h2>
+          <p>Pomoću <code>if</code> / <code>else</code> naredbi.</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>if/else naredba</h2>
+          <p>Koristi <code>else</code> za alternativni blok naredbi - kada uslov nije ispunjen.</p>
+          <pre><code class="javascript">
+var age = 30;
+
+if (age &gt;= 16) {
+  console.log('Yay, you can drive!');
+} else {
+  console.log('Sorry, you have ' + (16 - age) +
+  ' years until you can drive.');
+}
+</code></pre>
+        </section>
+
+        <section class="valigntop">
+          <h2>if/else naredba</h2>
+          <p>Ako imamo više uslova možemo koristiti <code>else if</code>.</p>
+          <pre><code class="javascript">
+var age = 30;
+
+if (age &gt;= 35) {
+  console.log('You can vote AND run for President!');
+} else if (age &gt;= 30) {
+  console.log('You can vote AND run for the Senate!');
+} else if (age &gt;= 18) {
+  console.log('You can vote!');
+} else {
+  console.log('You can\'t vote, but you can write your representatives.');
+}
+          </code></pre>
+        </section>
+
+        <section class="valigntop">
+          <h2>Zadatak</h2>
+          <p>Izmeni prethodni "obuci jaknu" zadatak na sledeći način:</p>
+          <ol>
+            <li>Ako je manje od 15 stepeni, obuci jaknu.</li>
+            <li>Ako je manje od 0 stepeni, obuci jaknu i stavi kapu.</li>
+            <li>Ako je manje od -25 stepeni, ne izlazi napolje.</li>
+            <li>Inače obuci šta hoćeš.</li>
+          </ol>
+        </section>
+
+      <!-- Logical Operators -->
+        <section class="valigntop">
+          <h2>Logički operatori</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Primer</th>
+                <th>Ime</th>
+                <th>Rezultat</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>a &amp;&amp; b</code></td>
+                <td>konkunkcija</td>
+                <td><code>true</code> ako su <code>a</code> i <code>b</code> jednaki <code>true</code>.</td>
+              </tr>
+              <tr>
+                <td><code>a || b</code></td>
+                <td>disjunkcija</td>
+                <td><code>true</code> ako ni <code>a</code> niti <code>b</code> nisu jednaki <code>true</code>.</td>
+              </tr>
+              <tr>
+                <td><code>!a</code></td>
+                <td>negacija</td>
+                <td><code>true</code> ako <code>a</code> nije jednako <code>true</code>.</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="valigntop">
+          <h2>Korišćenje logičkih operatora</h2>
+          <p>Možemo koristiti logičke operatore za kombinovanje uslova.</p>
+          <pre><code class="javascript">
+var age = 30;
+var yearsAsCitizen = 30;
+
+if (age &gt;=30 &amp;&amp; yearsAsCitizen &gt; 9) {
+  console.log('You can run for the Senate!');
+} else {
+  console.log('You are not eligible to run for the Senate');
+}
+          </code></pre>
+        </section>
+
+        <section class="valigntop">
+          <h2>Zadatak</h2>
+          <p>Dodaj logičke operatore u svoj "obuci jaknu" program.</p>
+        </section>
+
+        <section class="valigntop">
+        <h2>while petlja</h2>
+          <p><code>while</code> će ponavljati blok naredbi sve dok je uslov ispunjen.</p>
+          <pre><code class="javascript">
+var bottlesOfBeer = 99;
+
+while (bottlesOfBeer &gt; 0) {
+  console.log(bottlesOfBeer + ' bottles of beer on the wall');
+  bottlesOfBeer = bottlesOfBeer - 1;
+}
+          </code></pre>
+        </section>
+
+        <section class="valigntop">
+          <h2>for petlja</h2>
+          <p><code>for</code> petlje su slične, ali se brojač deklariše unutar for naredbe.</p>
+          <pre><code class="javascript">
+// will count 1 to 10
+for (var i = 1; i &lt;= 10; i++) {
+  console.log(i);
+}
+          </code></pre>
+        </section>
+
+        <section class="valigntop">
+          <h2>Petlje i logički izrazi</h2>
+          <p>U telu petlje se mogu naći grananja ili drugi logički izrazi.</p>
+          <pre><code class="javascript">
+// Count from 1 to 100
+
+for (var i = 1; i &lt;= 100; i++) {
+  if (i % 3 === 0) {
+    // Says 'Fizz' after multiples of three
+    console.log(' Fizz');
+  } else if (i % 5 === 0) {
+    // Says 'Buzz' after multiples of five
+    console.log(' Buzz');
+  } else {
+    console.log(i);
+  }
+}
+          </code></pre>
+        </section>
+
+        <section class="valigntop">
+          <h2>break</h2>
+          <p>Za iskakanje iz petlje koristi se <code>break</a></code> naredba.</p>
+          <pre><code class="javascript">
+// Count from 100 to 200
+for (var i = 100; i &lt;= 200; i++) {
+  console.log('Testing ' + i);
+
+  //Stop at the first multiple of 7
+  if (i % 7 == 0) {
+    console.log('Found it! ' + i);
+    break;
+  }
+}
+</code></pre>
+        </section>
+
+        <section class="valigntop">
+          <h2>Zadatak</h2>
+          <p>Napiši petlju koja će ispisati umnoške broja 9,<br/> od <strong>9 x 1 = 9</strong> do <strong>9 x 12 = 108</strong>.</p><br/>
+          <p>Dosadno ti je? Napiši petlju unutar petlje za sve umnoške svih brojeva od 1 do 12.</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Nizovi</h2>
+          <p>Nizovi su skupovi elemenata sa poretkom (redosledom).</p>
+          <pre><code class="javascript">var arrayName = [value0, value1];</code></pre><br />
+          <p>Niz može sadržati vrednosti različitog tipa.</p>
+          <pre><code class="javascript">
+var rainbowColors = ['Red', 'Orange', 'Yellow', 'Green',
+  'Blue', 'Indigo', 'Violet'];
+
+var lotteryNumbers = [33, 72, 64, 18, 17, 85];
+
+var myFavoriteThings = ['Broccoli', 1024, 'Sherlock'];
+          </code></pre>
+        </section>
+
+        <section class="valigntop">
+          <h2>Dužina niza</h2>
+          <p>Osobina (property) <code>length</code> predstavlja broj elemenata (dužinu) niza.</p>
+          <pre><code class="javascript">
+var rainbowColors = ['Red', 'Orange', 'Yellow', 'Green',
+'Blue', 'Indigo', 'Violet'];
+
+console.log(rainbowColors.length);
+          </code></pre>
+        </section>
+
+        <section class="valigntop">
+          <h2>Korišćenje nizova</h2>
+          <p>Elementima niza pristupamo po <strong>indeksu</strong> (poziciji) pomoću uglastih zagrada.</p>
+          <pre><code class="javascript">
+var rainbowColors = ['Red', 'Orange', 'Yellow', 'Green',
+'Blue', 'Indigo', 'Violet'];
+
+var firstColor = rainbowColors[0];
+var lastColor  = rainbowColors[6];
+          </code></pre><br>
+          <p>JavaScript nizovi su <strong>zero-indexed</strong>, brojanje počinje od 0.</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Izmene u nizovima</h2>
+          <p>Možemo promeniti vrednost elementa niza pomoću uglastih zagrada.</p>
+          <pre><code class="javascript">
+var myFavoriteThings = ['Broccoli', 1024, 'Sherlock'];
+
+myFavoriteThings[0] = 'Asparagus';
+          </code></pre>
+        </section>
+
+        <section class="valigntop">
+          <h2>Proširivanje nizova</h2>
+          <p>Nizovi nemaju fiksnu dužinu. Možemo koristiti <code>push</code> da dodamo element na kraj niza.</p>
+          <pre><code class="javascript">
+var myFavoriteThings = ['Broccoli', 1024, 'Sherlock'];
+
+myFavoriteThings.push('Dancing');
+          </code></pre>
+        </section>
+
+        <section class="valigntop">
+          <h2>Zadatak</h2>
+          <p>Kreiraj niz sa svojim omiljenim jelima. <br/>Ispiši nekoliko pojedinačnih elemenata niza.</p>
+        </section>
+
+      <!-- Arrays and loops-->
+        <section class="valigntop">
+          <h2>Nizovi + petlje</h2>
+          <p>Nizovi se najčešće obrađuju element po element u petljama.</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Iteracija kroz niz</h2>
+          <p>Pomoću <code>for</code> petlje lako se pristupa svim elementima niza.</p>
+          <pre><code class="javascript">
+var rainbowColors = ['Red', 'Orange', 'Yellow', 'Green',
+  'Blue', 'Indigo', 'Violet'];
+
+for (var i = 0; i &lt; rainbowColors.length; i++) {
+  console.log(rainbowColors[i]);
+}
+          </code></pre>
+        </section>
+
+        <section class="valigntop">
+          <h2>Zadatak</h2>
+          <p>Pomoću <code>for</code> petlje ispiši sva svoja omiljena jela.</p>
+        </section>
+
+      <section class="valigntop">
+        <h2>Objekti</h2>
+        <p>Objekti imaju skup osobina (property).</p>
+        <pre><code class="javascript">
+var objectName = {
+  propertyName: propertyValue,
+  propertyName: propertyValue
+};
+        </code></pre>
+        <pre><code class="javascript">
+var user = {
+  hometown: 'Atlanta, GA',
+  hair: 'Auburn',
+  likes: ['knitting', 'code'],
+  birthday: {month: 10, day: 17}
+};
+        </code></pre>
+      </section>
+
+      <section class="valigntop">
+        <h2>Pristup objektima</h2>
+        <p>Osobinama pristupamo pomoću <strong>tačka-notacije</strong>.</p>
+        <pre><code class="javascript">
+var user = {
+  hometown: 'Atlanta, GA',
+  hair: 'Auburn'
+};
+
+var usersHometown = user.hometown;
+        </code></pre><br>
+        <p>Ili pomoću <strong>uglastih zagrada</strong> (kao nizovima).</p>
+        <pre><code class="javascript">
+var usersHair = user['hair'];
+        </code></pre>
+      </section>
+
+      <section class="valigntop">
+        <h2>Promena osobina objekta</h2>
+        <p>Tačka ili uglaste zagrade se mogu koristiti za izmenu vrednosti osobine.</p>
+        <pre><code class="javascript">
+var user = {
+  hometown: 'Atlanta, GA',
+  hair: 'Auburn'
+};
+
+user.hair = 'blue';
+          </code></pre>
+          <p>Dodavanje nove osobine</p>
+          <pre><code class="javascript">user.married = true;</code></pre>
+          <p>Brisanje osobine</p>
+          <pre><code class="javascript">delete user.married;</code></pre>
+      </section>
+
+      <section class="valigntop">
+        <h2>Nizovi objekata</h2>
+        <p>Nizovi mogu čuvati elemente bilo kog tipa, pa tako i objekte.</p>
+        <pre><code class="javascript">
+var users = [
+  {name: 'Jolene', age: 21},
+  {name: 'Alexa',  age: 18}
+];
+
+for (var i = 0; i &lt; users.length; i++) {
+  var user = users[i];
+  console.log(user.name + ' is ' + user.age + ' years old.');
+}
+        </code></pre>
+      </section>
+
+      <section class="valigntop">
+        <h2>Objekti</h2>
+        <p>Kao i drugi tipovi, objekte možemo proslediti funkciji prilikom poziva:</p>
+        <pre><code class="javascript">
+var jolene = {
+  age: 21,
+  hairColor: 'Auburn',
+  likes: ['pizza', 'tacos'],
+  birthday: {month: 3, day: 14, year: 1995}
+}
+
+function describeUser(user) {
+  console.log('You are ' + user.age + ' years old with ' + user.hairColor + ' hair.');
+}
+
+describeUser(jolene);
+        </code></pre>
+      </section>
+
+      <section class="valigntop">
+        <h2>Zadatak</h2>
+        <p>Kreiraj objekat koji čuva podatke o tvom omiljenom receptu. Trebalo bi da ima sledeće osobine:</p>
+        <ul>
+          <li><code>recipeTitle</code> (string)</li>
+          <li><code>servings</code> (broj)</li>
+          <li><code>ingredients</code> (niz stringova)</li>
+          <li><code>directions</code> (string)</li>
+        </ul>
+        <br><br>
+        <p>Prikaži neke podatke o svom receptu.</p>
+        <p>Bonus: Napravi petlju za ispis svih sastojaka.</p>
+      </section>
+
+      <section class="valigntop">
+        <h2>Metode objekta</h2>
+        <p>Objekti mogu čuvati i funkcije (metode).</p>
+        <pre><code class="javascript">
+var jolene = {
+  age: 21,
+  hairColor: 'Auburn',
+  talk: function() {
+    console.log('Hello!');
+  },
+  eat: function(food) {
+    console.log('Yum, I love ' + food);
+  }
+};
+          </code></pre>
+        <p>Poziv metode pomoću tačka-notacije:</p>
+        <pre><code class="javascript">
+jolene.talk();
+
+jolene.eat('pizza');
+        </code></pre>
+      </section>
+
+      <section class="valigntop">
+        <h2>Zadatak</h2>
+        <p>Vrati se na svoj omiljeni recept.</p>
+        <p>Dodaj funkciju <code>letsCook</code> koja ispisuje "Gladan sam! Hajde da napravimo... " sa imenom tvog recepta.</p>
+        <p>Pozovi novu metodu.</p>
+      </section>
+
+      <section class="valigntop">
+        <h2>Podsećanje: anatomija web stranice</h2>
+        <p><strong>Tvoj sadržaj</strong><br />
+        <strong>+ HTML</strong>: struktura<br />
+        <strong>+ CSS</strong>: prezentacija<br />
+        <strong>= tvoj web sajt</strong></p>
+        <p>Web sajt je način za predstavljanje sadržaja korišćenjem HTML i CSS za vizuelni prikaz.</p>
+      </section>
+
+      <section class="valigntop">
+        <h2>HTML je struktura</h2>
+        <img src="img/javascript/markup.jpg" width="40%"/>
+      </section>
+
+      <section class="valigntop">
+        <h2>CSS je stil</h2>
+        <img src="img/javascript/fingernails.jpg" width="40%"/>
+      </section>
+
+      <section class="valigntop">
+        <h2>CSS: ID ili klasa</h2>
+        <ul>
+          <li><strong>ID</strong> - odnosi se na tačno jedan element na stranici<br/>
+          Pomoću <code>#</code> određujemo ID u CSS-u.</p></li>
+          <li><strong>klasa</strong> - Više elemenata može imati istu klasu,<br/> npr. više elemenata sa klasom <code>warning</code> na stranici.<br />
+          Pomoću tačke <code>.</code> određujemo klasu u CSS-u.</li>
+        </ul>
+      </section>
+
+    <!--The DOM-->
+      <section class="valigntop">
+        <h2>Ugnježdavanje</h2>
+        <p>HTML elementi se ugnježdavaju jedni unutar drugih.</p>
+        <img src="img/javascript/nesting-dolls.jpg" width="40%"/>
+      </section>
+
+      <section class="valigntop">
+        <h2>DOM stablo: primer</h2>
+        <p>Često ljudi doživljavaju HTML kao "ravnu" strukturu -- gomila teksta pomešanog sa tagovima. </p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Test Page&lt;/title&gt;
+    &lt;style&gt;
+      h1 {
+        color: red;
+      }
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;My Page&lt;/h1&gt;
+    &lt;p&gt;Hello World!&lt;/p&gt;
+    &lt;img src="http://placekitten.com/g/200/300" alt="cat"/&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+      </section>
+
+      <section class="valigntop">
+        <h2>DOM stablo: primer</h2>
+        <p>Međutim, svaki HTML dokument je <strong><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction">DOM (Document Object Model)</a></strong> stablo.</p>
+        <img src="img/javascript/dom-tree.png" width="40%"/>
+      </section>
+
+    <!--Accessing the DOM-->
+      <section class="valigntop">
+        <h2>Pristup DOM stablu</h2>
+        <p>Web čitač predstaviti stranicu kao <code>document</code> objekat koji predstavlja koren stabla dokumenta.</p>
+        <p>Preko <code>document</code> korena možemo:</p>
+        <ol>
+          <li>promeniti stablo dokumenta,</li>
+          <li>napraviti novi HTML dokument iz početka ili</li>
+          <li>pristupiti i zameniti čvorove stabla (HTML elemente u DOM stablu).</li>
+        </ol>
+      </section>
+
+      <section class="valigntop">
+        <h2>Pronalaženje DOM čvorova po ID-u</h2>
+        <p>Možemo dobiti element stabla po njegovom ID-u pomoću:</p>
+<pre><code class="javascript">document.getElementById(id);</code></pre>
+      <p>Na primer da bismo pronašli:</p>
+<pre><code class="html">&lt;img id="kittenPic" src="http://placekitten.com/g/200/300" alt="cat"/&gt;
+</code></pre>
+      <p>koristili bismo:</p>
+<pre><code class="javascript">var imgKitten = document.getElementById('kittenPic');
+</code></pre>
+      </section>
+
+      <section class="valigntop">
+        <h2>Pronalaženje DOM čvorova po imenu</h2>
+        <p>Možemo pristupiti elementima stabla po imenu pomoću:</p>
+<pre><code class="javascript">document.getElementsByTagName(tagName);</code></pre>
+        <p>Na primer, za pronalaženje:</p>
+<pre><code class="html">&lt;ul&gt;
+  &lt;li&gt;Daisy&lt;/li&gt;
+  &lt;li&gt;Tulip&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+        <p>koristili bismo:</p>
+<pre><code class="javascript">
+var listItems = document.getElementsByTagName('li');
+
+for (var i = 0; i &lt; listItems.length; i++) {
+  var listItem = listItems[i];
+}
+        </code></pre>
+      </section>
+
+      <section class="valigntop">
+        <h2>DOM stablo i HTML5</h2>
+        <p>U novijim čitačima postoje funkcije <code>getElementsByClassName</code>, <code>querySelector</code> i <code>querySelectorAll</code>.</p><br>
+        <p>Dostupno u IE9+, FF3.6+, Chrome 17+, Safari 5+:</p>
+        <pre><code class="javascript">document.getElementsByClassName(className);</code></pre><br/>
+        <p>Dostupno u IE8+, FF3.6+, Chrome 17+, Safari 5+:</p>
+        <pre><code class="javascript">
+document.querySelector(cssQuery);
+document.querySelectorAll(cssQuery);
+        </code></pre><br/>
+        <p>Šta je dostupno u kom čitaču: <a href="http://caniuse.com">http://caniuse.com</a>
+      </section>
+
+      <section class="valigntop">
+        <h2>getElement / getElements</h2>
+        <p>Svaka funkcija čije ime počinje sa <code>getElement</code> vratiće <strong>jedan</strong> čvor.</p>
+        <pre><code class="javascript">document.getElementById('uniqueID'); // returns a single node</code></pre><br/>
+        <p>Svaka funkcija čije ime počinje sa <code>getElements</code> vratiće <strong>niz</strong> čvorova. Za pristup jednom čvoru u tom nizu koristimo uglaste zagrade.</p>
+        <pre><code class="javascript">
+document.getElementsByTagName('p'); // returns multiple nodes
+
+var specificParagraph = document.getElementsByTagName('p')[2];
+        </code></pre>
+      </section>
+
+      <section class="valigntop">
+        <h2>DOM čvorovi: atributi</h2>
+        <p>Pristup i izmena atributa DOM čvora je moguća pomoću tačka-notacije.</p><br>
+        <p>Za izmenu ovog elementa:</p>
+        <pre><code class="html">
+&lt;img id="kittenPic" src="http://placekitten.com/g/200/300" alt="cat"/&gt;
+        </code></pre>
+        <p>možemo promeniti atribut <code>src</code> ovako:</p>
+        <pre><code class="javascript">
+var imgKitten = document.getElementById('kittenPic');
+
+// will return src attribute on image
+imgKitten.src
+
+// will set our src to a new src
+imgKitten.src = 'http://placekitten.com/g/600/500';
+        </code></pre>
+      </section>
+
+      <section class="valigntop">
+        <h2>DOM čvorovi: atributi</h2>
+        <p>Možemo koristiti i <code>getAttribute</code> i <code>setAttribute</code></p>
+        <pre><code class="html">
+&lt;img id="kittenPic" src="http://placekitten.com/g/200/300" alt="cat"/&gt;
+        </code></pre>
+        <p>Možemo promeniti atribut <code>src</code> ovako:</p>
+        <pre><code class="javascript">
+var imgKitten = document.getElementById('kittenPic');
+
+// will return src attribute on image
+imgKitten.getAttribute('src');
+
+// will set our src to a new src
+imgKitten.setAttribute('src', 'http://placekitten.com/g/600/500');
+        </code></pre>
+      </section>
+
+      <section class="valigntop">
+        <h2>DOM čvorovi: stilovi</h2>
+        <p>Možemo izmeniti CSS stil pomoću <code>style</code></p><br/>
+        <p>Za ovakvu izmenu u CSS-u:</p>
+        <pre><code class="css">
+body {
+  color: red;
+}
+        </code></pre>
+        <p>možemo pisati:</p>
+        <pre><code class="javascript">
+var pageBody = document.getElementsByTagName('body')[0];
+
+pageBody.style.color = 'red';
+        </code></pre>
+      </section>
+
+      <section class="valigntop">
+        <h2>DOM čvorovi: stilovi</h2>
+        <p>Opšte pravilo je da se CSS atribut sa "<code>-</code>" u JavaScriptu piše kao <strong>camelCase</strong>.</p><br/>
+        <p>Za ovakvu izmenu u CSS-u:</p>
+        <pre><code class="css">
+body {
+  background-color: pink;
+  padding-top: 10px;
+}
+        </code></pre>
+        <p>možemo pisati:</p>
+        <pre><code class="javascript">
+var pageBody = document.getElementsByTagName('body')[0]
+
+pageBody.style.backgroundColor = 'pink';
+
+pageBody.style.paddingTop = '10px';
+        </code></pre>
+      </section>
+
+      <section class="valigntop">
+        <h2>Zadatak</h2>
+        <p>Kreiraj prostu HTML stranicu ili <a href="files/javascript/class4.zip">uzmi ovaj primer</a>.</p>
+        <p>Izdvoj jedan čvor i promeni mu atribut i dodaj jedan CSS stil.</p>
+      </section>
+
+      <!--Manipulating the DOM-->
+        <section class="valigntop">
+          <h2>DOM innerHTML</h2>
+          <p>Svaki DOM čvor ima <code>innerHTML</code> osobinu sa HTML-om i sadržajem svojih potomaka. Možemo ga koristiti da izmenimo sadržaj čvora.</p><br/>
+          <p>Na primer, možemo izmeniti ceo <code>body</code>:</p>
+          <pre><code class="javascript">
+var pageBody = document.getElementsByTagName('body')[0];
+
+pageBody.innerHTML = '&lt;h1&gt;Oh Noes!&lt;/h1&gt;&lt;p&gt;I changed the whole page!&lt;/p&gt;'
+          </code></pre><br/>
+          <p>ili da dodamo novi sadržaj na kraj:</p>
+          <pre><code class="javascript">
+pageBody.innerHTML += '...just adding this at the end of the page.';
+          </code></pre>
+        </section>
+
+          <section class="valigntop">
+            <h2>DOM innerHTML</h2>
+            <p>Možemo gađati sadržaj pojedinog elementa</p><br/>
+            <p>Da postavimo sadržaj u <code>p</code> element:</p>
+            <pre><code class="html">&lt;p id="warning"&gt;&lt;/p&gt;</code></pre>
+            <p>možemo izdvojiti čvor i izmeniti ga:</p>
+            <pre><code class="javascript">
+var warningParagraph = document.getElementById('warning');
+
+warningParagraph.innerHTML = 'Danger Will Robinson!';
+            </code></pre>
+          </section>
+
+          <section class="valigntop">
+            <h2>Kreiranje novih čvorova</h2>
+            <p>Objekat <code>document</code> ima metode za kreiranje novih čvorova:</p>
+            <pre><code class="javascript">
+document.createElement(tagName);
+
+document.createTextNode(text);
+
+element.appendChild(element);
+            </code></pre>
+          </section>
+
+          <section class="valigntop">
+            <h2>Kreiranje novih čvorova: primer</h2>
+    <pre><code class="javascript">
+var pageBody = document.getElementsByTagName('body')[0];
+
+// create our image tag with attributes
+var newImg = document.createElement('img');
+newImg.src = 'http://placekitten.com/g/500/200';
+newImg.style.border = '1px solid black';
+
+// add our image to the body
+pageBody.appendChild(newImg);
+
+// create a paragraph tag with content
+var newParagraph  = document.createElement('p');
+var paragraphText = document.createTextNode('Squee!');
+newParagraph.appendChild(paragraphText);
+
+// add our new paragraph to the body
+pageBody.appendChild(newParagraph);
+            </code></pre>
+          </section>
+
+          <section class="valigntop">
+            <h2>Zadatak</h2>
+            <p>Programski kreiraj novi paragraf element i dodaj ga na <code>div</code> u svojoj stranici.</p>
+          </section>
+
+        <section>
+          <h1>Događaji: TODO expand</h1>
+        </section>
+
+        <section class="valigntop">
+          <h2>Događaji</h2>
+          <p><strong>Događaj</strong> je objekat koji se šalje kada se dogode akcije na stranici, najčešće kao posledica interakcije sa korisnikom.</p><br/>
+          <p>Na primer, JavaScript kreira događaj kada korisnik klikne na element.</p>
+          <pre><code class="javascript">
+element.addEventListener('click', function(event) {
+  // code to be executed when user clicks
+});
+          </code></pre>
+        </section>
+
+        <section class="valigntop">
+          <h2>Vrste događaja</h2>
+          <p>Postoji više vrsta događaja. Neki od načešće korišćenih su:</p>
+          <ul>
+            <li><strong>click</strong>: kada korisnik klikne na element</li>
+            <li><strong>mouseover</strong>: kada se mišem pređe preko elementa</li>
+            <li><strong>mouseout</strong>: kada se mišem izađe iz elementa</li>
+            <li><strong>keyup</strong>: kada se otpusti taster</li>
+            <li><strong>load</strong>: kada se dokument učita</li>
+            <li><strong>focus</strong>: kada element dobije fokus</li>
+            <li><strong>blur</strong>: kada element izgubi fokus</li>
+          </ul>
+          <p><a href="https://developer.mozilla.org/en-US/docs/Web/Events" target="_blank">https://developer.mozilla.org/en-US/docs/Web/Events</a></p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Pozivanje funkcija iz HTML-a</h2>
+          <p>Možemo pozvati JavaScript funkciju direktno iz HTML-a:</p>
+          <pre><code class="html">
+&lt;button id="myBtn" onclick="sayHi()"&gt;Click Me!&lt;/button&gt;
+          </code></pre>
+          <pre><code class="javascript">
+function sayHi (event) {
+  alert('Hi!');
+};
+          </code></pre>
+        </section>
+
+        <section class="valigntop">
+          <h2>Pozivanje funkcija iz JavaScript-a</h2>
+          <p>Poziv funkcije pomoću <code>addEventListener</code>:</p>
+          <pre><code class="html">&lt;button id="myBtn"&gt;Click Me!&lt;/button&gt;</code></pre>
+          <pre><code class="javascript">
+var button = document.getElementById("myBtn");
+
+button.addEventListener("click", function (event) {
+  alert("Hi!");
+});
+          </code></pre>
+          <p>ili</p>
+          <pre><code class="javascript">
+var button = document.getElementById("myBtn");
+
+var sayHi = function (event) {
+  alert("Hi!");
+};
+
+button.addEventListener("click", sayHi);
+          </code></pre>
+        </section>
+
+        <section class="valigntop">
+          <h2>Zadatak</h2>
+          <p>Vrati se na prethodni zadatak.</p>
+          <p>Dodaj JavaScript kod koji će se pokrenuti na <code>mouseover</code> događaj.</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Sprečavanje podrazumevane obrade događaja</h2>
+          <p>Elementi poput linkova i checkbox-ova imaju podrazumevano ponašanje u čitaču. Međutim <code>event</code> objekat ima ugrađenu metodu za sprečavanje podrazumevanog ponašanja.</p>
+          <p>Primer linka u HTML-u:</p>
+          <pre><code class="html">
+&lt;a id="myLink" href="https://www.google.com"&gt;Google&lt;/a&gt;
+          </code></pre>
+          <p>Kod koji će sprečiti aktiviranje linka:</p>
+          <pre><code class="javascript">
+var link = document.getElementById("myLink");
+
+link.addEventListener("click", function(event) {
+  event.preventDefault();
+});
+          </code></pre>
+        </section>
+
+        <section class="valigntop">
+          <h2>currentTarget</h2>
+          <p>Događajev <code>currentTarget</code> referencira element za koji je zakačena obrada događaja.</p>
+          <p>Primer dugmeta u HTML-u:</p>
+          <pre><code class="html">&lt;button id="myBtn"&gt;Click Me!&lt;/a&gt;</code></pre>
+          <p>Ovaj kod dodaje stil i tekst na kliknuto dugme:</p>
+          <pre><code class="javascript">
+myButton = document.getElementById("myBtn");
+
+myButton.addEventListener("click", function(event) {
+  btn = event.currentTarget;
+
+  btn.style.backgroundColor = 'red';
+  btn.innerHTML = 'Clicked!';
+};
+          </code></pre>
+          <p>Možemo koristiti i ključnu reč <code>this</code> kao "target".
+        </section>
+
+        <section class="valigntop">
+          <h2>Zadatak</h2>
+          <p>Napiši kod koji gađa ovaj link:</p>
+          <pre><code class="html">
+&lt;a href="http://google.com/" id="googleLink"&gt;Google&lt;/a&gt;
+          </code></pre>
+          <p>Kada korisnik klikne na link, stranica bi trebalo da prikaže poruku o grešci umesto da čitač ode na Google stranicu.</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Forme za unos</h2>
+          <p>Najčešći način za unos podataka su HTML forme.</p>
+          <pre><code class="html">
+&lt;form id="userForm"&gt;
+  &lt;label for="name"&gt;First Name:&lt;/label&gt;
+  &lt;input type="text" id="firstName"/&gt;
+  &lt;input type="radio" name="married" value="Yes" checked /&gt; Yes
+  &lt;input type="radio" name="married" value="No" /&gt; No
+  &lt;input type="submit" id="submitBtn" value="Submit" /&gt;
+&lt;/form&gt;
+          </code></pre>
+        </section>
+
+        <section class="valigntop">
+          <h2>Čitanje podataka iz forme</h2>
+          <p>Vrednosti elemenata forme čitamo pomoću <code>value</code> osobine.</p>
+          <pre><code class="javascript">
+var name = document.getElementById('firstName').value;
+console.log(name);
+          </code></pre>
+          <p>Vrednost se može čitati u bilo kom trenutku. Čak i kada se desi npr. <code>blur</code> (kada element izgubi fokus).</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Radio dugmad</h2>
+          <p>Radio dugmad obično nemaju ID, pa je potrebna <code>for</code> petlja da se pročita stanje svakog dugmeta:</p>
+          <pre><code class="javascript">
+var radios = document.getElementsByName('married');
+
+var length = radios.length;
+
+for (var i = 0; i &lt; length; i++) {
+  if (radios[i].checked) {
+    var radioButtonValue = radios[i].value;
+    // only one radio can be checked, so stop now
+    break;
+  }
+}
+          </code></pre>
+        </section>
+
+        <section class="valigntop">
+          <h2>Submit dugmad</h2>
+          <p>Ako nam treba pristup podacima kod <code>submit</code> dugmeta, moramo sprečiti podrazumevano ponašanje!</p>
+          <pre><code class="javascript">
+var submitButton = document.getElementById('submitBtn');
+
+submitButton.addEventListener("click", function(event) {
+  event.preventDefault();
+
+  var name = document.getElementById('firstName').value;
+  console.log(name);
+})
+          </code></pre>
+        </section>
+
+        <section class="valigntop">
+          <h2>Zadatak</h2>
+          <p>Preuzmi vrednost iz <code>input</code> polja u formi. Upotrebi ga u nekoj funkciji. Na primer, pročitaj broj i pomnoži ga sa 5 ili pročitaj ime i ispiši pozdrav.</p>
+        </section>
+
+      </div>
+    </div>
+    <div id="overlay"></div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        history: true,
+
+        // 16:9 aspect ratio
+        width: 1280,
+        height: 720,
+        margin: 0.02,
+
+        // don't piss people off
+        transition: 'none',
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+
+      // moze i pomocu
+      // window.onhashchange = function() {
+      //   ...
+      // }
+      Reveal.addEventListener('slidechanged', function(event) {
+        var overlayDiv = document.getElementById("overlay");
+        var currSlide = Reveal.getCurrentSlide();
+        var overlayImg = currSlide.getAttribute("overlay");
+        if (overlayImg != null) {
+          alert('x');
+          overlayDiv.style.display = 'block';
+          overlayDiv.style.backgroundImage = 'url("' + overlayImg + '")';
+          overlayDiv.style.zIndex = 1;
+        } else {
+          overlayDiv.style.display = 'none';
+          overlayDiv.style.zIndex = -1;
+        }
+      });
+
+    </script>
+  </body>
+</html>
