@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 285 137" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
+    <g transform="matrix(1,0,0,1,-151.287,-48.2504)">
+        <g transform="matrix(1,0,0,1,1.20868,-19.4504)">
+            <text x="199.044px" y="76.811px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:12px;fill:none;">Lisp</text>
+            <text x="199.044px" y="76.811px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:12px;fill:rgb(231,173,82);stroke:rgb(231,173,82);stroke-width:0.2px;">Lisp</text>
+        </g>
+        <g transform="matrix(1,0,0,1,-9.43001,46.5387)">
+            <text x="199.044px" y="76.811px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:12px;fill:none;">Scheme</text>
+            <text x="199.044px" y="76.811px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:12px;fill:rgb(231,173,82);stroke:rgb(231,173,82);stroke-width:0.2px;">Scheme</text>
+        </g>
+        <g transform="matrix(1,0,0,1,122.395,-19.7247)">
+            <text x="199.044px" y="76.811px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:12px;fill:none;">SmallT<tspan x="235.05px 241.724px " y="76.811px 76.811px ">al</tspan>k</text>
+            <text x="199.044px" y="76.811px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:12px;fill:rgb(231,173,82);stroke:rgb(231,173,82);stroke-width:0.2px;">SmallT<tspan x="235.05px 241.724px " y="76.811px 76.811px ">al</tspan>k</text>
+        </g>
+        <g transform="matrix(1,0,0,1,135.407,42.4199)">
+            <text x="199.044px" y="76.811px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:12px;fill:none;">Self</text>
+            <text x="199.044px" y="76.811px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:12px;fill:rgb(231,173,82);stroke:rgb(231,173,82);stroke-width:0.2px;">Self</text>
+        </g>
+        <g transform="matrix(1,0,0,1,47.4267,105.631)">
+            <text x="199.044px" y="76.811px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:12px;fill:none;">JavaScript</text>
+            <text x="199.044px" y="76.811px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:12px;fill:rgb(231,173,82);stroke:rgb(231,173,82);stroke-width:0.2px;">JavaScript</text>
+        </g>
+        <g transform="matrix(4.59974e-17,0.751194,-0.639373,3.91503e-17,263.795,-92.1031)">
+            <path d="M208.59,84.632L208.59,77.11L257.852,77.11L257.852,70.127L266.997,80.871L257.852,91.615L257.852,84.632L208.59,84.632Z" style="fill:white;"/>
+        </g>
+        <g transform="matrix(0.562055,0.498384,-0.424195,0.478389,131.626,-8.10414)">
+            <path d="M208.59,84.632L208.59,77.11L257.852,77.11L257.852,70.127L266.997,80.871L257.852,91.615L257.852,84.632L208.59,84.632Z" style="fill:white;"/>
+        </g>
+        <g transform="matrix(-0.56608,0.493808,-0.420301,-0.481814,490.281,69.3843)">
+            <path d="M208.59,84.632L208.59,77.11L257.852,77.11L257.852,70.127L266.997,80.871L257.852,91.615L257.852,84.632L208.59,84.632Z" style="fill:white;"/>
+        </g>
+        <g transform="matrix(4.59974e-17,0.751194,-0.639373,3.91503e-17,397.777,-94.6739)">
+            <path d="M208.59,84.632L208.59,77.11L257.852,77.11L257.852,70.127L266.997,80.871L257.852,91.615L257.852,84.632L208.59,84.632Z" style="fill:white;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,42.2665,-2.09427)">
+            <text x="109.009px" y="89.64px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:12px;fill:none;">functional</text>
+            <text x="109.009px" y="89.64px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:12px;fill:white;stroke:white;stroke-width:0.2px;">functional</text>
+        </g>
+        <g transform="matrix(1,0,0,1,-17.6909,1.96875)">
+            <text x="374.798px" y="88.968px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:12px;fill:none;">object-oriented</text>
+            <text x="374.798px" y="88.968px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:12px;fill:white;stroke:white;stroke-width:0.2px;">object-oriented</text>
+        </g>
+    </g>
+</svg>

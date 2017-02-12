@@ -51,7 +51,8 @@
           <ul>
             <li>JavaScript: obične stvari</li>
             <li>JavaScript: neobične stvari</a></li>
-            <li>...</a></li>
+            <li>JavaScript: The Good Parts</a></li>
+            <li>ECMAScript 6</a></li>
           </ul>
         </section>
 
@@ -161,7 +162,7 @@
         <section class="valigntop">
           <h2>Naredbe</h2>
           <p>JavaScript program se sastoji od naredbi</p>
-          <pre><code>
+          <pre><code class="javascript">
 console.log('Hello World!');
 console.log('I am glad to meet you');
 console.log('I am fuzzy');
@@ -184,7 +185,7 @@ console.log('Hello World!'); // jednolinijski komentar
         <section class="valigntop">
           <h2>Ispisivanje poruka</h2>
           <p>Otvori prozor sa porukom.</p>
-          <pre><code>
+          <pre><code class="javascript">
 alert('Hello World!');
           </code></pre>
           <p>Ispiši poruku na konzoli.</p>
@@ -216,11 +217,11 @@ document.write('Hello World!');
         <section class="valigntop">
           <h2>Deklaracija promenljive</h2>
           <p>Deklaracija (kreiranje) promenljive: napiši <code>var</code> i ime promenljive.</p> 
-          <pre><code>
+          <pre><code class="javascript">
 var numberOfKittens;
           </code></pre>
           <p>Promenljiva se odmah može inicijalizovati - dodeliti joj se početna vrednost.</p> 
-          <pre><code>
+          <pre><code class="javascript">
 var numberOfKittens = 5;
           </code></pre>
         </section>
@@ -249,7 +250,7 @@ var numberOfKittens = 5;
         <section class="valigntop">
           <h2>Korišćenje promenljivih</h2>
           <p>Nakon kreiranja, promenljivu koristimo u kodu navođenjem njenog imena.</p> 
-          <pre><code>
+          <pre><code class="javascript">
 var numberOfKittens = 5;
 console.log(numberOfKittens);
           </code></pre>
@@ -778,7 +779,7 @@ if (age &gt;=30 &amp;&amp; yearsAsCitizen &gt; 9) {
         <section class="valigntop">
         <h2>while petlja</h2>
           <p><code>while</code> će ponavljati blok naredbi sve dok je uslov ispunjen.</p>
-          <pre class="javascript"><code>
+          <pre><code class="javascript">
 var bottlesOfBeer = 99;
 
 while (bottlesOfBeer &gt; 0) {
@@ -1239,56 +1240,56 @@ imgKitten.setAttribute('src', 'http://placekitten.com/g/600/500');
 body {
   color: red;
 }
-            </code></pre>
-            <p>možemo pisati:</p>
-            <pre><code class="javascript">
+        </code></pre>
+        <p>možemo pisati:</p>
+        <pre><code class="javascript">
 var pageBody = document.getElementsByTagName('body')[0];
 
 pageBody.style.color = 'red';
-            </code></pre>
-          </section>
+        </code></pre>
+      </section>
 
-          <section class="valigntop">
-            <h2>DOM čvorovi: stilovi</h2>
-            <p>Opšte pravilo je da se CSS atribut sa "<code>-</code>" u JavaScriptu piše kao <strong>camelCase</strong>.</p><br/>
-            <p>Za ovakvu izmenu u CSS-u:</p>
-            <pre><code class="css">
+      <section class="valigntop">
+        <h2>DOM čvorovi: stilovi</h2>
+        <p>Opšte pravilo je da se CSS atribut sa "<code>-</code>" u JavaScriptu piše kao <strong>camelCase</strong>.</p><br/>
+        <p>Za ovakvu izmenu u CSS-u:</p>
+        <pre><code class="css">
 body {
   background-color: pink;
   padding-top: 10px;
 }
-            </code></pre>
-            <p>možemo pisati:</p>
-            <pre><code class="javascript">
+        </code></pre>
+        <p>možemo pisati:</p>
+        <pre><code class="javascript">
 var pageBody = document.getElementsByTagName('body')[0]
 
 pageBody.style.backgroundColor = 'pink';
 
 pageBody.style.paddingTop = '10px';
-            </code></pre>
-          </section>
+        </code></pre>
+      </section>
 
-          <section class="valigntop">
-            <h2>Zadatak</h2>
-            <p>Kreiraj prostu HTML stranicu ili <a href="files/javascript/class4.zip">uzmi ovaj primer</a>.</p>
-            <p>Izdvoj jedan čvor i promeni mu atribut i dodaj jedan CSS stil.</p>
-          </section>
+      <section class="valigntop">
+        <h2>Zadatak</h2>
+        <p>Kreiraj prostu HTML stranicu ili <a href="files/javascript/class4.zip">uzmi ovaj primer</a>.</p>
+        <p>Izdvoj jedan čvor i promeni mu atribut i dodaj jedan CSS stil.</p>
+      </section>
 
-        <!--Manipulating the DOM-->
-          <section class="valigntop">
-            <h2>DOM innerHTML</h2>
-            <p>Svaki DOM čvor ima <code>innerHTML</code> osobinu sa HTML-om i sadržajem svojih potomaka. Možemo ga koristiti da izmenimo sadržaj čvora.</p><br/>
-            <p>Na primer, možemo izmeniti ceo <code>body</code>:</p>
-            <pre><code class="javascript">
+      <!--Manipulating the DOM-->
+        <section class="valigntop">
+          <h2>DOM innerHTML</h2>
+          <p>Svaki DOM čvor ima <code>innerHTML</code> osobinu sa HTML-om i sadržajem svojih potomaka. Možemo ga koristiti da izmenimo sadržaj čvora.</p><br/>
+          <p>Na primer, možemo izmeniti ceo <code>body</code>:</p>
+          <pre><code class="javascript">
 var pageBody = document.getElementsByTagName('body')[0];
 
 pageBody.innerHTML = '&lt;h1&gt;Oh Noes!&lt;/h1&gt;&lt;p&gt;I changed the whole page!&lt;/p&gt;'
-            </code></pre><br/>
-            <p>ili da dodamo novi sadržaj na kraj:</p>
-            <pre><code class="javascript">
+          </code></pre><br/>
+          <p>ili da dodamo novi sadržaj na kraj:</p>
+          <pre><code class="javascript">
 pageBody.innerHTML += '...just adding this at the end of the page.';
-            </code></pre>
-          </section>
+          </code></pre>
+        </section>
 
           <section class="valigntop">
             <h2>DOM innerHTML</h2>
@@ -1405,7 +1406,6 @@ button.addEventListener("click", sayHi);
           </code></pre>
         </section>
 
-
         <section class="valigntop">
           <h2>Zadatak</h2>
           <p>Vrati se na prethodni zadatak.</p>
@@ -1520,6 +1520,12 @@ submitButton.addEventListener("click", function(event) {
         </section>
 
         <section>
+          <h1>Kviz</h1>
+        </section>
+
+
+
+        <section>
           <h1>JavaScript: neobične stvari</h1>
           <h3>#1: podaci u memoriji</h3>
         </section>
@@ -1532,7 +1538,7 @@ submitButton.addEventListener("click", function(event) {
 
         <section class="valigntop">
           <h2>Podsećanje: promenljive</h2>
-          <pre><code>
+          <pre><code class="javascript">
 var x;
 var y = "Hello JS!";
 var z;
@@ -1544,7 +1550,7 @@ var z;
 
         <section class="valigntop">
           <h2>Podsećanje: promenljive</h2>
-          <pre><code>
+          <pre><code class="javascript">
 var x;
 var y = "Hello JS!";
 var z;
@@ -1559,7 +1565,7 @@ z = 101;   // <---
         <section class="valigntop">
           <h2>Opseg vidljivosti promenljive</h2>
           <p>Blokovi koda omeđeni vitičastim zagradama <strong>ne uvode</strong> poseban opseg vidljivosti!</p>
-          <pre><code>
+          <pre><code class="javascript">
 // what is i, $, p, and q afterwards?
 
 var i = -1;
@@ -1579,7 +1585,7 @@ if (true) {
         <section class="valigntop">
           <h2>Opseg vidljivosti promenljive</h2>
           <p>Kod sa prethodnog slajda se zapravo ponaša ovako:</p>
-          <pre><code>
+          <pre><code class="javascript">
 var i, $, p, q;  // all undefined
 
 var i = -1;
@@ -1600,7 +1606,7 @@ if (true) {
         <section class="valigntop">
           <h2>Ključne reči</h2>
           <p>Ključne reči se ne mogu koristiti kao imena promenljivih:</p>
-          <pre><code>
+          <pre><code class="javascript">
 null true false break do instanceof typeof
 case else new var catch finally return void
 continue for switch while debugger function
@@ -1659,7 +1665,7 @@ interface package protected static
         <section class="valigntop">
           <h2>Promenljiva vs osobina objekta</h2>
           <div style="float:left;width:50%">
-            <pre><code>
+            <pre><code class="javascript">
 // Value containers
 var y = "Hello!";
 var w = {
@@ -1669,7 +1675,7 @@ var w = {
             </code></pre>  
           </div>
           <div style="float:left;width:50%">
-            <pre><code>
+            <pre><code class="javascript">
 // To get the values
 y;      // "Hello!"
 w;      // (the object ref)
@@ -1685,7 +1691,7 @@ w["y"]; // 1234
         <section class="valigntop">
           <h2>Inicijalizacija objekta i objektni literal</h2>
           <div style="float:left;width:50%">
-            <pre><code>
+            <pre><code class="javascript">
 var w = {
     x: "test",
     y: 1234,
@@ -1696,7 +1702,7 @@ var w = {
             </code></pre>  
           </div>
           <div style="float:left;width:50%">
-            <pre><code>
+            <pre><code class="javascript">
 var w = new Object();
 w.x = "test";
 w.y = 1234;
@@ -1712,7 +1718,7 @@ w[""] = "hi";
         <section class="valigntop">
           <h2>Promena vrednosti osobine</h2>
           <p>Možemo menjati objekat nakon kreiranja.</p>
-          <pre><code>
+          <pre><code class="javascript">
 var obj = {
     1  : "Hello",
     "3": "Good",
@@ -1736,7 +1742,7 @@ delete obj[""];         // *7 Remove
           <h2>Čitanje osobine iz literala</h2>
           <p>Interpreter će vitičastu zagradu tumačiti kao "blok koda". Možemo naglasiti da se radi o objektu pomoću običnih zagrada (operator grupisanja).</p>
           <p>Čitanje osobine nakon literala se ne preporučuje.</p>
-          <pre><code>
+          <pre><code class="javascript">
 var w = { x: "test" };
 var y = { x: "test" }.x;
 
@@ -1755,7 +1761,7 @@ y;                    // "test"
         <section class="valigntop">
           <h2>Vrednost objekta je zapravo referenca #1</h2>
           <div style="float:left;width:50%">
-            <pre><code>
+            <pre><code class="javascript">
 var x = { a: 100 };
 var y = { a: 100 };       
             </code></pre>  
@@ -1769,7 +1775,7 @@ var y = { a: 100 };
         <section class="valigntop">
           <h2>Vrednost objekta je zapravo referenca #2</h2>
           <div style="float:left;width:50%">
-            <pre><code>
+            <pre><code class="javascript">
 var x = { a: 100 };
 var y = { a: 100 };
 var z = y;
@@ -1787,7 +1793,7 @@ y === z; // true
         <section class="valigntop">
           <h2>Vrednost objekta je zapravo referenca #3</h2>
           <div style="float:left;width:50%">
-            <pre><code>
+            <pre><code class="javascript">
 var x = { a: 100 };
 var y = { a: 100 };
 var z = y;
@@ -1807,7 +1813,7 @@ z.a = 200;
         <section class="valigntop">
           <h2>Vrednost objekta je zapravo referenca #4</h2>
           <div style="float:left;width:50%">
-            <pre><code>
+            <pre><code class="javascript">
 var x = { a: 100 };
 var y = { a: 100 };
 var z = y;
@@ -1865,7 +1871,7 @@ z.a; // 200
         <section class="valigntop">
           <h2>Funkcijski izraz</h2>
           <p>Koristimo ključnu reč <code>function</code> praćenu <strong>listom parametara</strong> i <strong>blokom koda</strong> da kreiramo funkciju.</p>
-          <pre><code>
+          <pre><code class="javascript">
 var a = 7;
 var sayhi = function (name) {
     var a = "Hello " + name;
@@ -1880,7 +1886,7 @@ var sayhi = function (name) {
           <h2>Poziv funkcije</h2>
           <p>Par zagrada iza imena predstavlja poziv funkcije. Parametri unutar zagrada se prosleđuju funkciji.</p>
           <p><strong>Svaki put</strong> kada se funkcija pozove, ona dobija <strong>svoj opseg vidljivosti</strong> sa lokalnim promenljivima i parametrima.</p>
-          <pre><code>
+          <pre><code class="javascript">
 var a = 7;
 var sayhi = function (name) {
     var a = "Hello " + name;
@@ -1897,7 +1903,7 @@ a; // 7
           <h2>Pogrešan broj parametara funkcije</h2>
           <p>U JavaScriptu možemo pozvati funkciju sa <strong>pogrešnim</strong> brojem parametara.</p>
           <p>Prilikom poziva nedefinisani parametri dobijaju vrednost <code>undefined</code>.</p>
-          <pre><code>
+          <pre><code class="javascript">
 var f = function (a, b) {
     console.log(typeof b);
     return a + b;
@@ -1913,7 +1919,7 @@ f(3, 4, 5); // 7   ("number" printed)
           <h2>Funkcija koja ne vraća vrednost</h2>
           <p>Funkcija <strong>ne mora</strong> da eksplicitno vrati rezultat.</p>
           <p>U tom slučaju vraća se vrednost <code>undefined</code>.</p>
-          <pre><code>
+          <pre><code class="javascript">
 var f = function () {
     return;
 };
@@ -1929,7 +1935,7 @@ g(); // undefined
 
         <section class="valigntop">
           <h2>Funkcijski izraz može biti imenovan</h2>
-          <pre><code>
+          <pre><code class="javascript">
 var fact = function (n) {
     if (n === 0) return 1;
     if (n > 0) return n * fact(n - 1);              // *1
@@ -1957,7 +1963,7 @@ g(10);       // 55  (still working)
         <section class="valigntop">
           <h2>Deklaracija funkcije #1</h2>
           <p>Funkcije se mogu pozivati <strong>pre</strong> deklarisanja zato što...</p>
-          <pre><code>
+          <pre><code class="javascript">
 // We can invoke a function
 // before its "declaration"
 
@@ -1977,7 +1983,7 @@ function plusOne(n) {
         <section class="valigntop">
           <h2>Deklaracija funkcije #2</h2>
           <p>... sve deklaracije idu na početak opsega</p>
-          <pre><code>
+          <pre><code class="javascript">
 var x, y, plusOne;       // Variable declarations
 
 plusOne = function (n) { // Function declarations
@@ -1995,8 +2001,8 @@ y = 999;
 
         <section class="valigntop">
           <h2>Poziv funkcije odmah nakon funkcijskog izraza</h2>
-          <p>Interpreter će misliti da deklarišemo funkciju kada naiđe na <code>function</code>. Operatorom grupisanja možemo naglasiti da to tretira kao izraz.</p>
-          <pre><code>
+          <p>Interpreter će misliti da deklarišemo funkciju kada naiđe na <code class="javascript">function</code>. Operatorom grupisanja možemo naglasiti da to tretira kao izraz.</p>
+          <pre><code class="javascript">
 (function () {
     return 123;
 }());                                    // 123
@@ -2013,7 +2019,7 @@ void function(){ console.log('ya'); }(); // undefined
         <section class="valigntop">
           <h2>Metoda</h2>
           <p><strong>Metoda</strong> je funkcija koja je osobina nekog objekta.</p>
-          <pre><code>
+          <pre><code class="javascript">
 // The cat object has three properties
 // cat.age, cat.meow, and cat.sleep
 
@@ -2031,7 +2037,7 @@ cat.sleep = function () {};
         <section class="valigntop">
           <h2>Referenca na objekat unutar metode</h2>
           <p>Tokom izvršavanja metode, referenca <code>this</code> <span style="color:#CCCCCC">(uglavnom)</span> pokazuje na taj objekat.</p>
-          <pre><code>
+          <pre><code class="javascript">
 var cat = {
     age: 3,
     meow: function () {
@@ -2061,7 +2067,7 @@ m(); // TypeError or undefined
         <section class="valigntop">
           <h2>Leksičko okruženje #1</h2>
           <p>Kada koristimo promenljive iz globalnog opsega...</p>
-          <pre><code>
+          <pre><code class="javascript">
 var a = 1;
 var closureFunc = function () {
     // The "environment" (the outer scope)
@@ -2076,7 +2082,7 @@ var closureFunc = function () {
         <section class="valigntop">
           <h2>Leksičko okruženje #2</h2>
           <p>Kada koristimo promenljive iz globalnog opsega...</p>
-          <pre><code>
+          <pre><code class="javascript">
 var a = 1;
 var closureFunc = function () {
     // The "environment" (the outer scope)
@@ -2099,7 +2105,7 @@ closureFunc(); // 'hello'
         <section class="valigntop">
           <h2>Leksičko okruženje #3</h2>
           <p>Okruženje se određuje <strong>u vreme kreiranja</strong> a ne u vreme izvršavanja!</p>
-          <pre><code>
+          <pre><code class="javascript">
 var a = 1;
 var closureFunc = function () {
     // The "environment" (the outer scope)
@@ -2121,7 +2127,7 @@ anotherFunc(); // 1
         <section class="valigntop">
           <h2>Uobičajen način da kreiramo closure #1</h2>
           <p>Funkcija koja kreira i vraća closure funkciju pri svakom pozivu</p>
-          <pre><code>
+          <pre><code class="javascript">
 var getClosureFunc = function () {
 
     var a = 1;
@@ -2146,7 +2152,7 @@ clsr(); // 1
         <section class="valigntop">
           <h2>Uobičajen način da kreiramo closure #2</h2>
           <p>Funkcijski izraz ugradimo u <code>return</code>...</p>
-          <pre><code>
+          <pre><code class="javascript">
 var getClosureFunc = function () {
 
     var a = 1;
@@ -2169,7 +2175,7 @@ clsr(); // 1
         <section class="valigntop">
           <h2>Uobičajen način da kreiramo closure #3</h2>
           <p>Closure se kreira kad se vraćamo iz anonimne funkcije</p>
-          <pre><code>
+          <pre><code class="javascript">
 var clsr = (function () {
 
     var a = 1;
@@ -2202,7 +2208,7 @@ clsr(); // 1
             <li>Ako funkcija koja se vraća kao rezultat koristi bar jednu lokalnu promenljivu, kreira se closure.</li>
             <li>Samo funkcije koje se vrate kao rezultat mogu da pristupe tim promenljivima.</li>
           </ul>
-          <pre><code>
+          <pre><code class="javascript">
 var x = 999;
 
 var f = function () {
@@ -2224,7 +2230,7 @@ g();        // 422          // *5
           <ul>
             <li>Imenovani funkcijski izraz kreira closure sa slobodnom promenljivom tog imena vezanom samu funkciju.</li>
           </ul>
-          <pre><code>
+          <pre><code class="javascript">
 var f = function fac(n) {
     if (n === 0) return 1;
     if (n > 0) return n * fac(n - 1);
@@ -2260,7 +2266,7 @@ var f = (function () {
           </ul>
           </p>
           <div style="float:left;width:50%">
-            <pre><code>
+            <pre><code class="javascript">
 var w = [
     "test",
     1234,
@@ -2273,7 +2279,7 @@ w[4]; // "hi"
             </code></pre>  
           </div>
           <div style="float:left;width:50%">
-            <pre><code>
+            <pre><code class="javascript">
 var w = new Array(5);
 w[0] = "test";
 w[1] = 1234;
@@ -2293,7 +2299,7 @@ w[4]; // "hi"
             <li>pomoću metode <code>push</code></li>
             <li>upisivanjem elementa u odgovarajući indeks</li>
           </ul>
-          <pre><code>
+          <pre><code class="javascript">
 var arr = [ "test", 1234, {}, [], "hi" ];
 
 arr.push("sixth"); // 6
@@ -2316,7 +2322,7 @@ arr.length;        // 8
           <ul>
             <li>niz ima osobinu <code>length</code></li>
           </ul>
-          <pre><code>
+          <pre><code class="javascript">
 var arr = [ "test", 1234, {}, [], "hi" ];
 
 for (var i = 0; i < arr.length; i += 1) {
@@ -2330,7 +2336,7 @@ for (var i = 0; i < arr.length; i += 1) {
           <ul>
             <li>pomoću metode <code>forEach</code></li>
           </ul>
-          <pre><code>
+          <pre><code class="javascript">
 var arr = [ "test", 1234, {}, [], "hi" ];
 
 arr.forEach(function (val /*, i, arr*/) {
@@ -2344,7 +2350,7 @@ arr.forEach(function (val /*, i, arr*/) {
           <ul>
             <li>pomoću metoda <code>map</code>, <code>some</code>, <code>every</code></li>
           </ul>
-          <pre><code>
+          <pre><code class="javascript">
 var arr = [ "test", 1234, {}, [], "hi" ];
 
 arr.map(function (val /*, i, arr*/) {
@@ -2363,7 +2369,7 @@ arr.map(function (val /*, i, arr*/) {
           <ul>
             <li>primer za <code>forEach</code>, <code>map</code>, <code>some</code>, <code>every</code></li>
           </ul>
-          <pre><code>
+          <pre><code class="javascript">
 var arr1 = [1,3,5,7,9];
 var arr2 = [1,2,5,7,9];
 
@@ -2386,7 +2392,7 @@ arr1.map(addTen);    // [11,13,15,17,19]
           <ul>
             <li><code>Object.keys</code> vraća sve ključeve - sve nazive osobina</li>
           </ul>
-          <pre><code>
+          <pre><code class="javascript">
 var obj = { a: "test", b: 1234, c: "hi" };
 
 Object.keys(obj); // [ "a", "b", "c" ]
@@ -2398,7 +2404,7 @@ Object.keys(obj); // [ "a", "b", "c" ]
           <ul>
             <li>Poziv <code>Object.keys</code> sa <code>map</code> vraća sve vrednosti osobina</li>
           </ul>
-          <pre><code>
+          <pre><code class="javascript">
 var obj = { a: "test", b: 1234, c: "hi" };
 
 Object.keys(obj).map(function (key) {
@@ -2450,7 +2456,7 @@ Object.keys(obj).map(function (key) {
           <ul>
             <li>wrapper objekti imaju svoje osobine i metode</li>
           </ul>
-          <pre><code>
+          <pre><code class="javascript">
 ( true  ).toString(); // "true"
 ( false ).toString(); // "false"
 
@@ -2491,7 +2497,7 @@ Object.keys(obj).map(function (key) {
 
         <section class="valigntop">
           <h2>Primer konstrukcije objekta: kreiramo niz #2</h2>
-          <pre><code>
+          <pre><code class="javascript">
 var x = new Array(2);
           </code></pre>
           <img src="img/javascript/pic09.svg" class="clean" width="50%"/>
@@ -2554,7 +2560,7 @@ var x = new Array(2);
 
         <section class="valigntop">
           <h2>Primer nasleđenih osobina</h2>
-          <pre><code>
+          <pre><code class="javascript">
 var arr = [ 11, 22 ];
 
 arr.length;                       // 2
@@ -2577,7 +2583,7 @@ Array.prototype.hasOwnProperty('map');      // true
 
         <section class="valigntop">
           <h2>Pisanje novog konstruktora</h2>
-          <pre><code>
+          <pre><code class="javascript">
 var Cat = function (name) {
     if (name) this.name = name;
 };
@@ -2603,7 +2609,7 @@ nyancat.meow(); // "Meow~  I am Nyan Cat"
 
         <section class="valigntop">
           <h2>Nešto lakši način za kreiranje objekata</h2>
-          <pre><code>
+          <pre><code class="javascript">
 var catPrototype = {
     name: 'Nyan Cat',
     meow: function () {
@@ -2656,7 +2662,205 @@ nyancat.meow(); // "Meow~  I am Nyan Cat"
 
         <section>
           <h1>JavaScript: neobične stvari</h1>
-          <h3>#6: funkcionalno programiranje</h3>
+          <h3>#6: sa var i bez var</h3>
+        </section>
+
+        <section class="valigntop">
+          <h2>Deklaracija promenljive sa i bez var</h2>
+          <div style="width:40%;margin-left:30%;"><pre><code class="javascript">
+var myNewVar = 1;     // using var to declare a variable.
+myOtherNewVar = 2;    // var is optional.
+alert(myNewVar);      // will alert 1
+alert(myOtherNewVar); // will alert 2
+          </code></pre></div>
+          <p>Ključna reč <code>var</code> nije obavezna prilikom deklaracije promenljive. Kada se promenljiva deklariše bez <code>var</code>, interpreter podrazumeva da koristimo promenljivu u višem opsegu od trenutnog. Ako je tamo ne nađe, tražiće je uz lanac opsega sve do globalnog opsega. Ako je ne nađe ni tamo, dodaće novu promenljivu u globalni opseg.</p>
+          <p>Deklaracija promenljive sa <code>var</code> smešta promenljivu uvek u tekući opseg.</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Deklaracija promenljive sa i bez var</h2>
+          <p>Deklaracija u globalnom opsegu</p>
+          <div style="width:50%;margin-left:25%;"><pre><code class="javascript">
+function testScope() {
+    myTest = true; // now myTest is global.
+    alert(myTest);
+}
+testScope();  // will alert "true"
+alert(myTest); // will alert "true" as well, because now myTest is global.
+          </code></pre></div>
+          <p>Ograničavanje opsega sa <code>var</code></p>
+          <div style="width:50%;margin-left:25%;"><pre><code class="javascript">
+function testScope() {
+    var myTest = true;
+    function testNestedScope() {
+        var myTest = false;
+        alert(myTest);
+    }
+    testNestedScope();
+    alert(myTest);
+}
+testScope(); // will alert false, and then true.
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Deklaracija promenljive sa i bez var</h2>
+          <p>Pristup promenljivoj pre deklarisanja</p>
+          <div style="width:50%;margin-left:25%;"><pre><code class="javascript">
+function testScope() {
+    var myTest = true;
+    function testNestedScope() {
+        alert(myTest);
+        var myTest = false;
+    }
+    testNestedScope();
+    alert(myTest);
+}
+testScope(); // will alert "undefined", and then true.
+          </code></pre></div>
+          <p>Eksplicitna verzija prethodnog listinga</p>
+          <div style="width:50%;margin-left:25%;"><pre><code class="javascript">
+function testScope() {
+    var myTest = true;
+    function testNestedScope() {
+        var myTest;
+        alert(myTest);
+        myTest = false;
+    }
+    testNestedScope();
+    alert(myTest);
+}
+testScope(); // will alert "undefined", and then true.
+          </code></pre></div>
+        </section>
+
+
+
+        <section>
+          <h1>JavaScript: neobične stvari</h1>
+          <h3>#7: currying</h3>
+        </section>
+
+        <section class="valigntop">
+          <h2>Poreklo JavaScripta</h2>
+          <img src="img/javascript/pic11.svg" class="clean" width="65%"/>
+        </section>
+
+        <section class="valigntop">
+          <h2>λ funkcija</h2>
+          <ul>
+            <li>tzv. anonimna funkcija</li>
+            <li>deo matematike zvane λ-račun</li>
+            <li>koja se bavi pojednostavljivanjem izraza u λ-izraze</li>
+            <li>radi otkrivanja prave prirode računskih operacija</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>λ funkcija</h2>
+          <ul>
+            <li>na primer funkcija:<br/> <code class="javascript">cube(x) = x * x * x</code></li>
+            <li>može se iskazati bez imena:<br/> <code>(x) → x * x * x</code></li>
+            <li>i može imati samo jedan argument</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Currying</h2>
+          <ul>
+            <li>funkcije sa više argumenata</li>
+            <li>moraju prvo proći proces koji se zove <strong>currying</strong>:</li>
+            <li>transformacija funkcije sa više argumenata na takav način da se može pozvati kao lanac funkcija, svaka sa po jednim argumentom<br/><br/><br/></li>
+            <li>Haskell Curry (1900-1982)</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Currying</h2>
+          <ul>
+            <li>npr. funkcija<br/><code>(x, y) → x + y</code></li>
+            <li>se može transformisati u<br/> <code>x → (y → x + y)</code><br/><br/><br/></li>
+            <li>ili u klasičnoj notaciji<br/> <code>f(x, y) = x + y</code></li>
+            <li>se transformiše u<br/> <code>g(y) = y → f(x, y)</code></li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Currying u JavaScriptu</h2>
+          <div style="width:40%;margin-left:30%;"><pre><code class="javascript">
+function f(x, y) {
+    return x + y;
+}
+          </code></pre></div>
+          <p>će postati:</p>
+          <div style="width:40%;margin-left:30%;"><pre><code class="javascript">
+function g(x) {
+    return function(y) {
+        return x + y;
+    };
+}
+          </code></pre></div>
+          <p>Provera:</p>
+          <div style="width:40%;margin-left:30%;"><pre><code class="javascript">
+f(1, 2) === g(1)(2)
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Currying u JavaScriptu</h2>
+          <p>Pošto su funkcije first-class objects, može i ovako:</p>
+          <div style="width:40%;margin-left:30%;"><pre><code class="javascript">
+function g(h) {
+    return function(y) {
+        return h(h(y));
+    };
+}
+          </code></pre></div>
+          <p>Provera:</p>
+          <div style="width:40%;margin-left:30%;"><pre><code class="javascript">
+81 === g(function(x) {
+    return x * x;
+})(3);
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Parcijalna aplikacija</h2>
+          <p>Ako damo samo jedan argument funkciji...</p>
+          <div style="width:40%;margin-left:30%;"><pre><code class="javascript">
+function g(h) {
+    return function(y) {
+        return h(h(y));
+    };
+}
+
+var n = g(function(x) {
+    return x * x;
+});
+          </code></pre></div>
+          <p>Možemo je koristiti više puta:</p>
+          <div style="width:40%;margin-left:30%;"><pre><code class="javascript">
+337 === n(3) + n(4);
+          </code></pre></div>
+          <p>Ovo se zove <strong>parcijalna aplikacija</strong> i nije isto što i currying.</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Funkcije sa više argumenata</h2>
+          <p>Za funkciju sa više od 2 argumenta</p>
+          <div style="width:40%;margin-left:30%;"><pre><code class="javascript">
+function f(x, y, z) {
+    return x + y + z;
+}
+          </code></pre></div>
+          <p>Pravilan način za parcijalnu aplikaciju je kroz <code>bind</code></p>
+          <div style="width:40%;margin-left:30%;"><pre><code class="javascript">
+var f1 = f.bind(null, 1);
+          </code></pre></div>
+          <p>Poziv parcijalno apliciranoj funkciji vraća rezultat, a ne sledeću funkciju u lancu!</p>
+          <div style="width:40%;margin-left:30%;"><pre><code class="javascript">
+6 === f1(2, 3);
+          </code></pre></div>
         </section>
 
         <section>
