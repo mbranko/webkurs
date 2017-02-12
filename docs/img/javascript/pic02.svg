@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 753 118" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,-199.135,-403.944)">
+        <rect x="200.221" y="434.948" width="207.816" height="83.365" style="fill:none;stroke:rgb(231,173,82);stroke-width:2px;"/>
+        <g transform="matrix(1,0,0,1,257.963,1.09388)">
+            <rect x="200.221" y="434.948" width="207.816" height="83.365" style="fill:none;stroke:rgb(231,173,82);stroke-width:2px;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,515.925,2.18776)">
+            <rect x="200.221" y="434.948" width="207.816" height="83.365" style="fill:none;stroke:rgb(231,173,82);stroke-width:2px;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,-0.137025,2.10183)">
+            <rect x="200.272" y="402.842" width="88.611" height="30.218" style="fill:rgb(231,173,82);stroke:rgb(231,173,82);stroke-width:2px;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,257.826,3.19571)">
+            <rect x="200.272" y="402.842" width="88.611" height="30.218" style="fill:rgb(231,173,82);stroke:rgb(231,173,82);stroke-width:2px;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,515.788,4.28959)">
+            <rect x="200.272" y="402.842" width="88.611" height="30.218" style="fill:rgb(231,173,82);stroke:rgb(231,173,82);stroke-width:2px;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,-0.899131,2.00226)">
+            <text x="233.017px" y="481.437px" style="font-family:'Courier';font-size:30px;fill:none;">undeﬁned</text>
+            <text x="233.017px" y="481.437px" style="font-family:'Courier';font-size:30px;fill:rgb(231,173,82);">undeﬁned</text>
+        </g>
+        <g transform="matrix(1,0,0,1,230.527,3.2053)">
+            <text x="233.017px" y="481.437px" style="font-family:'Courier';font-size:30px;fill:none;">&quot;Hello JS!&quot;</text>
+            <text x="233.017px" y="481.437px" style="font-family:'Courier';font-size:30px;fill:rgb(231,173,82);">&quot;Hello JS!&quot;</text>
+        </g>
+        <g transform="matrix(1,0,0,1,560.034,5.03539)">
+            <text x="233.017px" y="481.437px" style="font-family:'Courier';font-size:30px;fill:none;">101</text>
+            <text x="233.017px" y="481.437px" style="font-family:'Courier';font-size:30px;fill:rgb(231,173,82);">101</text>
+        </g>
+        <g transform="matrix(1.22698,0,0,1.22698,-49.6963,-86.9619)">
+            <text x="229.34px" y="420.514px" style="font-family:'Courier';font-size:30px;fill:none;">x</text>
+            <text x="229.34px" y="420.514px" style="font-family:'Courier';font-size:30px;fill:white;">x</text>
+        </g>
+        <g transform="matrix(1.22698,0,0,1.22698,208.266,-85.868)">
+            <text x="229.34px" y="420.514px" style="font-family:'Courier';font-size:30px;fill:none;">y</text>
+            <text x="229.34px" y="420.514px" style="font-family:'Courier';font-size:30px;fill:white;">y</text>
+        </g>
+        <g transform="matrix(1.22698,0,0,1.22698,466.229,-84.7741)">
+            <text x="229.34px" y="420.514px" style="font-family:'Courier';font-size:30px;fill:none;">z</text>
+            <text x="229.34px" y="420.514px" style="font-family:'Courier';font-size:30px;fill:white;">z</text>
+        </g>
+        <g transform="matrix(0.88448,0,0,1.10815,255.977,111.699)">
+            <path d="M746.085,337.177L746.085,345.294L725.745,329.06L746.085,312.826L746.085,320.943L785.737,320.943L785.737,337.177L746.085,337.177Z" style="fill:rgb(255,0,0);stroke:rgb(231,173,82);stroke-width:1.99px;"/>
+        </g>
+    </g>
+</svg>
