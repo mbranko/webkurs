@@ -157,7 +157,7 @@ interface package protected static
         <section class="valigntop">
           <h2>Objekat</h2>
           <p>Svaka vrednost ovog tipa je <strong>referenca</strong> na neki objekat u memoriji. Takvu referencu u govoru često zovemo samo "objekat".</p>
-          <img src="img/javascript/pic03.svg" width="50%" class="clean"/>
+          <img src="img/javascript/pic03.svg" width="60%" class="clean"/>
         </section>
 
         <section class="valigntop">
@@ -205,7 +205,7 @@ w.y;    // 1234
 w["y"]; // 1234
             </code></pre>              
           </div>
-          <img src="img/javascript/pic04.svg" width="50%" class="clean"/>
+          <img src="img/javascript/pic04.svg" width="70%" class="clean"/>
         </section>
 
         <section class="valigntop">
@@ -1437,17 +1437,23 @@ arr.map(parseInt);   // [3, NaN, NaN, NaN]</code></pre></div>
     console.log(i);
   }, i * 1000);
 }</code></pre></div>
-          <p>Dobijen je rezultat:</p>
-<div style="width:40%;margin-left:30%;"><pre><code>6   (printed after 1 second)
+          <div style="float:left;width:50%">
+            <p>Dobijen je rezultat:</p>
+            <pre><code>6   (printed after 1 second)
 6   (printed after 2 seconds)
 6   (printed after 3 seconds)
 6   (printed after 4 seconds)
-6   (printed after 5 seconds)</code></pre></div>
-          <ol>
-            <li>zašto se to desilo?</li>
-            <li>kako bismo ispravili problem uz zadržavanje for petlje?</li>
-            <li>napravi rešenje pomoću <code>Array.prototype.forEach</code></li>
-          </ol>
+6   (printed after 5 seconds)</code></pre>
+          </div>
+          <div style="float:left;width:50%">
+            <small style="vertical-align:bottom">
+            <ol>
+              <li>zašto se to desilo?</li>
+              <li>kako bismo ispravili problem uz zadržavanje for petlje?</li>
+              <li>napravi rešenje pomoću <code>Array.prototype.forEach</code></li>
+            </ol>
+            </small>
+          </div>
         </section>
 
         <section class="valigntop">
@@ -1484,6 +1490,13 @@ myobj.counter;      // undefined
 myobj.getCounter(); // 3</code></pre></div>
           <p>Napomena: closure.</p>
         </section>
+
+        <section>
+          <h3>Kraj dela</h3>
+          <p><a href="#/">← Početak dela</a></p>
+          <p><a href="index.html#/1">⇐ Početak kursa</a></p>
+        </section>
+
 
       </div>
     </div>
