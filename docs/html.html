@@ -792,6 +792,115 @@ ctx.stroke();
           </div>
         </section>
 
+        <section class="valigntop">
+          <h2>Checkbox i radio</h2>
+          <ul>
+            <li>unos koji predstavlja izbor jedne od opcija ili nezavisno biranje opcija</li>
+            <li><code>checkbox</code> može da se selektuje svaki nezavisno</li>
+            <li><code>radio</code> može da se selektuje samo jedan iz grupe</li>
+          </ul>
+          <div style="font-size: 30pt; float: left; width: 50%; margin-left: 25%">
+            <pre><code>
+&lt;input type=&quot;checkbox&quot; name=&quot;...&quot;&gt;
+&lt;input type=&quot;radio&quot; name=&quot;...&quot;&gt;
+            </code></pre>
+          </div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Važni atributi polja za unos</h2>
+          <ul>
+            <li><code>value</code>: početna vrednost</li>
+            <li><code>disabled</code>: polje ne može da se menja i ne šalje se serveru</li>
+            <li><code>readonly</code>: polje ne može da se menja ali se šalje serveru</li>
+            <li><code>required</code>: polje je obavezno - mora se uneti vrednost</li>
+            <li><code>checked</code>: stanje polja "uključeno" - samo za <code>radio</code> i <code>checkbox</code></li>
+            <li><code>size</code>: veličina polja u karakterima</li>
+            <li><code>maxlength</code>: maksimalan broj karaktera u polju</li>
+            <li><code>min</code> i <code>min</code>: granične dozvoljene vrednosti za <code>number</code> i <code>date</code> polja</li>
+            <li><code>autocomplete</code>: da li je dozvoljeno automatsko dovršavanje</li>
+            <li><code>accept</code>: dozvoljene vrste fajla za <code>file</code> polje</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Datalist</h2>
+          <ul>
+            <li>lista vrednosti koja će biti ponuđena korisniku dok unosi tekst</li>
+            <li>polje se povezuje sa njim preko <code>list</code> atributa</li>
+          </ul>
+          <div style="font-size: 30pt; float: left; width: 50%; margin-left: 25%">
+            <pre><code>
+&lt;input list=&ldquo;browsers&quot; type=&ldquo;text&rdquo;&gt;
+&lt;datalist id=&quot;browsers&quot;&gt;
+  &lt;option value=&quot;Internet Explorer&quot;&gt;
+  &lt;option value=&quot;Firefox&quot;&gt;
+  &lt;option value=&quot;Google Chrome&quot;&gt;
+  &lt;option value=&quot;Opera&quot;&gt;
+  &lt;option value=&quot;Safari&quot;&gt;
+&lt;/datalist&gt;
+            </code></pre>
+          </div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Select</h2>
+          <ul>
+            <li>predstavlja padajuću listu stavki za izbor</li>
+            <li>stavke su date unutar <code>option</code> elementa</li>
+            <li>selekcija više stavki odjednom - atribut <code>multiple</code></li>
+            <li>atribut <code>value</code> - vrednost koja se šalje serveru</li>
+            <li>grupisanje stavki - element <code>optgroup</code></li>
+          </ul>
+          <div style="font-size: 30pt; float: left; width: 70%; margin-left: 15%">
+            <pre><code>
+&lt;select&gt;
+  &lt;optgroup label=&quot;Swedish Cars&quot;&gt;
+    &lt;option value=&quot;volvo&quot;&gt;Volvo&lt;/option&gt;
+    &lt;option value=&quot;saab&quot;&gt;Saab&lt;/option&gt; 
+  &lt;/optgroup&gt;
+  &lt;optgroup label=&quot;German Cars&quot;&gt;
+    &lt;option value=&quot;mercedes&quot;&gt;Mercedes&lt;/option&gt;
+    &lt;option value=&quot;audi&quot;&gt;Audi&lt;/option&gt; 
+  &lt;/optgroup&gt;
+&lt;/select&gt;
+            </code></pre>
+          </div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Textarea</h2>
+          <ul>
+            <li>višelinijsko tekstualno polje za unos veće količine teksta</li>
+            <li>nema atribut <code>value</code> već je početni tekst sadržaj elementa</li>
+          </ul>
+          <div style="font-size: 30pt; float: left; width: 80%; margin-left: 5%">
+            <pre><code>
+&lt;textarea rows=&quot;4&quot; cols=&quot;50&quot;&gt;
+Ovo je inicijalni tekst koji će biti prikazan u textarea polju. 
+&lt;/textarea&gt;
+            </code></pre>
+          </div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Button, submit, reset</h2>
+          <ul>
+            <li><code>&lt;input type="button"&gt;</code> dugme koje se obrađuje pomoću JavaScripta</li>
+            <li><code>&lt;input type="submit"&gt;</code> dugme za slanje forme</li>
+            <li><code>&lt;input type="reset"&gt;</code> dugme za reset forme - vraćanje na početno stanje</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>file</h2>
+          <ul>
+            <li><code>&lt;input type="file"&gt;</code> - polje za upload fajla</li>
+            <li>ne može biti unapred popunjeno, to bi bio sigurnosni rizik</li>
+            <li>potrebno je da forma ima atribut <code>enctype</code> sa vrednošću <code>multipart/form-data</code></li>
+          </ul>
+        </section>
+
 
       </div>
     </div>
