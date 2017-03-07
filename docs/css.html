@@ -26,8 +26,8 @@
       <div class="slides">
 
         <section class="vcenter">
-          <h1>HTML</h1>
-          <h3>HyperText Markup Language</h3>
+          <h1>CSS</h1>
+          <h3>Cascading Style Sheets</h3>
           <p>
             <small><a href="http://mbranko.github.io/webkurs">http://mbranko.github.io/webkurs</a></small>
           </p>
@@ -45,62 +45,53 @@
         </section>
 
         <section class="valigntop">
-          <h2>Kako se pristupa webu</h2>
+          <h2>CSS: osnovni pojmovi</h2>
           <ul>
-            <li><strong>web browser</strong>: program za pregled web stranica</li>
+            <li><strong>CSS</strong>: jezik za opis izgleda dokumenata</li>
             <ul>
-              <li>Firefox, Internet Explorer, Chrome, Safari, Opera, ...</li>
+              <li>napisanih u HTML, XML, ...</li>
             </ul>
-            <li>različiti <strong>uređaji</strong></li>
+            <li>mogu se odrediti svi bitni parametri prikaza</li>
+            <li>novine u CSS verziji 3</li>
             <ul>
-              <li>telefon, tablet, laptop, desktop, TV, ...</li>
-            </ul>
-            <li><strong>screen reader</strong>: program koji čita sadržaj stranice</li>
-            <ul>
-              <li>text to speech</li>
-            </ul>
-            <li><strong>web server</strong>: računar na kome se nalazi sadržaj</li>
-            <ul>
-              <li>komunikacija putem računarske mreže</li>
+              <li>efekti (transformacije) - ukida potrebu za komplikovanim animacijama ili pluginovima</li>
             </ul>
           </ul>
         </section>
 
         <section class="valigntop">
-          <h2>Šta sajtovi sadrže</h2>
+          <h2>CSS: osnovni pojmovi</h2>
           <ul>
-            <li>web stranice</li>
-            <ul>
-              <li>struktura, tekstualni sadržaj i veze: HTML</li>
-              <li>vizuelni izgled: CSS</li>
-              <li>dinamičko ponašanje: JavaScript</li>
-            </ul>
-            <li>slike</li>
-            <li>video zapise</li>
-            <li>Flash</li>
-            <li>...</li>
+            <li>isti CSS može se koristiti za više od jedne stranice, što znači da stil celog veb sajta može biti prilagođen bez menjanja svake stranice posebno</li>
+            <li>primena konzistentnih stilova na svim stranicama pomaže unificiranju vizuelnog identiteta web stranica</li>
+            <li>web čitači imaju predefinisani skup stilova koje primenjuju ako ne definišemo svoje stilove</li>
           </ul>
         </section>
 
         <section class="valigntop">
-          <h2>HTML: osnovni pojmovi</h2>
+          <h2>Povezivanje HTML i CSS</h2>
           <ul>
-            <li><strong>HyperText Markup Lanugage</strong>: jezik za označavanje</li>
-            <li>označava delove dokumenta <strong>tagovima</strong></li>
-            <li>tag = oznaka, ključna reč između znakova &lt; i &gt;</li>
+            <li>putem eksternog fajla sa CSS stilovima</li>
+            <div style="font-size: 30pt">
+              <pre><code class="html">&lt;head&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;path/to/my.css&quot;/&gt;
+&lt;/head&gt;</code></pre>
+            </div>
+            <li>interno u HTML fajlu, u okviru <code>style</code> taga unutar <code>head</code></li>
+            <div style="font-size: 30pt">
+              <pre><code class="html">&lt;head&gt;
+  &lt;style type=&quot;text/css&quot;&gt;
+    ...
+  &lt;/style&gt;
+&lt;/head&gt;</code></pre>
+            </div>
+            <li>atribut <code>style</code> u bilo kom HTML elementu</li>
+            <div style="font-size: 30pt">
+              <pre><code class="html">&lt;p style=&quot;...&quot;&gt;
+    ...
+&lt;/p&gt;</code></pre>
+            </div>
           </ul>
-          <div style="width: 50%; margin-left: 25%; font-size: 30pt">
-            <pre><code class="html">
-&lt;html&gt;
-  &lt;head&gt;
-    ...
-  &lt;/head&gt;
-  &lt;body&gt;
-    ...
-  &lt;/body&gt;
-&lt;/html&gt;
-            </code></pre>
-          </div>
         </section>
 
         <section class="valigntop">
@@ -111,7 +102,7 @@
             <li>između tagova nalazi se <strong>sadržaj</strong></li>
           </ul>
           <div style="width: 50%; margin-left: 25%; font-size: 50pt">
-            <pre><code class="html">
+            <pre><code>
       &lt;p&gt; ... &lt;/p&gt;
             </code></pre>
           </div>
@@ -124,12 +115,12 @@
             <li>dva načina da se to zapiše</li>
           </ul>
           <div style="width: 50%; margin-left: 25%; font-size: 50pt">
-            <pre><code class="html">
+            <pre><code>
         &lt;p&gt;&lt;/p&gt;
             </code></pre>
           </div>
           <div style="width: 50%; margin-left: 25%; font-size: 50pt">
-            <pre><code class="html">
+            <pre><code>
         &lt;p/&gt;
             </code></pre>
           </div>
@@ -144,7 +135,7 @@
             <li>stablo dokumenta se serijalizuje u fajl pomoću tagova</li>
           </ul>
           <div style="width: 50%; font-size: 30pt; float: left">
-            <pre><code class="html">
+            <pre><code>
 &lt;html&gt;
   &lt;head&gt;
     &lt;title&gt;Naslov&lt;/title&gt;
@@ -169,7 +160,7 @@
             <li>ne mogu postojati dva atributa sa istim imenom u jednom elementu</li>
           </ul>
           <div style="font-size: 40pt">
-            <pre><code class="html">
+            <pre><code>
     &lt;img src=&quot;images/img001.png&quot; width=&quot;100%&quot;/&gt;
             </code></pre>
           </div>
@@ -220,7 +211,7 @@
         <section class="valigntop">
           <h2>Minimalni HTML dokument</h2>
           <div style="font-size: 30pt">
-            <pre><code class="html">
+            <pre><code>
 &lt;!DOCTYPE html&gt;
 &lt;html lang="en"&gt;
   &lt;head&gt;
@@ -371,7 +362,7 @@
             <li>stavke (podelementi) ovih lista su <code>li</code> elementi</li>
           </ul>
           <div style="font-size: 30pt; width: 50%; float: left;">
-            <pre><code class="html">
+            <pre><code>
 &lt;ol&gt;
   &lt;li&gt;Stavka 1&lt;/li&gt;
   &lt;li&gt;Stavka 2&lt;/li&gt;
@@ -379,7 +370,7 @@
             </code></pre>
           </div>
           <div style="font-size: 30pt; width: 50%; float: left;">
-            <pre><code class="html">
+            <pre><code>
 &lt;ul&gt;
   &lt;li&gt;Stavka 1&lt;/li&gt;
   &lt;li&gt;Stavka 2&lt;/li&gt;
@@ -409,7 +400,7 @@
           <h2>Link element</h2>
           <p style="text-align: left">opšti oblik linka:</p>
           <div style="font-size: 30pt;">
-            <pre><code class="html">
+            <pre><code>
 &lt;a href=&quot;adresa_sadržaja&quot; target=&quot;_blank&quot;&gt; vidljivi link &lt;/a&gt;  
             </code></pre>
           </div>
@@ -441,7 +432,7 @@
             <li>koriste se za stilizaciju sadržaja pomoću CSS-a</li>
           </ul>
           <div style="font-size: 30pt;">
-            <pre><code class="html">
+            <pre><code>
 &lt;div class=&quot;...&quot;&gt;
   ...
 &lt;/div&gt;
@@ -489,7 +480,7 @@
           <ul>
             <li>koriste se rasterski formati: GIF, PNG, JPEG</li>
             <li>element <code>img</code> ima osnovni oblik<br/>
-            <pre><code class="html">
+            <pre><code>
     &lt;img src=&quot;putanja_do_fajla_slike&quot;/&gt;
             </code></pre></li>
             <li>dodatni atributi: <code>width</code>, <code>height</code>, <code>alt</code>, <code>title</code></li>
@@ -505,7 +496,7 @@
             <li>opis nije obavezan</li>
           </ul>
           <div style="font-size: 30pt;">
-            <pre><code class="html">
+            <pre><code>
 &lt;figure&gt;
   &lt;img src=&quot;slika.jpg&quot; alt=&quot;Alternativni tekst&quot;/&gt;
   &lt;figcaption&gt;Sl. 1 - Opis slike 1&lt;/figcaption&gt;
@@ -524,12 +515,12 @@
             <li>primer: <a href="http://www.w3schools.com/tags/ref_canvas.asp">http://www.w3schools.com/tags/ref_canvas.asp</a></li>
           </ul>
           <div style="font-size: 30pt;">
-            <pre><code class="html">
+            <pre><code>
 &lt;canvas id=&quot;myCanvas&quot; width=&quot;200&quot; height=&quot;200&quot;/&gt;
             </code></pre>
           </div>
           <div style="font-size: 30pt;">
-            <pre><code class="javascript">
+            <pre><code>
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext('2d');
 ctx.moveTo(0,0);
@@ -549,7 +540,7 @@ ctx.stroke();
             <li>popularno za ikonice, delove interfejsa, itd.</li>
           </ul>
           <div style="font-size: 30pt;">
-            <pre><code class="html">
+            <pre><code>
 &lt;svg width=&quot;100&quot; height=&quot;100&quot;&gt;
   &lt;circle cx=&quot;50&quot; cy=&quot;50&quot; r=&quot;40&quot; stroke=&quot;green&quot; stroke-width=&quot;4&quot; fill=&quot;yellow&quot; /&gt;
 &lt;/svg&gt;
@@ -565,7 +556,7 @@ ctx.stroke();
             <li>atributi: <code>autoplay</code>, <code>controls</code>, <code>loop</code>, <code>muted</code>, <code>preload</code>, <code>src</code></li>
           </ul>
           <div style="font-size: 30pt;">
-            <pre><code class="html">
+            <pre><code>
 &lt;audio&gt;
   &lt;source src=&quot;horse.ogg&quot; type=&quot;audio/ogg&quot;&gt; 
   &lt;source src=&quot;horse.mp3&quot; type=&quot;audio/mpeg&quot;&gt; 
@@ -642,7 +633,7 @@ ctx.stroke();
             </li>
           </ul>
           <div style="font-size: 30pt; width: 50%; margin-left: 25%">
-            <pre><code class="html">
+            <pre><code>
 &lt;table&gt;
   &lt;tr&gt;
     &lt;th&gt;Zaglavlje 1&lt;/th&gt;
@@ -735,7 +726,7 @@ ctx.stroke();
             <li><code>target</code> - prozor u kome će se otvoriti nova stranica</li>
           </ul>
           <div style="font-size: 30pt;">
-            <pre><code class="html">
+            <pre><code>
 &lt;form action=&quot;&quot; method=&quot;POST&quot; name=&quot;mojaforma&quot;&gt;
   ...
 &lt;/form&gt;
@@ -751,7 +742,7 @@ ctx.stroke();
             <li>atribut <code>name</code> je naziv parametra koji se šalje serveru - obavezno!</li>
           </ul>
           <div style="font-size: 30pt; float: left; width: 50%; margin-left: 25%">
-            <pre><code class="html">
+            <pre><code>
 &lt;input type=&quot;text&quot; name=&quot;ime_prezime&quot;&gt;
             </code></pre>
           </div>
@@ -800,7 +791,7 @@ ctx.stroke();
             <li><code>radio</code> može da se selektuje samo jedan iz grupe</li>
           </ul>
           <div style="font-size: 30pt; float: left; width: 50%; margin-left: 25%">
-            <pre><code class="html">
+            <pre><code>
 &lt;input type=&quot;checkbox&quot; name=&quot;...&quot;&gt;
 &lt;input type=&quot;radio&quot; name=&quot;...&quot;&gt;
             </code></pre>
@@ -830,7 +821,7 @@ ctx.stroke();
             <li>polje se povezuje sa njim preko <code>list</code> atributa</li>
           </ul>
           <div style="font-size: 30pt; float: left; width: 50%; margin-left: 25%">
-            <pre><code class="html">
+            <pre><code>
 &lt;input list=&ldquo;browsers&quot; type=&ldquo;text&rdquo;&gt;
 &lt;datalist id=&quot;browsers&quot;&gt;
   &lt;option value=&quot;Internet Explorer&quot;&gt;
@@ -853,7 +844,7 @@ ctx.stroke();
             <li>grupisanje stavki - element <code>optgroup</code></li>
           </ul>
           <div style="font-size: 30pt; float: left; width: 70%; margin-left: 15%">
-            <pre><code class="html">
+            <pre><code>
 &lt;select&gt;
   &lt;optgroup label=&quot;Swedish Cars&quot;&gt;
     &lt;option value=&quot;volvo&quot;&gt;Volvo&lt;/option&gt;
@@ -875,7 +866,7 @@ ctx.stroke();
             <li>nema atribut <code>value</code> već je početni tekst sadržaj elementa</li>
           </ul>
           <div style="font-size: 30pt; float: left; width: 80%; margin-left: 5%">
-            <pre><code class="html">
+            <pre><code>
 &lt;textarea rows=&quot;4&quot; cols=&quot;50&quot;&gt;
 Ovo je inicijalni tekst koji će biti prikazan u textarea polju. 
 &lt;/textarea&gt;
@@ -906,6 +897,7 @@ Ovo je inicijalni tekst koji će biti prikazan u textarea polju.
           <p><a href="#/">← Početak dela</a></p>
           <p><a href="index.html#/1">⇐ Početak kursa</a></p>
         </section>
+
 
       </div>
     </div>
