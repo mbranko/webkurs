@@ -379,65 +379,59 @@ ul > li:nth-child(even) {
         </section>
 
         <section class="valigntop">
-          <h2>Block i inline elementi</h2>
+          <h2>Float i clear</h2>
           <ul>
-            <li><strong>block</strong> elementi - uvek počinju u sledećem slobodnom redu (vertikalno ispod prethodnog sadržaja, i automatski zauzimaju maksimalnu raspoloživu širinu.
-              <ul>
-                <li>npr. pasus, ...</li>
-              </ul>
+            <li>osobina <code>float</code> omogućava da se element izdvoji iz normalnog rasporeda</li>
+            <li>da "pluta" levo ili desno</li>
+            <li>slika oko koje će biti tekst, a slika ide udesno:
+            <div style="font-size: 30pt;">
+            <pre><code class="css" style="width:50%">
+img {
+  float: right;
+  margin: 0 0 10px 10px;
+}
+            </code></pre>
+            </div>
             </li>
-            <li><strong>inline</strong> elementi - nastavljaju se na postojeći sadržaj i automatski podešavaju svoju širinu po sadržaju koji treba da prikažu.
-              <ul>
-                <li>npr. niz slova u jednom redu teksta, ...</li>
-              </ul>
+            <li>osobina <code>clear</code> zabranjuje raspoređivanje elemenata oko plutajućeg elementa</li>
+            <li>sa leve strane zabranjujemo raspoređivanje drugih elemenata:
+          <div style="font-size: 30pt;">
+            <pre><code class="css" style="width:50%">
+div {
+  clear: left;
+}
+            </code></pre>
+            </div>
             </li>
-            <li>podrazumevano ponašanje se može podesiti u CSS-u</li>
           </ul>
         </section>
 
         <section class="valigntop">
-          <h2>Block elementi</h2>
-          <div style="width: 33%; float: left; font-size: 20pt;">
-            <ul>
-              <li><code>&lt;address&gt;</code> contact information</li>
-              <li><code>&lt;article&gt;</code> article content</li>
-              <li><code>&lt;aside&gt;</code> aside content</li>
-              <li><code>&lt;blockquote&gt;</code> long ("block") quotation</li>
-              <li><code>&lt;canvas&gt;</code> drawing canvas</li>
-              <li><code>&lt;dd&gt;</code> definition description</li>
-              <li><code>&lt;div&gt;</code> document division</li>
-              <li><code>&lt;dl&gt;</code> definition list</li>
-              <li><code>&lt;fieldset&gt;</code> field set label</li>
-              <li><code>&lt;figcaption&gt;</code> figure caption</li>
-            </ul>
+          <h2>Column count</h2>
+          <ul>
+            <li>za slaganje sadržaja u više kolona</li>
+          </ul>
+          <div style="font-size: 30pt;">
+            <pre><code class="css">
+.clanci {
+  -webkit-column-count: 2; /* Chrome, Safari, Opera */ 
+  -moz-column-count: 2;    /* Firefox */
+  column-count: 2;
+}
+            </code></pre>
           </div>
-          <div style="width: 35%; float: left; font-size: 20pt;">
-            <ul>
-              <li><code>&lt;figure&gt;</code> groups media content with a caption</li>
-              <li><code>&lt;footer&gt;</code> section or page footer</li>
-              <li><code>&lt;form&gt;</code> input form</li>
-              <li><code>&lt;h1&gt;...&lt;h6&gt</code> heading levels 1-6</li>
-              <li><code>&lt;header&gt;</code> section or page header</li>
-              <li><code>&lt;hgroup&gt;</code> groups header information</li>
-              <li><code>&lt;hr&gt;</code> horizontal rule (dividing line)</li>
-              <li><code>&lt;main&gt;</code> contains the central content unique to this document</li>
-            </ul>
-          </div>
-          <div style="width: 31%; float: left; font-size: 20pt;">
-            <ul>
-              <li><code>&lt;nav&gt;</code> contains navigation links</li>
-              <li><code>&lt;noscript&gt;</code> content to use if scripting is not supported or turned off</li>
-              <li><code>&lt;ol&gt;</code> ordered list</li>
-              <li><code>&lt;output&gt;</code> form output</li>
-              <li><code>&lt;p&gt;</code> paragraph</li>
-              <li><code>&lt;pre&gt;</code> preformatted text</li>
-              <li><code>&lt;section&gt;</code> section of a web page</li>
-              <li><code>&lt;table&gt;</code> table</li>
-              <li><code>&lt;tfoot&gt;</code> table footer</li>
-              <li><code>&lt;ul&gt;</code> unordered list</li>
-              <li><code>&lt;video&gt;</code> video player</li>
-            </ul>
-          </div>
+        </section>
+
+
+        <section class="valigntop">
+          <h2>Selektori za atribute</h2>
+          <ul>
+            <li><code>element[attr]</code><br/>
+            selektuje sve elemente koji imaju atribut</li>
+            <li><code>element[attr="value"]</code><br/>
+            selektuje sve elemente koji imaju atribut sa datom vrednošću<br/><br/></li>
+            <li>često se koristi za stilizovanje formi</li>
+          </ul>
         </section>
 
         <section class="valigntop">
