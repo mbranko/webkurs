@@ -95,161 +95,286 @@
         </section>
 
         <section class="valigntop">
-          <h2>HTML tag</h2>
-          <ul>
-            <li>svaki otvoreni tag ima svoj zatvoreni</li>
-            <li>izuzeci postoje ali je bolje biti striktan</li>
-            <li>između tagova nalazi se <strong>sadržaj</strong></li>
-          </ul>
-          <div style="width: 50%; margin-left: 25%; font-size: 50pt">
-            <pre><code>
-      &lt;p&gt; ... &lt;/p&gt;
-            </code></pre>
-          </div>
+          <h2>Box model </h2>
+          <img src="img/css/boxmodel-image.png" width="50%">
+                   
         </section>
 
         <section class="valigntop">
-          <h2>HTML tag: prazan sadržaj</h2>
+          <h2>CSS sintaksa</h2>
           <ul>
-            <li>sadržaj taga može biti prazan</li>
-            <li>dva načina da se to zapiše</li>
+            <li>skup CSS pravila se sastoji od selektora i bloka deklaracija</li>
+            <li><strong>selektor</strong> definiše na koji element (ili elemente) se primenjuju pravila navedena u bloku deklaracija</li>
+            <li><strong>deklaracija</strong> se sastoji od naziva osobine i njene vrednosti</li>
           </ul>
-          <div style="width: 50%; margin-left: 25%; font-size: 50pt">
-            <pre><code>
-        &lt;p&gt;&lt;/p&gt;
-            </code></pre>
-          </div>
-          <div style="width: 50%; margin-left: 25%; font-size: 50pt">
-            <pre><code>
-        &lt;p/&gt;
-            </code></pre>
-          </div>
+          <img src="img/css/css-syntax.gif" width="50%"/>
         </section>
 
         <section class="valigntop">
-          <h2>HTML dokument je stablo</h2>
+          <h2>Selektor</h2>
           <ul>
-            <li>čvorovi stabla su <strong>elementi</strong></li>
-            <li>elementi se u fajlu zapisuju pomoću tagova</li>
-            <li>sadržaj elementa navodi se između otvarajućeg i zatvarajućeg taga</li>
-            <li>stablo dokumenta se serijalizuje u fajl pomoću tagova</li>
-          </ul>
-          <div style="width: 50%; font-size: 30pt; float: left">
-            <pre><code>
-&lt;html&gt;
-  &lt;head&gt;
-    &lt;title&gt;Naslov&lt;/title&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;h1&gt;Web kurs&lt;/h1&gt;
-  &lt;/body&gt;
-&lt;/html&gt;
-            </code></pre>
-          </div>
-          <div style="float: left; width: 50%">
-            <img src="img/html/element-tree.png"/>
-          </div>
-        </section>
-
-        <section class="valigntop">
-          <h2>HTML atributi</h2>
-          <ul>
-            <li>elementi mogu imati <strong>atribute</strong></li>
-            <li>atributi se navode u otvarajućem tagu</li>
-            <li>atribut se definiše parom <code>naziv="vrednost"</code></li>
-            <li>ne mogu postojati dva atributa sa istim imenom u jednom elementu</li>
-          </ul>
-          <div style="font-size: 40pt">
-            <pre><code>
-    &lt;img src=&quot;images/img001.png&quot; width=&quot;100%&quot;/&gt;
-            </code></pre>
-          </div>
-        </section>
-
-        <section class="valigntop">
-          <h2>HTML editori</h2>
-          <ul>
-            <li>HTML dokument je tekstualni dokument</li>
-            <li>bilo koji tekst editor može poslužiti za pisanje</li>
-            <li>napredni editori mogu pomoći</li>
-            <li>vizuelni editori su dobri ali je često potrebno ručno intervenisati</li>
-            <li>=> možda ipak bolje koristiti tekst editore :)</li>
+            <li>određuje na koje elemente se primenjuje pravilo</li>
+            <li>govori web čitaču <em>šta</em> treba da stilizuje</li>
+            <li>tri osnovne vrste selektora</li>
+            <ul>
+              <li>element selektori</li>
+              <li>id selektori</li>
+              <li>class selektori</li>
+            </ul>
           </ul>
         </section>
 
         <section class="valigntop">
-          <h2>Istorija HTML-a</h2>
+          <h2>Element selektor</h2>
           <ul>
-            <li><strong>HTML 1.0</strong> (1991) - Prvi javno dostupan dokument "HTML Tags" opisuje inicijalnih 18 elemenata. Nastao u CERN-u kao sredstvo za razmenu i objavljivanje dokumenata.</li>
-            <li><strong>HTML 2.0</strong> (1995) - Objavljen kao standard IETF RFC 1866.</li>
-            <li><strong>HTML 3.0</strong> - Nikad zapravo nije ni postojao kao standard; u toku je bio "rat browsera" i svaki proizvođač (Netscape, Microsoft) je dodavao svoje tagove.</li>
-            <li><strong>HTML 3.2</strong> (januar 1997) - Prvi standard pod okriljem W3C; neki browser-specific elementi izbačeni a neki zadržani</li>
-            <li><strong>HTML 4.0</strong> (decembar 1997) - Omogućavao je rad u 3 režima:
-              <ul>
-                <li><em>strict</em>: zastareli elementi se ne smeju koristiti</li>
-                <li><em>transitional</em>: zastareli elementi smeju da se koriste</li>
-                <li><em>frameset</em>: dozvoljena je upotreba samo frame orijentisanih elemenata</li>
-              </ul>
+            <li>pronalazi elemente sa datim nazivom </li>
+          </ul>
+          <div style="font-size: 30pt; width: 50%; margin-left: 25%;">
+            <pre><code class="css">
+p { 
+  background: #363636; 
+  padding: 10px;  
+}
+            </code></pre>
+          </div>
+        </section>
+
+       <section class="valigntop">
+          <h2>Id selektor</h2>
+          <ul>
+            <li>pronalazi najviše jedan element sa datom vrednošću atributa <code>id</code></li>
+            <li>na početku selektora je znak <code>#</code></li>
+          </ul>
+          <div style="font-size: 30pt; width: 50%; margin-left: 25%;">
+            <pre><code class="html">
+&lt;div id=&quot;container&quot;&gt;...&lt;/div&gt;
+            </code></pre>
+          </div>
+          <div style="font-size: 30pt; width: 50%; margin-left: 25%;">
+            <pre><code class="css">
+#container { 
+  background: #363636; 
+  padding: 10px;  
+}
+            </code></pre>
+          </div>
+        </section>
+
+       <section class="valigntop">
+          <h2>Class selektor</h2>
+          <ul>
+            <li>pronalazi elemente čiji atribut <code>class</code> sadrži datu vrednost</li>
+            <li>na početku selektora je znak <code>.</code> (tačka)</li>
+            <li>atribut <code>class</code> može sadržati više vrednosti</li>
+          </ul>
+          <div style="font-size: 30pt; width: 50%; margin-left: 25%;">
+            <pre><code class="html">
+&lt;p class=&quot;center no-margin&quot;&gt;...&lt;/p&gt;
+&lt;div class=&quot;no-margin&quot;&gt;...&lt;/div&gt; 
+            </code></pre>
+          </div>
+          <div style="font-size: 30pt; width: 50%; margin-left: 25%;">
+            <pre><code class="css">
+.center { 
+  text-align: center;
+} 
+
+.no-margin { 
+  margin: 0;  
+}
+            </code></pre>
+          </div>
+        </section>
+
+       <section class="valigntop">
+          <h2>Univerzalni selektor</h2>
+          <ul>
+            <li>označava da se stil odnosi na sve elemente</li>
+            <li>piše se kao znak <code>*</code></li>
+          </ul>
+          <div style="font-size: 30pt; width: 50%; margin-left: 25%;">
+            <pre><code class="css">
+* { 
+  font-family: Roboto, Verdana, sans-serif;
+} 
+ 
+div.poem * { 
+  font-family: serif;  
+}
+            </code></pre>
+          </div>
+        </section>
+
+       <section class="valigntop">
+          <h2>Grupisanje selektora</h2>
+          <ul>
+            <li>ako imamo selektore sa istim definicijama, radi konciznosti možemo ih grupisati</li>
+            <li>prilikom grupisanja razdvajamo ih zarezom</li>
+          </ul>
+          <div style="font-size: 30pt; width: 50%; margin-left: 25%;">
+            <pre><code class="css">
+h1, h2, p.center { 
+  text-align: center;
+}
+            </code></pre>
+          </div>
+        </section>
+
+       <section class="valigntop">
+          <h2>Selektori za potomke</h2>
+          <ul>
+            <li>kada se stil primenjuje samo na potomke određenog elementa</li>
+            <li>dva oblika:</li>
+          </ul>
+          <ol>
+            <li>za direktne naslednike (decu)</li>
+          <div style="font-size: 30pt;">
+            <pre><code class="css">
+ul > li { 
+  text-align: left;
+}
+            </code></pre>
+          </div>
+            <li>za sve potomke</li>
+          <div style="font-size: 30pt;">
+            <pre><code class="css">
+ul li { 
+  text-align: left;
+}
+            </code></pre>
+          </div>
+          </ol>
+        </section>
+
+       <section class="valigntop">
+          <h2>Selektori i pseudo-klase</h2>
+          <ul>
+            <li>izbor elemenata koji imaju neko posebno <em>stanje</em></li>
+            <li>prilikom grupisanja razdvajamo ih zarezom</li>
+          <div style="font-size: 30pt; width: 50%; margin-left: 25%;">
+            <pre><code class="css">
+a:hover { 
+  color: red;
+}
+            </code></pre>
+          </div>
+            <li>često se koriste: <code>:first-child</code>, <code>:last-child</code>, <code>:nth-child</code>, <code>:empty</code>, ...            
+          </ul>
+        </section>
+
+       <section class="valigntop">
+          <h2>Kombinovanje selektora</h2>
+          <ul>
+            <li>kombinovanjem selektora mogu se pronaći specifični elementi</li>
+          </ul>
+          <div style="font-size: 30pt; width: 50%; margin-left: 25%;">
+            <pre><code class="css">
+div.container div.row > p:nth-child(2n) { 
+  color: red;
+}
+
+ul > li:nth-child(even) {
+  color: blue;
+}
+            </code></pre>
+          </div>
+        </section>
+
+
+
+        <section class="valigntop">
+          <h2>Jedinice mere</h2>
+          <ul>
+            <li><strong>apsolutne</strong> izražavaju veličinu u datim jedinicama</li>
+            <li>najčešće u pikselima (<code>px</code>), ali i <code>cm</code>, <code>mm</code>, <code>in</code>, <code>pc</code>, <code>pt</code></li>
+            <li><strong>relativne</strong> izražavaju veličine u odnosu na neke referentne vrednosti</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Relativne jedinice</h2>
+          <ul>
+            <li>omogućavaju formatiranje stranice u skladu sa veličinom prikaza</li>
+            <li>najčešće se koristi <code>%</code></li>
+            <ul>
+              <li><code>100%</code> se najčešće odnosi na veličinu roditeljskog elementa</li>
+              <li><code>100%</code> za tekst je podrazumevana veličina fonta (ako zoom nije menjan to je 16px)</li>
+            </ul>
+            <li><code>em</code>: visina "em" razmaka za tekući font</li>
+            <li><code>ex</code>: visina malog slova "x" za tekući font</li>
+            <li><code>vh</code>: 1% trenutne visine viewporta</li>
+            <li><code>vw</code>: 1% trenutne širine viewporta</li>
+            <li><code>vmin</code>: <code>1vh</code> ili <code>1vw</code> šta god da je manje</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Formatiranje teksta</h2>
+          <ul>
+            <li>najčešće osobine koje se podešavaju su oblik slova, veličina slova, poravnanje, "težina", boja, boja pozadine...
             </li>
-            <li><strong>HTML 4.01</strong> (decembar 1999) - Iz ove specifikacije je razvijen i XHTML</li>
-            <li><strong>HTML 5</strong> (prvi predlog 2008, usvojen 2014) - Poboljšanja u semantičkim elementima i podršci za različite tipove uređaja</li>
+          </ul>
+            <ul style="width:40%; float: left; margin-left: 10%;">
+              <li><code>color</code></li>
+              <li><code>direction</code></li>
+              <li><code>letter-spacing</code></li>
+              <li><code>line-height</code></li>
+              <li><code>text-align</code></li>
+              <li><code>text-decoration</code></li>
+              <li><code>text-indent</code></li>
+              <li><code>text-shadow</code></li>
+            </ul>
+            <ul style="width:40%; float: left">
+              <li><code>text-transform</code></li>
+              <li><code>unicode-bidi</code></li>
+              <li><code>vertical-align</code></li>
+              <li><code>white-space</code></li>
+              <li><code>word-spacing</code></li>
+              <li><code>font-family</code></li>
+              <li><code>font-style</code></li>
+              <li><code>font-weight</code></li>
+            </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Formatiranje blokova</h2>
+          <ul>
+            <li>koristi box model</li>
+            <li>podešavaju se sledeći atributi</li>
+            <ul>
+              <li><code>margin</code>: sve ili pojedinačno za svaku stranu
+              <li><code>padding</code>: sve ili pojedinačno za svaku stranu
+              <li><code>border</code>: sve ili pojedinačno za svaku stranu
+              <li><code>width</code>, <code>height</code>: u apsolutnim ili relativnim jedinicama
+              <li><code>min-width</code>, <code>min-height</code>, <code>max-width</code>, <code>max-height</code>
+            </ul>
           </ul>
         </section>
 
         <section class="valigntop">
-          <h2>HTML 5</h2>
+          <h2>Formatiranje blokova: display</h2>
           <ul>
-            <li>zvaničan W3C standard<br/>
-              <a href="http://www.w3.org/TR/html5/">http://www.w3.org/TR/html5/</a>
-            </li>
-            <li>vrlo koristan sajt sa pregledom svih elemenata<br/>
-              <a href="http://www.w3schools.com/html/default.asp">http://www.w3schools.com/html/default.asp</a>
-            </li>
+            <li>atribut <code>display</code> određuje kako se blok prikazuje u odnosu na ostatak sadržaja</li>
+            <li><code>block</code>: (podrazumevano)</li>
+            <li><code>inline-block</code>: kao inline elementi ali ima svoj width i height</li>
+            <li><code>none</code>: ne zauzima prostor, kao da ne postoji<br/>
+            (različito od <code>visibility: hidden</code> kada se ne vidi ali rezerviše prostor)</li>
           </ul>
         </section>
 
         <section class="valigntop">
-          <h2>Minimalni HTML dokument</h2>
-          <div style="font-size: 30pt">
-            <pre><code>
-&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-  &lt;head&gt;
-    &lt;meta charset="utf-8"/&gt;
-    &lt;link href="css/some-stylesheet.css" rel="stylesheet" type="text/css"/&gt;
-    &lt;script src="scripts/some-script.js"/&gt;
-    &lt;title&gt;Ovo je naslov&lt;/title&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    ... Sadržaj stranice ... 
-  &lt;/body&gt;
-&lt;/html&gt;
-            </code></pre>
-          </div>
+          <h2>Formatiranje blokova: position</h2>
           <ul>
-            <li><code>html</code> i <code>body</code> su obavezni</li>
-            <li><code>title</code> i <code>lang</code> tretirati kao obavezne</li>
-            <li>ostali su opcioni</li>
-          </ul>
-        </section>
-
-        <section class="valigntop">
-          <h2>Minimalni HTML dokument</h2>
-          <ul>
-            <li><code>&lt;!DOCTYPE html&gt;</code> - oznaka tipa dokumenta; ako je nema browseri mogu ući u nestandardni režim rada</li>
-            <li>sadržaj između <code>&lt;html&gt;</code> i <code>&lt;/html&gt;</code> opisuje HTML dokument; ne postoji default jezik dokumenta pa se preporučuje da se to navede, npr. <code>lang="en"</code> ili <code>lang="sr"</code></li>
-            <li>između <code>&lt;head&gt;</code> i <code>&lt;/head&gt;</code> su dodatni podaci o dokumentu - metapodaci</li>
-            <li><code>&lt;meta charset="utf8"/&gt;</code> određuje kodni raspored kojim je dokument napisan</li>
-          </ul>
-        </section>
-
-        <section class="valigntop">
-          <h2>Minimalni HTML dokument</h2>
-          <ul>
-            <li><code>&lt;link href="css/some-stylesheet.css" rel="stylesheet"/&gt;</code> - opcioni element, povezuje dokument sa pripadajućim CSS fajlom koji definiše stil prikaza. Danas je skoro nemoguće naći dokument koji ne koristi CSS.</li>
-            <li>&lt;script src="scripts/some-script.js"/> - opcioni element, povezuje dokument sa JavaScript dokumentom, u kome se nalazi programski kod koji se izvršava u browseru - većina dokumenata danas koristi JavaScript.</li>
-            <li><code>&lt;title&gt;Ovo je naslov&lt;/title&gt;</code> - naslov dokumenta; NE PRIKAZUJE se u okviru prikaza dokumenta u browseru, već kao naslov prozora browsera, ili njegovog taba.</li>
-            <li><code>&lt;body&gt;</code> - sav vidljivi sadržaj dokumenta se definiše unutar ovog elementa.</li>
+            <li>osobina <code>position</code> određuje kako se blok pozicionira</li>
+            <li><code>static</code>: (podrazumevano, ignoriše <code>top</code>, <code>bottom</code>, itd)</li>
+            <li><code>relative</code>: relativno pomeren u odnosu na normalnu poziciju<br/>
+            &nbsp;&nbsp;&nbsp; pomoću osobina <code>top</code>, <code>bottom</code>, <code>left</code>, <code>right</code></li>
+            <li><code>absolute</code>: relativno u odnosu na najbližeg pozicioniranog pretka<br/>
+            &nbsp;&nbsp;&nbsp; ako ih nema, onda se uzima <code>body</code>;<br/>
+            &nbsp;&nbsp;&nbsp; pomera se sa skrolovanjem</li>
+            <li><code>fixed</code>: relativno u odnosu na viewport<br/>
+            &nbsp;&nbsp;&nbsp; ne pomera se prilikom skrolovanja<br/>
+            &nbsp;&nbsp;&nbsp; ne zauzima prostor na stranici</li>
           </ul>
         </section>
 
