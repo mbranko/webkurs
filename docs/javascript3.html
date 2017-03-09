@@ -302,7 +302,7 @@ console.log(weekDay.name(today.dayNumber()));
         </section>
 
         <section class="valigntop">
-          <h2>Ispravka za require</h2>
+          <h2>CommonJS</h2>
           <p class="left">Moduli će dobiti promenljivu <code>module</code> koja je objekat sa osobinom <code>exports</code>. Ova osobina inicijalno pokazuje na <code>{}</code> koji je kreirao <code>require</code>.</p>
           <div style="font-size: 30pt;"><pre><code class="javascript">
 ​function require(name) {
@@ -318,25 +318,124 @@ console.log(weekDay.name(today.dayNumber()));
 }
 require.cache = Object.create(null);
           </code></pre></div>
+          <ul>
+            <li>ovakav stil rada sa modulima zove se CommonJS</li>
+            <li>koristi ga i <a href="https://nodejs.org" target="_blank">Node.js</a></li>
+          </ul>
         </section>
 
         <section class="valigntop">
-          <h2>Moduli zapravo</h2>
-          <p class="left">Ovakav stil rada sa modulima je usvojio <a href="https://nodejs.org" target="_blank">Node.js</a> i naziva se CommonJS.</p>
+          <h2>AMD</h2>
+          <ul>
+            <li>učitavanje modula sa weba može biti sporo...</li>
+            <li>...rešenje: umotaj modul u funkciju tako da se u pozadini obavi
+              <ol>
+                <li>učitavanje drugih potrebnih modula</li>
+                <li>inicijalizacija modula pozivom te funkcije</li>
+            </ol>
+            </li>
+            <li>to se naziva AMD (Asynchronous Module Definition)</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Upotreba AMD modula</h2>
+          <div style="font-size: 30pt;"><pre><code class="javascript">
+​define(["weekDay", "today"], function(weekDay, today) {
+  console.log(weekDay.name(today.dayNumber()));
+});
+          </code></pre></div>
+          <p class="left">
+          Funkcija <code>define</code> prima niz sa nazivima modula i zatim funkciju koja prima po jedan parametar za svaki modul. Učitaće module u pozadini dok stranica radi. Kada su svi moduli učitani pozvaće datu funkciju koja će obaviti inicijalizaciju.
+          </p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Upotreba AMD modula</h2>
+          <p>Nova verzija našeg modula:</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">
+​define([], function() {
+  var names = ["Sunday", "Monday", "Tuesday", "Wednesday",
+               "Thursday", "Friday", "Saturday"];
+  return {
+    name: function(number) { return names[number]; },
+    number: function(name) { return names.indexOf(name); }
+  };
+});
+          </code></pre></div>
+          <p class="left">
+          Funkcija <code>define</code> prima niz sa nazivima modula i zatim funkciju koja prima po jedan parametar za svaki modul. Učitaće module u pozadini dok stranica radi. Kada su svi moduli učitani pozvaće datu funkciju koja će obaviti inicijalizaciju.
+          </p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Implementacija AMD</h2>
+          <p>Funkcija <code>getModule</code> će učitati modul ili ga izvući iz keša.</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">
+​var defineCache = Object.create(null);
+var currentMod = null;
+
+function getModule(name) {
+  if (name in defineCache)
+    return defineCache[name];
+
+  var module = {exports: null,
+                loaded: false,
+                onLoad: []};
+  defineCache[name] = module;
+  backgroundReadFile(name, function(code) {
+    currentMod = module;
+    new Function("", code)();
+  });
+  return module;
+}
+          </code></pre></div>
+          <p class="left"><small>
+          Funkcija <code>backgroundReadFile</code> nije jednostavna.</small>
+          </p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Implementacija AMD</h2>
+          <p>Funkcija <code>define</code> će pozvati inicijalizaciju modula kada prikupi sve potrebne module.</p>
+          <div style="font-size: 26pt;"><pre><code class="javascript">
+​function define(depNames, moduleFunction) {
+  var myMod = currentMod;
+  var deps = depNames.map(getModule);
+
+  deps.forEach(function(mod) {
+    if (!mod.loaded)
+      mod.onLoad.push(whenDepsLoaded);
+  });
+
+  function whenDepsLoaded() {
+    if (!deps.every(function(m) { return m.loaded; }))
+      return;
+
+    var args = deps.map(function(m) { return m.exports; });
+    var exports = moduleFunction.apply(null, args);
+    if (myMod) {
+      myMod.exports = exports;
+      myMod.loaded = true;
+      myMod.onLoad.forEach(function(f) { f(); });
+    }
+  }
+  whenDepsLoaded();
+}
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>RequireJS</h2>
+          <p class="left">Funkcija <code>define</code> će učitati modul ili ga izvući iz keša pomoću <code>getModule</code>. Njen zadatak je da se <code>moduleFunction</code> (funkcija koja sadrži kod modula) pozove kada su učitani svi potrebni moduli. Zato definiše <code>whenDepsLoaded</code> koja se dodaje na kraj <code>onLoad</code> niza svih trenutno nedostajućih modula. Ova funkcija se odmah vraća ako ima još neučitanih modula. Tako će se posao obaviti samo jednom, kada se učita i poslednji modul. Poziva se i direktno iz <code>define</code> ako tekući modul nema potrebnih modula.</p>
+
+          <p class="left">Kada su svi potrebni moduli dostupni, <code>whenDepsLoaded</code> poziva funkciju koja obmotava modul dajući joj sve tražene module kao parametre.</p>
+
+          <p class="left"><a href="http://requirejs.org" target="_blank">RequireJS</a> radi na ovaj način.</p>
+
         </section>
 
         <!--
-
-          modules
-          http://eloquentjavascript.net/10_modules.html
-
-Putting pieces of functionality that stand on their own into separate files and modules makes them easier to track, update, and share because all the various pieces of code that want to use the module load it from the same actual file.
-
-This idea gets even more powerful when the relations between modules—which other modules each module depends on—are explicitly stated. You can then automate the process of installing and upgrading external modules (libraries).
-
-Taking this idea even further, imagine an online service that tracks and distributes hundreds of thousands of such libraries, allowing you to search for the functionality you need and, once you find it, set up your project to automatically download it.
-
-This service exists. It is called NPM (npmjs.org). NPM consists of an online database of modules and a tool for downloading and upgrading the modules your program depends on. It grew out of Node.js, the browserless JavaScript environment we will discuss in Chapter 20, but can also be useful when programming for the browser.
 
           callbacks
           http://cwbuecheler.com/web/tutorials/2013/javascript-callbacks/
@@ -347,6 +446,9 @@ This service exists. It is called NPM (npmjs.org). NPM consists of an online dat
           https://scotch.io/tutorials/javascript-promises-for-dummies
           https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
           https://developers.google.com/web/fundamentals/getting-started/primers/promises
+
+          web storage
+          
 
           generators ES6
 
