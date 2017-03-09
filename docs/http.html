@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>CSS</title>
+    <title>HTTP</title>
 
     <link rel="stylesheet" href="css/reveal.css">
     <link rel="stylesheet" href="css/theme/branko.css">
@@ -26,8 +26,8 @@
       <div class="slides">
 
         <section class="vcenter">
-          <h1>CSS</h1>
-          <h3>Cascading Style Sheets</h3>
+          <h1>HTTP</h1>
+          <h3>HyperText Transfer Protocol</h3>
           <p>
             <small><a href="http://mbranko.github.io/webkurs">http://mbranko.github.io/webkurs</a></small>
           </p>
@@ -39,151 +39,578 @@
         <section class="valigntop">
           <h2>Literatura</h2>
           <ul>
-            <li>Jon Duckett: <a href="http://www.htmlandcssbook.com/">HTML &amp; CSS</a></li>
-            <li>Dan Cederholm: <a href="http://vault.simplebits.com/publications/bulletproof/">Bulletproof Web Design</a></li>
+            <li><a href="#" target="_blank">RFC 2616</a></li>
+            <li>TODO</li>
           </ul>
         </section>
 
         <section class="valigntop">
-          <h2>CSS: osnovni pojmovi</h2>
+          <h2>HTTP</h2>
+          <p class="left">HyperText Transfer Protocol</p>
           <ul>
-            <li><strong>CSS</strong>: jezik za opis izgleda dokumenata</li>
+            <li>protokol na aplikativnom nivou u TCP/IP steku</li>
+            <li>za distribuirane, kolaborativne, hipermedia sisteme</li>
+            <li>osnovni protokol za komunikaciju na webu</li>
+            <li>od 1990. godine</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Tri osnovne osobine</h2>
+          <ul>
+            <li><strong>connectionless</strong>: ne čuva konekciju
+            <ol>
+              <li>web čitač inicira komunikaciju otvarajući TCP vezu prema serveru</li>
+              <li>web čitač šalje zahtev serveru</li>
+              <li>server obrađuje zahtev i šalje odgovor</li>
+              <li>server zatvara vezu<br/> ...naredni zahtevi moraju ići kroz nove konekcije</li>
+            </ol>
+            </li>
+            <li><strong>media independent</strong>: bilo koji tip podataka (<em>MIME-type</em>) se može prenositi sve dok klijent i server mogu da ih obrade</li>
+            <li><strong>stateless</strong>: klijent i server su u vezi samo tokom jednog ciklusa zahtev/odgovor; ne čuva se stanje u komunikaciji</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>HTTP/1.0 vs HTTP/1.1</h2>
+          <ul>
+            <li>HTTP/1.0 koristi novu TCP konekciju za svaki ciklus zahtev/odgovor</li>
+            <li>HTTP/1.1 može da koristi istu TCP konekciju za više ciklusa zahtev/odgovor</li>
+            <li>ali je protokol i dalje connectionless i stateless</li><br/>
+            <li>uvedeno zbog unapređenja performansi</li>
             <ul>
-              <li>napisanih u HTML, XML, ...</li>
-            </ul>
-            <li>mogu se odrediti svi bitni parametri prikaza</li>
-            <li>novine u CSS verziji 3</li>
-            <ul>
-              <li>efekti (transformacije) - ukida potrebu za komplikovanim animacijama ili pluginovima</li>
-            </ul>
-          </ul>
-        </section>
-
-        <section class="valigntop">
-          <h2>CSS: osnovni pojmovi</h2>
-          <ul>
-            <li>isti CSS može se koristiti za više od jedne stranice, što znači da stil celog veb sajta može biti prilagođen bez menjanja svake stranice posebno</li>
-            <li>primena konzistentnih stilova na svim stranicama pomaže unificiranju vizuelnog identiteta web stranica</li>
-            <li>web čitači imaju predefinisani skup stilova koje primenjuju ako ne definišemo svoje stilove</li>
-          </ul>
-        </section>
-
-        <section class="valigntop">
-          <h2>Povezivanje HTML i CSS</h2>
-          <ul>
-            <li>putem eksternog fajla sa CSS stilovima</li>
-            <div style="font-size: 30pt">
-              <pre><code class="html">&lt;head&gt;
-  &lt;link rel=&quot;stylesheet&quot; href=&quot;path/to/my.css&quot;/&gt;
-&lt;/head&gt;</code></pre>
-            </div>
-            <li>interno u HTML fajlu, u okviru <code>style</code> taga unutar <code>head</code></li>
-            <div style="font-size: 30pt">
-              <pre><code class="html">&lt;head&gt;
-  &lt;style type=&quot;text/css&quot;&gt;
-    ...
-  &lt;/style&gt;
-&lt;/head&gt;</code></pre>
-            </div>
-            <li>atribut <code>style</code> u bilo kom HTML elementu</li>
-            <div style="font-size: 30pt">
-              <pre><code class="html">&lt;p style=&quot;...&quot;&gt;
-    ...
-&lt;/p&gt;</code></pre>
-            </div>
-          </ul>
-        </section>
-
-        <section class="valigntop">
-          <h2>Box model </h2>
-          <img src="img/css/boxmodel-image.png" width="50%">
-                   
-        </section>
-
-        <section class="valigntop">
-          <h2>CSS sintaksa</h2>
-          <ul>
-            <li>skup CSS pravila se sastoji od selektora i bloka deklaracija</li>
-            <li><strong>selektor</strong> definiše na koji element (ili elemente) se primenjuju pravila navedena u bloku deklaracija</li>
-            <li><strong>deklaracija</strong> se sastoji od naziva osobine i njene vrednosti</li>
-          </ul>
-          <img src="img/css/css-syntax.gif" width="50%"/>
-        </section>
-
-        <section class="valigntop">
-          <h2>Selektor</h2>
-          <ul>
-            <li>određuje na koje elemente se primenjuje pravilo</li>
-            <li>govori web čitaču <em>šta</em> treba da stilizuje</li>
-            <li>tri osnovne vrste selektora</li>
-            <ul>
-              <li>element selektori</li>
-              <li>id selektori</li>
-              <li>class selektori</li>
+              <li>jedna stranica sa 20 slika bi zahtevala 21 TCP konekciju po HTTP/1.0</li>
+              <li>jedna stranica sa 20 slika, 5 CSS fajlova i 10 JavaScript fajlova...</li>
             </ul>
           </ul>
         </section>
 
         <section class="valigntop">
-          <h2>Element selektor</h2>
-          <ul>
-            <li>pronalazi elemente sa datim nazivom </li>
+          <h2>HTTP je klijent/server model</h2>
+          <img src="img/http/cgiarch.gif" width="35%" style="float:left" />
+          <ul style="float:left;width:55%;padding-left:3%">
+            <li><strong>klijent</strong> šalje zahtev: metoda, URI, verzija protokola, modifikatori zahteva, informacije o klijentu, opciono i sadržaj<br/><br/></li>
+            <li><strong>server</strong> šalje odgovor: verzija protokola, kod rezultata, informacije o serveru, sadržaj</li>
           </ul>
-          <div style="font-size: 30pt; width: 50%; margin-left: 25%;">
-            <pre><code class="css">
-p { 
-  background: #363636; 
-  padding: 10px;  
-}
+        </section>
+
+        <section class="valigntop">
+          <h2>HTTP verzija</h2>
+          <ul>
+            <li>koristi se <strong>&lt;major&gt;.&lt;minor&gt;</strong> šema
+            <span style="font-size: 30pt;"><pre><code class="text">HTTP-Version = "HTTP" "/" 1*DIGIT "." 1*DIGIT</code></pre></span>
+            </li>
+            <li>primer:
+            <span style="font-size: 30pt;"><pre><code class="text">HTTP/1.0
+HTTP/1.1
+HTTP/2.0</code></pre></span>
+            </li>
+          </ul>                   
+        </section>
+
+        <section class="valigntop">
+          <h2>URI adrese</h2>
+          <ul>
+            <li>definisano u <a href="https://tools.ietf.org/html/rfc3986" target="_blank">RFC 3986</a></li>
+            </li>
+            <li>primer:</li>
+          </ul>           
+            <div style="font-size: 30pt;"><pre><code class="text">
+   foo://example.com:8042/over/there?name=ferret#nose
+   \_/   \______________/\_________/ \_________/ \__/
+    |           |            |            |        |
+ scheme     authority       path        query   fragment
+            </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Datum i vreme</h2>
+          <ul>
+            <li>uvek se izražava u GMT vremenskoj zoni</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Struktura HTTP poruke</h2>
+          <ol>
+            <li>prva linija</li>
+            <li>nula ili više polja zaglavlja završenih sa CR/LF</li>
+            <li>prazan red</li>
+            <li>(opcioni) sadržaj</li>
+          </ol>
+        </section>
+
+        <section class="valigntop">
+          <h2>Primer HTTP zahteva: GET</h2>
+          <div style="font-size: 30pt;">
+            <pre><code>
+GET /hello.htm HTTP/1.1
+User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
+Host: www.tutorialspoint.com
+Accept-Language: en-us
+Accept-Encoding: gzip, deflate
+Connection: Keep-Alive
+            </code></pre>
+          </div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Primer HTTP zahteva: POST</h2>
+          <div style="font-size: 30pt;">
+            <pre><code>
+POST /cgi-bin/process.cgi HTTP/1.1
+User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
+Host: www.tutorialspoint.com
+Content-Type: application/x-www-form-urlencoded
+Content-Length: length
+Accept-Language: en-us
+Accept-Encoding: gzip, deflate
+Connection: Keep-Alive
+
+licenseID=string&content=string&/paramsXML=string
+            </code></pre>
+          </div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Primer HTTP odgovora: 200</h2>
+          <div style="font-size: 30pt;">
+            <pre><code>
+HTTP/1.1 200 OK
+Date: Mon, 27 Jul 2009 12:28:53 GMT
+Server: Apache/2.2.14 (Win32)
+Last-Modified: Wed, 22 Jul 2009 19:15:56 GMT
+Content-Length: 88
+Content-Type: text/html
+Connection: Closed
+
+&lt;html&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hello, World!&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+            </code></pre>
+          </div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Primer HTTP odgovora: 404</h2>
+          <div style="font-size: 30pt;">
+            <pre><code>
+HTTP/1.1 404 Not Found
+Date: Sun, 18 Oct 2012 10:36:20 GMT
+Server: Apache/2.2.14 (Win32)
+Content-Length: 230
+Connection: Closed
+Content-Type: text/html; charset=iso-8859-1
+
+&lt;!DOCTYPE HTML PUBLIC &quot;-//IETF//DTD HTML 2.0//EN&quot;&gt;
+&lt;html&gt;
+&lt;head&gt;
+   &lt;title&gt;404 Not Found&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+   &lt;h1&gt;Not Found&lt;/h1&gt;
+   &lt;p&gt;The requested URL /t.html was not found on this server.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+            </code></pre>
+          </div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Primer HTTP odgovora: 400</h2>
+          <div style="font-size: 30pt;">
+            <pre><code>
+HTTP/1.1 400 Bad Request
+Date: Sun, 18 Oct 2012 10:36:20 GMT
+Server: Apache/2.2.14 (Win32)
+Content-Length: 230
+Content-Type: text/html; charset=iso-8859-1
+Connection: Closed
+  
+&lt;!DOCTYPE HTML PUBLIC &quot;-//IETF//DTD HTML 2.0//EN&quot;&gt;
+&lt;html&gt;
+&lt;head&gt;
+   &lt;title&gt;400 Bad Request&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+   &lt;h1&gt;Bad Request&lt;/h1&gt;
+   &lt;p&gt;Your browser sent a request that this server could not understand.&lt;/p&gt;
+   &lt;p&gt;The request line contained invalid characters following the protocol string.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+            </code></pre>
+          </div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Moguće metode u zahtevu</h2>
+          <table>
+            <tr>
+              <th>metoda</th>
+              <th>opis</th>
+            </tr>
+            <tr>
+              <td>GET</td>
+              <td>za čitanje podataka; ne bi trebalo da menja podatke</td>
+            </tr>
+            <tr>
+              <td>HEAD</td>
+              <td>isto kao GET, ali vraća se samo prva linija i zaglavlja</td>
+            </tr>
+            <tr>
+              <td>POST</td>
+              <td>za slanje (novih) podataka</td>
+            </tr>
+            <tr>
+              <td>PUT</td>
+              <td>ažurira resurs novim vrednostima</td>
+            </tr>
+            <tr>
+              <td>DELETE</td>
+              <td>uklanja resurs sa servera</td>
+            </tr>
+            <tr>
+              <td>CONNECT</td>
+              <td>uspostavlja tunel prema serveru identifikovanim URI adresom</td>
+            </tr>
+            <tr>
+              <td>OPTIONS</td>
+              <td>zahteva opis mogućih operacija za dati resurs</td>
+            </tr>
+            <tr>
+              <td>TRACE</td>
+              <td>loopback test sa slanjem poruke</td>
+            </tr>
+          </table>
+        </section>
+
+        <section class="valigntop">
+          <h2>Status operacije</h2>
+          <table>
+            <tr>
+              <th>kod</th>
+              <th>opis</th>
+            </tr>
+            <tr>
+              <td>1xx</td>
+              <td>informativne poruke, od HTTP/1.1</td>
+            </tr>
+            <tr>
+              <td>2xx</td>
+              <td>uspešno obrađen zahtev<br/><small>
+              200 OK<br/>
+              201 Created<br/>
+              204 No Content</small></td>
+            </tr>
+            <tr>
+              <td>3xx</td>
+              <td>redirekcija: usluga dostupna na drugom URI<br/><small>
+              302 Moved Temporarily<br/>
+              304 Not Modified</small></td>
+            </tr>
+            <tr>
+              <td>4xx</td>
+              <td>greška na strani klijenta<br/><small>
+              400 Bad Request<br/>
+              401 Unauthorized<br/>
+              403 Forbidden<br/>
+              404 Not Found</small></td>
+            </tr>
+            <tr>
+              <td>5xx</td>
+              <td>greška na strani servera<br/><small>
+              500 Internal Server Error
+              </small></td>
+            </tr>
+          </table>
+        </section>
+
+        <section class="valigntop">
+          <h2>GET metoda</h2>
+          <ol>
+            <li>za čitanje podataka</li>
+            <li>uspešna operacija treba da vrati <strong>200</strong></li>
+            <li>tipične greške: <strong>401</strong>, <strong>403</strong>, <strong>404</strong></li>
+          </ol>
+        </section>
+
+        <section class="valigntop">
+          <h2>GET metoda</h2>
+          <div style="font-size: 25pt;">
+            <pre><code>
+GET /hello.htm HTTP/1.1
+User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
+Host: www.tutorialspoint.com
+Accept-Language: en-us
+Accept-Encoding: gzip, deflate
+Connection: Keep-Alive
+            </code></pre>
+          </div>
+          <div style="font-size: 25pt;">
+            <pre><code>
+HTTP/1.1 200 OK
+Date: Mon, 27 Jul 2009 12:28:53 GMT
+Server: Apache/2.2.14 (Win32)
+Last-Modified: Wed, 22 Jul 2009 19:15:56 GMT
+ETag: "34aa387-d-1568eb00"
+Vary: Authorization,Accept
+Accept-Ranges: bytes
+Content-Length: 88
+Content-Type: text/html
+Connection: Closed
+
+&lt;html&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hello, World!&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+            </code></pre>
+          </div>
+        </section>
+
+        <section class="valigntop">
+          <h2>HEAD metoda</h2>
+          <ol>
+            <li>za (skraćeno) čitanje podataka</li>
+            <li>vraća se samo zaglavlje, ali ne i sadržaj</li>
+            <li>uspešna operacija treba da vrati <strong>200</strong></li>
+          </ol>
+        </section>
+
+        <section class="valigntop">
+          <h2>HEAD metoda</h2>
+          <div style="font-size: 25pt;">
+            <pre><code>
+GET /hello.htm HTTP/1.1
+User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
+Host: www.tutorialspoint.com
+Accept-Language: en-us
+Accept-Encoding: gzip, deflate
+Connection: Keep-Alive
+            </code></pre>
+          </div>
+          <div style="font-size: 25pt;">
+            <pre><code>
+HTTP/1.1 200 OK
+Date: Mon, 27 Jul 2009 12:28:53 GMT
+Server: Apache/2.2.14 (Win32)
+Last-Modified: Wed, 22 Jul 2009 19:15:56 GMT
+ETag: "34aa387-d-1568eb00"
+Vary: Authorization,Accept
+Accept-Ranges: bytes
+Content-Length: 88
+Content-Type: text/html
+Connection: Closed
+            </code></pre>
+          </div>
+        </section>
+
+        <section class="valigntop">
+          <h2>POST metoda</h2>
+          <ol>
+            <li>za slanje (novih) podataka</li>
+            <li>uspešna operacija treba da vrati
+              <ul>
+                <li><strong>200 OK</strong> ili <strong>204 No Content</strong>: ako se rezultat ne može identifikovati pomoću URI</li>
+                <li><strong>201 Created</strong>: ako je kreiran novi resurs koji ima URI</li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+
+        <section class="valigntop">
+          <h2>POST metoda</h2>
+          <div style="font-size: 20pt;">
+            <pre><code>
+POST /cgi-bin/process.cgi HTTP/1.1
+User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
+Host: www.tutorialspoint.com
+Content-Type: text/xml; charset=utf-8
+Content-Length: 88
+Accept-Language: en-us
+Accept-Encoding: gzip, deflate
+Connection: Keep-Alive
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;string xmlns=&quot;http://clearforest.com/&quot;&gt;string&lt;/string&gt;
+            </code></pre>
+          </div>
+          <div style="font-size: 20pt;">
+            <pre><code>
+HTTP/1.1 200 OK
+Date: Mon, 27 Jul 2009 12:28:53 GMT
+Server: Apache/2.2.14 (Win32)
+Last-Modified: Wed, 22 Jul 2009 19:15:56 GMT
+ETag: "34aa387-d-1568eb00"
+Vary: Authorization,Accept
+Accept-Ranges: bytes
+Content-Length: 88
+Content-Type: text/html
+Connection: Closed
+
+&lt;html&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Request Processed Successfully&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+            </code></pre>
+          </div>
+        </section>
+
+        <section class="valigntop">
+          <h2>POST metoda</h2>
+          <div style="font-size: 18pt;">
+            <pre><code>
+POST /edit/ HTTP/1.1
+Host: example.org
+User-Agent: Thingio/1.0
+Authorization: Basic ZGFmZnk6c2VjZXJldA==
+Content-Type: application/atom+xml;type=entry
+Content-Length: nnn
+Slug: First Post
+
+&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;entry xmlns=&quot;http://www.w3.org/2005/Atom&quot;&gt;
+  &lt;title&gt;Atom-Powered Robots Run Amok&lt;/title&gt;
+  &lt;id&gt;urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efa6a&lt;/id&gt;
+  &lt;updated&gt;2003-12-13T18:30:02Z&lt;/updated&gt;
+  &lt;author&gt;&lt;name&gt;John Doe&lt;/name&gt;&lt;/author&gt;
+  &lt;content&gt;Some text.&lt;/content&gt;
+&lt;/entry&gt;
+            </code></pre>
+          </div>
+          <div style="font-size: 18pt;">
+            <pre><code>
+HTTP/1.1 201 Created
+Date: Fri, 7 Oct 2005 17:17:11 GMT
+Content-Length: nnn
+Content-Type: application/atom+xml;type=entry;charset="utf-8"
+Location: http://example.org/edit/first-post.atom
+ETag: "c180de84f991g8"  
+
+&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;entry xmlns=&quot;http://www.w3.org/2005/Atom&quot;&gt;
+  &lt;title&gt;Atom-Powered Robots Run Amok&lt;/title&gt;
+  &lt;id&gt;urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efa6a&lt;/id&gt;
+  &lt;updated&gt;2003-12-13T18:30:02Z&lt;/updated&gt;
+  &lt;author&gt;&lt;name&gt;John Doe&lt;/name&gt;&lt;/author&gt;
+  &lt;content&gt;Some text.&lt;/content&gt;
+  &lt;link rel=&quot;edit&quot;
+      href=&quot;http://example.org/edit/first-post.atom&quot;/&gt;
+&lt;/entry&gt;
+            </code></pre>
+          </div>
+        </section>
+
+        <section class="valigntop">
+          <h2>PUT metoda</h2>
+          <ol>
+            <li>za ažuriranje resursa</li>
+            <li>uspešna operacija treba da vrati
+              <ul>
+                <li><strong>200 OK</strong>: ako ima opisa operacije u odgovoru</li>
+                <li><strong>204 No Content</strong>: ako nema opisa operacije</li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+
+        <section class="valigntop">
+          <h2>PUT metoda</h2>
+          <div style="font-size: 20pt;">
+            <pre><code>
+POST /cgi-bin/process.cgi HTTP/1.1
+User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
+Host: www.tutorialspoint.com
+Content-Type: text/xml; charset=utf-8
+Content-Length: 88
+Accept-Language: en-us
+Accept-Encoding: gzip, deflate
+Connection: Keep-Alive
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;string xmlns=&quot;http://clearforest.com/&quot;&gt;string&lt;/string&gt;
+            </code></pre>
+          </div>
+          <div style="font-size: 20pt;">
+            <pre><code>
+HTTP/1.1 200 OK
+Date: Mon, 27 Jul 2009 12:28:53 GMT
+Server: Apache/2.2.14 (Win32)
+Last-Modified: Wed, 22 Jul 2009 19:15:56 GMT
+ETag: "34aa387-d-1568eb00"
+Vary: Authorization,Accept
+Accept-Ranges: bytes
+Content-Length: 88
+Content-Type: text/html
+Connection: Closed
+
+&lt;html&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Request Processed Successfully&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+            </code></pre>
+          </div>
+        </section>
+
+        <section class="valigntop">
+          <h2>PUT metoda</h2>
+          <ol>
+            <li>za ažuriranje resursa</li>
+            <li>uspešna operacija treba da vrati
+              <ul>
+                <li><strong>200 OK</strong>: ako ima opisa operacije u odgovoru</li>
+                <li><strong>204 No Content</strong>: ako nema opisa operacije</li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+
+        <section class="valigntop">
+          <h2>PUT metoda</h2>
+          <div style="font-size: 20pt;">
+            <pre><code>
+POST /cgi-bin/process.cgi HTTP/1.1
+User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
+Host: www.tutorialspoint.com
+Content-Type: text/xml; charset=utf-8
+Content-Length: 88
+Accept-Language: en-us
+Accept-Encoding: gzip, deflate
+Connection: Keep-Alive
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;string xmlns=&quot;http://clearforest.com/&quot;&gt;string&lt;/string&gt;
+            </code></pre>
+          </div>
+          <div style="font-size: 20pt;">
+            <pre><code>
+HTTP/1.1 200 OK
+Date: Mon, 27 Jul 2009 12:28:53 GMT
+Server: Apache/2.2.14 (Win32)
+Last-Modified: Wed, 22 Jul 2009 19:15:56 GMT
+ETag: "34aa387-d-1568eb00"
+Vary: Authorization,Accept
+Accept-Ranges: bytes
+Content-Length: 88
+Content-Type: text/html
+Connection: Closed
+
+&lt;html&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Request Processed Successfully&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
             </code></pre>
           </div>
         </section>
 
        <section class="valigntop">
-          <h2>Id selektor</h2>
-          <ul>
-            <li>pronalazi najviše jedan element sa datom vrednošću atributa <code>id</code></li>
-            <li>na početku selektora je znak <code>#</code></li>
-          </ul>
-          <div style="font-size: 30pt; width: 50%; margin-left: 25%;">
-            <pre><code class="html">
-&lt;div id=&quot;container&quot;&gt;...&lt;/div&gt;
-            </code></pre>
-          </div>
-          <div style="font-size: 30pt; width: 50%; margin-left: 25%;">
-            <pre><code class="css">
-#container { 
-  background: #363636; 
-  padding: 10px;  
-}
-            </code></pre>
-          </div>
-        </section>
-
-       <section class="valigntop">
-          <h2>Class selektor</h2>
-          <ul>
-            <li>pronalazi elemente čiji atribut <code>class</code> sadrži datu vrednost</li>
-            <li>na početku selektora je znak <code>.</code> (tačka)</li>
-            <li>atribut <code>class</code> može sadržati više vrednosti</li>
-          </ul>
-          <div style="font-size: 30pt; width: 50%; margin-left: 25%;">
-            <pre><code class="html">
-&lt;p class=&quot;center no-margin&quot;&gt;...&lt;/p&gt;
-&lt;div class=&quot;no-margin&quot;&gt;...&lt;/div&gt; 
-            </code></pre>
-          </div>
-          <div style="font-size: 30pt; width: 50%; margin-left: 25%;">
-            <pre><code class="css">
-.center { 
-  text-align: center;
-} 
-
-.no-margin { 
-  margin: 0;  
-}
-            </code></pre>
-          </div>
+          <h2>Koji zahtev / koji odgovor?</h2>
+          <a href="img/http/whhD1.png" target="_blank"><img src="img/http/whhD1.png" height="80%"/></a>
         </section>
 
        <section class="valigntop">
