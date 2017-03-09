@@ -61,6 +61,10 @@
   color: #e7ad52;
 }
 
+p.left {
+  text-align: left;
+}
+
 /*********************************************
  * GLOBAL STYLES
  *********************************************/
@@ -211,7 +215,7 @@ body {
   display: block;
   padding: 5px;
   overflow: auto;
-  max-height: 400px;
+  max-height: 800px;
   word-wrap: normal; }
 
 .reveal table {

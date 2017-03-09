@@ -26,7 +26,7 @@
       <div class="slides">
 
         <section class="vcenter">
-          <h1>JavaScript: dobra praksa</h1>
+          <h1>JavaScript: dobre stvari</h1>
           <p>
             <small><a href="http://mbranko.github.io/webkurs">http://mbranko.github.io/webkurs</a></small>
           </p>
@@ -47,17 +47,296 @@
         </section>
 
         <section>
-          <h1>#1: podaci u memoriji</h1>
+          <h1>#1: callback</h1>
+        </section>
+
+        <!-- sa FED kursa -->
+
+        <section>
+          <h1>#2: cascade</h1>
+        </section>
+
+        <section class="valigntop">
+          <h2>Cascade</h2>
+          <p class="left">Mogućnost da pozovemo više metoda prosleđujući im isti objekat:</p>
+          <div style="font-size:30pt;"><pre><code class="javascript">str.replace("k", "R").toUpperCase().substr(0,4);</code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Cascade: primer</h2>
+          <div><pre><code class="javascript">
+​var userController = {
+  currentUser: "",
+  findUser: function (userEmail) {
+    var arrayLength = usersData.length, i;
+    for (i = arrayLength - 1; i >= 0; i--) {
+      if (usersData[i].email === userEmail) {
+        this.currentUser = usersData[i];
+        break;
+      }
+    }
+    return this;
+  },
+  formatName: function () {
+    if (this.currentUser) {
+      this.currentUser.fullName = this.currentUser.firstName + " " + this.currentUser.lastName;
+    }
+    return this;
+  },
+  createLayout: function () {
+    if (this.currentUser) {
+      this.currentUser.viewData = "<h2>Member: " + this.currentUser.fullName + "</h2>"​
+        + "<p>ID: " + this.currentUser.id + "</p>" + "<p>Email: " + this.currentUser.email + "</p>";
+    }
+    return this;
+  },
+};
+          </code></pre></div>
+          <p><small>Svaka funkcija vraća <code>this</code>.</small></p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Cascade: primer</h2>
+          <p class="left">Primer pozivanja</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">
+​userController.findUser("test2@test2.com").formatName().createLayout().displayUser();
+          </code></pre></div>
+        </section>
+
+        <section>
+          <h1>#3: moduli</h1>
+        </section>
+
+        <section class="valigntop">
+          <h2>JavaScript nema module</h2>
+          <ul>
+            <li>Java ima pakete</li>
+            <li>C# ima namespaces</li>
+            <li>JavaScript ima samo <strong>globalni</strong> opseg i <strong>lokalni</strong> opseg</li>
+            <li>nema nivoa između!</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Koncept modula</h2>
+          <ul>
+            <li>smeštanje srodnih funkcija u poseban fajl</li>
+            <li>sprečavanje kolizije imena</li>
+            <li>pakovanje u module</li>
+            <li>online katalog i distribucija modula (<a href="http://npmjs.org" target="_blank">NPM</a>)</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Funkcija kao namespace</h2>
+          <p class="left">Funkcija je jedina stvar u JavaScriptu koja pravi novi opseg. Pogledajmo primer...</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">
+​var names = ["Sunday", "Monday", "Tuesday", "Wednesday",
+             "Thursday", "Friday", "Saturday"];
+
+function dayName(number) {
+  return names[number];
+}
+
+console.log(dayName(1)); // → Monday
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Funkcija kao namespace</h2>
+          <p class="left">... kada se malo preradi:</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">
+​var dayName = function() {
+  var names = ["Sunday", "Monday", "Tuesday", "Wednesday",
+               "Thursday", "Friday", "Saturday"];
+  return function(number) {
+    return names[number];
+  };
+}();
+
+console.log(dayName(3)); // → Wednesday
+          </code></pre></div>
+          <p class="left"><code>names</code> je sada lokalna promenljiva. Ova funkcija se kreira i odmah poziva, a njen rezultat je funkcija koja se smešta u promenljivu <code>dayName</code>. Ovde može biti hiljade linija koda sa puno lokalnih promenljivih; one bi bile vidljive samo u našoj funkciji ali ne i spolja.</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Funkcija kao namespace</h2>
+          <p class="left">Sada hoćemo da vratimo dve funkcije! Moramo ih spakovati u objekat:</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">
+​var weekDay = function() {
+  var names = ["Sunday", "Monday", "Tuesday", "Wednesday",
+               "Thursday", "Friday", "Saturday"];
+  return {
+    name: function(number) { return names[number]; },
+    number: function(name) { return names.indexOf(name); }
+  };
+}();
+
+console.log(weekDay.name(weekDay.number("Sunday"))); // → Sunday
+          </code></pre></div>
+          <p class="left">Za veće module, sakupljanje svih vrednosti u objekat na kraju funkcije može biti nečitko. Želimo da eksportovane funkcije definišemo na zgodnijem mestu.</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Funkcija kao namespace</h2>
+          <p class="left">Deklarišemo objekat i dodajemo osobine u njega kad god imamo nešto za eksport.</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">
+​(function(exports) {
+  var names = ["Sunday", "Monday", "Tuesday", "Wednesday",
+               "Thursday", "Friday", "Saturday"];
+
+  exports.name = function(number) {
+    return names[number];
+  };
+  exports.number = function(name) {
+    return names.indexOf(name);
+  };
+})(this.weekDay = {});
+
+console.log(weekDay.name(weekDay.number("Saturday"))); // → Saturday
+          </code></pre></div>
+          <p class="left">Samo jedna promenljiva u globalnom opsegu - <code>weekDay</code>. Ali šta ako
+          dva modula koriste isto ime za globalnu promenljivu?</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Funkcija kao namespace</h2>
+          <p class="left">Deklarišemo objekat i dodajemo osobine u njega kad god imamo nešto za eksport.</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">
+​(function(exports) {
+  var names = ["Sunday", "Monday", "Tuesday", "Wednesday",
+               "Thursday", "Friday", "Saturday"];
+
+  exports.name = function(number) {
+    return names[number];
+  };
+  exports.number = function(name) {
+    return names.indexOf(name);
+  };
+})(this.weekDay = {});
+
+console.log(weekDay.name(weekDay.number("Saturday"))); // → Saturday
+          </code></pre></div>
+          <p class="left">Samo jedna promenljiva u globalnom opsegu - <code>weekDay</code>. Ali šta ako
+          dva modula koriste isto ime za globalnu promenljivu?</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Sudari u globalnom opsegu</h2>
+          <ul>
+            <li>hoćemo da napravimo funkciju <code>require</code> koja će, za dato ime modula, da ga učita iz fajla ili sa weba i vratiti odgovarajuću vrednost</li>
+            <li>rešava prethodni problem i sprečava da koristimo modul bez eksplicitnog uvoženja</li>
+            <li>moramo biti u stanju da učitani string izvršimo kao JavaScript kod u funkciji <code>require</code></li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Izvršavanje koda iz stringa</h2>
+          <p class="left">Prost način: upotreba <code>eval</code>.</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">
+​function evalAndReturnX(code) {
+  eval(code);
+  return x;
+}
+
+console.log(evalAndReturnX("var x = 2")); // → 2
+          </code></pre></div>
+          <p class="left">Za nevolju, <code>eval</code> će rezultate izvršavanja upisati u <strong>tekući</strong> opseg.</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Izvršavanje koda iz stringa</h2>
+          <p class="left">Bolji način: pomoću <code>Function</code> konstruktora. On prima dva argumenta: string sa nazivima parametara funkcije razdvojenih zarezima i string sa telom funkcije.</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">
+​var plusOne = new Function("n", "return n + 1;");
+console.log(plusOne(4)); // → 5
+          </code></pre></div>
+          <p class="left">Pri kraju smo: umotaćemo kod modula u funkciju, i ta funkcija postaje opseg za naš modul.</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Funkcija require</h2>
+          <p class="left">Minimalna implementacija za <code>require</code>: </p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">
+​function require(name) {
+  var code = new Function("exports", readFile(name));
+  var exports = {};
+  code(exports);
+  return exports;
+}
+
+console.log(require("weekDay").name(1)); // → Monday
+          </code></pre></div>
+          <p class="left">Pošto funkcija <code>require</code> umotava kod u funkciju, nema potrebe da to radimo u modulu.</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Primer modula za require</h2>
+          <p class="left">Sada fajl sa modulom može ovako da izgleda:</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">
+​var names = ["Sunday", "Monday", "Tuesday", "Wednesday",
+             "Thursday", "Friday", "Saturday"];
+
+exports.name = function(number) {
+  return names[number];
+};
+exports.number = function(name) {
+  return names.indexOf(name);
+};
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Tipičan modul</h2>
+          <p class="left">Tipičan modul će na vrhu učitati module koji su mu potrebni:</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">
+​var weekDay = require("weekDay");
+var today = require("today");
+
+console.log(weekDay.name(today.dayNumber()));
+          </code></pre></div>
+          <ul>
+            <li>Ovakav <code>require</code> će izvršiti kod modula svaki put kad se učitava.</li> 
+            <li>Nije moguće eksportovati ništa osim <code>exports</code> objekta (npr. funkciju).</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Ispravka za require</h2>
+          <p class="left">Moduli će dobiti promenljivu <code>module</code> koja je objekat sa osobinom <code>exports</code>. Ova osobina inicijalno pokazuje na <code>{}</code> koji je kreirao <code>require</code>.</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">
+​function require(name) {
+  if (name in require.cache)
+    return require.cache[name];
+
+  var code = new Function("exports, module", readFile(name));
+  var exports = {}, module = {exports: exports};
+  code(exports, module);
+
+  require.cache[name] = module.exports;
+  return module.exports;
+}
+require.cache = Object.create(null);
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Moduli zapravo</h2>
+          <p class="left">Ovakav stil rada sa modulima je usvojio <a href="https://nodejs.org" target="_blank">Node.js</a> i naziva se CommonJS.</p>
         </section>
 
         <!--
-          cascade
-          JavaScript Programmers Reference
-          JavaScript The Good Parts
-          https://www.safaribooksonline.com/library/view/javascript-the-good/9780596517748/ch04s13.html
 
           modules
           http://eloquentjavascript.net/10_modules.html
+
+Putting pieces of functionality that stand on their own into separate files and modules makes them easier to track, update, and share because all the various pieces of code that want to use the module load it from the same actual file.
+
+This idea gets even more powerful when the relations between modules—which other modules each module depends on—are explicitly stated. You can then automate the process of installing and upgrading external modules (libraries).
+
+Taking this idea even further, imagine an online service that tracks and distributes hundreds of thousands of such libraries, allowing you to search for the functionality you need and, once you find it, set up your project to automatically download it.
+
+This service exists. It is called NPM (npmjs.org). NPM consists of an online database of modules and a tool for downloading and upgrading the modules your program depends on. It grew out of Node.js, the browserless JavaScript environment we will discuss in Chapter 20, but can also be useful when programming for the browser.
 
           callbacks
           http://cwbuecheler.com/web/tutorials/2013/javascript-callbacks/
