@@ -1,0 +1,60 @@
+html{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: Verdana, Arial, sans-serif;
+    margin-top:0;
+    width:100%;
+}
+
+h1,h2,h3,h4{
+    /* dopuniti */
+}
+
+header{
+    background: #ffd800;
+}
+/* dopisati stil za main */
+
+section{
+    /* dopuniti */
+    background: #e8d273;
+    padding: 1em 0;
+    margin: 1em 0;
+    width: 100%;
+}
+
+footer{
+    line-height: 3em;
+    font-size:1em;
+    background: #FF0000;
+    text-align: center;
+}
+
+/* class selektori */
+.box{
+    background: red;
+    width: 200px;
+    height: 150px;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.item{
+    background: #8fd8e2;
+    width: 125px;
+    height: 65px;
+    border: 1px solid yellow;
+}
+
+.bkg{
+    background: url('../images/hex-bkg-pattern.png');
+}
+
+.bkg1{
+    background: #cfcfcf url('../images/wave-bkg-pattern.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: local;
+}

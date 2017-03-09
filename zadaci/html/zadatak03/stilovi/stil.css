@@ -1,0 +1,112 @@
+body{
+    width: 100%;
+    margin: 0;
+    padding:0;
+    font-family: "MS Trebuchet", Verdana,sans-serif;
+}
+
+h1{
+    margin:0;
+    padding: 5px;
+    color: #2b91c7;
+    text-align: center;
+}
+
+header{
+    background: #cfcfcf;
+}
+
+.bkgcolor{
+    background: #cfcfcf;
+}
+
+/* opste podesavanje sekcije */
+section{
+    min-height: 200px;
+    max-height: 600px;
+    width:100%;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+
+/* jumbo prva sekcija */
+section.jumbo{
+    position: relative;
+}
+
+section.jumbo img{
+    width:100%;
+}
+
+.floater{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.floater h2{
+    display: inline-block;
+    font-size: 2.25em;
+    line-height: 3em;
+    padding: 0.5em;
+    color: #ffffff;
+    background: rgba(255,255,255,0.25);
+    box-shadow: 2px 2px 30px 4px black;
+}
+
+/*container elementi */
+.container{
+    width: 890px;
+    margin:0 auto;
+}
+
+/*opsti stilovi za figure */
+figure{
+    display: inline-block;
+    max-width: 400px;
+    padding: 10px;
+    border: 1px solid #017c30;
+    margin: 20px 10px;
+    overflow: hidden;
+}
+figure img{
+    width: 100%;
+}
+
+figcaption{
+    padding: 0.5em;
+    background:#cfcfcf;
+}
+
+section video{
+    display: block;
+    margin: 0 auto !important;
+}
+
+/* footer */
+footer{
+    position: relative;
+    width: 100%;
+    background: #2b91c7;
+}
+
+footer nav{
+    width: 890px;
+    margin: 0 auto;
+    padding: 3em 0; 
+} 
+
+footer nav ul{
+    margin:0;
+    list-style: none;
+}
+
+.copyright{
+    width: 100%;
+    position: absolute;
+    bottom:0;
+    line-height: 2em;
+    text-align: center;
+}

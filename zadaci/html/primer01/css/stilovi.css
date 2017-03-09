@@ -1,0 +1,27 @@
+table{
+	width: 70%;
+	margin: 0 auto;
+	font-family: Georgia, serif;
+}
+table tr{
+	line-height: 2em;
+}
+
+
+thead{
+	background:linear-gradient(#f8a1a1 0%, #ffffff 100%);
+}
+
+tfoot{
+	background: linear-gradient(#ccc9c9 0%, #730a0a 100%);
+	color: white;
+	font-weight: bold;
+}
+
+tbody>tr:nth-child(2n){
+	background: #cfcfcf;
+}
+
+tbody>tr:nth-child(2n+1){
+	background: white;
+}

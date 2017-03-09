@@ -1,0 +1,94 @@
+html{
+	margin:0;
+	padding:0;
+}
+
+body{
+	margin:  0;
+	padding: 0;
+	font-family: "Trebuchet MS", Tahoma, sans-serif;
+}
+
+header{
+	background: #00796b;
+}
+
+header h1{
+	margin: 0 auto;
+	color: white;
+	width: 860px;
+	line-height: 2em;
+	text-align: center;
+}
+
+section{
+	position: relative;
+	margin: 0;
+	padding: 0 0 20px 0;
+	min-height: 300px;
+}
+section > *{
+	display: block;
+	margin:  0 auto;
+	width:   860px;
+}
+
+section h2{
+	font-size: 1.75em;
+	line-height: 2em; 
+	margin-bottom: 1em;
+}
+
+section:nth-child(even) {background: #80cbc4}
+section:nth-child(even) h2 {
+	text-align: right;
+	color:white;
+	border-bottom: 1px solid white;
+}
+section:nth-child(odd) {background: #ffffff}
+section:nth-child(odd) h2 {
+	text-align: left;
+	color:#009688;
+	border-bottom: 1px solid #009688;
+}
+
+
+div.row div{
+	vertical-align: top;
+	display: inline-block;
+	margin: 0 10px 10px 0;
+	width: 274px;
+	min-height: 200px;
+	border: 1px solid #9C9C9C;
+	box-shadow: 1px 2px 2px #9c9c9c;
+	
+}
+
+div.row div:nth-child(3n){
+	margin-right: 0;
+}
+
+div.row div h3{
+	line-height: 1.75em;
+	margin: 0;
+	padding: 0 1em;
+}
+
+div.row div:nth-child(3n+1) h3{
+	background:#ff6f00;
+}
+
+div.row div:nth-child(3n+2) h3{
+	background:#f50057;
+}
+
+div.row div:nth-child(3n+3) h3{
+	background:#00bfa5 ;
+}
+
+div.row div p{
+	margin: 0;
+	padding: 0 1em;	
+	
+}
+

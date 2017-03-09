@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Stilovi + pozicioniranje</title>
+        <link rel="stylesheet" href="styles/stilovi-domaci.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Stilovi + pozicioniranje</h1>
+        </header>
+        <main>
+            <h2>Sekcija 1 - horizontalno centrirani unutrasnji box</h2>
+            <section>
+                <div class="box hcenter">
+                    horizontalno centrirano
+                </div>
+            </section>
+            <h2>Sekcija 2 - box koji je u float left</h2>
+            <section>
+                <div class="box left">
+                    Levi box
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lacinia sapien massa, at pellentesque elit commodo at. Quisque sapien justo, gravida id pulvinar lobortis, maximus tristique turpis. In vitae felis sed eros fringilla accumsan. Ut rhoncus rhoncus ligula. Fusce vel nisl ultricies, malesuada odio sit amet, posuere mauris. Donec porta orci turpis, vitae sollicitudin ipsum luctus id. Proin ligula turpis, convallis iaculis pulvinar eu, faucibus quis metus. Integer eget odio mollis, dapibus neque eu, pretium eros. Donec hendrerit dignissim molestie. Aenean facilisis mauris eget facilisis efficitur. Pellentesque lacinia odio eros, eget rutrum ex commodo in. Ut cursus mollis scelerisque. Duis ornare augue eget elit fermentum fermentum. Ut vitae nunc massa. Fusce tempor pulvinar nunc non bibendum. Nunc efficitur quam cursus, ornare eros nec, placerat diam.
+Nullam non cursus nibh. Maecenas laoreet congue diam. Curabitur sit amet metus in ipsum sodales vulputate. Pellentesque lobortis, felis nec tempor mattis, metus velit dignissim dolor, vitae suscipit quam erat porttitor sem. Suspendisse potenti. Etiam a vestibulum neque. Integer id erat leo. Donec malesuada, ligula in iaculis laoreet, sapien metus auctor nulla, ut mollis ligula diam dapibus justo. Mauris placerat nunc ut nisl scelerisque vulputate. Nulla facilisi. Quisque nulla tortor, tempor scelerisque justo ac, fringilla rutrum urna. Vestibulum facilisis ipsum blandit pellentesque gravida. In viverra vel sapien nec suscipit. Nunc et pulvinar sem. Integer nunc massa, fermentum non tincidunt blandit, vulputate dignissim dolor. Maecenas vitae dui leo.</p>
+            </section>
+            <h2>Sekcija 3 - boxu float right</h2>
+            <section>
+                <div class="box right">
+                    Desni box
+                </div>
+                <p>
+                    Nunc rutrum mauris turpis, id facilisis nisl volutpat sodales. Donec rhoncus semper arcu, eu dignissim leo dictum vel. Nullam eget venenatis ligula. Nam eu justo ac dui placerat hendrerit egestas vel quam. Sed egestas risus pulvinar rhoncus lobortis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel ornare augue. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc sed diam scelerisque, vulputate nisl aliquam, mollis arcu. Mauris non arcu nibh. Integer elementum dictum justo, vitae blandit tellus sagittis quis.
+                </p>
+                <p>
+                    Nullam non cursus nibh. Maecenas laoreet congue diam. Curabitur sit amet metus in ipsum sodales vulputate. Pellentesque lobortis, felis nec tempor mattis, metus velit dignissim dolor, vitae suscipit quam erat porttitor sem. Suspendisse potenti. Etiam a vestibulum neque. Integer id erat leo. Donec malesuada, ligula in iaculis laoreet, sapien metus auctor nulla, ut mollis ligula diam dapibus justo. Mauris placerat nunc ut nisl scelerisque vulputate. Nulla facilisi. Quisque nulla tortor, tempor scelerisque justo ac, fringilla rutrum urna. Vestibulum facilisis ipsum blandit pellentesque gravida. In viverra vel sapien nec suscipit. Nunc et pulvinar sem. Integer nunc massa, fermentum non tincidunt blandit, vulputate dignissim dolor. Maecenas vitae dui leo.
+                </p>
+            </section>
+            <h2>Sekcija 4 - apsolutno centriranje unutrasnjeg boxa</h2>
+            <section>
+                <div class="box centered">
+                    Ovo je centrirani sadržaj
+                </div>
+            </section>
+            <h2>Sekcija 4.1 - apsolutno pozicioniranje unutrasnjeg boxa</h2>
+            <h3>postaviti unutrasnji box na 20px od desne ivice i 15px od donje ivice</h3>
+            <section>
+                <div class="box bottomright">
+                    sadrzaj dole desno
+                </div>
+            </section>
+            <h2>Sekcija 5 - boxovi koji se slazu horizontalno pomocu float left</h2>
+            <h3>problem visina bloka</h3>
+            <div class="bkggrey">
+                <div class="item v1">
+                    item v1
+                </div>
+                <div class="item v1">
+                    item v1
+                </div>
+                <div class="item v1">
+                    item v1
+                </div>
+                <div class="item v1">
+                    item v1
+                </div>
+                <div class="item v1">
+                    item v1
+                </div>
+            </div>
+            <!-- ovde layout nece valjati jer float gore pravi problem -->
+            <h2>Sekcija 6 - boxovi koji se slazu horizontalno pomocu inline-block definicije</h2>
+            <h3>nema problema sa visina bloka</h3>
+            <div class="bkggrey">
+                <div class="item v2">
+                    item v2
+                </div>
+                <div class="item v2">
+                    item v2
+                </div>
+                <div class="item v2">
+                    item v2
+                </div>
+                <div class="item v2">
+                    item v2
+                </div>
+                <div class="item v2">
+                    item v2
+                </div>
+                <div class="item v2">
+                    item v2
+                </div>
+            </div>
+            <section class="bkg">
+                <p>Nullam non cursus nibh. Maecenas laoreet congue diam. Curabitur sit amet metus in ipsum sodales vulputate. Pellentesque lobortis, felis nec tempor mattis, metus velit dignissim dolor, vitae suscipit quam erat porttitor sem. Suspendisse potenti. Etiam a vestibulum neque. Integer id erat leo. Donec malesuada, ligula in iaculis laoreet, sapien metus auctor nulla, ut mollis ligula diam dapibus justo. Mauris placerat nunc ut nisl scelerisque vulputate. Nulla facilisi. Quisque nulla tortor, tempor scelerisque justo ac, fringilla rutrum urna. Vestibulum facilisis ipsum blandit pellentesque gravida. In viverra vel sapien nec suscipit. Nunc et pulvinar sem. Integer nunc massa, fermentum non tincidunt blandit, vulputate dignissim dolor. Maecenas vitae dui leo.</p>
+            </section>
+            <section class="bkg1">
+                <p>Nullam non cursus nibh. Maecenas laoreet congue diam. Curabitur sit amet metus in ipsum sodales vulputate. Pellentesque lobortis, felis nec tempor mattis, metus velit dignissim dolor, vitae suscipit quam erat porttitor sem. Suspendisse potenti. Etiam a vestibulum neque. Integer id erat leo. Donec malesuada, ligula in iaculis laoreet, sapien metus auctor nulla, ut mollis ligula diam dapibus justo. Mauris placerat nunc ut nisl scelerisque vulputate. Nulla facilisi. Quisque nulla tortor, tempor scelerisque justo ac, fringilla rutrum urna. Vestibulum facilisis ipsum blandit pellentesque gravida. In viverra vel sapien nec suscipit. Nunc et pulvinar sem. Integer nunc massa, fermentum non tincidunt blandit, vulputate dignissim dolor. Maecenas vitae dui leo.</p>
+            </section>
+        </main>
+        <footer>
+            FED kurs 2015
+        </footer>
+    </body>
+</html>
