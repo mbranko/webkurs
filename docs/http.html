@@ -143,7 +143,7 @@ HTTP/2.0</code></pre></span>
         <section class="valigntop">
           <h2>Primer HTTP zahteva: GET</h2>
           <div style="font-size: 30pt;">
-            <pre><code>
+            <pre><code class="http">
 GET /hello.htm HTTP/1.1
 User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
 Host: www.foobar.com
@@ -157,7 +157,7 @@ Connection: Keep-Alive
         <section class="valigntop">
           <h2>Primer HTTP zahteva: POST</h2>
           <div style="font-size: 30pt;">
-            <pre><code>
+            <pre><code class="http">
 POST /cgi-bin/process.cgi HTTP/1.1
 User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
 Host: www.foobar.com
@@ -175,7 +175,7 @@ licenseID=string&content=string&/paramsXML=string
         <section class="valigntop">
           <h2>Primer HTTP odgovora: 200</h2>
           <div style="font-size: 30pt;">
-            <pre><code>
+            <pre><code class="http">
 HTTP/1.1 200 OK
 Date: Mon, 27 Jul 2009 12:28:53 GMT
 Server: Apache/2.2.14 (Win32)
@@ -196,7 +196,7 @@ Connection: Closed
         <section class="valigntop">
           <h2>Primer HTTP odgovora: 404</h2>
           <div style="font-size: 30pt;">
-            <pre><code>
+            <pre><code class="http">
 HTTP/1.1 404 Not Found
 Date: Sun, 18 Oct 2012 10:36:20 GMT
 Server: Apache/2.2.14 (Win32)
@@ -221,7 +221,7 @@ Content-Type: text/html; charset=iso-8859-1
         <section class="valigntop">
           <h2>Primer HTTP odgovora: 400</h2>
           <div style="font-size: 30pt;">
-            <pre><code>
+            <pre><code class="http">
 HTTP/1.1 400 Bad Request
 Date: Sun, 18 Oct 2012 10:36:20 GMT
 Server: Apache/2.2.14 (Win32)
@@ -344,7 +344,7 @@ Connection: Closed
         <section class="valigntop">
           <h2>GET metoda</h2>
           <div style="font-size: 25pt;">
-            <pre><code>
+            <pre><code class="http">
 GET /hello.htm HTTP/1.1
 User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
 Host: www.foobar.com
@@ -354,7 +354,7 @@ Connection: Keep-Alive
             </code></pre>
           </div>
           <div style="font-size: 25pt;">
-            <pre><code>
+            <pre><code class="http">
 HTTP/1.1 200 OK
 Date: Mon, 27 Jul 2009 12:28:53 GMT
 Server: Apache/2.2.14 (Win32)
@@ -387,7 +387,7 @@ Connection: Closed
         <section class="valigntop">
           <h2>HEAD metoda</h2>
           <div style="font-size: 25pt;">
-            <pre><code>
+            <pre><code class="http">
 GET /hello.htm HTTP/1.1
 User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
 Host: www.foobar.com
@@ -397,7 +397,7 @@ Connection: Keep-Alive
             </code></pre>
           </div>
           <div style="font-size: 25pt;">
-            <pre><code>
+            <pre><code class="http">
 HTTP/1.1 200 OK
 Date: Mon, 27 Jul 2009 12:28:53 GMT
 Server: Apache/2.2.14 (Win32)
@@ -428,7 +428,7 @@ Connection: Closed
         <section class="valigntop">
           <h2>POST metoda</h2>
           <div style="font-size: 25pt;">
-            <pre><code>
+            <pre><code class="http">
 POST /cgi-bin/process.cgi HTTP/1.1
 User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
 Host: www.foobar.com
@@ -443,7 +443,7 @@ Connection: Keep-Alive
             </code></pre>
           </div>
           <div style="font-size: 25pt;">
-            <pre><code>
+            <pre><code class="http">
 HTTP/1.1 200 OK
 Date: Mon, 27 Jul 2009 12:28:53 GMT
 Server: Apache/2.2.14 (Win32)
@@ -463,7 +463,7 @@ Connection: Closed
         <section class="valigntop">
           <h2>POST metoda</h2>
           <div style="font-size: 18pt;">
-            <pre><code>
+            <pre><code class="http">
 POST /edit/ HTTP/1.1
 Host: example.org
 User-Agent: Thingio/1.0
@@ -483,7 +483,7 @@ Slug: First Post
             </code></pre>
           </div>
           <div style="font-size: 18pt;">
-            <pre><code>
+            <pre><code class="http">
 HTTP/1.1 201 Created
 Date: Fri, 7 Oct 2005 17:17:11 GMT
 Content-Length: nnn
@@ -522,7 +522,7 @@ ETag: "c180de84f991g8"
         <section class="valigntop">
           <h2>PUT metoda</h2>
           <div style="font-size: 30pt;">
-            <pre><code>
+            <pre><code class="http">
 PUT /users/123 HTTP/1.1
 User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
 Host: www.foobar.com
@@ -535,7 +535,7 @@ Content-Length: 182
             </code></pre>
           </div>
           <div style="font-size: 30pt;">
-            <pre><code>
+            <pre><code class="http">
 HTTP/1.1 204 No Content
 Date: Mon, 27 Jul 2009 12:28:53 GMT
 Server: Apache/2.2.14 (Win32)
@@ -560,7 +560,7 @@ Connection: Closed
         <section class="valigntop">
           <h2>DELETE metoda</h2>
           <div style="font-size: 28pt;">
-            <pre><code>
+            <pre><code class="http">
 DELETE /users/123 HTTP/1.1
 User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
 Host: www.foobar.com
@@ -569,7 +569,7 @@ Connection: Keep-Alive
             </code></pre>
           </div>
           <div style="font-size: 28pt;">
-            <pre><code>
+            <pre><code class="http">
 HTTP/1.1 200 OK
 Date: Mon, 27 Jul 2009 12:28:53 GMT
 Server: Apache/2.2.14 (Win32)

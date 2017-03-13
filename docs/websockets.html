@@ -1,0 +1,392 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>WebSockets</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/branko.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <section class="vcenter">
+          <h1>WebSockets</h1>
+          <h3>RFC 6455</h3>
+          <p>
+            <small><a href="http://mbranko.github.io/webkurs">http://mbranko.github.io/webkurs</a></small>
+          </p>
+          <p>
+            <small>Ovo je deo <a href="index.html#/1">web kursa</a></small>
+          </p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Literatura</h2>
+          <ul>
+            <li><a href="#" target="_blank">RFC 6455</a></li>
+            <li>TODO</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Klasičan HTTP</h2>
+          <ul>
+            <li>dizajniran za prenos dokumenata
+              <ul>
+                <li>interakcija zahtev/odgovor</li>
+              </ul>
+            </li>
+            <li>dvosmerna ali half-duplex komunikacija
+              <ul>
+                <li>samo u jednom smeru u jednom trenutku</li>
+              </ul>
+            </li>
+            <li>stateless
+              <ul>
+                <li>višak u headeru</li>
+                <li>podaci se šalju u svakom zahtevu i odgovoru</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Full duplex vs half duplex</h2>
+          <ul>
+            <li><strong>full duplex</strong>: komunikacija u oba smera istovremeno</li>
+            <li><strong>half duplex</strong>: komunikacija u oba smera, ali samo u jednom smeru u jednom trenutku</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>AJAX folira full duplex vezu</h2>
+          <ul>
+            <li>AJAX: Asynchronous JavaScript and XML</li>
+            <li>sadržaj može da se menja bez osvežavanja cele stranice</li>
+            <li>stvara utisak brzog odziva</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>AJAX trik #1: polling</h2>
+          <ul>
+            <li>nakon inicijalnog preuzimanja stranice</li>
+            <li>browser šalje zahteve u regularnim intervalima</li>
+            <li>i odmah prima odgovor</li>
+            <li>skoro real-time</li>
+          </ul>
+          <img src="img/websockets/polling.svg" width="50%" style="background:white"/>
+        </section>
+
+        <section class="valigntop">
+          <h2>AJAX trik #2: long polling</h2>
+          <ul>
+            <li>server kasnije šalje odgovor</li>
+            <li>browser odmah šalje novi zahtev</li>
+            <li>ciklus odgovor-zahtev-odgovor</li>
+          </ul>
+          <p></p>
+          <img src="img/websockets/longpolling.svg" width="50%" style="background:white"/>
+        </section>
+
+        <section class="valigntop">
+          <h2>AJAX trik #3: streaming</h2>
+          <ul>
+            <li>server šalje odgovor u delovima</li>
+            <li>problemi sa proxy i firewall sistemima</li>
+            <li>potreban periodičan flush</li>
+            <li>ograničen broj otvorenih veza u web čitaču</li>
+          </ul>
+          <p></p>
+          <img src="img/websockets/streaming.svg" width="50%" style="background:white"/>
+        </section>
+
+        <section class="valigntop">
+          <h2>AJAX folira full duplex vezu</h2>
+          <ul>
+            <li>sadržaj može da se menja bez osvežavanja cele stranice</li>
+            <li>stvara utisak brzog odziva</li>
+            <li>polling je skoro real-time
+              <ul>
+                <li>čitač šalje zahteve u regularnim intervalima</li>
+                <li>i odmah prima odgovor</li>
+              </ul>
+            </li>
+          </ul>
+          <img src="img/websockets/polling.svg" width="50%" style="background:white"/>
+        </section>
+
+        <section class="valigntop">
+          <h2>Višak u HTTP zaglavlju</h2>
+          <table>
+            <tr>
+              <th>br. klijenata</th>
+              <th>bajtova viška</th>
+              <th>Mbps viška</th>
+            </tr>
+            <tr>
+              <td style="text-align: right">1.000</td>
+              <td style="text-align: right">871.000</td>
+              <td style="text-align: right">6,6</td>
+            </tr>
+            <tr>
+              <td style="text-align: right">10.000</td>
+              <td style="text-align: right">8.710.000</td>
+              <td style="text-align: right">66</td>
+            </tr>
+            <tr>
+              <td style="text-align: right">100.000</td>
+              <td style="text-align: right">87.100.000</td>
+              <td style="text-align: right">667</td>
+            </tr>
+          </table>
+        </section>
+
+        <section class="valigntop">
+          <h2>WebSockets vs AJAX</h2>
+          <ul>
+            <li><strong>AJAX</strong>: otvara TCP vezu, šalje HTTP zahtev, uključuje rezultat u DOM stablo</li><br/>
+            <li><strong>WebSocket</strong>: slanje podataka server→klijent<br/> bez prethodnog slanja zahteva klijent→server</li><br/>
+            <li>push notifications</li>
+          </ul>
+          <img src="img/websockets/facebook.png" width="30%"/>
+        </section>
+
+        <section class="valigntop">
+          <h2>WebSocket istorija</h2>
+          <ul>
+            <li>originalno dodat u HTML5 kao <code>TCPConnection</code></li>
+            <li>kasnije izdvojen u posebnu specifikaciju</li><br/>
+            <li>standardizovan kao API (W3C) i kao protokol (IETF)</li>
+            <li>dve šeme: <code>ws://</code> i <code>ws://</code></li>
+          </ul>
+          <div style="font-size: 30pt;width:60%;margin-left:15%"><pre><code class="asciidoc">
+   ws://example.com:8000/chat/
+   \_/  \_________/\___/ \___/
+    |        |       |     |
+ scheme    host     port server
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>WebSocket client API</h2>
+          <div style="font-size: 30pt;"><pre><code class="javascript">
+if (window.WebSocket) { ... } // da li browser podržava
+
+// kreiranje i callbacks
+var ws = new WebSocket("ws://www.xyz.com")
+ws.onopen = function(event) { };
+ws.onclose = function(event) {
+  alert("closed with status: " + event.code);
+};
+ws.onmessage = function(event) {
+  alert("received msg: " + event.data);
+};
+ws.onerror = function(event) {
+  alert("error");
+};
+
+ws.send("Hello world"); // slanje poruke
+
+ws.close(); // zatvaranje
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>WebSocket client API</h2>
+          <table>
+            <tr>
+              <td>dostupnost</td>
+              <td><code>window.WebSocket</code> ili <code>Modernizr.websocket</code></td>
+            </tr>
+            <tr>
+              <td>događaji</td>
+              <td><code>onopen</code>, <code>onmessage</code>, <code>onclose</code>, <code>onerror</code></td>
+            </tr>
+            <tr>
+              <td>funkcije</td>
+              <td><code>send</code>, <code>close</code></td>
+            </tr>
+            <tr>
+              <td>atributi</td>
+              <td><code>url</code>, <code>readyState</code>, <code>bufferedAmount</code>, ...</td>
+            </tr>
+          </table>
+        </section>
+
+        <section class="valigntop">
+          <h2>Podrška u web čitačima</h2>
+          <ul>
+            <li>Chrome 4+</li>
+            <li>Safari 5+<br/>
+            <li>Firefox 4+</li>
+            <li>Opera 10.7+</li>
+            <li>Internet Explorer 10+</li>
+            <li>Microsoft Edge</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>WebSocket server API</h2>
+          <div style="font-size: 30pt;"><pre><code class="javascript">
+@ServerEndpoint("/echo")
+public class EchoServer {
+
+  @OnOpen
+  public void onOpen(Session session){
+    session.getBasicRemote().sendText("Hello!");
+  }
+
+  @OnMessage
+  public void onMessage(String message, Session session){
+    session.getBasicRemote().sendText("Echo: " + message);
+  }
+
+  @OnClose
+  public void onClose(Session session){
+  }
+}
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>WebSocket handshake: zahtev klijenta</h2>
+          <div style="font-size: 30pt;"><pre><code class="http">
+GET /chat HTTP/1.1
+Host: xyz.com
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Key: x3JJHMbDL1EzLkh9GBhXDw==
+Sec-WebSocket-Version: 13
+Origin: http://xyz.com
+Sec-WebSocket-Protocol: chat
+Sec-WebSocket-Extensions: ...
+Cookie: ...
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>WebSocket handshake: odgovor servera</h2>
+          <div style="font-size: 30pt;"><pre><code class="http">
+HTTP/1.1 101 Switching Protocols
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Accept: HSmrc0sMlYUkAGmm5OPpG2HaGWk=
+--- (opciono) ---
+Sec-WebSocket-Protocol: chat
+Sec-WebSocket-Extensions: ...
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>WebSocket frejm</h2>
+          <ul>
+            <li>nekoliko bajtova zaglavlja</li>
+            <li>tekstualni ili binarni podaci</li><br/>
+          </ul>
+          <img src="img/websockets/WebSocketFrame.png" width="90%" style="background: white"/>
+        </section>
+
+        <section class="valigntop">
+          <h2>Efikasnost</h2>
+          <table>
+            <tr>
+              <th>&nbsp;</th>
+              <th>HTTP</th>
+              <th>WebSocket</th>
+            </tr>
+            <tr>
+              <td>overhead</td>
+              <td>100-tine B</td>
+              <td>2-6 B</td>
+            </tr>
+            <tr>
+              <td>latency</td>
+              <td>nova konekcija</td>
+              <td>ista konekcija</td>
+            </tr>
+            <tr>
+              <td>polling</td>
+              <td>interval</td>
+              <td>bez čekanja</td>
+            </tr>
+            <tr>
+              <td>long polling</td>
+              <td>odgovor-zahtev</td>
+              <td>bez čekanja</td>
+            </tr>
+          </table>
+        </section>
+
+        <section class="valigntop">
+          <h2>Overhead: polling vs WebSockets</h2>
+          <img src="img/websockets/comparison.jpg" width="60%"/>
+        </section>
+
+        <section class="valigntop">
+          <h2>Latency: polling vs WebSockets</h2>
+          <img src="img/websockets/latency-comparison.png" width="60%"/>
+        </section>
+
+        <section class="valigntop">
+          <h2>WebSocket prednosti</h2>
+          <ol>
+            <li><strong>performanse</strong>: efikasna real-time komunikacija</li>
+            <li><strong>jednostavnost</strong>: prosta klijent/server komunikacija preko weba</li>
+            <li><strong>standardizacija</strong>: WebSocket je standardni IETF protokol</li>
+            <li><strong>HTML5</strong>: deo HTML5 specifikacije</li>
+          </ol>
+        </section>
+
+        <section>
+          <h3>Kraj dela</h3>
+          <p><a href="#/">← Početak dela</a></p>
+          <p><a href="index.html#/1">⇐ Početak kursa</a></p>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        history: true,
+
+        // 16:9 aspect ratio
+        width: 1280,
+        height: 720,
+        margin: 0.02,
+
+        // don't piss people off
+        transition: 'none',
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+    </script>
+  </body>
+</html>
