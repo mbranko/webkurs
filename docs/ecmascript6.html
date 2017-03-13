@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>JavaScript</title>
+    <title>ECMAScript 6</title>
 
     <link rel="stylesheet" href="css/reveal.css">
     <link rel="stylesheet" href="css/theme/branko.css">
@@ -38,28 +38,209 @@
         <section class="valigntop">
           <h2>Literatura</h2>
           <ul>
-            <li>JavaScript Programmers Reference</li>
-            <li>JavaScript: The Good Parts</a></li>
             <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide" target="_blank">JavaScript Guide</a> od Mozilla Developers Network.</li>
-            <li><a href="http://www.codecademy.com/tracks/javascript" target="_blank">Code Academy</a> sa interaktivnim JavaScript lekcijama.</li>
-            <li><a href="https://www.khanacademy.org/computing/cs/programming">Khan Academy</a> ima puno informacija o crtanju i animaciji.</li>
           </ul>
         </section>
 
-        <section>
-          <h1>#1: podaci u memoriji</h1>
+        <section class="valigntop">
+          <h2>Sadržaj</h2>
+          <ol>
+            <li><a href="#/arrows">Strelica</a></li>
+            <li><a href="#/classes">Klase</a></li>
+            <li><a href="#/literals">Objektni literali</a></li>
+            <li><a href="#/templates">Template stringovi</a></li>
+            <li><a href="#/webstorage">Destrukturiranje</a></li>
+            <li><a href="#/efficient">Default + Rest + Spread</a></li>
+            <li><a href="#/cors">Let + Const</a></li>
+            <li><a href="#/cors">Iterators + For..Of</a></li>
+            <li><a href="#/cors">Generators</a></li>
+            <li><a href="#/cors">Unicode</a></li>
+            <li><a href="#/cors">Modules</a></li>
+            <li><a href="#/cors">Module Loaders</a></li>
+            <li><a href="#/cors">Map + Set + WeakMap + WeakSet</a></li>
+            <li><a href="#/cors">Proxies</a></li>
+            <li><a href="#/cors">Symbols</a></li>
+            <li><a href="#/cors">Subclassable Built-ins</a></li>
+            <li><a href="#/cors">Math + Number + String + Array + Object APIs</a></li>
+            <li><a href="#/cors">Subclassable Built-ins</a></li>
+            <li><a href="#/cors">Binary and Octal Literals</a></li>
+            <li><a href="#/cors">Promises</a></li>
+            <li><a href="#/cors">Reflect API</a></li>
+            <li><a href="#/cors">Tail Calls</a></li>
+          </ol>
         </section>
 
-        <!--
-        
-        https://github.com/lukehoban/es6features
-        http://es6-features.org/
-        http://martinmicunda.com/presentations/es6-features.html
-        http://orkon.github.io/es6-slides/#1
-        http://blog.miroslavpopovic.com/ecmascript6/#/
-        -->
+        <section id="arrows">
+          <h1>#1: strelice</h1>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Strelice =&gt;</h2>
+          <ul>
+            <li>skraćena sintaksa za funkcije</li>
+            <li>slično kao C#, Java 8, CoffeeScript</li>
+            <li>telo funkcije kao izraz ili kao blok naredbi</li>
+            <li>za razliku od funkcije, deli <code>this</code> sa kodom koji je okružuje</li>
+          </ul>
+          <p class="bottom"><small><a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions" target="_blank">https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions</a></small>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Strelice =&gt;</h2>
+          <div style="font-size:30pt;"><pre><code class="javascript">
+// Expression bodies
+var odds = evens.map(v => v + 1);
+var nums = evens.map((v, i) => v + i);
+var pairs = evens.map(v => ({even: v, odd: v + 1}));
+
+// Statement bodies
+nums.forEach(v => {
+  if (v % 5 === 0)
+    fives.push(v);
+});
+
+// Lexical this
+var bob = {
+  _name: "Bob",
+  _friends: [],
+  printFriends() {
+    this._friends.forEach(f =>
+      console.log(this._name + " knows " + f));
+  }
+}            
+          </code></pre></div>
+        </section>
+
+        <section id="classes">
+          <h1>#2: klase</h1>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Klase</h2>
+          <ul>
+            <li>sintaksni šećer za prototipsko nasleđivanje</li>
+            <li>jednostavnije za korišćenje</li>
+            <li>olakšava interoperabilnost</li>
+            <li>konstruktori, metode, statičke metode, nasleđivanje, <code>super</code></li>
+          </ul>
+          <p class="bottom"><small><a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes" target="_blank">https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes</a></small>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Klase</h2>
+          <div style="font-size:27pt;"><pre><code class="javascript">
+class SkinnedMesh extends THREE.Mesh {
+  constructor(geometry, materials) {
+    super(geometry, materials);
+
+    this.idMatrix = SkinnedMesh.defaultMatrix();
+    this.bones = [];
+    this.boneMatrices = [];
+    //...
+  }
+  update(camera) {
+    //...
+    super.update();
+  }
+  get boneCount() {
+    return this.bones.length;
+  }
+  set matrixType(matrixType) {
+    this.idMatrix = SkinnedMesh[matrixType]();
+  }
+  static defaultMatrix() {
+    return new THREE.Matrix4();
+  }
+}        
+          </code></pre></div>
+        </section>
+
+        <section id="literals">
+          <h1>#3: objektni literali</h1>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Unapređeni objektni literali</h2>
+          <ul>
+            <li>definisanje prototipa</li>
+            <li>skraćeno pisanje <code>foo: foo</code> dodela</li>
+            <li>definisanje metoda</li>
+            <li>pozivanje <code>super</code></li>
+            <li>izračunavanje naziva osobina pomoću izraza</li><br/>
+            <li>približavanje objektnih literala i deklaracija klasa</li>
+
+          </ul>
+          <p class="bottom"><small><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#Object_literals" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#Object_literals</a></small>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Unapređeni objektni literali</h2>
+          <div style="font-size:30pt;"><pre><code class="javascript">
+var obj = {
+    // __proto__
+    __proto__: theProtoObj,
+
+    // Shorthand for ‘handler: handler’
+    handler,
+
+    // Methods
+    toString() {
+      // Super calls
+      return "d " + super.toString();
+    },
+
+    // Computed (dynamic) property names
+    [ 'prop_' + (() => 42)() ]: 42
+};  
+          </code></pre></div>
+        </section>
+
+        <section id="templates">
+          <h1>#4: template stringovi</h1>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Template stringovi</h2>
+          <ul>
+            <li>sintaksni šećer za konstrukciju stringova</li>
+            <li>slično string interpolaciji za Perl, Python, ...</li>
+            <li>dodavanje tagova za sprečavanje injection napada ili konstruisanja struktura podataka</li>
+          </ul>
+          <p class="bottom"><small><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/template_strings" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/template_strings</a></small>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Template stringovi</h2>
+          <div style="font-size:30pt;"><pre><code class="javascript">
+// Basic literal string creation
+`In JavaScript '\n' is a line-feed.`
+
+// Multiline strings
+`In JavaScript this is
+ not legal.`
+
+// String interpolation
+var name = "Bob", time = "today";
+`Hello ${name}, how are you ${time}?`
+
+// Construct an HTTP request prefix is used to interpret the replacements and construction
+POST`http://foo.org/bar?a=${a}&amp;b=${b}
+     Content-Type: application/json
+     X-Credentials: ${credentials}
+     { "foo": ${foo},
+       "bar": ${bar}}`(myOnReadyStateChangeHandler);
+          </code></pre></div>
+        </section>
 
 
+
+
+
+        <section>
+          <h3>Kraj dela</h3>
+          <p><a href="#/">← Početak dela</a></p>
+          <p><a href="index.html#/1">⇐ Početak kursa</a></p>
+        </section>
 
       </div>
     </div>

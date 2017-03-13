@@ -76,6 +76,11 @@
   padding-left: 40px;
 }
 
+.reveal p.bottom {
+  position: absolute;
+  bottom: 10px;
+}
+
 /*********************************************
  * GLOBAL STYLES
  *********************************************/
