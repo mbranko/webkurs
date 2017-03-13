@@ -46,7 +46,20 @@
           </ul>
         </section>
 
-        <section>
+        <section class="valigntop">
+          <h2>Sadržaj</h2>
+          <ol>
+            <li><a href="#/cascades">Kaskade</a></li>
+            <li><a href="#/callbacks">Callback</a></li>
+            <li><a href="#/modules">Moduli</a></li>
+            <li><a href="#/promises">Obećanja</a></li>
+            <li><a href="#/webstorage">Web Storage</a></li>
+            <li><a href="#/efficient">Efikasno učitavanje</a></li>
+            <li><a href="#/cors">CORS</a></li>
+          </ol>
+        </section>
+
+        <section id="cascades">
           <h1>#1: cascade</h1>
         </section>
 
@@ -97,7 +110,7 @@
           </code></pre></div>
         </section>
 
-        <section>
+        <section id="callbacks">
           <h1>#2: callback</h1>
         </section>
 
@@ -273,7 +286,7 @@ p_client.open(function(err, p_client) {
           </ol>
         </section>
 
-        <section>
+        <section id="modules">
           <h1>#3: moduli</h1>
         </section>
 
@@ -605,23 +618,7 @@ function getModule(name) {
 
         </section>
 
-        <!--
-
-          web storage
-          
-
-          generators ES6
-
-          Iz knjige
-          Efikasno učitavanje skriptova
-          Asinhrona komunikacija
-          Cross-domain techniques
-          Data caching
-          Toolchain
-
-        -->
-
-        <section>
+        <section id="promises">
           <h1>#4: obećanja</h1>
         </section>
 
@@ -1220,6 +1217,598 @@ Promise.all(arrayOfPromises).then(function(arrayOfResults) {
 })</code></pre></div>
         </section>
 
+        <section id="webstorage">
+          <h1>#5: web storage</h1>
+        </section>
+
+        <section class="valigntop">
+          <h2>HTML5 Web Storage</h2>
+          <ul>
+            <li>jednostavna baza podataka u web čitaču</li>
+            <li>čuva parove ključ-vrednost</li>
+            <li>do 10MB po domenu</li>
+            <li>podrška u savremenim čitačima</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Vrste web storage</h2>
+          <ul>
+            <li><strong>local storage</strong>: trajno čuva podatke</li>
+            <li><strong>session storage</strong>: čuva podatke u toku sesije; gubi se po zatvaranju čitača</li>
+          </ul>
+        </section>
+
+
+        <section class="valigntop left">
+          <h2>Primer: forma</h2>
+          <p class="left">Forma za unos podataka</p>
+          <div style="font-size: 30pt;"><pre><code class="html">​
+&lt;section&gt;
+  &lt;form onsubmit=&quot;javascript:setSettings()&quot;&gt;
+    &lt;label&gt;Select your BG color: &lt;/label&gt;
+    &lt;input id=&quot;favcolor&quot; type=&quot;color&quot; value=&quot;#ffffff&quot; /&gt;
+    &lt;label&gt;Select Font Size: &lt;/label&gt;
+    &lt;input id=&quot;fontwt&quot; type=&quot;number&quot; max=&quot;14&quot; min=&quot;10&quot; value=&quot;13&quot; /&gt;
+    &lt;input type=&quot;submit&quot; value=&quot;Save&quot; /&gt;
+    &lt;input onclick=&quot;clearSettings()&quot; type=&quot;reset&quot; value=&quot;Clear&quot; /&gt;
+  &lt;/form&gt;
+&lt;/section&gt; 
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer: test podrške u web čitaču</h2>
+          <p class="left">Test podrške za local storage:</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">​
+function setSettings() {
+  if ('localStorage' in window &amp;&amp; window['localStorage'] !== null) {
+    // postoji podrška za local storage
+  } else {
+    alert('Nije moguće sačuvati podešavanja jer Vaš čitač nema local storage');
+  }
+}
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer: test pomoću Modernizr</h2>
+          <p class="left">Čitkije pomoću <a href="https://modernizr.com" target="_blank">Modernizr</a>:</p>
+          <div style="font-size: 30pt;"><pre><code class="html">​
+&lt;script type=&quot;text/javascript&quot; src=&quot;modernizr.min.js&quot;&gt;&lt;/script&gt;
+          </code></pre></div>
+
+          <div style="font-size: 30pt;"><pre><code class="javascript">​
+if (Modernizr.localstorage) {
+  // postoji podrška za local storage
+} else {
+  alert('Nije moguće sačuvati podešavanja jer Vaš čitač nema local storage');
+}
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Čuvanje podataka: setItem</h2>
+          <p class="left">Dodat kod za čuvanje podataka:</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">​
+function setSettings() {
+  if (Modernizr.localstorage) {
+    try {
+      var favcolor = document.getElementById('favcolor').value;
+      var fontwt = document.getElementById('fontwt').value;
+      localStorage.setItem('bgcolor', favcolor);
+      localStorage.fontweight = fontwt;
+    } catch (e) {
+      if (e == QUOTA_EXCEEDED_ERR) { // premašio 10 MB
+        alert('Quota exceeded!');
+      }
+    }
+  } else {
+    alert('Nije moguće sačuvati podešavanja jer Vaš čitač nema local storage');
+  }
+}
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Čitanje podataka: getItem</h2>
+          <p class="left">Čitanje iz local storage:</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">​
+function applySettings() {
+  if (localStorage.length != 0) {
+    document.body.style.backgroundColor = localStorage.getItem('bgcolor');
+    document.body.style.fontSize = localStorage.fontweight + 'px';
+    document.getElementById('favcolor').value = localStorage.bgcolor;
+    document.getElementById('fontwt').value = localStorage.fontweight;
+  } else {
+    document.body.style.backgroundColor = '#FFFFFF';
+    document.body.style.fontSize = '13px'
+    document.getElementById('favcolor').value = '#FFFFFF';
+    document.getElementById('fontwt').value = '13';
+  }
+}
+          </code></pre></div>
+          <p class="left"><small><code>length</code> vraća broj sačuvanih elemenata.</small></p>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Uklanjanje podataka: removeItem</h2>
+          <p class="left">Uklanjanje iz local storage:</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">​
+function clearSettings() {
+  localStorage.removeItem("bgcolor");
+  localStorage.removeItem("fontweight");
+  document.body.style.backgroundColor = '#FFFFFF';
+  document.body.style.fontSize = '13px'
+  document.getElementById('favcolor').value = '#FFFFFF';
+  document.getElementById('fontwt').value = '13';
+}
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Storage događaji</h2>
+          <p class="left">Prilikom upisa ili brisanja, poseban događaj će se desiti za <code>window</code> objekat.  Možemo dodati osluškivanje za taj događaj.</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">​
+window.addEventListener('storage', storageEventHandler, false);
+function storageEventHandler(event) {
+  applySettings();
+}
+          </code></pre></div>
+          <p class="left">Event ima sledeće atribute:</p>
+          <ul>
+            <li><strong>key</strong>: osobina koja je promenjena</li>
+            <li><strong>newValue</strong>: nova vrednost</li>
+            <li><strong>oldValue</strong>: stara vrednost</li>
+            <li><strong>url</strong>: pun URL gde se događaj desio</li>
+            <li><strong>storageArea</strong>: <code>localStorage</code> ili <code>sessionStorage</code> objekat</li>
+          </ul>
+          <p class="left"><small>Događaj će se desiti samo u drugim prozorima - ne i u prozoru koji ga je izazvao. Desiće se samo ako je došlo do promene u podacima.</small></p>
+        </section>
+
+        <section id="efficient">
+          <h1>#6: efikasno učitavanje</h1>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Efikasno učitavanje skriptova</h2>
+          <p>Kako web čitači učitavaju sadržaj:</p>
+          <ul>
+            <li>Parsira HTML dokument redom. Elementi se dodaju u DOM kako se parsiraju. Kako se dodaju u DOM tako se učitavaju (slike, stilovi, skriptovi, itd).</li>
+            <li>Čitači mogu učitavati više resursa istovremeno.</li>
+            <li>Download eksternog JavaScript fajla će blokirati druga dobavljanja, jer bi skript mogao da promeni DOM, ili da preusmeri čitač na drugu adresu. Čitač neće početi druga paralelna dobavljanja pre nego što se skript preuzme, parsira i izvrši.</li>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Skript na kraju fajla</h2>
+          <p class="left">Skript je zgodno staviti na sam kraj HTML fajla, neposredno ispred <code>&lt;/body&gt;</code> taga. To garantuje da će čitač parsirati ceo fajl i da je DOM spreman pre nego što mu skript pristupi.</p>
+          <div style="font-size: 30pt;"><pre><code class="html">​
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;body&gt;
+    &lt;p id=&quot;myParagraph&quot;&gt;This is my paragraph! 
+      &lt;span class=&quot;hideme&quot;&gt;Lorem ipsum&lt;/span&gt; 
+      dolor sit amet.
+    &lt;/p&gt;
+    &lt;p class=&quot;hideme&quot;&gt;Another paragraph!&lt;/p&gt;
+    &lt;script&gt;
+      var myPar = document.getElementById("myParagraph");
+      myPar.innerText = "I have changed the content!";
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Skript na početku fajla</h2>
+          <p class="left">Ako stavimo skript na početak <code>body</code> počeće da se izvršava pre nego što je dokument u celosti parsiran što može dovesti do greške.</p>
+          <div style="font-size: 30pt;"><pre><code class="html">​
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;body&gt;
+    &lt;script&gt;
+      var myPar = document.getElementById(&quot;myParagraph&quot;);
+      myPar.innerText = &quot;I have changed the content!&quot;;
+    &lt;/script&gt;
+    &lt;p id=&quot;myParagraph&quot;&gt;This is my paragraph! 
+      &lt;span class=&quot;hideme&quot;&gt;Lorem ipsum&lt;/span&gt; 
+      dolor sit amet.
+    &lt;/p&gt;
+    &lt;/p&gt;
+    &lt;p class=&quot;hideme&quot;&gt;Another paragraph!&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Tip #1: učitaj skriptove na kraju dokumenta</h2>
+          <ul>
+            <li>ceo dokument je parsiran</li>
+            <li>učitavanje drugih sadržaja (slike, itd) je već počelo</li>
+            <li>učitavanje i izvršavanje skripta neće blokirati druge stvari (osim drugih skriptova)</li>
+          </ul>
+
+          <p class="left">Šta ako imamo jednostavan dokument koga puno menja skript?</p>
+          <ul>
+            <li>prikazaće se osnovni (neuređeni) sadržaj</li>
+            <li>korisnik neće moći da radi jer je izvršavanje skripta blokiralo čitač</li>
+            <li>konačni sadržaj će se prikazati posle pauze</li>
+            <li>=&gt; napravi loading screen</li>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Tip #2: combine, minify, gzip</h2>
+          <ul>
+            <li>često imamo veliki broj JavaScript fajlova</li>
+            <li>veliki broj HTTP zahteva, dugotrajno učitavanje</li>
+            <li>=> priprema skriptova za objavljivanje: kombinuj sve u jedan fajl<br/><br/></li>
+            <li>u JavaScript kodu ima puno whitespace znakova</li>
+            <li>=> ukloni sve nepotrebne znakove<br/><br/></li>
+            <li>i nakon toga u pitanju je običan tekst</li>
+            <li>=> kompresuj GZip algoritmom koji čitači prepoznaju</li>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Tip #3: dinamički učitaj skriptove u head</h2>
+          <div style="font-size: 30pt;"><pre><code class="javascript">​
+var defaultManifest = [
+  "scripts/js-lib.js",
+  "scripts/js-objects.js",
+  "scripts/third-party/omniture.js",
+  "http://big.cdn.com/useful-library.js"
+]
+
+function loadManifest(arrManifest) {
+  var i, arrManifestLength = arrManifest.length;
+  for (i = 0; i < arrManifestLength; i++) {
+    var newScript = document.createElement("script");
+    newScript.src = arrManifest[i];
+    document.getElementsByTagName("head")[0].appendChild(newScript);
+  }
+}
+          </code></pre></div>
+          <p class="left"><small>Programski kreiramo <code>script</code> tag unutar <code>head</code>.</small></p>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Tip #3: dinamički učitaj skriptove u head</h2>
+          <div style="font-size: 30pt;"><pre><code class="javascript">​
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;script src=&quot;scripts/js-loader.js&quot;&gt;&lt;/script&gt;
+    &lt;script&gt;
+      loadManifest(defaultManifest);
+    &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hello World!&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+          </code></pre></div>
+          <p class="left"><small>Sada se skriptovi učitavaju nakon što se programski kreiraju <code>script</code> čvorovi ali to ne blokira učitavanje stranice i drugih elemenata.</small></p>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Tip #3: dinamički učitaj skriptove u head</h2>
+          <ul>
+            <li>ceo dokument je parsiran</li>
+            <li>učitavanje drugih sadržaja (slike, itd) je već počelo</li>
+            <li>učitavanje i izvršavanje skripta neće blokirati druge stvari (osim drugih skriptova)</li>
+          </ul>
+
+          <p class="left">Šta ako imamo jednostavan dokument koga puno menja skript?</p>
+          <ul>
+            <li>prikazaće se osnovni (neuređeni) sadržaj</li>
+            <li>korisnik neće moći da radi jer je izvršavanje skripta blokiralo čitač</li>
+            <li>konačni sadržaj će se prikazati posle pauze</li>
+            <li>=&gt; napravi loading screen</li>
+          </ul>
+        </section>
+
+        <section id="cors">
+          <h1>#7: CORS</h1>
+          <h3>Cross-Origin Resource Sharing</h3>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Same Origin Policy</h2>
+          <p>Iz bezbednosnih razloga skriptovi su ograničeni samo na pristup podacima koji imaju isto poreklo (origin). Poreklo je definisano u <a href="https://tools.ietf.org/html/rfc6454" target="_blank">RFC 6454</a> kao kombinacija</p>
+          <ul>
+            <li>URI šema: http ili https</li>
+            <li>hostname</li>
+            <li>port</li>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Same Origin Policy</h2>
+          <p>Primer: <strong>http://www.example.com/dir/page.html</strong></p>
+
+          <table style="font-size: 90%">
+            <tr>
+              <th>URL</th>
+              <th>status</th>
+              <th>razlog</th>
+            </tr>
+            <tr>
+              <td>http://www.example.com/dir/page2.html</td>
+              <td>OK</td>
+              <td>isti protokol, host i port</td>
+            </tr>
+            <tr>
+              <td>http://www.example.com/dir2/other.html</td>
+              <td>OK</td>
+              <td>isti protokol, host i port</td>
+            </tr>
+            <tr>
+              <td>http://username:password@www.example.com/dir2/other.html</td>
+              <td>OK</td>
+              <td>isti protokol, host i port</td>
+            </tr>
+            <tr>
+              <td>http://www.example.com:81/dir/other.html</td>
+              <td>NOK</td>
+              <td>različit port</td>
+            </tr>
+            <tr>
+              <td>https://www.example.com/dir/other.html</td>
+              <td>NOK</td>
+              <td>različit protokol</td>
+            </tr>
+            <tr>
+              <td>http://en.example.com/dir/other.html</td>
+              <td>NOK</td>
+              <td>različit host</td>
+            </tr>
+            <tr>
+              <td>http://example.com/dir/other.html</td>
+              <td>NOK</td>
+              <td>različit host</td>
+            </tr>
+            <tr>
+              <td>http://v2.www.example.com/dir/other.html</td>
+              <td>NOK</td>
+              <td>različit host</td>
+            </tr>
+            <tr>
+              <td>http://www.example.com:80/dir/other.html</td>
+              <td>???</td>
+              <td>zavisi od browsera</td>
+            </tr>
+          </table>
+        </section>
+
+        <section class="valigntop left">
+          <h2>CORS ideja</h2>
+          <p><a href="https://www.w3.org/TR/cors/" target="_blank">CORS</a> (Cross-Origin Resource Sharing) pruža mogućnost da sajt <strong>A</strong> dopusti pristup svojim podacima skriptovima sa sajta <strong>B</strong>.</p> 
+          <p>Server <strong>A</strong> treba da doda CORS zaglavlja u svoj HTTP odgovor.</p> 
+          <p>Podrška za CORS u web čitačima:</p>
+          <ul>
+            <li>Chrome 3+</li>
+            <li>Firefox 3.5+</li>
+            <li>Safari 4+</li>
+            <li>Opera 12+</li>
+            <li>Internet Explorer 8+</li>
+            <li>Microsoft Edge</li>
+          </ul>
+          <p class="left"><small>Tekuće stanje je na <a href="http://caniuse.com/#search=cors" target="_blank">http://caniuse.com/#search=cors</a>.</small></p>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Priprema XMLHttRequest zahteva</h2>
+          <div style="font-size: 30pt;"><pre><code class="javascript">​
+function createCORSRequest(method, url) {
+  var xhr = new XMLHttpRequest();
+  if ("withCredentials" in xhr) { // da li je XMLHttpRequest2 objekat
+    xhr.open(method, url, true);
+  } else if (typeof XDomainRequest != "undefined") {
+    // XDomainRequest: specijalan slučaj za MSIE
+    xhr = new XDomainRequest();
+    xhr.open(method, url);
+  } else {
+    xhr = null; // CORS nije podržan
+  }
+  return xhr;
+}
+
+var xhr = createCORSRequest('GET', url);
+if (!xhr) {
+  throw new Error('CORS not supported');
+}
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Priprema XMLHttpRequest zahteva</h2>
+          <p class="left">Treba definisati callback za <code>onload</code> i <code>onerror</code>.</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">​
+xhr.onload = function() {
+  var responseText = xhr.responseText;
+  console.log(responseText);
+  // obradi odgovor
+};
+
+xhr.onerror = function() {
+  console.log('Greška!');
+};
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Priprema XMLHttpRequest zahteva</h2>
+          <p class="left">Standardni CORS zahtevi ne podrazumevaju cookies. Za uključivanje cookies treba:</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">​
+xhr.withCredentials = true;
+          </code></pre></div>
+          <p class="left">Server sa svoje strane mora da omogući credentials odgovarajućim zaglavljem:</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">​
+Access-Control-Allow-Credentials: true
+          </code></pre></div>
+          <p class="left">Ovi cookies neće biti dostupni u JavaScriptu zbog SOP.</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Slanje CORS zahteva</h2>
+          <p class="left">Kada je sve pripremljeno:</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">​
+xhr.send();
+          </code></pre></div>
+          <p class="left">Ako zahtev ima telo, ono se prosleđuje kao parametar <code>send</code>.</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>CORS na serveru</h2>
+          <p class="left">Najveći posao će obaviti web čitač i server. Čitač će dodati zaglavlja i po potrebi slati dodatne zahteve.</p>
+          <img src="img/javascript/cors-flow.png" width="50%" style="background:white" />
+        </section>
+
+        <section class="valigntop left">
+          <h2>Prosti CORS zahtevi</h2>
+          <p class="left">Prosti CORS zahtevi imaju:</p>
+          <ul>
+            <li>GET, HEAD ili POST</li>
+            <li>Accept</li>
+            <li>Accept-Language</li>
+            <li>Content-Language</li>
+            <li>Last-Event-ID</li>
+            <li>Content-Type koji mora biti
+              <ul>
+                <li>application/x-www-form-urlencoded</li>
+                <li>multipart/form-data</li>
+                <li>text/plain</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Prosti CORS zahtev</h2>
+          <div style="font-size: 30pt;"><pre><code class="javascript">​
+var url = 'http://api.alice.com/cors';
+var xhr = createCORSRequest('GET', url);
+xhr.send();
+          </code></pre></div>
+          <div style="font-size: 30pt;"><pre><code class="text">​
+GET /cors HTTP/1.1
+Origin: http://api.bob.com
+Host: api.alice.com
+Accept-Language: en-US
+Connection: keep-alive
+User-Agent: Mozilla/5.0...
+          </code></pre></div>
+          <p class="left"><code>Origin</code> zaglavlje je dodao čitač i ne može se uticati na njega!</p>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Odgovor servera</h2>
+          <div style="font-size: 30pt;"><pre><code class="javascript">​
+Access-Control-Allow-Origin: http://api.bob.com
+Access-Control-Allow-Credentials: true
+Access-Control-Expose-Headers: FooBar
+Content-Type: text/html; charset=utf-8
+...
+          </code></pre></div>
+          <ul>
+            <li><strong>Access-Control-Allow-Origin</strong> (obavezan): mora biti uključen u sve CORS odgovore; sadrži ili adresu iz zahteva ili <code>*</code> (za sve domene)</li>
+            <li><strong>Access-Control-Allow-Credentials</strong> (opcioni): naznačava da treba uključiti cookies u zahteve</li>
+            <li><strong>Access-Control-Expose-Headers</strong> (opcioni): dodatna zaglavlja koja su dostupna klijentu (pored standardnih Cache-Control, Content-Language, Content-Type, Expires, Last-Modified, Pragma)</li>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Složeni zahtevi</h2>
+          <p>Složeni zahtevi su potrebni ako šaljemo druge metode kao PUT i DELETE ili ako prenosimo JSON podatke.</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">​
+var url = 'http://api.alice.com/cors';
+var xhr = createCORSRequest('PUT', url);
+xhr.setRequestHeader('X-Custom-Header', 'value');
+xhr.send();
+          </code></pre></div>
+          <p>Čitač prvo šalje probni zahtev (OPTIONS) da proveri da li ima dozvolu da šalje pravi zahtev. Posle pozitivnog odgovora šalje pravi zahtev. Ovo se odvija transparentno za JavaScript program. Probni zahtev se može keširati da se ne bi slao više puta.</p>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Probni zahtev</h2>
+          <div style="font-size: 30pt;"><pre><code class="text">​
+OPTIONS /cors HTTP/1.1
+Origin: http://api.bob.com
+Access-Control-Request-Method: PUT
+Access-Control-Request-Headers: X-Custom-Header
+Host: api.alice.com
+Accept-Language: en-US
+Connection: keep-alive
+User-Agent: Mozilla/5.0...
+          </code></pre></div>
+          <ul>
+            <li><strong>Access-Control-Request-Method</strong>: metoda pravog zahteva</li>
+            <li><strong>Access-Control-Request-Headers</strong>: lista posebnih zaglavlja u zahtevu, razdvojenih zarezom</li>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Odgovor na probni zahtev</h2>
+          <div style="font-size: 30pt;"><pre><code class="text">​
+Access-Control-Allow-Origin: http://api.bob.com
+Access-Control-Allow-Methods: GET, POST, PUT
+Access-Control-Allow-Headers: X-Custom-Header
+Content-Type: text/html; charset=utf-8
+          </code></pre></div>
+          <ul>
+            <li><strong>Access-Control-Allow-Origin</strong>: kao kod prostog zahteva</li>
+            <li><strong>Access-Control-Allow-Methods</strong>: lista dozvoljenih HTTP metoda</li>
+            <li><strong>Access-Control-Allow-Headers</strong>: lista dozvoljenih zaglavlja u zahtevu</li>
+            <li><strong>Access-Control-Allow-Credentials</strong>: kao kod prostog zahteva</li>
+            <li><strong>Access-Control-Max-Age</strong>: omogućava keširanje ovog odgovora dati broj sekundi</li>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Stvarni zahtev</h2>
+          <div style="font-size: 30pt;"><pre><code class="text">​
+PUT /cors HTTP/1.1
+Origin: http://api.bob.com
+Host: api.alice.com
+X-Custom-Header: value
+Accept-Language: en-US
+Connection: keep-alive
+User-Agent: Mozilla/5.0...
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Odgovor na stvarni zahtev</h2>
+          <div style="font-size: 30pt;"><pre><code class="text">​
+Access-Control-Allow-Origin: http://api.bob.com
+Content-Type: text/html; charset=utf-8
+          </code></pre></div>
+          <p>Ako se izostave CORS zaglavlja, signalizira se neispravan zahtev.</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Koja zaglavlja staviti u odgovor?</h2>
+          <a href="img/javascript/cors-server-flowchart.png" target="_blank"><img src="img/javascript/cors-server-flowchart.png" width="50%" style="border:0"></a>
+        </section>
+
+
+        <!--
+
+          generators ES6
+
+          Iz knjige
+          Efikasno učitavanje skriptova
+          Asinhrona komunikacija
+          Cross-domain techniques
+          Data caching
+          Toolchain
+
+        -->
+
         <section>
           <h3>Kraj dela</h3>
           <p><a href="#/">← Početak dela</a></p>
@@ -1277,22 +1866,3 @@ Promise.all(arrayOfPromises).then(function(arrayOfResults) {
     </script>
   </body>
 </html>
-<!--
-
-Obicne stvari
-http://www.teaching-materials.org/javascript/
-
-Neobicne stvari
-https://slides.com/concise/js/fullscreen#/
-https://gist.github.com/concise/a20b3e5d7e9c61dfbcc5
-http://slides.com/gsklee/functional-programming-in-5-minutes#/
-
-Good parts vs bad parts
-http://johnkpaul.github.io/presentations/empirejs/javascript-bad-parts/#/
-
-http://brendaneich.github.io/Strange-Loop-2012/#/
-
-http://es6-features.org
-
-https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f
--->
