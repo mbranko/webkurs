@@ -16,6 +16,9 @@
 .reveal section.vcenter {
   vertical-align: center; }
 
+.reveal section.left {
+  text-align: left; }
+
 .reveal pre code {
   font-family: 'Fira Mono', monospace; }
 
@@ -61,8 +64,12 @@
   color: #e7ad52;
 }
 
-p.left {
+.reveal p.left {
   text-align: left;
+}
+
+.reveal section.left ul,ol {
+  padding-left: 40px;
 }
 
 /*********************************************

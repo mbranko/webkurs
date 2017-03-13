@@ -47,13 +47,7 @@
         </section>
 
         <section>
-          <h1>#1: callback</h1>
-        </section>
-
-        <!-- sa FED kursa -->
-
-        <section>
-          <h1>#2: cascade</h1>
+          <h1>#1: cascade</h1>
         </section>
 
         <section class="valigntop">
@@ -101,6 +95,182 @@
           <div style="font-size: 30pt;"><pre><code class="javascript">
 ​userController.findUser("test2@test2.com").formatName().createLayout().displayUser();
           </code></pre></div>
+        </section>
+
+        <section>
+          <h1>#2: callback</h1>
+        </section>
+
+        <!-- sa FED kursa -->
+        <section class="valigntop">
+          <h2>Callback funkcija</h2>
+          <ul>
+            <li>koncept iz funkcionalnog programiranja</li>
+            <li>funkcija kao parametar funkcije</li>
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="javascript">
+$("#btn_1").click(function() {
+  alert("Btn 1 Clicked");
+});          
+          </code></pre></div>
+          <div style="font-size:30pt;"><pre><code class="javascript">
+var friends = ["Mike", "Stacy", "Andy", "Rick"];
+​
+friends.forEach(function (eachName, index){
+  console.log(index + 1 + ". " + eachName); // 1. Mike, 2. Stacy, 3. Andy, 4. Rick​
+});         
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Callback funkcija</h2>
+          <ul>
+            <li>prilikom poziva funkcije prosleđujemo definiciju druge funkcije</li>
+            <li>ne izvršava se prilikom poziva<br/><br/></li>
+            <li><strong>callback funkcija je closure</strong></li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Callback tip #1: anonimne i imenovane funkcije</h2>
+          <p class="left">primer imenovane callback funkcije</p>
+          <div style="font-size:30pt;"><pre><code class="javascript">
+​var allUserData = [];
+​
+​function logStuff(userData) {
+  if (typeof userData === "string")
+    console.log(userData);
+  else if (typeof userData === "object")
+    for (var item in userData)
+      console.log(item + ": " + userData[item]);
+}
+​
+​function getInput(options, callback) {
+  allUserData.push(options);
+  callback(options);
+}
+​
+​getInput ({name:"Rich", speciality:"JavaScript"}, logStuff);
+​          </code></pre></div>
+          <p class="left"><small>Callback funkcija prima parametar od funkcije koja je obuhvata.</small></p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Callback tip #2: prenos parametara</h2>
+          <p class="left">callback može pristupiti globalnim promenljivima</p>
+          <div style="font-size:30pt;"><pre><code class="javascript">
+​​var defaultOptions = { ... };
+​
+​function logStuff(userData) {
+  if (!userData)
+    userData = defaultOptions;
+  ...
+}
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Callback tip #3: provera da li je callback</h2>
+          <p class="left">pre poziva može se proveriti da li je u pitanju funkcija</p>
+          <div style="font-size:30pt;"><pre><code class="javascript">
+​​function getInput(options, callback) {
+  allUserData.push(options);
+​  if (typeof callback === "function")
+    callback(options);
+}
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Callback tip #4: pazi na this</h2>
+          <p class="left">Kada je callback metoda koja koristi <code>this</code>:</p>
+          <div style="font-size:30pt;"><pre><code class="javascript">
+​​// definiši objekat sa metodom
+​// metodu ćemo kasnije proslediti kao callback
+​var clientData = {
+  id: 094545,
+  fullName: "Not Set",
+  setUserName: function (firstName, lastName)  {
+    this.fullName = firstName + " " + lastName;
+  }
+}
+​
+​function getUserInput(firstName, lastName, callback)  {
+  callback (firstName, lastName);
+}
+          </code></pre></div>
+          <p class="left">Kada se pozove <code>setUserName</code>, <code>this</code> se ne odnosi na objekat <code>clientData</code> nego na <code>window</code> objekat u web čitaču, jer je <code>getUserInput</code> globalna funkcija. U globalnoj funkciji <code>this</code> pokazuje na <code>window</code>.
+        </section>
+
+        <section class="valigntop">
+          <h2>Callback tip #4: pazi na this</h2>
+          <p class="left">Funkcije <code>call</code> i <code>apply</code> mogu da postave <code>this</code> unutar funkcije i proslede parametre funkciji. Obe funkcije primaju novu vrednost za <code>this</code> kao prvi parametar.</p>
+          <p class="left">
+          <div style="font-size:30pt;"><pre><code class="javascript">
+​​// dodali smo novi parametar ovde: callbackObj
+​function getUserInput(firstName, lastName, callback, callbackObj)  {
+  callback.apply(callbackObj, [firstName, lastName]);
+}
+          </code></pre></div>
+          <p class="left">Drugi parametar za <code>apply</code> je niz koji će se proslediti funkciji kao njeni parametri.</p>
+          <p class="left">Naredni parametri za <code>code</code> su parametri koji će se direktno proslediti funkciji.</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Callback tip #5: više callback funkcija odjednom</h2>
+          <p class="left">Možemo proslediti više callback funkcija odjednom prilikom poziva.</p>
+          <p class="left">
+          <div style="font-size:30pt;"><pre><code class="javascript">
+​​function successCallback() { ... }
+​
+​function successCallback() { ... }
+​
+​function completeCallback() { ... }
+​
+​function errorCallback() { ... }
+​
+$.ajax({
+    url: "http://fiddle.jshell.net/favicon.png",
+    success: successCallback,
+    complete: completeCallback,
+    error: errorCallback
+});
+          </code></pre></div>
+          <p class="left"><small>Primer koristi jQuery <code>ajax</code> funkciju.</small></p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Callback Hell</h2>
+          <p class="left">Callback poziva callback poziva callback poziva...</p>
+          <div style="font-size:30pt;"><pre><code class="javascript">
+var p_client = new Db('integration_tests_20', new Server("127.0.0.1", 27017, {}), {'pk':CustomPKFactory});
+p_client.open(function(err, p_client) {
+    p_client.dropDatabase(function(err, done) {
+        p_client.createCollection('test_custom_key', function(err, collection) {
+            collection.insert({'a':1}, function(err, docs) {
+                collection.find({'_id':new ObjectID("aaaaaaaaaaaa")}, function(err, cursor) {
+                    cursor.toArray(function(err, items) {
+                        test.assertEquals(1, items.length);
+​
+                        // Let's close the db​
+                        p_client.close();
+                    });
+                });
+            });
+        });
+    });
+});
+          </code></pre></div>
+          <p class="left"><small>Primer iz <a href="https://www.mongodb.com" target="_blank">MongoDB</a> drajvera za <a href="https://nodejs.org/" target="_blank">Node.js</a>.</small></p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Callback Hell</h2>
+          <p class="left">Dva pristupa rešavanju ovog problema:</p>
+          <ol>
+            <li>Dati ime funkciji i proslediti samo ime funkcije kao callback, umesto pisanja anonimne funkcije unutar poziva.</li>
+            <li>Podeliti kod u module, tako da se odgovarajući modul importuje u veću aplikaciju.</li>
+          </ol>
         </section>
 
         <section>
@@ -437,16 +607,6 @@ function getModule(name) {
 
         <!--
 
-          callbacks
-          http://cwbuecheler.com/web/tutorials/2013/javascript-callbacks/
-          http://callbackhell.com
-          http://javascriptissexy.com/understand-javascript-callback-functions-and-use-them/
-          
-          promise objects
-          https://scotch.io/tutorials/javascript-promises-for-dummies
-          https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
-          https://developers.google.com/web/fundamentals/getting-started/primers/promises
-
           web storage
           
 
@@ -461,7 +621,610 @@ function getModule(name) {
 
         -->
 
+        <section>
+          <h1>#4: obećanja</h1>
+        </section>
 
+        <section class="valigntop left">
+          <h2>Promise objekti</h2>
+          <p class="left">Implementirani u posebnim bibliotekama od ranije, npr:</p>
+          <ul class="left">
+            <li><a href="https://github.com/kriskowal/q" target="_blank">Q</a></li>
+            <li><a href="https://github.com/cujojs/when" target="_blank">when</a></li>
+            <li><a href="https://msdn.microsoft.com/en-us/library/windows/apps/br211867.aspx" target="_blank">WinJS</a></li>
+            <li><a href="https://github.com/tildeio/rsvp.js" target="_blank">RSVP.js</a></li>
+          </ul>
+
+          <p class="left">Podrška u web čitačima:</p>
+          <ul>
+            <li>Chrome 32</li>
+            <li>Firefox 29</li>
+            <li>Safari 8</li>
+            <li>Microsoft Edge</li>
+          </ul>
+
+          <p class="left">Ili ovaj <a href="https://github.com/stefanpenner/es6-promise#readme" target="_blank">polyfill</a> za starije čitače.</p>
+          <p class="left">Uvedeni u ECMAScript 6.</p>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Promise definicija</h2>
+          <p class="left">Promise je proxy za vrednost koju ne moramo znati u vreme kreiranja. Može biti u tri stanja:</p>
+          <ul>
+            <li><strong>pending</strong>: inicijalno stanje, niti ispunjeno niti odbijeno</li>
+            <li><strong>fulfilled</strong>: operacija je uspešno završena</li>
+            <li><strong>rejected</strong>: operacija nije uspešno završena<br/><br/></li>
+            <li><strong>settled</strong>: fulfilled ili rejected</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Primer</h2>
+          <div style="font-size: 30pt;"><pre><code class="javascript">
+​var img1 = document.querySelector('.img-1');
+
+img1.addEventListener('load', function() {
+  // ...
+});
+
+img1.addEventListener('error', function() {
+  // ...
+});
+          </code></pre></div>
+          <p class="left">Događaj može da se desi pre nego što počnemo da ga osluškujemo!</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Primer</h2>
+          <p>Da probamo da iskoristimo osobinu <code>complete</code> za slike:</p>
+          <div style="font-size: 26pt;"><pre><code class="javascript">
+​var img1 = document.querySelector('.img-1');
+
+function loaded() {
+  // ...
+}
+
+if (img1.complete) {
+  loaded();
+}
+else {
+  img1.addEventListener('load', loaded);
+}
+
+img1.addEventListener('error', function() {
+  // ...
+});
+          </code></pre></div>
+          <p class="left">Ne hvata slike koje su proizvele grešku pre nego što smo počeli da slušamo.</p>
+          <p class="left">Ako treba da obradimo više slika...</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Primer</h2>
+          <p>Idealno nam treba nešto ovakvo:</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">
+​img1.callThisIfLoadedOrWhenLoaded(function() {
+  // loaded
+}).orIfFailedCallThis(function() {
+  // failed
+});
+
+whenAllTheseHaveLoaded([img1, img2]).callThis(function() {
+  // all loaded
+}).orIfSomeFailedCallThis(function() {
+  // one or more failed
+});
+          </code></pre></div>
+          <p class="left">Ovaj problem rešavaju <strong>promise objekti</strong>.</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Primer</h2>
+          <p>Kada bi <code>img</code> element imao <code>ready</code> metodu koja vraća promise:</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">
+​img1.ready().then(function() {
+  // loaded
+}, function() {
+  // failed
+});
+
+Promise.all([img1.ready(), img2.ready()]).then(function() {
+  // all loaded
+}, function() {
+  // one or more failed
+});
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer</h2>
+          <p class="left">Promise - slično osluškivanju događaja osim:</p>
+          <ol>
+            <li>Promise može biti uspešan ili neuspešan <strong>jednom</strong>. Ne može dva puta, niti se može menjati status iz uspešnog u neuspešno ili obrnuto.</li>
+            <li>Ako je promise bio uspešan ili neuspešan, a kasnije smo dodali callback funkcije, odgovarajući callback će biti pozvan iako se događaj desio pre toga.</li>
+          </ol>
+        </section>
+
+        <section class="valigntop">
+          <h2>Promise: kreiranje</h2>
+          <p class="left">Ovako se kreira promise:</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">
+​var promise = new Promise(function(resolve, reject) {
+  // uradi neki posao
+
+  if (/* sve je u redu? */) {
+    resolve("Radi!");
+  } else {
+    reject(Error("Ne radi!"));
+  }
+});
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Promise: korišćenje</h2>
+          <p class="left">A ovako se koristi:</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">
+​promise.then(function(result) {
+  console.log(result); // "Radi!"
+}, function(err) {
+  console.log(err); // Error: "Ne radi!"
+});
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>then()</h2>
+          <p class="left"><code>then</code> prima dva parametra</p>
+          <ol>
+            <li>callback za uspešan ishod</li>
+            <li>callback za neuspešan ishod</li>
+          </ol>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer</h2>
+          <p class="left">Naša stranica bi trebalo da:</p>
+          <ol>
+            <li>pokrene spinner da prikaže učitavanje</li>
+            <li>učita JSON za knjigu (što nam daje naslov i URI-je za svako poglavlje)</li>
+            <li>postavi naslov stranice</li>
+            <li>učita sva poglavlja</li>
+            <li>doda knjigu na stranicu</li>
+            <li>zaustavi spinner</li>
+          </ol>
+          <p class="left">U slučaju greške treba obavestiti korisnika i zaustaviti spinner.</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Promisify XMLHttpRequest</h2>
+          <div style="font-size: 28pt;"><pre><code class="javascript">​function get(url) {
+  return new Promise(function(resolve, reject) {
+    var req = new XMLHttpRequest();
+    req.open('GET', url);
+
+    req.onload = function() {
+      if (req.status == 200)
+        // uspešan ishod
+        resolve(req.response);
+      else
+        // neuspešan ishod
+        reject(Error(req.statusText));
+    };
+
+    // mrežne greške
+    req.onerror = function() {
+      reject(Error("Network Error"));
+    };
+
+    // pošalji zahtev
+    req.send();
+  });
+}</code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Promisify XMLHttpRequest</h2>
+          <p class="left">Korišćenje prethodno napravljenog promise:</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">​
+get('story.json').then(function(response) {
+  console.log("Success!", response);
+}, function(error) {
+  console.error("Failed!", error);
+})
+</code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Ulančavanje then</h2>
+          <p class="left">Rezultat učitavanja će biti JSON tekst koji treba parsirati:</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">​
+get('story.json').then(function(response) {
+  return JSON.parse(response);
+}).then(function(response) {
+  console.log("Yey JSON!", response);
+})
+</code></pre></div>
+          <p class="left">Pošto <code>JSON.parse</code> prima jedan parametar, to može i kraće:</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">​
+get('story.json').then(JSON.parse).then(function(response) {
+  console.log("Yey JSON!", response);
+})
+</code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Ulančavanje then</h2>
+          <p class="left">Ako callback vrati</p>
+          <ul>
+            <li>gotovu vrednost: sledeći <code>then</code> će je preuzeti</li>
+            <li>promise: sledeći <code>then</code> će je sačekati</li>
+          </ul>
+          <div style="font-size: 30pt;"><pre><code class="javascript">​
+getJSON('story.json').then(function(story) {
+  return getJSON(story.chapterUrls[0]);
+}).then(function(chapter1) {
+  console.log("Got chapter 1!", chapter1);
+})
+</code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Hvatanje greške</h2>
+          <p class="left"><code>then</code> prima dva parametra:</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">​
+get('story.json').then(function(response) {
+  console.log("Success!", response);
+}, function(error) {
+  console.log("Failed!", error);
+})
+</code></pre></div>
+          <p class="left">Može i pomoću <code>catch</code>:</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">​
+get('story.json').then(function(response) {
+  console.log("Success!", response);
+}).catch(function(error) {
+  console.log("Failed!", error);
+})
+</code></pre></div>
+          <p class="left">Ali to nije baš isto!</p>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Hvatanje greške</h2>
+          <p class="left">Kada se koristi <code>catch</code>:</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">​
+get('story.json').then(function(response) {
+  console.log("Success!", response);
+}).catch(function(error) {
+  console.log("Failed!", error);
+})
+</code></pre></div>
+          <p class="left">je ekvivalentno sa:</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">​
+get('story.json').then(function(response) {
+  console.log("Success!", response);
+}).then(undefined, function(error) {
+  console.log("Failed!", error);
+})
+</code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Hvatanje greške</h2>
+          <p class="left">Sa <code>then(f1, f2)</code>, biće pozvana ili <code>f1</code> ili <code>f2</code>, nikada obe.</p>
+          <p class="left">Sa <code>then(f1).catch(f2)</code>, biće pozvane obe i ako <code>f1</code> proizvede grešku jer su to posebni koraci u lancu.</p>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Izuzeci i promise</h2>
+          <p class="left">Negativan ishod za promise dobija se</p>
+          <ul>
+            <li>eksplicitno, pozivanjem <code>reject</code> callback-a</li>
+            <li>bacanjem izuzetka u konstruktoru promise-a, kao u primeru:</li>
+          </ul>
+          <div style="font-size: 30pt;"><pre><code class="javascript">​
+var jsonPromise = new Promise(function(resolve, reject) {
+  // JSON.parse baca grešku ako tekst nije pravilan JSON
+  // tako da se ovo implicitno reject-uje
+  resolve(JSON.parse("This ain't JSON"));
+});
+
+jsonPromise.then(function(data) {
+  // nikad se neće desiti
+  console.log("It worked!", data);
+}).catch(function(err) {
+  // ovo će se desiti
+  console.log("It failed!", err);
+})
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Izuzeci i promise</h2>
+          <p class="left">Isto važi i za greške koje nastanu u callbacku za <code>then</code>:</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">​
+get('/').then(JSON.parse).then(function() {
+  // Ovo se neće desiti, '/' je HTML strana, ne JSON
+  // pa će JSON.parse baciti izuzetak
+  console.log("It worked!", data);
+}).catch(function(err) {
+  // ovo će se desiti
+  console.log("It failed!", err);
+})
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer</h2>
+          <p class="left">U primeru sa učitavanjem knjige:</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">​
+getJSON('book.json').then(function(book) {
+  return getJSON(book.chapterUrls[0]);
+}).then(function(chapter1) {
+  addHtmlToPage(chapter1.html);
+}).catch(function() {
+  addTextToPage("Failed to show chapter");
+}).then(function() {
+  document.querySelector('.spinner').style.display = 'none';
+})
+          </code></pre></div>
+          <p class="left"><small>Ako <code>getJSON(book.chapterUrls[0])</code> vrati grešku, preskaču sve svi <code>then</code> callbacks, i prelazi na <code>catch</code> callback. Spinner će se isključiti u oba slučaja.</small></p>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer</h2>
+          <p class="left">Prethodni primer je asinhrona varijanta sledeće ideje:</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">​
+try {
+  var story = getJSONSync('story.json');
+  var chapter1 = getJSONSync(story.chapterUrls[0]);
+  addHtmlToPage(chapter1.html);
+} catch (e) {
+  addTextToPage("Failed to show chapter");
+}
+document.querySelector('.spinner').style.display = 'none'
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer</h2>
+          <p class="left">Ako koristimo <code>catch</code> samo da zabeležimo grešku ali nastavljamo rad:</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">​
+function getJSON(url) {
+  return get(url).then(JSON.parse).catch(function(err) {
+    console.log("getJSON failed for", url, err);
+    throw err;
+  });
+}
+          </code></pre></div>
+          <p class="left"><small>Ponovo bacimo grešku.</small></p>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Paralelizam i sekvenca</h2>
+          <p class="left">Počnimo od sinhrone varijante koja učitava sva poglavlja:</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">​
+try {
+  var story = getJSONSync('story.json');
+  addHtmlToPage(story.heading);
+
+  story.chapterUrls.forEach(function(chapterUrl) {
+    var chapter = getJSONSync(chapterUrl);
+    addHtmlToPage(chapter.html);
+  });
+
+  addTextToPage("All done");
+}
+catch (err) {
+  addTextToPage("Argh, broken: " + err.message);
+}
+
+document.querySelector('.spinner').style.display = 'none'
+          </code></pre></div>
+          <p class="left"><small>Sinhrono izvršavanje će blokirati web čitač dok traje download.</small></p>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Paralelizam i sekvenca</h2>
+          <p class="left">Počnimo od sinhrone varijante koja učitava sva poglavlja:</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">​
+try {
+  var story = getJSONSync('story.json');
+  addHtmlToPage(story.heading);
+
+  story.chapterUrls.forEach(function(chapterUrl) {
+    var chapter = getJSONSync(chapterUrl);
+    addHtmlToPage(chapter.html);
+  });
+
+  addTextToPage("All done");
+}
+catch (err) {
+  addTextToPage("Argh, broken: " + err.message);
+}
+
+document.querySelector('.spinner').style.display = 'none'
+          </code></pre></div>
+          <p class="left"><small>Sinhrono izvršavanje će blokirati web čitač dok traje download.</small></p>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Paralelizam i sekvenca</h2>
+          <p class="left">Asinhrona varijanta bi trebalo da izgleda ovako:</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">​
+getJSON('story.json').then(function(story) {
+  addHtmlToPage(story.heading);
+
+  // TODO: za svaki url u story.chapterUrls, dobavi i prikaži ga
+}).then(function() {
+  // završili smo
+  addTextToPage("All done");
+}).catch(function(err) {
+  // uhvati usputne greške
+  addTextToPage("Argh, broken: " + err.message);
+}).then(function() {
+  // uvek
+  document.querySelector('.spinner').style.display = 'none';
+})
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Paralelizam i sekvenca</h2>
+          <p class="left">Ali kako da prođemo kroz poglavlja i učitavamo ih u pravom redosledu? Ovo neće raditi:</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">​
+story.chapterUrls.forEach(function(chapterUrl) {
+  // dobavi poglavlje
+  getJSON(chapterUrl).then(function(chapter) {
+    // dodaj ga na stranicu
+    addHtmlToPage(chapter.html);
+  });
+})
+          </code></pre></div>
+          <p class="left"><small><code>forEach</code> nije async-aware, tj. ne vodi računa o završetku operacije za svaki element sekvence. Poglavlja će se pojavljivati redosledu dobavljanja umesto u pravom redosledu.</small></p>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Paralelizam i sekvenca</h2>
+          <p class="left">Treba da pretvorimo <code>chapterUrls</code> u listu promisa.</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">​
+// počni od promisa koji je uvek uspešan
+var sequence = Promise.resolve();
+
+// iteracija kroz chapterUrls
+story.chapterUrls.forEach(function(chapterUrl) {
+  // dodaj ove akcije na kraj sekvence
+  sequence = sequence.then(function() {
+    return getJSON(chapterUrl);
+  }).then(function(chapter) {
+    addHtmlToPage(chapter.html);
+  });
+})
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Paralelizam i sekvenca</h2>
+          <p class="left">Ovo može i pomoću <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce" target="_blank"><code>Array.reduce</code></a>:</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">​
+// iteracija kroz chapterUrls
+story.chapterUrls.reduce(function(sequence, chapterUrl) {
+  // dodaj ove akcije na kraj sekvence
+  return sequence.then(function() {
+    return getJSON(chapterUrl);
+  }).then(function(chapter) {
+    addHtmlToPage(chapter.html);
+  });
+}, Promise.resolve())
+          </code></pre></div>
+          <p class="left"><small>Ne treba nam posebna promenljiva.</small></p>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Paralelizam i sekvenca</h2>
+          <p class="left">Rešenje:</p>
+          <div style="font-size: 27pt;"><pre><code class="javascript">​getJSON('story.json').then(function(story) {
+  addHtmlToPage(story.heading);
+
+  return story.chapterUrls.reduce(function(sequence, chapterUrl) {
+    // kada je završio promise prethodnog poglavlja
+    return sequence.then(function() {
+      // dobavi sledeće poglavlje
+      return getJSON(chapterUrl);
+    }).then(function(chapter) {
+      // i dodaj ga na stranicu
+      addHtmlToPage(chapter.html);
+    });
+  }, Promise.resolve());
+}).then(function() {
+  // sve je gotovo
+  addTextToPage("All done");
+}).catch(function(err) {
+  // uhvati greške usput
+  addTextToPage("Argh, broken: " + err.message);
+}).then(function() {
+  // uvek skloni spinner na kraju
+  document.querySelector('.spinner').style.display = 'none';
+})</code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Promise.all</h2>
+          <p class="left">Zašto da radimo download sekvencijalno? Postoji API:</p>
+          <div style="font-size: 30pt;"><pre><code class="javascript">​
+Promise.all(arrayOfPromises).then(function(arrayOfResults) {
+  //...
+})
+          </code></pre></div>
+          <p class="left"><code>Promise.all</code> prima niz promisa i kreira promise koji je ispunjen kada se svi uspešno završe. Dobija se niz rezultata u redosledu koji odgovara redosledu promisa.</p>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Paralelizam i sekvenca</h2>
+          <p class="left"><code>Promise.all</code> primenjeno na naš problem:</p>
+          <div style="font-size: 27pt;"><pre><code class="javascript">​getJSON('story.json').then(function(story) {
+  addHtmlToPage(story.heading);
+
+  // kreiraj niz promisa i čekaj na sve njih
+  return Promise.all(
+    // mapiraj chapterUrls niz na niz JSON promisa
+    story.chapterUrls.map(getJSON)
+  );
+}).then(function(chapters) {
+  // sada imamo JSON-e u pravom redosledu, iteriramo kroz njih
+  chapters.forEach(function(chapter) {
+    // i dodajemo u stranicu
+    addHtmlToPage(chapter.html);
+  });
+  addTextToPage("All done");
+}).catch(function(err) {
+  // uhvati greške usput
+  addTextToPage("Argh, broken: " + err.message);
+}).then(function() {
+  document.querySelector('.spinner').style.display = 'none';
+})</code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Paralelizam i sekvenca</h2>
+          <p class="left">Kada stigne poglavlje 1 možemo ga dodati na stranicu.</p>
+          <p class="left">Kada stigne poglavlje 3 ne možemo ga dodati na stranicu jer nije još stiglo poglavlje 2.</p>
+          <p class="left">Kada stigne poglavlje 2 možemo dodati poglavlja 2 i 3 na stranicu.<br/><br/></p>
+          <p class="left">Dobavićemo sva poglavlja paralelno, ali ćemo kreirati sekvencu za dodavanje u stranicu.</p>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Paralelizam i sekvenca</h2>
+          <p class="left">Paralelni download, sekvencijalno dodavanje u stranicu:</p>
+          <div style="font-size: 27pt;"><pre><code class="javascript">​getJSON('story.json').then(function(story) {
+  addHtmlToPage(story.heading);
+
+  // Mapiraj niz chapterUrls na niz JSON promisa. Oni će se dobavljati paralelno.
+  return story.chapterUrls.map(getJSON)
+    .reduce(function(sequence, chapterPromise) {
+      // pomoću reduce ćemo ulančati promise, dodajući sadržaj na stranicu za svako poglavlje
+      return sequence.then(function() {
+        // sačekaj na sve u sekvenci, onda sačekaj na poglavlje
+        return chapterPromise;
+      }).then(function(chapter) {
+        addHtmlToPage(chapter.html);
+      });
+    }, Promise.resolve());
+}).then(function() {
+  addTextToPage("All done");
+}).catch(function(err) {
+  addTextToPage("Argh, broken: " + err.message);
+}).then(function() {
+  document.querySelector('.spinner').style.display = 'none';
+})</code></pre></div>
+        </section>
+
+        <section>
+          <h3>Kraj dela</h3>
+          <p><a href="#/">← Početak dela</a></p>
+          <p><a href="index.html#/1">⇐ Početak kursa</a></p>
+        </section>
 
       </div>
     </div>
