@@ -146,7 +146,7 @@ HTTP/2.0</code></pre></span>
             <pre><code>
 GET /hello.htm HTTP/1.1
 User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
-Host: www.tutorialspoint.com
+Host: www.foobar.com
 Accept-Language: en-us
 Accept-Encoding: gzip, deflate
 Connection: Keep-Alive
@@ -160,7 +160,7 @@ Connection: Keep-Alive
             <pre><code>
 POST /cgi-bin/process.cgi HTTP/1.1
 User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
-Host: www.tutorialspoint.com
+Host: www.foobar.com
 Content-Type: application/x-www-form-urlencoded
 Content-Length: length
 Accept-Language: en-us
@@ -329,7 +329,7 @@ Connection: Closed
               </small></td>
             </tr>
           </table>
-          <p class="left"><small><a href="https://httpstatuses.com" target="_blank">https://httpstatuses.com</a></small></p>
+          <p class="left"><small>Pregled svih statusa: <a href="https://httpstatuses.com" target="_blank">https://httpstatuses.com</a></small></p>
         </section>
 
         <section class="valigntop">
@@ -347,7 +347,7 @@ Connection: Closed
             <pre><code>
 GET /hello.htm HTTP/1.1
 User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
-Host: www.tutorialspoint.com
+Host: www.foobar.com
 Accept-Language: en-us
 Accept-Encoding: gzip, deflate
 Connection: Keep-Alive
@@ -390,7 +390,7 @@ Connection: Closed
             <pre><code>
 GET /hello.htm HTTP/1.1
 User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
-Host: www.tutorialspoint.com
+Host: www.foobar.com
 Accept-Language: en-us
 Accept-Encoding: gzip, deflate
 Connection: Keep-Alive
@@ -427,11 +427,11 @@ Connection: Closed
 
         <section class="valigntop">
           <h2>POST metoda</h2>
-          <div style="font-size: 20pt;">
+          <div style="font-size: 25pt;">
             <pre><code>
 POST /cgi-bin/process.cgi HTTP/1.1
 User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
-Host: www.tutorialspoint.com
+Host: www.foobar.com
 Content-Type: text/xml; charset=utf-8
 Content-Length: 88
 Accept-Language: en-us
@@ -442,7 +442,7 @@ Connection: Keep-Alive
 &lt;string xmlns=&quot;http://clearforest.com/&quot;&gt;string&lt;/string&gt;
             </code></pre>
           </div>
-          <div style="font-size: 20pt;">
+          <div style="font-size: 25pt;">
             <pre><code>
 HTTP/1.1 200 OK
 Date: Mon, 27 Jul 2009 12:28:53 GMT
@@ -455,11 +455,7 @@ Content-Length: 88
 Content-Type: text/html
 Connection: Closed
 
-&lt;html&gt;
-  &lt;body&gt;
-    &lt;h1&gt;Request Processed Successfully&lt;/h1&gt;
-  &lt;/body&gt;
-&lt;/html&gt;
+&lt;html&gt;&lt;body&gt;&lt;h1&gt;Request Processed Successfully&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;
             </code></pre>
           </div>
         </section>
@@ -517,6 +513,7 @@ ETag: "c180de84f991g8"
               <ul>
                 <li><strong>200 OK</strong>: ako ima opisa operacije u odgovoru</li>
                 <li><strong>204 No Content</strong>: ako nema opisa operacije</li>
+                <li><strong>201 Created</strong>: ako je kreiran novi resurs</li>
               </ul>
             </li>
           </ol>
@@ -524,47 +521,33 @@ ETag: "c180de84f991g8"
 
         <section class="valigntop">
           <h2>PUT metoda</h2>
-          <div style="font-size: 20pt;">
+          <div style="font-size: 30pt;">
             <pre><code>
-POST /cgi-bin/process.cgi HTTP/1.1
+PUT /users/123 HTTP/1.1
 User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
-Host: www.tutorialspoint.com
-Content-Type: text/xml; charset=utf-8
-Content-Length: 88
+Host: www.foobar.com
 Accept-Language: en-us
-Accept-Encoding: gzip, deflate
 Connection: Keep-Alive
+Content-type: application/json
+Content-Length: 182
 
-&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;string xmlns=&quot;http://clearforest.com/&quot;&gt;string&lt;/string&gt;
+{"user_id": 123, "firstName": "John", "LastName": "Doe"}
             </code></pre>
           </div>
-          <div style="font-size: 20pt;">
+          <div style="font-size: 30pt;">
             <pre><code>
-HTTP/1.1 200 OK
+HTTP/1.1 204 No Content
 Date: Mon, 27 Jul 2009 12:28:53 GMT
 Server: Apache/2.2.14 (Win32)
-Last-Modified: Wed, 22 Jul 2009 19:15:56 GMT
-ETag: "34aa387-d-1568eb00"
-Vary: Authorization,Accept
-Accept-Ranges: bytes
-Content-Length: 88
-Content-Type: text/html
 Connection: Closed
-
-&lt;html&gt;
-  &lt;body&gt;
-    &lt;h1&gt;Request Processed Successfully&lt;/h1&gt;
-  &lt;/body&gt;
-&lt;/html&gt;
             </code></pre>
           </div>
         </section>
 
         <section class="valigntop">
-          <h2>PUT metoda</h2>
+          <h2>DELETE metoda</h2>
           <ol>
-            <li>za ažuriranje resursa</li>
+            <li>za brisanje resursa</li>
             <li>uspešna operacija treba da vrati
               <ul>
                 <li><strong>200 OK</strong>: ako ima opisa operacije u odgovoru</li>
@@ -575,23 +558,17 @@ Connection: Closed
         </section>
 
         <section class="valigntop">
-          <h2>PUT metoda</h2>
-          <div style="font-size: 20pt;">
+          <h2>DELETE metoda</h2>
+          <div style="font-size: 28pt;">
             <pre><code>
-POST /cgi-bin/process.cgi HTTP/1.1
+DELETE /users/123 HTTP/1.1
 User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
-Host: www.tutorialspoint.com
-Content-Type: text/xml; charset=utf-8
-Content-Length: 88
+Host: www.foobar.com
 Accept-Language: en-us
-Accept-Encoding: gzip, deflate
 Connection: Keep-Alive
-
-&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;string xmlns=&quot;http://clearforest.com/&quot;&gt;string&lt;/string&gt;
             </code></pre>
           </div>
-          <div style="font-size: 20pt;">
+          <div style="font-size: 28pt;">
             <pre><code>
 HTTP/1.1 200 OK
 Date: Mon, 27 Jul 2009 12:28:53 GMT
@@ -604,608 +581,116 @@ Content-Length: 88
 Content-Type: text/html
 Connection: Closed
 
-&lt;html&gt;
-  &lt;body&gt;
-    &lt;h1&gt;Request Processed Successfully&lt;/h1&gt;
-  &lt;/body&gt;
-&lt;/html&gt;
+&lt;html&gt;&lt;body&gt;&lt;h1&gt;Request Processed Successfully&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;
             </code></pre>
           </div>
         </section>
 
-       <section class="valigntop">
+        <section class="valigntop">
           <h2>Koji zahtev / koji odgovor?</h2>
-          <a href="img/http/whhD1.png" target="_blank"><img src="img/http/whhD1.png" height="80%"/></a>
+          <a href="img/http/whhD1.png" target="_blank"><img src="img/http/whhD1.png" height="80%" style="border:0"/></a>
         </section>
 
-       <section class="valigntop">
-          <h2>Univerzalni selektor</h2>
-          <ul>
-            <li>označava da se stil odnosi na sve elemente</li>
-            <li>piše se kao znak <code>*</code></li>
-          </ul>
-          <div style="font-size: 30pt; width: 50%; margin-left: 25%;">
-            <pre><code class="css">
-* { 
-  font-family: Roboto, Verdana, sans-serif;
-} 
- 
-div.poem * { 
-  font-family: serif;  
-}
-            </code></pre>
-          </div>
+        <section>
+          <h1>HTTP/2</h1>
         </section>
 
-       <section class="valigntop">
-          <h2>Grupisanje selektora</h2>
+        <section class="valigntop left">
+          <h2>HTTP/2</h2>
           <ul>
-            <li>ako imamo selektore sa istim definicijama, radi konciznosti možemo ih grupisati</li>
-            <li>prilikom grupisanja razdvajamo ih zarezom</li>
+            <li>nastao iz Guglovog <a href="http://www.chromium.org/spdy" target="_blank">SPDY</a> ("speedy") protokola</li>
+            <li>Ciljevi HTTP/2:
+              <ul>
+                <li>smanjenje kašnjenja</li>
+                <li>smanjenje broja otvorenih TCP konekcija</li>
+                <li>bolja bezbednost na webu</li>
+                <li>kompatibilnost sa HTTP/1.1 klijentima i serverima</li>
+                <li>može se koristiti gde i HTTP/1.1</li>
+              </ul>
+            </li>
           </ul>
-          <div style="font-size: 30pt; width: 50%; margin-left: 25%;">
-            <pre><code class="css">
-h1, h2, p.center { 
-  text-align: center;
-}
-            </code></pre>
-          </div>
         </section>
 
-       <section class="valigntop">
-          <h2>Selektori za potomke</h2>
+       <section class="valigntop left">
+          <h2>Novosti u HTTP/2</h2>
           <ul>
-            <li>kada se stil primenjuje samo na potomke određenog elementa</li>
-            <li>dva oblika:</li>
+            <li><strong>multiplexing</strong>: više asinhronih HTTP zahteva kroz jednu TCP konekciju</li>
+            <li><strong>server push</strong>: više odgovora na jedan zahtev</li>
+            <li><strong>header compression</strong>: kompresija HTTP zaglavlja kao i sadržaja</li>
+            <li><strong>request prioritization</strong>: prioritet među zahtevima poslatim na isti domen</li>
+            <li><strong>binary protocol</strong>: HTTP/2 je binarni protokol, za razliku od HTTP/1.1</li>
           </ul>
+        </section>
+
+       <section class="valigntop left">
+          <h2>Kompatibilnost sa HTTP/1.1</h2>
+          <ul>
+            <li>HTTP/2 klijent prvo šalje HTTP/1.1 zahtev sa zaglavljem<br/> <code>Upgrade: HTTP/2.0</code><br/><br/></li>
+            <li>ako server podržava HTTP/2 odgovara porukom<br/> <code>HTTP/1.1 101 Switching Protocols</code><br/><br/></li>
+            <li>klijent može da pamti da li server podržava HTTP/2</li>
+          </ul>
+        </section>
+
+       <section class="valigntop left">
+          <h2>Multipleksiranje</h2>
+          <ul>
+            <li>više zahteva se može poslati kroz jednu TCP konekciju i odgovori se mogu primati asinhrono</li>
+            <li><strong>streams &amp; frames</strong>
+              <ul>
+                <li>svaki zahtev i odgovor imaju svoj <strong>stream id</strong></li>
+                <li>podeljeni su u delove (binarne) i svaki deo ima svoj <strong>frame id</strong></li>
+                <li>stream identifikuje kom zahtevu ili odgovoru pripada dati frame</li>
+                <li>stream je kolekcija frame-ova</li>
+              </ul>
+            </li>
+          </ul>
+          <img src="img/http/http2-stream.png" width="99%"/>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Prioritet</h2>
+          <ul>
+            <li>stream može imati različite prioritete</li>
+            <li>na osnovu njega server odlučuje koliko memorije, CPU i I/O resursa će odvojiti za zahtev</li>
+            <li>frame-ovi streama sa prioritetom šalju se pre ostalih frame-ova</li>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Settings frame</h2>
+          <ul>
+            <li>kada se uspostavi TCP konekcija za HTTP/2, klijent i server razmenjuju SETTINGS frame-ove
+              <ul>
+                <li>koliko istovremenih stream-ova (paralelnih zahteva)</li>
+                <li>window size</li>
+                <li>na nivou konekcije i na nivou pojedinačnih stream-ova</li>
+              </ul>
+            </li>
+            <li>nije isto što i <em>TCP flow control</em>, ali je slično</li>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Server push</h2>
+          <p>Primer: klijent šalje zahtev za <code>index.html</code>; server proceni da će klijent tražiti i <code>styles.css</code> i <code>script.js</code>, i šalje <strong>push promise</strong> da predupredi zahtev.</p>
           <ol>
-            <li>za direktne naslednike (decu)</li>
-          <div style="font-size: 30pt;">
-            <pre><code class="css">
-ul > li { 
-  text-align: left;
-}
-            </code></pre>
-          </div>
-            <li>za sve potomke</li>
-          <div style="font-size: 30pt;">
-            <pre><code class="css">
-ul li { 
-  text-align: left;
-}
-            </code></pre>
-          </div>
+            <li>klijent šalje HEADERS tražeći <code>index.html</code> u strim 3</li>
+            <li>server šalje PUSH_PROMISE za <code>styles.css</code> i PUSH_PROMISE za <code>script.js</code> u strim 3; ovi frejmovi su slični zahtevu klijenta</li>
+            <li>server šalje HEADERS frejm u strim 3 za odgovor na <code>index.html</code></li>
+            <li>server šalje DATA frejmove u strimu 3 za <code>index.html</code></li>
+            <li>server šalje HEADERS frejm za odgovor na <code>styles.css</code> u strimu 4</li>
+            <li>server šalje HEADERS frejm za odgovor na <code>script.js</code> u strimu 6</li>
+            <li>server šalje DATA frejmove u strimovima 4 i 6 za <code>styles.css</code> i <code>script.js</code></li>
           </ol>
         </section>
 
-       <section class="valigntop">
-          <h2>Selektori i pseudo-klase</h2>
+        <section class="valigntop left">
+          <h2>Kompresija zaglavlja</h2>
           <ul>
-            <li>izbor elemenata koji imaju neko posebno <em>stanje</em></li>
-            <li>prilikom grupisanja razdvajamo ih zarezom</li>
-          <div style="font-size: 30pt; width: 50%; margin-left: 25%;">
-            <pre><code class="css">
-a:hover { 
-  color: red;
-}
-            </code></pre>
-          </div>
-            <li>često se koriste: <code>:first-child</code>, <code>:last-child</code>, <code>:nth-child</code>, <code>:empty</code>, ...            
-          </ul>
-        </section>
-
-       <section class="valigntop">
-          <h2>Kombinovanje selektora</h2>
-          <ul>
-            <li>kombinovanjem selektora mogu se pronaći specifični elementi</li>
-          </ul>
-          <div style="font-size: 30pt; width: 50%; margin-left: 25%;">
-            <pre><code class="css">
-div.container div.row > p:nth-child(2n) { 
-  color: red;
-}
-
-ul > li:nth-child(even) {
-  color: blue;
-}
-            </code></pre>
-          </div>
-        </section>
-
-
-
-        <section class="valigntop">
-          <h2>Jedinice mere</h2>
-          <ul>
-            <li><strong>apsolutne</strong> izražavaju veličinu u datim jedinicama</li>
-            <li>najčešće u pikselima (<code>px</code>), ali i <code>cm</code>, <code>mm</code>, <code>in</code>, <code>pc</code>, <code>pt</code></li>
-            <li><strong>relativne</strong> izražavaju veličine u odnosu na neke referentne vrednosti</li>
-          </ul>
-        </section>
-
-        <section class="valigntop">
-          <h2>Relativne jedinice</h2>
-          <ul>
-            <li>omogućavaju formatiranje stranice u skladu sa veličinom prikaza</li>
-            <li>najčešće se koristi <code>%</code></li>
-            <ul>
-              <li><code>100%</code> se najčešće odnosi na veličinu roditeljskog elementa</li>
-              <li><code>100%</code> za tekst je podrazumevana veličina fonta (ako zoom nije menjan to je 16px)</li>
-            </ul>
-            <li><code>em</code>: visina "em" razmaka za tekući font</li>
-            <li><code>ex</code>: visina malog slova "x" za tekući font</li>
-            <li><code>vh</code>: 1% trenutne visine viewporta</li>
-            <li><code>vw</code>: 1% trenutne širine viewporta</li>
-            <li><code>vmin</code>: <code>1vh</code> ili <code>1vw</code> šta god da je manje</li>
-          </ul>
-        </section>
-
-        <section class="valigntop">
-          <h2>Formatiranje teksta</h2>
-          <ul>
-            <li>najčešće osobine koje se podešavaju su oblik slova, veličina slova, poravnanje, "težina", boja, boja pozadine...
-            </li>
-          </ul>
-          <ul style="width:40%; float: left; margin-left: 10%;">
-            <li><code>color</code></li>
-            <li><code>direction</code></li>
-            <li><code>letter-spacing</code></li>
-            <li><code>line-height</code></li>
-            <li><code>text-align</code></li>
-            <li><code>text-decoration</code></li>
-            <li><code>text-indent</code></li>
-            <li><code>text-shadow</code></li>
-          </ul>
-          <ul style="width:40%; float: left">
-            <li><code>text-transform</code></li>
-            <li><code>unicode-bidi</code></li>
-            <li><code>vertical-align</code></li>
-            <li><code>white-space</code></li>
-            <li><code>word-spacing</code></li>
-            <li><code>font-family</code></li>
-            <li><code>font-style</code></li>
-            <li><code>font-weight</code></li>
-          </ul>
-        </section>
-
-        <section class="valigntop">
-          <h2>Formatiranje blokova</h2>
-          <ul>
-            <li>koristi box model</li>
-            <li>podešavaju se sledeći atributi</li>
-            <ul>
-              <li><code>margin</code>: sve ili pojedinačno za svaku stranu
-              <li><code>padding</code>: sve ili pojedinačno za svaku stranu
-              <li><code>border</code>: sve ili pojedinačno za svaku stranu
-              <li><code>width</code>, <code>height</code>: u apsolutnim ili relativnim jedinicama
-              <li><code>min-width</code>, <code>min-height</code>, <code>max-width</code>, <code>max-height</code>
-            </ul>
-          </ul>
-        </section>
-
-        <section class="valigntop">
-          <h2>Formatiranje blokova: display</h2>
-          <ul>
-            <li>atribut <code>display</code> određuje kako se blok prikazuje u odnosu na ostatak sadržaja</li>
-            <li><code>block</code>: (podrazumevano)</li>
-            <li><code>inline-block</code>: kao inline elementi ali ima svoj width i height</li>
-            <li><code>none</code>: ne zauzima prostor, kao da ne postoji<br/>
-            (različito od <code>visibility: hidden</code> kada se ne vidi ali rezerviše prostor)</li>
-          </ul>
-        </section>
-
-        <section class="valigntop">
-          <h2>Formatiranje blokova: position</h2>
-          <ul>
-            <li>osobina <code>position</code> određuje kako se blok pozicionira</li>
-            <li><code>static</code>: (podrazumevano, ignoriše <code>top</code>, <code>bottom</code>, itd)</li>
-            <li><code>relative</code>: relativno pomeren u odnosu na normalnu poziciju<br/>
-            &nbsp;&nbsp;&nbsp; pomoću osobina <code>top</code>, <code>bottom</code>, <code>left</code>, <code>right</code></li>
-            <li><code>absolute</code>: relativno u odnosu na najbližeg pozicioniranog pretka<br/>
-            &nbsp;&nbsp;&nbsp; ako ih nema, onda se uzima <code>body</code>;<br/>
-            &nbsp;&nbsp;&nbsp; pomera se sa skrolovanjem</li>
-            <li><code>fixed</code>: relativno u odnosu na viewport<br/>
-            &nbsp;&nbsp;&nbsp; ne pomera se prilikom skrolovanja<br/>
-            &nbsp;&nbsp;&nbsp; ne zauzima prostor na stranici</li>
-          </ul>
-        </section>
-
-        <section class="valigntop">
-          <h2>Float i clear</h2>
-          <ul>
-            <li>osobina <code>float</code> omogućava da se element izdvoji iz normalnog rasporeda</li>
-            <li>da "pluta" levo ili desno</li>
-            <li>slika oko koje će biti tekst, a slika ide udesno:
-            <div style="font-size: 30pt;">
-            <pre><code class="css" style="width:50%">
-img {
-  float: right;
-  margin: 0 0 10px 10px;
-}
-            </code></pre>
-            </div>
-            </li>
-            <li>osobina <code>clear</code> zabranjuje raspoređivanje elemenata oko plutajućeg elementa</li>
-            <li>sa leve strane zabranjujemo raspoređivanje drugih elemenata:
-          <div style="font-size: 30pt;">
-            <pre><code class="css" style="width:50%">
-div {
-  clear: left;
-}
-            </code></pre>
-            </div>
-            </li>
-          </ul>
-        </section>
-
-        <section class="valigntop">
-          <h2>Osobine specifične za web čitač</h2>
-          <ul>
-            <li>Mozilla čitači: Firefox
-            <ul>
-              <li><code>-moz-</code></li>
-            </ul>
-            </li>
-            <li>WebKit čitači: Chrome, Safari
-            <ul>
-              <li><code>-webkit-</code></li>
-            </ul>
-            </li>
-            <li>Opera
-            <ul>
-              <li><code>-o-</code></li>
-            </ul>
-            </li>
-            <li>Internet Explorer
-            <ul>
-              <li><code>-ms-</code></li>
-              <li><code>&lt;!--[IF IE]&gt; ... &lt;![endif]--&gt;</code></li>
-            </ul>
-            </li>
-            <li>Ne rade sve CSS osobine u svim čitačima
-            <ul>
-              <li><a href="http://www.caniuse.com">http://www.caniuse.com</a></li>
-              <li><a href="http://www.css3.info/selectors-test">http://www.css3.info/selectors-test</a></li>
-              <li><a href="http://quirksmode.org/css/contents.html">http://quirksmode.org/css/contents.html</a></li>
-            </ul>
-            </li>
-          </ul>
-        </section>
-
-        <section class="valigntop">
-          <h2>CSS3</h2>
-          <ul>
-            <li>tekući standard za CSS</li>
-            <li>modularizovan standard
-            <ul>
-              <li>selectors</li>
-              <li>box model</li>
-              <li>backgrounds and borders</li>
-              <li>image values and replaced content</li>
-              <li>text effects</li>
-              <li>2D/3D transformations</li>
-              <li>animations</li>
-              <li>multiple column layout</li>
-              <li>user interface</li>
-              <li>... još ~40-tak</li>
-            </ul>
-            </li>
-          </ul>
-        </section>
-
-        <section class="valigntop">
-          <h2>CSS3 novine</h2>
-          <ul>
-            <li>boje u <strong>rgba</strong>, <strong>hsl</strong>, <strong>hsla</strong> formatu</li>
-            <li><code>text-overflow</code>: šta sa tekstom koji ne stane u blok</li>
-            <li>korišćenje web fontova</li>
-          </ul>
-          <div style="font-size: 30pt; width: 50%; margin-left: 25%">
-            <pre><code class="css">
-@font-face {
-  font-family: mojnaziv;
-  src: url(putanjadofonta.woff);
-}
-            </code></pre>
-            </div>
-        </section>
-
-        <section class="valigntop">
-          <h2>Složeni selektori</h2>
-          <ul>
-            <li><code>element1 ~ element2</code><br/>
-            braća element2 elementa1</li>
-            <li><code>element1 + element2</code><br/>
-            element2 neposredno posle elementa1</li>
-            <li><code>element[attr]</code><br/>
-            selektuje sve elemente koji imaju atribut</li>
-            <li><code>element[attr="value"]</code><br/>
-            selektuje sve elemente koji imaju atribut sa datom vrednošću</li>
-            <li><code>element[attr^="value"]</code><br/>
-            selektuje sve elemente čiji atribut počinje datom vrednošću</li>
-            <li><code>element[attr$="value"]</code><br/>
-            selektuje sve elemente čiji atribut završava datom vrednošću</li>
-            <li><code>element[attr*="value"]</code><br/>
-            selektuje sve elemente čiji atribut sadrži datu vrednost</li>
-          </ul>
-        </section>
-
-        <section class="valigntop">
-          <h2>Nove pseudoklase</h2>
-          <ul>
-            <li><code>:nth-child(n)</code></li>
-            <li><code>:nth-of-type(n)</code></li>
-            <li><code>:root</code></li>
-            <li><code>:target</code></li>
-            <li><code>:enabled</code></li>
-            <li><code>:disabled</code></li>
-            <li><code>:checked</code></li>
-            <li><code>:selection</code></li>
-            <li><code>:not(selector)</code></li>
-          </ul>
-        </section>
-
-        <section class="valigntop">
-          <h2>border-color</h2>
-          <div style="border: 18px solid #000; border-bottom-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc; -o-border-bottom-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc; -icab-border-bottom-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc; -khtml-border-bottom-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc; -moz-border-bottom-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc; -webkit-border-bottom-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc; border-top-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc; -o-border-top-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc; -icab-border-top-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc; -khtml-border-top-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc; -moz-border-top-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc; -webkit-border-top-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc; border-left-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc; -o-border-left-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc; -icab-border-left-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc; -khtml-border-left-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc; -moz-border-left-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc; -webkit-border-left-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc; border-right-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc; -o-border-right-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc; -icab-border-right-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc; -khtml-border-right-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc; -moz-border-right-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc; -webkit-border-right-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc; padding: 5px 5px 5px 15px;">sivi gradijent u borderu</div>
-            <div style="font-size: 30pt;">
-            <pre><code class="css">
-border: 18px solid #000; 
-border-bottom-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc; 
-border-top-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc; 
-border-left-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc; 
-border-right-colors: #555 #666 #777 #888 #999 #aaa #bbb #ccc; 
-padding: 5px 5px 5px 15px;
-            </code></pre>
-            </div>
-        </section>
-
-        <section class="valigntop">
-          <h2>border-image</h2>
-          <div style="font-size: 30pt;">
-          <pre><code class="css">
-border-image: url(border.png) 27 27 27 27 round round;
-          </code></pre>
-          </div>
-          <img src="img/css/border-image1.gif">
-
-          <div style="font-size: 30pt;">
-          <pre><code class="css">
-border-image: url(border.png) 27 27 27 27 stretch stretch;
-          </code></pre>
-          </div>
-          <img src="img/css/border-image2.gif">
-        </section>
-
-        <section class="valigntop">
-          <h2>border-radius</h2>
-          <div style="-moz-border-radius: 15px; border-radius: 15px; -webkit-border-radius: 15px; border-color: white; padding: 5px 5px 5px 15px; -webkit-border-color: white">border radius</div>
-            <div style="font-size: 30pt;">
-            <pre><code class="css">
-#example1 {
-  -moz-border-radius: 15px;
-  border-radius: 15px;
-}
-            </code></pre>
-            </div>
-        </section>
-
-        <section class="valigntop">
-          <h2>box-shadow</h2>
-          <div style="font-size: 30pt;">
-            <pre><code class="css">
-#example1 {
-  -moz-box-shadow: 10px 10px 5px #888;
-  -webkit-box-shadow: 10px 10px 5px #888;
-  box-shadow: 10px 10px 5px #888;
-}
-            </code></pre>
-          </div>
-        </section>
-
-        <section class="valigntop">
-          <h2>text-shadow</h2>
-          <div style="font-size: 30pt;">
-            <pre><code class="css">
-#example1 {
-  text-shadow: 2px 2px 5px red;
-}
-            </code></pre>
-          </div>
-          <p>prvi broj je x offset, drugi je y offset, opcioni treći je radius rasipanja senke, četvrti je boja</p>
-        </section>
-
-        <section class="valigntop">
-          <h2>column-count</h2>
-          <ul>
-            <li>za slaganje sadržaja u više kolona</li>
-          </ul>
-          <div style="font-size: 30pt;">
-            <pre><code class="css">
-.clanci {
-  -webkit-column-count: 2; /* Chrome, Safari, Opera */ 
-  -moz-column-count: 2;    /* Firefox */
-  column-count: 2;
-}
-            </code></pre>
-          </div>
-        </section>
-
-        <section class="valigntop">
-          <h2>2D i 3D transformacije</h2>
-          <ul style="width:40%; float: left; margin-left: 10%;">
-            <li><code>translate()</code></li>
-            <li><code>rotate()</code></li>
-            <li><code>scale()</code></li>
-            <li><code>skewX()</code></li>
-            <li><code>skewY()</code></li>
-            <li><code>matrix()</code></li>
-          </ul>
-          <ul style="width:40%; float: left">
-            <li><code>translateX()</code></li>
-            <li><code>translateY()</code></li>
-            <li><code>translateZ()</code></li>
-            <li><code>translate3d()</code></li>
-            <li><code>rotateX()</code></li>
-            <li><code>rotateY()</code></li>
-            <li><code>rotateZ()</code></li>
-            <li><code>rotate3d()</code></li>
-            <li><code>scaleX()</code></li>
-            <li><code>scaleY()</code></li>
-            <li><code>scaleZ()</code></li>
-            <li><code>scale3d()</code></li>
-            <li><code>matrix3d()</code></li>
-            <li><code>perspective()</code></li>
-          </ul>
-        </section>
-
-        <section class="valigntop">
-          <h2>Tranzicije</h2>
-          <ul>
-            <li><code>transition-delay</code>: broj sekundi pre nego što tranzicija počne</li>
-            <li><code>transition-duration</code>: trajanje tranzicije</li>
-            <li><code>transition-property</code>: na koju osobinu se tranzicija odnosi</li>
-            <li><code>transition-timing-function</code>: oblik funkcije za tranziciju<br/>
-            <code>ease</code>, <code>linear</code>, <code>ease-in</code>, <code>ease-out</code>, <code>ease-in-out</code>, <code>cubic-bezier(n,n,n,n)</code></li>
-            <li><code>transition</code>: omogućava da se sve podesi u jednoj osobini</li>
-          </ul>
-        </section>
-
-        <section class="valigntop">
-          <h2>Media queries</h2>
-          <ul>
-            <li>za iste elemente definišemo različite stilove zavisno od konteksta</li>
-            <li><code>mediatype</code>: najčešće<br/>
-            <code>all</code>, <code>print</code>, <code>screen</code>, <code>speech</code></li>
-            <li>opšti oblik</li>
-          </ul>
-          <div style="font-size: 30pt;">
-            <pre><code class="css">
-@media not|only mediatype and (expressions) {
-  ... 
-}
-            </code></pre>
-          </div>
-        </section>
-
-        <section class="valigntop">
-          <h2>Media queries za responsive design</h2>
-          <div style="font-size: 22pt;">
-            <pre><code class="css">
-/* phone */
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {...}
-
-/* tablet */
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {...}
-
-/* tablet portrait */
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {...}
-
-/* tablet landscape */
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {...}
-            </code></pre>
-          </div>
-        </section>
-
-        <section class="valigntop">
-          <h2>CSS nasleđivanje</h2>
-          <p>primer:</p>
-          <div style="font-size: 30pt;">
-            <pre><code class="css">
-.container {
-  font-family: Helvetica, Arial, sans-serif;
-  font-size: 24px;
-  border: 5px solid red;
-}
-            </code></pre>
-          <div style="font-size: 30pt;">
-            <pre><code class="html">
-&lt;div class=&quot;container&quot;&gt;
-  &lt;p&gt;Lorem ipsum...&lt;/p&gt;
-&lt;/div&gt;
-            </code></pre>
-          </div>
-          <p><code>div</code> sadrži <code>p</code>;<br/>
-          <code>p</code> je nasledio <code>font-family</code> i <code>font-size</code>,<br/>
-          ali nije nasledio <code>border</code></p>.
-        </section>
-
-        <section class="valigntop">
-          <h2>CSS nasleđivanje</h2>
-          <div style="font-size: 30pt;">
-            <pre><code class="css">p {
-  font-family: Helvetica, Arial, sans-serif;
-  font-size: 14px;
-}
-.special {
-  font-size: 24px;
-  color: red;
-}</code></pre>
-          <div style="font-size: 30pt;">
-            <pre><code class="html">
-&lt;p&gt;Lorem ipsum...&lt;/p&gt;
-&lt;p class=&quot;special&quot;&gt;Lorem ipsum...&lt;/p&gt;
-            </code></pre>
-          </div>
-          <p>oba <code>p</code> taga imaju <code>font-family</code> i <code>font-size</code><br/>
-          drugi <code>p</code> ima redefinisanu veličinu fonta<br/>
-          drugi <code>p</code> ima novu boju teksta
-          </p>
-        </section>
-
-        <section class="valigntop">
-          <h2>CSS rezolucija konflikta</h2>
-          <ol>
-            <li>za datu osobinu, pronađi sve deklaracije koje se primenjuju na element</li>
-            <li>sortiraj deklaracije u skladu sa značajem i poreklom</li>
-            <li>deklaracije sa istim značajem i poreklom sortiraj prema specifičnosti selektora</li>
-            <li>ako imaju isti značaj, poreklo i specifičnost, sortiraj ih u redosledu kojim su definisane (poslednja pobeđuje)</li>
-          </ol>
-        </section>
-
-        <section class="valigntop">
-          <h2>CSS rezolucija konflikta</h2>
-          <ul>
-            <li>poreklo deklaracije: web čitač &lt; korisnik &lt; autor</li>
-            <li>značaj deklaracije: običan &lt; <code>!important</code></li>
-          </ul>
-          <p>Redosled važnosti od najmanje do najveće:</p>
-          <ol>
-            <li>deklaracije web čitača</li>
-            <li>normalne deklaracije korisnika</li>
-            <li>normalne deklaracije autora</li>
-            <li>značajne deklaracije korisnika</li>
-            <li>značajne deklaracije autora</li>
-          </ol>
-        </section>
-
-        <section class="valigntop">
-          <h2>CSS osobine i nasleđivanje</h2>
-          <ul>
-            <li>neke osobine se nasleđuju</li>
-            <li>a neke druge se ne nasleđuju</li>
-            <li>za svaku osobinu se zna da li se nasleđuje ili ne</li>
-          </ul>
-        </section>
-
-        <section class="valigntop">
-          <h2>Zadatak #01</h2>
-          <ul>
-            <li>Pronađite <code>zadaci/css/zadatak01</code> u <a href="https://github.com/mbranko/webkurs/tree/master/zadaci/css/zadatak01" target="_blank">repozitorijumu</a></li>
-          </ul>
-        </section>
-
-        <section class="valigntop">
-          <h2>Zadatak #02</h2>
-          <ul>
-            <li>Pronađite <code>zadaci/css/zadatak02</code> u <a href="https://github.com/mbranko/webkurs/tree/master/zadaci/css/zadatak02" target="_blank">repozitorijumu</a></li>
-          </ul>
-        </section>
-
-        <section class="valigntop">
-          <h2>Zadatak #03</h2>
-          <ul>
-            <li>Analizirajte <a href="starwars.html" target="_blank">CSS3 animaciju</a></li>
+            <li>Zaglavlje HTTP zahteva troši od 800B do par KB (cookies)</li>
+            <li>kompresija nije GZip, već se zaglavlja koja se ponavljaju (ne menjaju) izostavljaju</li>
+            <li>klijent i server održavaju tabelu zaglavlja za svaku TCP konekciju</li>
+            <li>zaglavlja se šalju samo kada se vrednost menja</li>
           </ul>
         </section>
 
@@ -1214,13 +699,6 @@ border-image: url(border.png) 27 27 27 27 stretch stretch;
           <p><a href="#/">← Početak dela</a></p>
           <p><a href="index.html#/1">⇐ Početak kursa</a></p>
         </section>
-
-        <!--
-        https://fr.slideshare.net/pradeepbv/introduction-to-html5-css3
-        https://fr.slideshare.net/GopiA2/presentation-about-html5-css3?next_slideshow=1
-        https://www.slideshare.net/owenoak/css-3-overview
-        http://www.css3-tutorial.net
-        -->
 
       </div>
     </div>

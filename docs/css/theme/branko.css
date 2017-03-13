@@ -68,7 +68,11 @@
   text-align: left;
 }
 
-.reveal section.left ul,ol {
+.reveal section.left ul {
+  padding-left: 40px;
+}
+
+.reveal section.left ol {
   padding-left: 40px;
 }
 
