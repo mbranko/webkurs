@@ -1,0 +1,568 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>JSON</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/branko.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <section class="vcenter">
+          <h1>JSON</h1>
+          <h3>JavaScript Object Notation</h3>
+          <p>
+            <small><a href="http://mbranko.github.io/webkurs">http://mbranko.github.io/webkurs</a></small>
+          </p>
+          <p>
+            <small>Ovo je deo <a href="index.html#/1">web kursa</a></small>
+          </p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Literatura</h2>
+          <ul>
+            <li>RFC 4627</li>
+            <li>TODO</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Razmena podataka na webu</h2>
+          <ul>
+            <li>ključna ideja za AJAX</li>
+            <li>alternativa za zamenu HTML stranica</li>
+            <li>aplikacije isporučene kao stranice</li>
+            <li>kako da prenosimo podatke?</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Formati podataka kroz istoriju</h2>
+          <ul>
+            <li>ad hoc</li>
+            <li>database model</li>
+            <li>document model</li>
+            <li>programming language model</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>JSON</h2>
+          <ul>
+            <li>JavaScript Object Notation</li>
+            <li>minimalan</li>
+            <li>tekstualan</li>
+            <li>podskup JavaScripta</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>JSON</h2>
+          <ul>
+            <li>podskup ECMA-262 Third Edition</li>
+            <li>nezavisan od jezika</li>
+            <li>tekstualan</li>
+            <li>lagan</li>
+            <li>jednostavan za parsiranje</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>JSON nije</h2>
+          <ul>
+            <li>nije format dokumenata</li>
+            <li>nije markup jezik</li>
+            <li>nije opšti format za serijalizaciju podataka
+              <ul>
+                <li>nema ciklične/ponavljajuće strukture</li>
+                <li>nema funkcije</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>JSON istorija</h2>
+          <ul>
+            <li><strong>1999</strong>: ECMAScript Third Edition</li>
+            <li><strong>2001</strong>: State Software, Inc.</li>
+            <li><strong>2002</strong>: http://json.org</li>
+            <li><strong>2005</strong>: AJAX</li>
+            <li><strong>2006</strong>: RFC 4627</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Podrška u jezicima</h2>
+          <ul style="display: inline-block;">
+            <li>ActionScript</li>
+            <li>C / C++</li>
+            <li>C#</li>
+            <li>ColdFusion</li>
+            <li>Delphi</li>
+            <li>E</li>
+            <li>Erlang</li>
+            <li>Java</li>
+            <li>Lisp</li>
+          </ul>
+          <ul style="display: inline-block;">
+            <li>Perl</li>
+            <li>Objective-C</li>
+            <li>Objective CAML</li>
+            <li>PHP</li>
+            <li>Python</li>
+            <li>Rebol</li>
+            <li>Ruby</li>
+            <li>Scheme</li>
+            <li>Squeak</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Objektni literali</h2>
+          <ul>
+            <li>JavaScript</li>
+            <li>Python</li>
+            <li>NewtonScript</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Tipovi vrednosti</h2>
+          <ul>
+            <li>stringovi</li>
+            <li>brojevi</li>
+            <li>logički</li><br/>
+            <li>objekti</li>
+            <li>nizovi</li><br/>
+            <li><code>null</code></li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Vrednost</h2>
+          <img src="img/json/value.png" width="85%" class="clean"/>
+        </section>
+
+        <section class="valigntop">
+          <h2>String</h2>
+          <ul>
+            <li>sekvenca 0 ili više Unicode znakova</li>
+            <li>nema posebnog tipa za char - to je string dužine 1</li>
+            <li>unutar duplih navodnika</li>
+            <li>backslash escaping</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>String</h2>
+          <img src="img/json/string.png" width="60%" class="clean"/>
+        </section>
+
+        <section class="valigntop">
+          <h2>Brojevi</h2>
+          <ul>
+            <li>celi</li>
+            <li>realni</li>
+            <li>eksponencijalna notacija</li><br/>
+            <li>nema hex ili oktalne notacije</li>
+            <li>nema <code>NaN</code> ili <code>Infinity</code></li>
+            <li>koristi <code>null</code></li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Broj</h2>
+          <img src="img/json/number.png" width="80%" class="clean"/>
+        </section>
+
+        <section class="valigntop">
+          <h2>Logičke konstante</h2>
+          <ul>
+            <li><code>true</code></li>
+            <li><code>false</code></li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Null</h2>
+          <ul>
+            <li>vrednost koja predstavlja ništa</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Objekti</h2>
+          <ul>
+            <li>objekti su kolekcije parova ključ-vrednost bez relacije poretka</li>
+            <li>pišu se unutar <code>{</code> i <code>}</code></li>
+            <li>razdvajanje parova ključ-vrednost pomoću <code>,</code></li>
+            <li>razdvajanje ključa i vrednosti pomoću <code>:</code></li>
+            <li>ključevi su stringovi</li>
+            <li>vrednosti su JSON vrednosti</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Objekat</h2>
+          <img src="img/json/object.png" width="80%" class="clean"/>
+        </section>
+
+        <section class="valigntop">
+          <h2>Objekat</h2>
+          <div style="font-size: 30pt;"><pre><code class="json">
+{
+  "name": "Jack B. Nimble",
+  "at large": true,
+  "grade": "A",
+  "level": 3, 
+  "format": {
+    "type": "rect",
+    "width": 1920, 
+    "height": 1080,
+    "interlace": false, 
+    "framerate": 24
+  }
+}
+          </code></pre></div>
+          <div style="font-size: 30pt;"><pre><code class="json">
+{"name":"Jack B. Nimble","at large": true,"grade":"A","level":3, "format":{"type":
+"rect","width":1920, "height":1080,"interlace":false, "framerate":24}}
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Nizovi</h2>
+          <ul>
+            <li>nizovi su kolekcije vrednosti sa relacijom poretka</li>
+            <li>pišu se unutar <code>[</code> i <code>]</code></li>
+            <li>razdvajanje vrednosti pomoću <code>,</code></li>
+            <li>JSON ne definiše pravila za indeks</li>
+            <li>implementacije mogu početi niz sa indeksom 0 ili 1</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Niz</h2>
+          <img src="img/json/array.png" width="80%" class="clean"/>
+        </section>
+
+        <section class="valigntop">
+          <h2>Objekat</h2>
+          <div style="font-size: 30pt;"><pre><code class="json">
+["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+
+[
+  [0, -1, 0],
+  [1, 0, 0],
+  [0, 0, 1]
+]
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Nizovi i objekti</h2>
+          <ul>
+            <li>koristi objekte kada su nazivi ključeva proizvoljni stringovi</li>
+            <li>koristi nizove kada su nazivi ključeva celi brojevi</li>
+            <li>naziv <em>asocijativni niz</em> zbunjuje</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>MIME Media Type</h2>
+          <p style="font-size: 200%"><code>application/json</code></p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Kodiranje znakova</h2>
+          <ul>
+            <li>striktno Unicode</li>
+            <li>podrazumeva se UTF-8</li>
+            <li>mogu se koristiti i UTF-16 i UTF-32</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>JSON nema verzije</h2>
+          <ul>
+            <li>JSON nema verzije</li>
+            <li>niti će ih imati</li>
+            <li>ne planiraju se izmene</li>
+            <li>vrlo stabilan jezik</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Pravila za serijalizaciju/deserijalizaciju</h2>
+          <ul>
+            <li>JSON dekoder mora da prihvati svaki dobro formirani JSON tekst</li>
+            <li>JSON dekoder može da prihvati i ne-JSON tekst</li><br/>
+            <li>JSON enkoder mora da proizvodi samo dobro formirani JSON tekst</li><br/><br/>
+            <li>"budi konzervativan u onome što ti radiš;<br/> budi liberalan u onome što prihvataš od drugih"</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Nadskupovi</h2>
+          <ul>
+            <li>YAML je nadskup JSON-a</li>
+            <li>YAML dekoder je JSON dekoder</li><br/>
+            <li>JavaScript je nadskup JSON-a</li>
+            <li>JavaScript interpreter je JSON dekoder</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>AJAX + JSON</h2>
+          <ul>
+            <li>AJAX: Asynchronous JavaScript and XML</li>
+            <li>JSON zamenjuje XML</li><br/>
+            <li>JSON je X u AJAX :)</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>AJAX + JSON</h2>
+          <ul>
+            <li>HTML za isporuku JavaScripta</li>
+            <li>JSON podaci ugrađeni u stranicu</li>
+          </ul>
+          <div style="font-size: 30pt;"><pre><code class="javascript">
+&lt;html&gt;...
+  &lt;script&gt;
+    var data = { ... JSONdata ... };
+  &lt;/script&gt;...
+&lt;/html&gt;
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>AJAX + JSON</h2>
+          <ul>
+            <li><code>XMLHttpRequest</code></li>
+            <li>dobavi <code>responseText</code></li>
+            <li>parsiraj <code>responseText</code></li>
+          </ul>
+          <div style="font-size: 30pt;"><pre><code class="javascript">
+responseData = eval('(' + responseText + ')');
+
+// ili
+
+responseData = responseText.parseJSON();
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>eval: da ili ne?</h2>
+          <ul>
+            <li>da li je bezbedno koristiti <code>eval</code> sa <code>XMLHttpRequest</code>?</li>
+            <li>JSON podaci stižu sa istog servera odakle i stranica. <code>eval</code>-uiranje tih podataka nije manje bezbedno od originalnog HTML-a</li><br/>
+            <li>može se uvek koristiti <code>string.parseJSON()</code> umesto <code>eval</code></li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>JSONRequest</h2>
+          <ul>
+            <li>nova usluga</li>
+            <li>dvosmerna razmena podataka između stranice i bilo kog servera</li>
+            <li>ne podleže pod <a href="https://tools.ietf.org/html/rfc6454" target="_blank">Same Origin Policy</a></li>
+            <li>kampanja za prihvatanje u web čitačima</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Pogodan za prenos podataka</h2>
+          <ul>
+            <li>istovremeno machine-readable, programmer-readable, čak i human-readable</li>
+            <li>Unicode znakovi, podržani svi svetski jezici</li>
+            <li>self-documenting: opisuje strukturu i nazive polja</li>
+            <li>striktna sintaksa =&gt; jednostavni, mali parseri</li>
+            <li>predstavljanje osnovnih struktura podataka: slogovi, liste, stabla</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Liči na podatke</h2>
+          <ul>
+            <li>vrednosti su iste kao i u programskim jezicima</li>
+            <li>nije potrebno restrukturiranje: JSON strukture su nalik klasičnim strukturama programskih jezika</li>
+            <li>JSON objekat je record, struct, object, dictionary, hash, associative array...</li>
+            <li>JSON niz je array, vector, sequence, list...</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Mane</h2>
+          <ul>
+            <li>nema namespaces</li>
+            <li>nema validator</li>
+            <li>nije proširiv</li>
+            <li>nije XML</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Namespaces</h2>
+          <ul>
+            <li>svaki objekat je namespace</li>
+            <li>ključevi su mu nezavisni od drugih objekata</li>
+            <li>JSON koristi <em>kontekst</em> za razdvajanje imena, kao i programski jezici</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Namespaces</h2>
+          <ul>
+            <li>tri pojave imena <code>title</code> sa različitim značenjem</li>
+            <li>razlikovanje pomoću imena nije dovoljno</li>
+          </ul>
+          <div style="font-size: 30pt;"><pre><code class="xml">
+&lt;section&gt;
+  &lt;title&gt;Book-Signing Event&lt;/title&gt;
+  &lt;signing&gt;
+    &lt;author title=&quot;Mr&quot; name=&quot;Vikram Seth&quot; /&gt;
+    &lt;book title=&quot;A Suitable Boy&quot; price=&quot;$22.95&quot; /&gt;
+  &lt;/signing&gt;
+  &lt;signing&gt;
+    &lt;author title=&quot;Dr&quot; name=&quot;Oliver Sacks&quot; /&gt;
+    &lt;book title=&quot;The Island of the Color-Blind&quot; price=&quot;$12.95&quot; /&gt;
+  &lt;/signing&gt;
+&lt;/section&gt;
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Namespaces</h2>
+          <ul>
+            <li><code>section.title</code></li>
+            <li><code>section.signing[0].author.title</code></li>
+            <li><code>section.signing[1].book.title</code></li>
+          </ul>
+          <div style="font-size: 30pt;"><pre><code class="json">
+{"section":
+  "title": "Book-Signing Event",
+  "signing": [
+    {
+      "author": { "title": "Mr", "name": "Vikram Seth" },
+      "book": { "title": "A Suitable Boy", 
+                "price": "$22.95" }
+    }, {
+      "author": { "title": "Dr", "name": "Oliver Sacks" },
+      "book": { "title": "The Island of the Color-Blind", 
+                "price": "$12.95" }
+    }
+  ]
+}}
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>JSON nema validator</h2>
+          <ul>
+            <li>biti dobro-formiran i validan nije isto što i biti ispravan i relevantan</li>
+            <li>svaka aplikacija je zadužena za validaciju - to se ne može izbeći</li>
+            <li>postoji YAML validator</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>JSON nije proširiv</h2>
+          <ul>
+            <li>ne mora ni da bude</li>
+            <li>može da predstavi bilo koju neponavljajuću strukturu</li>
+            <li>možemo dodavati nova polja u postojeće strukture bez potrebe za izmenom postojećih programa</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>JSON nije XML</h2>
+          <ul style="display: inline-block; vertical-align: top; padding-right: 100px;">
+            <li>objekti</li>
+            <li>nizovi</li>
+            <li>stringovi</li>
+            <li>brojevi</li>
+            <li>logički</li>
+            <li>null</li>
+          </ul>
+          <ul style="display: inline-block;">
+            <li>element</li>
+            <li>atribut</li>
+            <li>sadržaj atributa</li>
+            <li>sadržaj elementa</li>
+            <li><code>&lt;![CDATA[ ... ]]&gt;</code></li>
+            <li>entiteti</li>
+            <li>deklaracije</li>
+            <li>šema</li>
+            <li>stylesheet</li>
+            <li>komentari</li>
+            <li>namespaces</li>
+            <li>verzije</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>JSON nije XML</h2>
+          <ul>
+            <li>XML je odličan standard za reprezentaciju dokumenata</li>
+            <li>XML nije dobar standard za razmenu podataka</li>
+          </ul>
+        </section>
+
+
+
+        <section>
+          <h3>Kraj dela</h3>
+          <p><a href="#/">← Početak dela</a></p>
+          <p><a href="index.html#/1">⇐ Početak kursa</a></p>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        history: true,
+
+        // 16:9 aspect ratio
+        width: 1280,
+        height: 720,
+        margin: 0.02,
+
+        // don't piss people off
+        transition: 'none',
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+    </script>
+  </body>
+</html>
