@@ -72,25 +72,26 @@
         </section>
 
         <section class="valigntop">
-          <h2>HTTP/1.0 vs HTTP/1.1</h2>
-          <ul>
-            <li>HTTP/1.0 koristi novu TCP konekciju za svaki ciklus zahtev/odgovor</li>
-            <li>HTTP/1.1 može da koristi istu TCP konekciju za više ciklusa zahtev/odgovor</li>
-            <li>ali je protokol i dalje connectionless i stateless</li><br/>
-            <li>uvedeno zbog unapređenja performansi</li>
-            <ul>
-              <li>jedna stranica sa 20 slika bi zahtevala 21 TCP konekciju po HTTP/1.0</li>
-              <li>jedna stranica sa 20 slika, 5 CSS fajlova i 10 JavaScript fajlova...</li>
-            </ul>
-          </ul>
-        </section>
-
-        <section class="valigntop">
           <h2>HTTP je klijent/server model</h2>
           <img src="img/http/cgiarch.gif" width="35%" style="float:left" />
           <ul style="float:left;width:55%;padding-left:3%">
             <li><strong>klijent</strong> šalje zahtev: metoda, URI, verzija protokola, modifikatori zahteva, informacije o klijentu, opciono i sadržaj<br/><br/></li>
             <li><strong>server</strong> šalje odgovor: verzija protokola, kod rezultata, informacije o serveru, sadržaj</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>HTTP/1.0 vs HTTP/1.1 vs HTTP/2.0</h2>
+          <ul>
+            <li><strong>HTTP/1.0</strong> koristi novu TCP konekciju za svaki ciklus zahtev/odgovor</li>
+            <li><strong>HTTP/1.1</strong> može da koristi istu TCP konekciju za više ciklusa zahtev/odgovor</li>
+            <li>ali je protokol i dalje connectionless i stateless</li>
+            <li>uvedeno zbog unapređenja performansi</li>
+            <ul>
+              <li>jedna stranica sa 20 slika bi zahtevala 21 TCP konekciju po HTTP/1.0</li>
+              <li>jedna stranica sa 20 slika, 5 CSS fajlova i 10 JavaScript fajlova...</li>
+            </ul>
+            <li><strong>HTTP/2.0</strong> treba dodati <strong>TODO</strong></li>
           </ul>
         </section>
 
@@ -559,6 +560,7 @@ Connection: Closed
 
         <section class="valigntop">
           <h2>DELETE metoda</h2>
+<<<<<<< Updated upstream
           <div style="font-size: 28pt;">
             <pre><code class="http">
 DELETE /users/123 HTTP/1.1
@@ -566,6 +568,13 @@ User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
 Host: www.foobar.com
 Accept-Language: en-us
 Connection: Keep-Alive
+=======
+          <div style="font-size: 20pt;">
+            <pre><code>
+POST /cgi-bin/process.cgi HTTP/1.1
+
+
+>>>>>>> Stashed changes
             </code></pre>
           </div>
           <div style="font-size: 28pt;">
