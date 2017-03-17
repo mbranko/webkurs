@@ -44,29 +44,27 @@
 
         <section class="valigntop">
           <h2>Sadržaj</h2>
-          <ol>
+          <ol style="display:inline-block;width:40%">
             <li><a href="#/arrows">Strelica</a></li>
             <li><a href="#/classes">Klase</a></li>
             <li><a href="#/literals">Objektni literali</a></li>
             <li><a href="#/templates">Template stringovi</a></li>
-            <li><a href="#/webstorage">Destrukturiranje</a></li>
-            <li><a href="#/efficient">Default + Rest + Spread</a></li>
-            <li><a href="#/cors">Let + Const</a></li>
-            <li><a href="#/cors">Iterators + For..Of</a></li>
-            <li><a href="#/cors">Generators</a></li>
-            <li><a href="#/cors">Unicode</a></li>
-            <li><a href="#/cors">Modules</a></li>
-            <li><a href="#/cors">Module Loaders</a></li>
-            <li><a href="#/cors">Map + Set + WeakMap + WeakSet</a></li>
-            <li><a href="#/cors">Proxies</a></li>
-            <li><a href="#/cors">Symbols</a></li>
-            <li><a href="#/cors">Subclassable Built-ins</a></li>
-            <li><a href="#/cors">Math + Number + String + Array + Object APIs</a></li>
-            <li><a href="#/cors">Subclassable Built-ins</a></li>
-            <li><a href="#/cors">Binary and Octal Literals</a></li>
-            <li><a href="#/cors">Promises</a></li>
-            <li><a href="#/cors">Reflect API</a></li>
-            <li><a href="#/cors">Tail Calls</a></li>
+            <li><a href="#/destruct">Destrukturiranje</a></li>
+            <li><a href="#/default">Default + Rest + Spread</a></li>
+            <li><a href="#/letconst">Let + Const</a></li>
+            <li><a href="#/iterators">Iterators + For..Of</a></li>
+            <li><a href="#/generators">Generators</a></li>
+          </ol>
+          <ol style="display:inline-block;width:40%;" start="10">
+            <li><a href="#/unicode">Unicode</a></li>
+            <li><a href="#/modules">Modules</a></li>
+            <li><a href="#/loaders">Module Loaders</a></li>
+            <li><a href="#/mapset">Map + Set + WeakMap + WeakSet</a></li>
+            <li><a href="#/proxies">Proxies</a></li>
+            <li><a href="#/symbols">Symbols</a></li>
+            <li><a href="#/promises">Promises</a></li>
+            <li><a href="#/reflect">Reflect API</a></li>
+            <li><a href="#/tailcalls">Tail Calls</a></li>
           </ol>
         </section>
 
@@ -82,7 +80,7 @@
             <li>telo funkcije kao izraz ili kao blok naredbi</li>
             <li>za razliku od funkcije, deli <code>this</code> sa kodom koji je okružuje</li>
           </ul>
-          <p class="bottom"><small><a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions" target="_blank">https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions</a></small>
+          <p class="bottom"><small><a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions" target="_blank">https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions</a></small></p>
         </section>
 
         <section class="valigntop left">
@@ -123,7 +121,7 @@ var bob = {
             <li>olakšava interoperabilnost</li>
             <li>konstruktori, metode, statičke metode, nasleđivanje, <code>super</code></li>
           </ul>
-          <p class="bottom"><small><a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes" target="_blank">https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes</a></small>
+          <p class="bottom"><small><a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes" target="_blank">https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes</a></small></p>
         </section>
 
         <section class="valigntop left">
@@ -170,7 +168,7 @@ class SkinnedMesh extends THREE.Mesh {
             <li>približavanje objektnih literala i deklaracija klasa</li>
 
           </ul>
-          <p class="bottom"><small><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#Object_literals" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#Object_literals</a></small>
+          <p class="bottom"><small><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#Object_literals" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#Object_literals</a></small></p>
         </section>
 
         <section class="valigntop left">
@@ -232,9 +230,637 @@ POST`http://foo.org/bar?a=${a}&amp;b=${b}
           </code></pre></div>
         </section>
 
+        <section id="destruct">
+          <h1>#5: destrukturiranje</h1>
+        </section>
 
+        <section class="valigntop left">
+          <h2>Destrukturiranje prilikom dodele</h2>
+          <ul>
+            <li>slično kao za Python</li>
+            <li>fail-soft: vraća <code>undefined</code> za ono što ne pronađe</li>
+            <li>podrška za nizove i objekte</li>
+          </ul>
+          <p class="bottom"><small><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment</a></small></p>
+        </section>
 
+        <section class="valigntop left">
+          <h2>Destrukturiranje prilikom dodele</h2>
+          <div style="font-size:28pt;"><pre><code class="javascript">// raspakivanje liste
+var [a, , b] = [1,2,3];
 
+// raspakivanje objekta
+var { op: a, lhs: { op: b }, rhs: c }
+       = getASTNode()
+
+// raspakivanje objekta, uz skraćeno pisanje
+var {op, lhs, rhs} = getASTNode()
+
+// može se koristiti i kod navođenja parametara
+function g({name: x}) {
+  console.log(x);
+}
+g({name: 5})
+
+// Fail-soft: ono što ne pronađe biće undefined
+var [a] = [];
+a === undefined;
+
+// Fail-soft sa default vrednostima
+var [a = 1] = [];
+a === 1;</code></pre></div>
+        </section>
+
+        <section id="default">
+          <h1>#6: default + rest + spread</h1>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Default + rest + spread</h2>
+          <ul>
+            <li>default: podrazumevane vrednosti parametara funkcije</li>
+            <li>rest: funkcije sa promenljivim brojem parametara</li>
+            <li>spread: konverzija niza u pojedinačne parametre prilikom poziva funkcije</li>
+          </ul>
+          <p class="bottom"><small>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters</a><br/>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters</a><br/>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator</a><br/><br/>
+          </small>
+          </p>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Default + rest + spread</h2>
+          <div style="font-size:30pt;"><pre><code class="javascript">
+// default
+function f(x, y=12) {
+  // y je 12 ako se ne prosledi (ili se prosledi undefined)
+  return x + y;
+}
+f(3) == 15
+
+// rest
+function f(x, ...y) {
+  // y je Array
+  return x * y.length;
+}
+f(3, "hello", true) == 6
+
+// spread
+function f(x, y, z) {
+  return x + y + z;
+}
+
+// prosledi elemente niza kao pojedinačne parametre
+f(...[1,2,3]) == 6
+          </code></pre></div>
+        </section>
+
+        <section id="letconst">
+          <h1>#7: let i const</h1>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Let i const</h2>
+          <ul>
+            <li><code>let</code>: deklaracija promenljive</li>
+            <li><code>const</code>: deklaracija konstante</li>
+            <li>opseg vidljivosti im je blok!</li>
+          </ul>
+          <p class="bottom"><small>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let</a><br/>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const</a><br/><br/>
+          </small>
+          </p>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Let i const</h2>
+          <div style="font-size:30pt;"><pre><code class="javascript">
+function f() {
+  {
+    let x;
+    {
+      // ovo je OK, u ovom bloku x je novo ime
+      const x = "sneaky";
+      // greška, x je konstanta
+      x = "foo";
+    }
+    // greška, već deklarisano u ovom bloku
+    let x = "inner";
+  }
+}
+          </code></pre></div>
+        </section>
+
+        <section id="iterators">
+          <h1>#8: iteratori i for...of</h1>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Iteratori i for...of</h2>
+          <ul>
+            <li>iteratori omogućavaju iteraciju kroz proizvoljne objekte<br/>
+            kao Java <code>Iterable</code> ili .NET <code>IEnumerable</code></li>
+            <li><code>for..of</code> je petlja za iteraciju kroz iterator</li>
+            <li>nije potrebno praviti niz</li>
+          </ul>
+          <p class="bottom"><small>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of</a>
+          </small>
+          </p>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Iteratori i for...of</h2>
+          <div style="font-size:30pt;"><pre><code class="javascript">
+let fibonacci = {
+  [Symbol.iterator]() {
+    let pre = 0, cur = 1;
+    return {
+      next() {
+        [pre, cur] = [cur, pre + cur];
+        return { done: false, value: cur }
+      }
+    }
+  }
+}
+
+for (var n of fibonacci) {
+  // preseci sekvencu na 1000
+  if (n > 1000)
+    break;
+  console.log(n);
+}
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Iteratori i for...of</h2>
+          <p>Iteracija je zasnovana na ovim interfejsima; dovoljan je <a href="https://en.wikipedia.org/wiki/Duck_typing" target="_blank">duck-typing</a>.</p>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+interface IteratorResult {
+  done: boolean;
+  value: any;
+}
+interface Iterator {
+  next(): IteratorResult;
+}
+interface Iterable {
+  [Symbol.iterator](): Iterator
+}
+          </code></pre></div>
+          <p><small>Interfejsi definisani pomoću <a href="http://typescriptlang.org/" target="_blank">TypeScript</a>-a.</small>
+        </section>
+
+        <section id="generators">
+          <h1>#9: generatori</h1>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Generatori</h2>
+          <ul>
+            <li>pomažu kod rada sa velikim nizovima</li>
+            <li>funkcija deklarisana sa <code>function*</code> vraća generator</li>
+            <li>generator je varijanta iteratora sa funkcijama <code>next</code> i <code>throw</code></li>
+            <li><code>yield</code> je izraz koji vraća (deo) rezultata</li>
+          </ul>
+          <p class="bottom"><small>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols</a>
+          </small>
+          </p>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Generatori</h2>
+          <div style="font-size:30pt;"><pre><code class="javascript">
+var fibonacci = {
+  [Symbol.iterator]: function*() {
+    var pre = 0, cur = 1;
+    for (;;) {
+      var temp = pre;
+      pre = cur;
+      cur += temp;
+      yield cur;
+    }
+  }
+}
+
+for (var n of fibonacci) {
+  // preseci sekvencu na 1000
+  if (n > 1000)
+    break;
+  console.log(n);
+}
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Generatori</h2>
+          <p>Interfejs generatora je:</p>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+interface Generator extends Iterator {
+  next(value?: any): IteratorResult;
+  throw(exception: any);
+}
+          </code></pre></div>
+          <p><small>Interfejs definisan pomoću <a href="http://typescriptlang.org/" target="_blank">TypeScript</a>-a.</small>
+        </section>
+
+        <section id="unicode">
+          <h1>#10: unicode</h1>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Unicode</h2>
+          <ul>
+            <li>podrška za kompletni Unicode</li>
+            <li>u literalima i regularnim izrazima</li>
+            <li>novi API za 21-bitno kodiranje karaktera</li>
+          </ul>
+          <p class="bottom"><small>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/unicode" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/unicode</a>
+          </small>
+          </p>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Unicode</h2>
+          <div style="font-size:30pt;"><pre><code class="javascript">
+// isto kao kod ES5.1
+"𠮷".length == 2
+
+// novi regexp, specijalni kod 'u'
+"𠮷".match(/./u)[0].length == 2
+
+// novi oblik
+"\u{20BB7}"=="𠮷"=="\uD842\uDFB7"
+
+// nove String funkcije
+"𠮷".codePointAt(0) == 0x20BB7
+
+// for...of prolazi kroz code points
+for(var c of "𠮷") {
+  console.log(c);
+}
+          </code></pre></div>
+        </section>
+
+        <section id="modules">
+          <h1>#11: moduli</h1>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Moduli</h2>
+          <ul>
+            <li>podrška za module na nivou jezika</li>
+            <li>ugrađeno iskustvo iz AMD i CommonJS</li>
+            <li>asinhroni model: kod se ne izvršava dok se svi potrebni moduli ne učitaju</li>
+          </ul>
+          <p class="bottom"><small>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import</a><br/>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export</a><br/><br/>
+          </small>
+          </p>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Moduli</h2>
+          <div style="font-size:30pt;"><pre><code class="javascript">
+// lib/math.js
+export function sum(x, y) {
+  return x + y;
+}
+export var pi = 3.141593;
+
+// app.js
+import * as math from "lib/math";
+alert("2π = " + math.sum(math.pi, math.pi));
+
+// otherApp.js
+import {sum, pi} from "lib/math";
+alert("2π = " + sum(pi, pi));
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Moduli</h2>
+          <div style="font-size:30pt;"><pre><code class="javascript">
+// lib/mathplusplus.js
+export * from "lib/math";
+export var e = 2.71828182846;
+export default function(x) {
+    return Math.log(x);
+}
+
+// app.js
+// ln je default exported
+import ln, {pi, e} from "lib/mathplusplus";
+alert("2π = " + ln(e)*pi*2);
+          </code></pre></div>
+        </section>
+
+        <section id="loaders">
+          <h1>#12: punjači modula</h1>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Punjači modula</h2>
+          <ul>
+            <li>default punjač (loader) modula</li>
+            <li>mogu se pisati novi punjači</li>
+            <li>izolacija stanja, namespace-a</li>
+            <li>slično classloader-ima u Javi</li>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Punjači modula</h2>
+          <div style="font-size:30pt;"><pre><code class="javascript">
+// dinamičko učitavanje – 'System' je default loader
+System.import('lib/math').then(function(m) {
+  alert("2π = " + m.sum(m.pi, m.pi));
+});
+
+// izolovano izvršavanje - novi punjači
+var loader = new Loader({
+  global: fixup(window) // zameni console.log
+});
+loader.eval("console.log('hello world!');");
+
+// direktna manipulacija kešom modula
+System.get('jquery');
+System.set('jquery', Module({$: $}));
+          </code></pre></div>
+        </section>
+
+        <section id="mapset">
+          <h1>#13: map, set,<br/> weakmap, weakset</h1>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Map, Set, WeakMap, WeakSet</h2>
+          <ul>
+            <li><code>Map</code>, <code>Set</code>: uobičajene strukture podataka</li>
+            <li><strong>weak</strong>: slabe reference na ključeve mape ili elemente seta<br/>
+            omogućavaju garbage collection kada nema drugih referenci na te objekte</li>
+          </ul>
+          <p class="bottom"><small>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map</a><br/>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set</a><br/>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap</a><br/>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet</a><br/>
+          <br/>
+          </small>
+          </p>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Map, Set, WeakMap, WeakSet</h2>
+          <div style="font-size:30pt;"><pre><code class="javascript">
+// Set
+var s = new Set();
+s.add("hello").add("goodbye").add("hello");
+s.size === 2;
+s.has("hello") === true;
+
+// Map
+var m = new Map();
+m.set("hello", 42);
+m.set(s, 34);
+m.get(s) == 34;
+
+// WeakMap
+var wm = new WeakMap();
+wm.set(s, { extra: 42 });
+wm.size === undefined
+
+// WeakSet
+var ws = new WeakSet();
+ws.add({ data: 42 });
+// na dodati objekat nema drugih referenci => neće se čuvati u WeakSetu
+          </code></pre></div>
+        </section>
+
+        <section id="proxies">
+          <h1>#14: proxy</h1>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Proxy</h2>
+          <ul>
+            <li>posrednički objekti koji omogućavaju presretanje objekata</li>
+          </ul>
+          <p class="bottom"><small>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy</a>
+          </small>
+          </p>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Proxy</h2>
+          <div style="font-size:30pt;"><pre><code class="javascript">
+// proxy ka objektu
+var target = {};
+var handler = {
+  get: function (receiver, name) {
+    return `Hello, ${name}!`;
+  }
+};
+
+var p = new Proxy(target, handler);
+p.world === 'Hello, world!';
+
+// proxy ka funkciji
+var target = function () { return 'I am the target'; };
+var handler = {
+  apply: function (receiver, ...args) {
+    return 'I am the proxy';
+  }
+};
+
+var p = new Proxy(target, handler);
+p() === 'I am the proxy';
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Proxy</h2>
+          <p>Postoji udica za sve meta-operacije u toku izvršavanja:</p>
+          <div style="font-size:30pt;"><pre><code class="javascript">
+var handler =
+{
+  get:...,
+  set:...,
+  has:...,
+  deleteProperty:...,
+  apply:...,
+  construct:...,
+  getOwnPropertyDescriptor:...,
+  defineProperty:...,
+  getPrototypeOf:...,
+  setPrototypeOf:...,
+  enumerate:...,
+  ownKeys:...,
+  preventExtensions:...,
+  isExtensible:...
+}
+          </code></pre></div>
+        </section>
+
+        <section id="symbols">
+          <h1>#15: simboli</h1>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Simboli</h2>
+          <ul>
+            <li>novi primitivni tip <code>Symbol</code></li>
+            <li>nema sintaksu za literale</li>
+            <li>mogu biti ključevi za objekte</li>
+            <li>bez kolizije sa String ključevima</li>
+            <li>ne pojavljuju se u <code>for...in</code>, <code>for...of</code> i <code>Object.getOwnPropertyNames</code></li>
+            <li>zato postoji <code>Object.getOwnPropertySymbols</code></li>
+          </ul>
+          <p class="bottom"><small>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol</a>
+          </small>
+          </p>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Simboli</h2>
+          <div style="font-size:30pt;"><pre><code class="javascript">
+var sym1 = Symbol();
+var sym2 = Symbol('foo'); // foo je opcioni opis simbola
+var sym3 = Symbol('foo'); // opis je koristan (samo) za debugging
+sym2 === sym3; // false
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Neka korist od simbola?</h2>
+          <ul>
+            <li>enums</li>
+          </ul>
+          <div style="font-size:25pt;"><pre><code class="javascript">
+log.levels = {
+    DEBUG: Symbol('debug'),
+    INFO: Symbol('info'),
+    WARN: Symbol('warn'),
+};
+log(log.levels.DEBUG, 'debug message');
+log(log.levels.INFO, 'info message');
+          </code></pre></div>          
+        </section>
+
+        <section class="valigntop left">
+          <h2>Neka korist od simbola?</h2>
+          <ul>
+            <li>metapodaci u objektima</li>
+          </ul>
+          <div style="font-size:25pt;"><pre><code class="javascript">
+var size = Symbol('size');
+class Collection {
+    constructor() {
+        this[size] = 0;
+    }
+
+    add(item) {
+        this[this[size]] = item;
+        this[size]++;
+    }
+
+    static sizeOf(instance) {
+        return instance[size];
+    }
+
+}
+
+var x = new Collection();
+assert(Collection.sizeOf(x) === 0);
+x.add('foo');
+assert(Collection.sizeOf(x) === 1);
+assert.deepEqual(Object.keys(x), ['0']);
+assert.deepEqual(Object.getOwnPropertyNames(x), ['0']);
+assert.deepEqual(Object.getOwnPropertySymbols(x), [size]);
+          </code></pre></div>
+        </section>
+
+        <section id="promises">
+          <h1>#16: promises</h1>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Promises</h2>
+          <ul>
+            <li>preuzeto iz dosadašnjih dodatnih biblioteka</li>
+            </ul>
+          <p class="bottom"><small>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise</a>
+          </small>
+          </p>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Promises</h2>
+          <div style="font-size:30pt;"><pre><code class="javascript">
+function timeout(duration = 0) {
+    return new Promise((resolve, reject) => {
+        setTimeout(resolve, duration);
+    })
+}
+
+var p = timeout(1000).then(() => {
+    return timeout(2000);
+}).then(() => {
+    throw new Error("hmm");
+}).catch(err => {
+    return Promise.all([timeout(100), timeout(200)]);
+})
+          </code></pre></div>
+        </section>
+
+        <section id="reflect">
+          <h1>#17: reflection</h1>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Reflection</h2>
+          <ul>
+            <li>run-time "raspitivanje" o osobinama objekata</li>
+            <li>slično Java refleksiji</li>
+          </ul>
+          <p class="bottom"><small>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect" target="_blank">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect</a>
+          </small>
+          </p>
+        </section>
+
+        <section id="tailcalls">
+          <h1>#18: repna rekurzija</h1>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Repna rekurzija</h2>
+          <ul>
+            <li>repna rekurzija neće povećavati stek neograničeno</li>
+            <li>rekurzija je bezbedna</li>
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="javascript">
+function factorial(n, acc = 1) {
+    'use strict';
+    if (n <= 1) 
+        return acc;
+    return factorial(n - 1, n * acc);
+}
+
+// stack overflow u većini implementacija,
+// ali bezbedno u ES6
+factorial(100000)
+          </code></pre></div>
+        </section>
 
         <section>
           <h3>Kraj dela</h3>
