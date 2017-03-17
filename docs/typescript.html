@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>JavaScript</title>
+    <title>TypeScript</title>
 
     <link rel="stylesheet" href="css/reveal.css">
     <link rel="stylesheet" href="css/theme/branko.css">
@@ -38,30 +38,518 @@
         <section class="valigntop">
           <h2>Literatura</h2>
           <ul>
-            <li>JavaScript Programmers Reference</li>
-            <li>JavaScript: The Good Parts</a></li>
-            <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide" target="_blank">JavaScript Guide</a> od Mozilla Developers Network.</li>
-            <li><a href="http://www.codecademy.com/tracks/javascript" target="_blank">Code Academy</a> sa interaktivnim JavaScript lekcijama.</li>
-            <li><a href="https://www.khanacademy.org/computing/cs/programming">Khan Academy</a> ima puno informacija o crtanju i animaciji.</li>
+            <li><a href="https://www.typescriptlang.org" target="_blank">TypeScript sajt</a></li>
           </ul>
         </section>
 
-        <section>
-          <h1>#1: podaci u memoriji</h1>
+        <section class="valigntop">
+          <h2>Sadržaj</h2>
+          <ol>
+            <li><a href="#/koncept">Koncept</a></li>
+            <li><a href="#/tipovi">Tipovi</a></li>
+          </ol>
         </section>
 
-        <!--
-        
-        http://www.johnlouros.com/projects/TypeScriptPresentation/#/
-        http://www.slideshare.net/akhilsreyas/typescript-ppt
-        http://www.slideshare.net/SanderMak/typescript-coding-javascript-without-the-pain
-        http://slides.com/sosnowsd/deck-1/fullscreen#/
-        http://slides.com/ducin/javascript-plus-java-equals-typescript#/
-        http://slides.com/eranschoellhorn/typescript#/
-        
-        -->
+        <section id="koncept">
+          <h1>#1: koncept</h1>
+        </section>
+
+        <section class="valigntop">
+          <h2>ES5 ⊂ ES6/ES2015 ⊂ TypeScript</h2>
+          <ul>
+            <li>ECMAScript 5 je standardni JavaScript</li>
+            <li>ECMAScript 6, odnosno ECMAScript 2015, je doneo velike novine</li>
+            <li>TypeScript je ES6 + statički tipovi + ono što je planirano za ES7</li>
+          </ul>
+          <p>&nbsp; </p>
+          <img src="img/typescript/es5-es2015-ts.gif" width="50%">
+        </section>
+
+        <section class="valigntop left">
+          <h2>Odstupanje od JavaScripta?</h2>
+          <p>Na <a href="https://www.typescriptlang.org" target="_blank">zvaničnoj stranici</a> jezika:</p>
+          <p style="background:#333;padding:100px;">TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Trka sa verzijama</h2>
+          <ul>
+            <li>ono što web čitači podržavaju kasni za podrškom na serveru</li>
+            <li>podrška na serveru kasni za standardom</li>
+          </ul>
+          <img src="img/typescript/js-in-2015.png" width="65%">
+        </section>
+
+        <section class="valigntop">
+          <h2>Trka sa verzijama</h2>
+          <ul>
+            <li>jednu godinu kasnije...</li>
+            <li>ista situacija, samo novi nivo podrške</li>
+          </ul>
+          <img src="img/typescript/js-in-2016.png" width="65%">
+        </section>
+
+        <section class="valigntop">
+          <h2>Compiler / Transpiler, IDE</h2>          
+          <ul>
+            <li>rešenje: prevođenje koda napisanog u ES6 ili TS u ES5</li><br/>
+            <li>potrebna i podrška u razvojnim alatima
+              <ul>
+                <li>MS Visual Studio Code</li>
+                <li>JetBrains WebStorm</li>
+                <li>Eclipse</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Šta se htelo popraviti u JavaScriptu?</h2>
+          <ul>
+            <li>samo dinamički tipovi</li>
+            <li>nema modularnosti</li>
+            <li>preopširni šabloni
+              <ul>
+                <li>IIFE: immediately-invoked function expression</li>
+              </ul>
+            </li><br/>
+            <li>ukratko: razvoj loše skalira za velike aplikacije</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Šta je dobro u JavaScriptu?</h2>
+          <ul>
+            <li>ima ga svuda</li>
+            <li>ogroman broj biblioteka</li>
+            <li>fleksibilan</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Lista želja</h2>
+          <ul>
+            <li>skalabilan razvoj za HTML5 klijente</li>
+            <li>modularan razvoj</li>
+            <li>lak za učenje za Java i C# programere</li>
+            <li>neinvazivan (postojeće biblioteke i web čitači)</li>
+            <li>dugoročna vizija</li>
+            <li>čist JavaScript izlaz</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Karakteristike</h2>
+          <ul>
+            <li>nadskup JavaScripta</li>
+            <li>tipovi nisu obavezni!</li>
+            <li>prevodi se u ES3 ili ES5</li>
+            <li>nije potrebno posebno runtime okruženje</li>
+            <li>poravnat i sa ES6</li><br/>
+            <li>=&gt;lightweight productivity booster</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Početak nije komplikovan</h2>
+          <div style="font-size:30pt;"><pre><code class="javascript">
+$ npm install -g typescript
+$ mv mycode.js mycode.ts
+$ tsc mycode.ts
+          </code></pre></div>
+          <p><small>Može da otkrije probleme i u postojećem JS!</small></p>
+        </section>
+
+        <section id="tipovi">
+          <h1>#2: tipovi</h1>
+        </section>
+
+        <section class="valigntop">
+          <h2>Opcioni tipovi</h2>
+          <div style="display: inline-block; width:45%">
+          <p>JavaScript</p>
+          <div style="font-size:30pt;"><pre><code class="javascript">
+> var a = 123;
+> a.trim()
+TypeError: a.trim is not a function
+          </code></pre></div>
+          <p>run-time</p>
+          </div>
+          <div style="display: inline-block; width:45%">
+          <p>TypeScript</p>
+          <div style="font-size:30pt;"><pre><code class="javascript">
+> var a: string = 123;
+> a.trim()
+Cannot convert 'number' to 'string'
+          </code></pre></div>
+          <p>compile-time</p>
+          </div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Tipovi nestaju prilikom izvršavanja</h2>
+          <div style="display: inline-block; width:45%">
+          <p>TS compile-time</p>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+var a: string = 123;
+a.trim()
+          </code></pre></div>
+          </div>
+          <div style="display: inline-block; width:45%">
+          <p>TS run-time</p>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+var a = 123;
+a.trim()
+          </code></pre></div>
+          </div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Tipovi</h2>
+          <table>
+            <tr>
+              <th>Java</th>
+              <th>TypeScript</th>
+            </tr>
+            <tr>
+              <td><code>Object</code></td>
+              <td><code>any</code></td>
+            </tr>
+            <tr>
+              <td><code>void</code></td>
+              <td><code>void</code></td>
+            </tr>
+            <tr>
+              <td><code>boolean</code></td>
+              <td><code>boolean</code></td>
+            </tr>
+            <tr>
+              <td><code>int</code>, <code>long</code>, ...</td>
+              <td><code>number</code></td>
+            </tr>
+            <tr>
+              <td><code>String</code>, <code>char</code></td>
+              <td><code>string</code></td>
+            </tr>
+            <tr>
+              <td><code>Type[]</code></td>
+              <td><code>type[]</code></td>
+            </tr>
+          </table>
+        </section>
+
+        <section class="valigntop">
+          <h2>Tipovi</h2>
+          <ul>
+            <li>postoji tip funkcija</li>
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+var find: (elem: string, elems: string[]) => string = 
+  function(elem, elems) {
+    ...
+  }
+          </code></pre></div>
+        </section>
 
 
+        <section class="valigntop">
+          <h2>Primer #1: pre uvođenja tipova</h2>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+var languages = [ { name: "TypeScript", ext: "ts"}, 
+                  { name: "JavaScript", ext: "js"},
+                  { name: "Java", ext: "java" }]
+
+function findByName(name, elems) {
+  var elem;
+  elems.forEach(function(index, value) {
+    if (value.name.toLower() === name.toLower())
+      elem = value;
+  })
+  return elem;
+}
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Primer #1: posle uvođenja tipova</h2>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+var languages = [ { name: "TypeScript", ext: "ts"},
+                  { name: "JavaScript", ext: "js"},
+                  { name: "Java", ext: "java" }]
+
+interface Language {  // &lt;-- duck typing!!! ^^
+  name: string
+  ext: string
+}
+
+function findByName(name: string, elems: Language[]) {
+  var elem: Language;
+  elems.forEach(function(value, index) {
+    if (value.name.toLowerCase() === name.toLowerCase())
+      elem = value;
+  })
+  return elem;
+}
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Primer #2: klase</h2>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+class Concert {
+  artist: String
+  price: number
+}
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Primer #2: klase, prošireno</h2>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+class Concert {
+  private static MAX_TICKETS = 500  
+  
+  constructor(public artist: string, public tickets: number) {
+    if(tickets > Concert.MAX_TICKETS) {
+      throw new Error("Too many tickets!")
+    }
+  }
+  
+  buyTickets(amount: number) {
+    if(amount <= this.tickets)
+      this.tickets -= amount
+    else
+      throw new Error("Not enough tickets!")
+  }
+}
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Primer #2: klase, nasleđivanje</h2>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+class RockConcert extends Concert {
+  
+  constructor(name: string, tickets: number, public volume: number = 11) {
+    super(name, tickets)
+  }
+  
+  buyTickets(amount: number) {
+    if(amount % 2 === 1)
+      throw new Error("Should come in pairs")
+    super.buyTickets(amount)
+  }
+}
+
+var concert = new Concert("Sting", 50)
+
+var rockConcert: Concert = new RockConcert("ACDC", 100)
+rockConcert.buyTickets(3)
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Interfejsi</h2>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+interface MyInterface {
+  // call signature
+  (param: number): string
+
+  member: number
+  optionalMember?: number
+
+  myMethod(param: string): void
+}
+
+var instance: MyInterface = ...
+instance(1)
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Interfejsi</h2>
+          <p>Možemo ih koristiti da opišemo podatke koji se vraćaju iz REST poziva</p>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+$.getJSON('user/123').then((user: User) => {
+  showProfile(user.details)
+})
+
+// User je interfejs
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Enums</h2>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+enum Language { TypeScript, Java, JavaScript }
+
+var lang = Language.TypeScript
+var ts = Language[0]
+ts === "TypeScript"
+          </code></pre></div>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+enum Language { TypeScript = 1, Java, JavaScript }
+
+var ts = Language[1]
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Ekspliticna tipizacija</h2>
+          <p>Može biti obavezna:</p>
+          <div style="font-size:30pt;"><pre><code class="bash">
+$ tsc --noImplicitAny mycode.ts
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>TypeScript klase</h2>
+          <p>Kao u Javi:</p>
+          <ul>
+            <li>mogu implementirati interfejse</li>
+            <li>nasleđivanje</li>
+            <li>atributi i metode objekta</li>
+            <li>statički atributi i metode</li>
+          </ul>
+          <p>Nije kao u Javi:</p>
+          <ul>
+            <li>jedan konstruktor</li>
+            <li>default i opcioni parametri funkcija</li>
+            <li>ES6 sintaksa za klase</li>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer #3: modul sa klasama</h2>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+module StorageModule {
+  export interface Storage {
+    store(content: string): void
+  }
+
+  var privateKey = 'storageKey'
+  
+  export class LocalStorage implements Storage {
+    store(content: string): void {
+      localStorage.setItem(privateKey, content);
+    }
+  }
+
+  export class DevNullStorage implements Storage {
+    store(content: string): void { }
+  }
+}
+
+var storage: StorageModule.Storage = new StorageModule.LocalStorage();
+storage.store('testing');
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer #3: JavaScript ekvivalent</h2>
+          <div style="font-size:26pt;"><pre><code class="typescript">var StorageModule;
+(function (StorageModule) {
+    var privateKey = 'storageKey';
+
+    var LocalStorage = (function () {
+        function LocalStorage() {
+        }
+        LocalStorage.prototype.store = function (content) {
+            localStorage.setItem(privateKey, content);
+        };
+        return LocalStorage;
+    })();
+    StorageModule.LocalStorage = LocalStorage;
+
+    var DevNullStorage = (function () {
+        function DevNullStorage() {
+        }
+        DevNullStorage.prototype.store = function (content) {
+        };
+        return DevNullStorage;
+    })();
+    StorageModule.DevNullStorage = DevNullStorage;
+})(StorageModule || (StorageModule = {}));
+
+var storage = new StorageModule.LocalStorage();
+storage.store('testing');
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Strelica-funkcije</h2>
+          <ul>
+            <li>implicitni <code>return</code></li>
+            <li>nisu potrebne zagrade za jedan izraz</li>
+            <li>deo ES6</li>
+          </ul>
+          <p></p>
+          <div style="font-size:30pt;display: inline-block; width: 40%"><pre><code class="typescript">
+function(arg1) {
+  return arg1.toLowerCase()
+}
+          </code></pre></div>
+          <div style="font-size:30pt;display: inline-block; width: 40%"><pre><code class="typescript">
+
+(arg1) => arg1.toLowerCase()
+
+          </code></pre></div>
+          <p><code>this</code> je u leksičkom opsegu; ne moramo više pisati<br/>
+          <code>var that = this;</code>
+          </p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Primer #4: bez strelice</h2>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+class FatArrow {
+  line: HTMLElement = document.createElement("hr")
+
+  constructor() {
+    var button = document.createElement("button")
+    button.textContent = "Click me!"
+    button.addEventListener("click", function(event: MouseEvent) {
+      document.body.appendChild(this.line)
+      console.log(this)
+    })
+    document.body.appendChild(button)
+  }
+}
+
+new FatArrow()
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Primer #4: sa strelicom</h2>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+class FatArrow {
+  line: HTMLElement = document.createElement("hr")
+
+  constructor() {
+    var button = document.createElement("button")
+    button.textContent = "Click me!"
+    button.addEventListener("click", (event: MouseEvent) => {
+      document.body.appendChild(this.line)
+      console.log(this)
+    })
+    document.body.appendChild(button)
+  }
+}
+
+new FatArrow()
+          </code></pre></div>
+        </section>
+
+
+<!--
+-->
+
+        <section>
+          <h3>Kraj dela</h3>
+          <p><a href="#/">← Početak dela</a></p>
+          <p><a href="index.html#/1">⇐ Početak kursa</a></p>
+        </section>
 
       </div>
     </div>
@@ -114,3 +602,4 @@
     </script>
   </body>
 </html>
+

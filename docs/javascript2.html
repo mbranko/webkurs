@@ -56,12 +56,11 @@
             <li><a href="#/inheritance">Prototipsko nasleđivanje</a></li>
             <li><a href="#/global">Globalni objekat</a></li>
             <li><a href="#/varnovar">Sa var i bez var</a></li>
+            <li><a href="#/thisthat">var that = this</a></li>
             <li><a href="#/currying">Currying</a></li>
             <li><a href="#/quiz">Kviz</a></li>
           </ol>
         </section>
-
-
 
         <section id="memory">
           <h1>#1: podaci u memoriji</h1>
@@ -1263,15 +1262,15 @@ nyancat.meow(); // "Meow~  I am Nyan Cat"
           <h1>#7: sa var i bez var</h1>
         </section>
 
-        <section class="valigntop">
+        <section class="valigntop left">
           <h2>Deklaracija promenljive sa i bez var</h2>
-          <div style="width:40%;margin-left:30%;font-size:30pt;"><pre><code class="javascript">
+          <div style="font-size:30pt;"><pre><code class="javascript">
 var myNewVar = 1;     // using var to declare a variable.
 myOtherNewVar = 2;    // var is optional.
 alert(myNewVar);      // will alert 1
 alert(myOtherNewVar); // will alert 2
           </code></pre></div>
-          <p>Ključna reč <code>var</code> nije obavezna prilikom deklaracije promenljive. Kada se promenljiva deklariše bez <code>var</code>, interpreter podrazumeva da koristimo promenljivu u višem opsegu od trenutnog. Ako je tamo ne nađe, tražiće je uz lanac opsega sve do globalnog opsega. Ako je ne nađe ni tamo, dodaće novu promenljivu u globalni opseg.</p>
+          <p>Ključna reč <code>var</code> nije obavezna prilikom deklaracije promenljive.<br/> Kada se promenljiva deklariše bez <code>var</code>, interpreter podrazumeva da koristimo promenljivu u višem opsegu od trenutnog. Ako je tamo ne nađe, tražiće je uz lanac opsega sve do globalnog opsega. Ako je ne nađe ni tamo, dodaće novu promenljivu u globalni opseg.</p>
           <p>Deklaracija promenljive sa <code>var</code> smešta promenljivu uvek u tekući opseg.</p>
         </section>
 
@@ -1332,8 +1331,32 @@ testScope(); // will alert "undefined", and then true.
           </code></pre></div>
         </section>
 
-        <section id="curying">
-          <h1>#8: currying</h1>
+        <section id="thisthat">
+          <h1>#8: var that = this</h1>
+        </section>
+
+        <section class="valigntop">
+          <h2>var that = this</h2>
+          <div style="font-size:30pt;"><pre><code class="javascript">
+var colors = ['red', 'green', 'blue'];
+
+document.getElementById('element').addEventListener('click', function() {
+   
+    // this je referenca na element koji je primio klik
+
+    var that = this;
+
+    colors.forEach(function() {
+        // this je undefined
+        // that je referenca na element koji je primio klik
+    });
+});
+          </code></pre></div>
+          <p>Vrlo česta zakrpa :(</p>
+        </section>
+
+        <section id="currying">
+          <h1>#9: currying</h1>
         </section>
 
         <section class="valigntop">
@@ -1457,14 +1480,6 @@ var f1 = f.bind(null, 1);
 6 === f1(2, 3);
           </code></pre></div>
         </section>
-
-        <!--
-        https://medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0
-        http://eloquentjavascript.net/1st_edition/chapter6.html
-        https://bethallchurch.github.io/JavaScript-and-Functional-Programming/
-        https://speakerdeck.com/getify/functional-light-javascript
-        -->
-
 
         <section id="quiz">
           <h1>Kviz</h1>
