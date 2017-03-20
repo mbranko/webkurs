@@ -379,6 +379,23 @@ $.getJSON('user/123').then((user: User) => {
         </section>
 
         <section class="valigntop left">
+          <h2>Interfejsi su open-ended</h2>
+          <p>Možemo kasnije dodavati u interfejs</p>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+interface Point {
+    x: number; y: number;
+}
+declare var myPoint: Point;
+
+interface Point {
+    z: number;
+}
+
+var myPoint.z; // Dozvoljeno!
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
           <h2>Enums</h2>
           <div style="font-size:30pt;"><pre><code class="typescript">
 enum Language { TypeScript, Java, JavaScript }
@@ -538,6 +555,52 @@ class FatArrow {
 }
 
 new FatArrow()
+          </code></pre></div>
+        </section>
+
+        <section id="tswithjs">
+          <h1>#3: integracija</h1>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Integracija sa postojećim JS kodom</h2>
+          <ul>
+            <li>tip <code>any</code></li>
+            <li><strong>ambient declarations</strong>: opisivanje tipova za postojeći JS kod</li>
+            <li>ekstenzija .d.ts</li>
+            <li><a href="http://definitelytyped.org" target="_blank">DefinitelyTyped.org</a>: zajednica piše d.ts fajlove za popularne JS biblioteke</li>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>DefinitlyTyped.org</h2>
+          <ul>
+            <li>zajednica piše .d.ts fajlove za popularne JS biblioteke</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Moduli su open-ended</h2>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+// cart.ts
+module Webshop {
+  export class Cart { ... }
+}
+
+
+// main.ts
+module Webshop {
+  export class Catalog { ... }
+}
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Moduli su hijerarhijski</h2>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+module Webshop.Cart.Backend {
+  ...
+}
           </code></pre></div>
         </section>
 
