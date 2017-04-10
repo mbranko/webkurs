@@ -47,6 +47,9 @@
           <ol>
             <li><a href="#/koncept">Koncept</a></li>
             <li><a href="#/tipovi">Tipovi</a></li>
+            <li><a href="#/dekoratori">Dekoratori</a></li>
+            <li><a href="#/dekoratori">Generički tipovi</a></li>
+            <li><a href="#/integracija">Integracija</a></li>
           </ol>
         </section>
 
@@ -558,8 +561,52 @@ new FatArrow()
           </code></pre></div>
         </section>
 
-        <section id="tswithjs">
-          <h1>#3: integracija</h1>
+        <section id="dekoratori">
+          <h1>#3: dekoratori</h1>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Dekorator</h2>
+          <ul>
+            <li>dekorator je <strong>izraz</strong> koji se izračunava nakon što je klasa definisana</li>
+            <li>može se koristiti da <strong>anotira</strong> ili <strong>izmeni</strong> klasu na neki način</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Dekorator</h2>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+@someDecoratorExpression()
+class Car {
+
+  @propertyDecorator() manufacturer: string;
+
+  constructor(@paramDecorator() manufacturer: string) {
+
+  }
+
+  @methodDecorator()
+  drive() {
+
+  }
+}
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>TODO pisanje dekoratora</h2>
+          <ul>
+            <li>...</li>
+          </ul>
+        </section>
+
+        <section id="generics">
+          <h1>#4: generički tipovi</h1>
+        </section>
+
+
+        <section id="integracija">
+          <h1>#5: integracija sa JS</h1>
         </section>
 
         <section class="valigntop left">

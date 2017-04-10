@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>JavaScript</title>
+    <title>Angular</title>
 
     <link rel="stylesheet" href="css/reveal.css">
     <link rel="stylesheet" href="css/theme/branko.css">
@@ -26,7 +26,7 @@
       <div class="slides">
 
         <section class="vcenter">
-          <h1>AngularJS 1</h1>
+          <h1>Angular</h1>
           <p>
             <small><a href="http://mbranko.github.io/webkurs">http://mbranko.github.io/webkurs</a></small>
           </p>
@@ -38,29 +38,983 @@
         <section class="valigntop">
           <h2>Literatura</h2>
           <ul>
-            <li>JavaScript Programmers Reference</li>
-            <li>JavaScript: The Good Parts</a></li>
-            <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide" target="_blank">JavaScript Guide</a> od Mozilla Developers Network.</li>
-            <li><a href="http://www.codecademy.com/tracks/javascript" target="_blank">Code Academy</a> sa interaktivnim JavaScript lekcijama.</li>
-            <li><a href="https://www.khanacademy.org/computing/cs/programming">Khan Academy</a> ima puno informacija o crtanju i animaciji.</li>
+            <li>TODO</li>
           </ul>
         </section>
 
         <section>
-          <h1>#1: podaci u memoriji</h1>
+          <h1>#1: SPA</h1>
         </section>
 
-        <!--
-        
-        http://fastandfluid.com/publicdownloads/AngularJSIn60MinutesIsh_DanWahlin_May2013.pdf
-        https://docs.google.com/presentation/d/1H9u9xd0OE0W1o_5Aeug7uSR0AXXPidtWBQNmpi_ZP9I/edit#slide=id.g568bfdc4_2_40
-        http://mattiash.github.io/angular-presentation/presentation.html#35
-        http://www.slideshare.net/samhelman/angular-js-tutorial-slides
-        
-        
-        -->
+        <section class="valigntop">
+          <h2>Single page applications</h2>
+          <ul>
+            <li>opis koncepta</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>#2: Angular CLI</h1>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Angular CLI</h2>
+          <ul>
+            <li>alat za razvoj</li>
+            <li>komandna linija</li>
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="bash">
+npm install -g @angular/cli
+ng new hello-world
+cd hello-world
+ng serve
+# --&gt; http://localhost:4200
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Kreiranje projekta</h2>
+          <div style="font-size:30pt;"><pre><code class="bash">
+ng new moja-aplikacija
+          </code></pre></div>
+          <ul>
+            <li>kreira foldere i fajlove</li>
+            <li>konfiguracija za TypeScript i Typings</li>
+            <li>uključivanje biblioteka
+              <ul>
+                <li>Angular</li>
+                <li>Rx.js</li>
+                <li>System.js</li>
+              </ul>
+            </li>
+            <li>konfiguracija za System.js</li>
+            <li>kreiranje osnovne komponente</li>
+            <li>bootstrap aplikacije</li>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Struktura projekta</h2>
+          <div style="font-size:28pt;"><pre><code class="text">
+|- e2e/            # end-to-end testovi
+|- node_modules/   # npm moduli
+|- dist/           # aplikacija za distribuciju
+|- src/            # kod aplikacije
+    |-- app/
+        |--- app-routing.module.ts
+        |--- app.component.css|html|spec.ts|ts
+        |--- app.module.ts
+    |-- favicon.ico
+    |-- index.html
+    |-- main.ts
+    |-- polyfills.ts
+    |-- styles.css
+    |-- test.ts
+    |-- tsconfig.app.json|spec.json
+|- .angular-cli.json
+|- .editorconfig
+|- .gitignore
+|- karma.conf.json
+|- protractor.conf.json
+|- package.json
+|- tslint.json
+|- tsconfig.json
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Pokretanje projekta</h2>
+          <div style="font-size:30pt;"><pre><code class="bash">
+ng serve
+          </code></pre></div>
+          <img src="img/angular/angular01.png" width="50%" class="clean"/>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Pokretanje projekta</h2>
+          <ul>
+            <li><code>.angular-cli.json</code> određuje početni fajl, to je <code>main.ts</code></li>
+            <li><code>main.ts</code> je početna tačka i pokreće (<em>bootstraps</em>) aplikaciju</li>
+            <li>bootstrap proces pokreće Angular modul</li>
+            <li>u pitanju je <code>AppModule</code> u <code>src/app/app.module.ts</code></li>
+            <li><code>AppModule</code> određuje komponentu najvišeg nivoa za našu aplikaciju</li>
+            <li>to je <code>AppComponent</code> komponenta</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Priprema za produkciju</h2>
+          <div style="font-size:30pt;"><pre><code class="bash">
+ng build --target=production --base-href '/'
+          </code></pre></div>
+          <p>Rezultat je u <code>dist</code> folderu.</p>
+        </section>
+
+        <section>
+          <h1>#3: komponente</h1>
+        </section>
+
+        <section class="valigntop left">
+          <h2>HTML fajl</h2>
+          <div style="font-size:28pt;"><pre><code class="html">
+&lt;!-- src/index.html --&gt;
+
+&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;title&gt;HelloWorld&lt;/title&gt;
+  &lt;base href=&quot;/&quot;&gt;
+
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+  &lt;link rel=&quot;icon&quot; type=&quot;image/x-icon&quot; href=&quot;favicon.ico&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;-- komponenta koja predstavlja našu aplikaciju --&gt;
+  &lt;app-root&gt;Loading...&lt;/app-root&gt; 
+
+&lt;/body&gt;
+&lt;/html&gt;
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Kreiranje komponente</h2>
+          <div style="font-size:30pt;"><pre><code class="bash">
+$ ng generate component hello-world
+installing component
+  create src/app/hello-world/hello-world.component.css
+  create src/app/hello-world/hello-world.component.html
+  create src/app/hello-world/hello-world.component.spec.ts
+  create src/app/hello-world/hello-world.component.ts
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Komponenta</h2>
+          <ul>
+            <li>Komponenta je <strong>klasa</strong> sa <code>@Component</code> dekoratorom</li>
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="typescript">// src/app/hello-world/hello-world.component.ts
+
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-hello-world',
+  templateUrl: './hello-world.component.html',
+  styleUrls: ['./hello-world.component.css']
+})
+export class HelloWorldComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}</code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Komponenta</h2>
+          <ul>
+            <li><code>templateUrl</code> ili <code>template</code>: prikaz komponente</li>
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="html">
+&lt;!-- src/app/hello-world/hello-world.component.html --&gt;
+
+&lt;p&gt;
+  hello-world works!
+&lt;/p&gt;
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Korišćenje komponente</h2>
+          <ul>
+            <li>HTML tag komponente dodamo u templejt druge komponente</li>
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="html">
+&lt;!-- src/app/app.component.html --&gt;
+
+&lt;h1&gt; 
+  {{title}}
+  &lt;app-hello-world&gt;&lt;/app-hello-world&gt; 
+&lt;/h1&gt;
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Korišćenje komponente</h2>
+          <img src="img/angular/angular02.png" width="50%" class="clean"/>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Komponenta i podaci</h2>
+          <div style="font-size:30pt;"><pre><code class="bash">
+ng generate component user-item
+          </code></pre></div>
+          <div style="font-size:30pt;"><pre><code class="html">
+&lt;!-- src/app/app.component.html --&gt;
+
+&lt;h1&gt; 
+  {{title}}
+  &lt;app-hello-world&gt;&lt;/app-hello-world&gt; 
+  &lt;app-user-item&gt;&lt;/app-user-item&gt;
+&lt;/h1&gt;
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Komponenta i podaci</h2>
+          <div style="font-size:30pt;"><pre><code class="typescript">// src/app/user-item/user-item.component.ts
+
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-user-item',
+  templateUrl: './user-item.component.html',
+  styleUrls: ['./user-item.component.css']
+})
+export class UserItemComponent implements OnInit {
+  name: string; // dodali smo atribut
+
+  constructor() {
+    this.name = 'Žika'; // i inicijalizovali ga
+  }
+
+  ngOnInit() {
+  }
+}
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Komponenta i podaci</h2>
+          <div style="font-size:30pt;"><pre><code class="html">
+&lt;!-- src/app/user-item/user-item.component.html --&gt;
+
+&lt;p&gt;
+  Hello {{ name }}
+&lt;/p&gt;
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Korišćenje komponente</h2>
+          <img src="img/angular/angular03.png" width="50%" class="clean"/>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Kolekcije podataka</h2>
+          <div style="font-size:30pt;"><pre><code class="bash">
+ng generate component user-list
+          </code></pre></div>
+          <div style="font-size:30pt;"><pre><code class="html">
+&lt;!-- src/app/app.component.html --&gt;
+
+&lt;h1&gt; 
+  {{title}}
+  &lt;app-hello-world&gt;&lt;/app-hello-world&gt; 
+  &lt;app-user-list&gt;&lt;/app-user-list&gt;
+&lt;/h1&gt;
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Kolekcije podataka</h2>
+          <div style="font-size:30pt;"><pre><code class="typescript">// src/app/user-list/user-list.component.ts
+
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-user-list',
+  templateUrl: './user-list.component.html',
+  styleUrls: ['./user-list.component.css']
+})
+export class UserListComponent implements OnInit {
+  
+  names: string[];
+
+  constructor() {
+    this.names = ['Žika', 'Pera', 'Mika', 'Laza'];
+  }
+
+  ngOnInit() {
+  }
+}
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Kolekcije podataka</h2>
+          <div style="font-size:30pt;"><pre><code class="html">
+&lt;!-- src/app/user-item/user-list.component.html --&gt;
+
+&lt;ul&gt;
+  &lt;li *ngFor=&quot;let name of names&quot;&gt;Hello {{ name }}&lt;/li&gt;
+&lt;/ul&gt;
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Kolekcije podataka</h2>
+          <img src="img/angular/angular04.png" width="50%" class="clean"/>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Jedna komponenta poziva drugu</h2>
+          <div style="font-size:30pt;"><pre><code class="html">
+&lt;!-- src/app/user-list/user-list.component.html --&gt;
+
+&lt;ul&gt;
+  &lt;li *ngFor=&quot;let name of names&quot;&gt;
+    &lt;app-user-item&gt;&lt;/app-user-item&gt; 
+  &lt;/li&gt;
+&lt;/ul&gt;
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Jedna komponenta poziva drugu</h2>
+          <p>ups...</p>
+          <img src="img/angular/angular05.png" width="50%" class="clean"/>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Prenos podataka u komponentu</h2>
+          <div style="font-size:30pt;"><pre><code class="typescript">// src/app/user-item/user-item.component.ts
+
+import { Component, OnInit, Input } from '@angular/core';
+
+@Component({
+  selector: 'app-user-item',
+  templateUrl: './user-item.component.html',
+  styleUrls: ['./user-item.component.css']
+})
+export class UserItemComponent implements OnInit {
+
+  @Input() name: string; // dodali smo dekorator
+
+  constructor() {
+    this.name = 'Žika';
+  }
+
+  ngOnInit() {
+  }
+}
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Prenos podataka u komponentu</h2>
+          <div style="font-size:30pt;"><pre><code class="html">
+&lt;!-- src/app/user-list/user-list.component.html --&gt;
+
+&lt;ul&gt;
+  &lt;li *ngFor=&quot;let name of names&quot;&gt;
+    &lt;app-user-item [name]=&quot;name&quot;&gt;&lt;/app-user-item&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Konfiguracija modula</h2>
+          <div style="font-size:30pt;"><pre><code class="typescript">// src/app/app.module.ts
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    HelloWorldComponent, // moramo deklarisati
+    UserItemComponent,   // komponente pre upotrebe
+    UserListComponent
+], imports: [
+    BrowserModule,
+    FormsModule,
+    HttpModule
+  ],
+  providers: [],        // injektovane stvari
+  bootstrap: [AppComponent] // glavna komponenta
+})
+export class AppModule { }
+          </code></pre></div>
+        </section>
+
+        <section>
+          <h1>#4: obrada događaja</h1>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer: reddit klon</h2>
+          <div style="font-size:30pt;"><pre><code class="bash">
+ng new angular-reddit
+          </code></pre></div>
+          <p>Iskopirajte fajlove iz <a href="files/angular/reddit-files.zip" target="_blank">reddit-files.zip</a> u <code>src</code> folder.</p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Proba</h2>
+          <img src="img/angular/angular06.png" width="50%" class="clean"/>
+        </section>
+
+        <section class="valigntop left">
+          <h2>app.component.html</h2>
+          <div style="font-size:30pt;"><pre><code class="html">
+&lt;form class=&quot;ui large form segment&quot;&gt; 
+  &lt;h3 class=&quot;ui header&quot;&gt;Dodaj link&lt;/h3&gt;
+  &lt;div class=&quot;field&quot;&gt;
+    &lt;label for=&quot;title&quot;&gt;Naslov:&lt;/label&gt; 
+    &lt;input name=&quot;title&quot;/&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;field&quot;&gt;
+    &lt;label for=&quot;link&quot;&gt;Link:&lt;/label&gt;
+    &lt;input name=&quot;link&quot;/&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>app.component.html</h2>
+          <img src="img/angular/angular07.png" width="50%" class="clean"/>
+        </section>
+
+        <section class="valigntop left">
+          <h2>app.component.ts</h2>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+export class AppComponent {
+  title = 'app works!';
+
+  addArticle(title: HTMLInputElement, link: HTMLInputElement): boolean {
+    console.log(`Dodajemo članak sa naslovom: ${title.value} i linkom: ${link.value}`);
+    return false; 
+  }
+}
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>app.component.html</h2>
+          <div style="font-size:30pt;"><pre><code class="html">
+&lt;form class=&quot;ui large form segment&quot;&gt; 
+  &lt;h3 class=&quot;ui header&quot;&gt;Dodaj Link&lt;/h3&gt;
+  &lt;div class=&quot;field&quot;&gt;
+    &lt;label for=&quot;title&quot;&gt;Naslov:&lt;/label&gt;
+    &lt;input name=&quot;title&quot; #newtitle /&gt; &lt;!-- dodeli tag lokalnoj promenljivoj --&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;field&quot;&gt;
+    &lt;label for=&quot;link&quot;&gt;Link:&lt;/label&gt;
+    &lt;input name=&quot;link&quot; #newlink /&gt; &lt;!-- dodeli tag lokalnoj promenljivoj --&gt; 
+  &lt;/div&gt;
+
+  &lt;!-- dodato dugme, koristimo promenljive! --&gt;
+  &lt;button (click)=&quot;addArticle(newtitle, newlink)&quot;
+      class=&quot;ui positive right floated button&quot;&gt;
+    Po&scaron;alji link 
+  &lt;/button&gt;
+&lt;/form&gt;
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Resolve</h2>
+          <div style="font-size:30pt;"><pre><code class="html">
+&lt;input name=&quot;title&quot; #newtitle&gt;
+          </code></pre></div>
+          <ul>
+            <li><code>#newtitle</code> sintaksa zove se <strong>resolve</strong></li>
+            <li>promenljiva <code>newtitle</code> će biti dostupna u templejtu</li>
+            <li>njen tip je <code>HTMLInputElement</code> jer predstavlja čvor u DOM stablu</li>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Akcije i događaji</h2>
+          <div style="font-size:30pt;"><pre><code class="html">
+&lt;button (click)=&quot;addArticle(newtitle, newlink)&quot;&gt;
+          </code></pre></div>
+          <ul>
+            <li><code>addArticle</code> je funkcija u komponenti</li>
+            <li><code>newtitle</code> je definisana kao resolve</li>
+            <li><code>newlink</code> je definisana kao resolve</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Reakcija na događaj</h2>
+          <img src="img/angular/angular08.png" width="50%" class="clean"/>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Komponenta za članak</h2>
+          <div style="font-size:30pt;"><pre><code class="bash">
+ng generate component article
+          </code></pre></div>
+          <ul>
+            <li>definišemo izgled <code>ArticleComponent</code> u templejtu</li>
+            <li>definišemo osobine <code>ArticleComponent</code> u klasi</li>
+            <li><code>newlink</code> je definisana kao resolve</li>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>article.component.html</h2>
+          <div style="font-size:30pt;"><pre><code class="html">
+&lt;div class=&quot;four wide column center aligned votes&quot;&gt; 
+  &lt;div class=&quot;ui statistic&quot;&gt;
+    &lt;div class=&quot;value&quot;&gt;{{ votes }}&lt;/div&gt;
+    &lt;div class=&quot;label&quot;&gt;Points&lt;/div&gt;
+  &lt;/div&gt; 
+&lt;/div&gt;
+&lt;div class=&quot;twelve wide column&quot;&gt;
+  &lt;a class=&quot;ui large header&quot; href=&quot;{{ link }}&quot;&gt;{{ title }} &lt;/a&gt;
+  &lt;ul class=&quot;ui big horizontal list voters&quot;&gt; 
+    &lt;li class=&quot;item&quot;&gt;
+      &lt;a href (click)=&quot;voteUp()&quot;&gt;
+        &lt;i class=&quot;arrow up icon&quot;&gt;&lt;/i&gt; upvote
+      &lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class=&quot;item&quot;&gt;
+      &lt;a href (click)=&quot;voteDown()&quot;&gt;
+        &lt;i class=&quot;arrow down icon&quot;&gt;&lt;/i&gt; downvote
+      &lt;/a&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>article.component.ts</h2>
+          <div style="font-size:30pt;"><pre><code class="typescript">export class ArticleComponent implements OnInit {
+  // dodajemo atribut na host element, tj. element koji
+  // predstavlja ovu komponentu u templejtima
+  @HostBinding('attr.class') cssClass = 'row';
+
+  votes: number; // suma glasova
+  title: string; // naslov clanka
+  link: string;  // link na clanak
+
+  constructor() {
+    this.title = 'Angular 2';
+    this.link = 'http://angular.io';
+    this.votes = 10;
+  }
+
+  voteUp() {
+    this.votes += 1;
+  }
+  voteDown() {
+    this.votes -= 1;
+  }
+  ngOnInit() { }
+}</code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>app.component.html</h2>
+          <p>Ispod <code>form</code> elementa treba dodati:</p>
+          <div style="font-size:30pt;"><pre><code class="html">
+&lt;div class=&quot;ui grid posts&quot;&gt;
+  &lt;app-article&gt;
+  &lt;/app-article&gt;
+&lt;/div&gt;
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>app.module.ts</h2>
+          <p>Angular CLI je dodao novu komponentu u deklaracije prilikom poziva <code>ng generate component</code>. Bez toga tag <code>app-article</code> ne bi bio prepoznat.</p>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+@NgModule({
+  declarations: [
+    AppComponent,
+    ArticleComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Novo stanje</h2>
+          <img src="img/angular/angular09.png" width="45%" class="clean"/>
+          <p><small>Klik na linkove "glas više" / "glas manje" izaziva page reload.</small></p>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Obrada događaja</h2>
+          <ul>
+            <li>JavaScript će propagirati <code>click</code> događaj svim roditeljskim komponentama</li>
+            <li>klik na "prazan" link će izazvati reload</li>
+            <li>treba vratiti <code>false</code> da bismo sprečili propagiranje događaja prema roditeljima</li>
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+voteUp() {
+  this.votes += 1;
+  return false;
+}
+
+voteDown() {
+  this.votes -= 1;
+  return false;
+}
+          </code></pre></div>
+        </section>
+
+        <section>
+          <h1>#5: model podataka</h1>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Model klasa</h2>
+          <ul>
+            <li>podatke o članku predstavićemo novom klasom <code>Article</code></li>
+            <li>to je obična TypeScript klasa, nije komponenta</li>
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="bash">
+ng generate class article/Article
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>article.ts</h2>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+export class Article { 
+  title: string; 
+  link: string; 
+  votes: number;
+
+  constructor(title: string, link: string, votes?: number) { 
+    this.title = title;
+    this.link = link;
+    this.votes = votes || 0;
+  }
+
+  voteUp() {
+    this.votes += 1;
+  }
+
+  voteDown() {
+    this.votes -= 1;
+  }
+}
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>article.component.ts</h2>
+          <div style="font-size:30pt;"><pre><code class="typescript">import { Article } from './article';
+
+export class ArticleComponent implements OnInit {
+  @HostBinding('attr.class') cssClass = 'row'; 
+  article: Article;
+
+  constructor() {
+    this.article = new Article(
+      'Angular 2',
+      'http://angular.io',
+      10);
+  }
+
+  voteUp() {
+    this.article.voteUp();
+    return false;
+  }
+  voteDown() {
+    this.article.voteDown();
+    return false;
+  }
+  ...
+}</code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>article.component.html</h2>
+          <div style="font-size:30pt;"><pre><code class="html">
+&lt;div class=&quot;four wide column center aligned votes&quot;&gt; 
+  &lt;div class=&quot;ui statistic&quot;&gt;
+    &lt;div class=&quot;value&quot;&gt;{{ article.votes }}&lt;/div&gt;
+    &lt;div class=&quot;label&quot;&gt;Poena&lt;/div&gt;
+  &lt;/div&gt; 
+&lt;/div&gt;
+&lt;div class=&quot;twelve wide column&quot;&gt;
+  &lt;a class=&quot;ui large header&quot; href=&quot;{{ article.link }}&quot;&gt;{{ article.title }} &lt;/a&gt;
+  &lt;ul class=&quot;ui big horizontal list voters&quot;&gt; 
+    &lt;li class=&quot;item&quot;&gt;
+      &lt;a href (click)=&quot;voteUp()&quot;&gt;
+        &lt;i class=&quot;arrow up icon&quot;&gt;&lt;/i&gt; glas vi&scaron;e
+      &lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class=&quot;item&quot;&gt;
+      &lt;a href (click)=&quot;voteDown()&quot;&gt;
+        &lt;i class=&quot;arrow down icon&quot;&gt;&lt;/i&gt; glas manje
+      &lt;/a&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Novo stanje</h2>
+          <img src="img/angular/angular10.png" width="50%" class="clean"/>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Rukovanje kolekcijom članaka</h2>
+          <ol>
+            <li>niz članaka (<code>Article[]</code>) možemo čuvati u <code>AppComponent</code></li>
+            <li>izmenićemo <code>ArticleComponent</code> tako da prima <code>Article</code> kao ulazni parametar</li>
+            <li>izmenićemo templejt za <code>AppComponent</code> tako da prima više puta prikaže <code>ArticleComponent</code></li>
+          </ol>
+        </section>
+
+        <section class="valigntop left">
+          <h2>app.component.ts</h2>
+          <div style="font-size:30pt;"><pre><code class="typescript">import { Component } from '@angular/core';
+import { Article } from './article/article';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  articles: Article[];
+
+  constructor() {
+    this.articles = [
+      new Article('Angular 2', 'http://angular.io', 3),
+      new Article('Fullstack', 'http://fullstack.io', 2),
+      new Article('TypeScript', 'http://typescriptlang.org', 1),
+    ];
+  }
+}</code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>article.component.ts</h2>
+          <div style="font-size:30pt;"><pre><code class="typescript">import { Component, OnInit, HostBinding, Input } from '@angular/core';
+import { Article } from './article';
+
+@Component({
+  selector: 'app-article',
+  templateUrl: './article.component.html',
+  styleUrls: ['./article.component.css']
+})
+export class ArticleComponent implements OnInit {
+  @HostBinding('attr.class') cssClass = 'row'; 
+  @Input() article: Article; // dodali smo dekorator
+
+  constructor() {
+    // article se popunjava @Input() injekcijom
+  }
+
+  ...
+
+}</code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>article.component.html</h2>
+          <div style="font-size:30pt;"><pre><code class="html">
+&lt;div class=&quot;ui grid posts&quot;&gt;
+  &lt;app-article *ngFor=&quot;let article of articles&quot; [article]=&quot;article&quot;&gt;
+  &lt;/app-article&gt;
+&lt;/div&gt;
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Novo stanje</h2>
+          <img src="img/angular/angular11.png" width="50%" class="clean"/>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Dodavanje novog članka: app.component.ts</h2>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+addArticle(title: HTMLInputElement, link: HTMLInputElement): boolean { 
+  console.log(`Dodajem članak: ${title.value} i link: ${link.value}`); 
+  this.articles.push(new Article(title.value, link.value, 0));
+  title.value = '';
+  link.value = '';
+  return false; 
+}
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Prikaz domena iz linka: article.ts</h2>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+domain(): string { 
+  try {
+    // 1. skini http://
+    const domainAndPath: string = this.link.split('//')[1];
+    // 2. skini sve iza prve /
+    return domainAndPath.split('/')[0];
+  } catch (err) {
+    return null; 
+  }
+}
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Prikaz domena iz linka: article.component.html</h2>
+          <div style="font-size:30pt;"><pre><code class="html">
+&lt;a class=&quot;ui large header&quot; href=&quot;{{ article.link }}&quot;&gt;{{ article.title }}&lt;/a&gt;
+
+&lt;!-- dodato vvv--&gt;
+&lt;div class=&quot;meta&quot;&gt;({{ article.domain() }})&lt;/div&gt;
+&lt;!-- dodato ^^^--&gt;
+
+&lt;ul class=&quot;ui big horizontal list voters&quot;&gt; 
+...
+&lt;/ul&gt;
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Novo stanje</h2>
+          <img src="img/angular/angular12.png" width="50%" class="clean"/>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Prikaz sortiranih podataka</h2>
+          <ul>
+            <li>za sortiranje će poslužiti ugrađena funkcija <code>sort</code> za nizove</li>
+            <li>kriterijum sortiranja: razlika glasova</li>
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+export class AppComponent {
+  ...
+  sortedArticles(): Article[] {
+    return this.articles.sort((a: Article, b: Article) => b.votes - a.votes);
+  }  
+}
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Prikaz sortiranih podataka: app.component.html</h2>
+          <div style="font-size:30pt;"><pre><code class="html">
+&lt;div class=&quot;ui grid posts&quot;&gt;
+  &lt;app-article *ngFor=&quot;let article of sortedArticles()&quot; [article]=&quot;article&quot;&gt;
+  &lt;/app-article&gt;
+&lt;/div&gt;
+          </code></pre></div>
+        </section>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+        <section class="valigntop left">
+          <h2>Model</h2>
+          <ul>
+            <li><strong>model</strong> u prikazu je TypeScript klasa</li>
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+// src/app/models/institution.ts
+
+export class Institution {
+  constructor(
+    public id: number,
+    public title: string) { }
+}
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Servis</h2>
+          <ul>
+            <li>servis je klasa koja obavlja neki posao za komponentu</li>
+            <li>tipično se dobavlja injekcijom</li>
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="bash">
+ng generate service services/Institution
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Servis</h2>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+// src/app/services/institution.service.ts
+
+import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+import { Institution } from "../model/institution";
+
+@Injectable()
+export class InstitutionService {
+
+  constructor(private http: Http) {
+  }
+
+  getInstitutions(): Promise&lt;Institution[]&gt; {
+    return this.http.get('/institutions')
+      .toPromise()
+      .then(response => response.json()._embedded.institutions as Institution[])
+      .catch(this.handleError);
+  }
+}</code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Injekcija servisa</h2>
+          <ul>
+            <li>referencu na servis komponenta će dobiti injekcijom</li>
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+@Component({
+  ...
+  providers: [InstitutionService],
+})
+export class InstitutionsListComponent implements OnInit {
+  constructor(private institutionService: InstitutionService) { }
+  ...
+}            
+          </code></pre></div>
+        </section>
+
+        <section>
+          <h1>#4: rutiranje</h1>
+        </section>
+
+        <section>
+          <h1>#5: prenos parametara</h1>
+        </section>
+
+        <section>
+          <h1>#6: templejti</h1>
+        </section>
+
+<!--
+-->
+
+        <section>
+          <h3>Kraj dela</h3>
+          <p><a href="#/">← Početak dela</a></p>
+          <p><a href="index.html#/1">⇐ Početak kursa</a></p>
+        </section>
 
       </div>
     </div>
