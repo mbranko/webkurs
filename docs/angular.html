@@ -914,6 +914,157 @@ export class AppComponent {
           </code></pre></div>
         </section>
 
+        <section>
+          <h1>#6: ulazi i izlazi komponente</h1>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primeri u repozitorijumu</h2>
+          <ul>
+            <li><a href="https://github.com/mbranko/webkurs/tree/master/primeri/angular-reddit" target="_blank">angular-reddit</a></li>
+            <li><a href="https://github.com/mbranko/webkurs/tree/master/primeri/inventory-app" target="_blank">inventory-app</a></li>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>[ulaz] i (izlaz)</h2>
+          <ul>
+            <li>za prenos <strong>ulaznih</strong> podataka u komponentu koriste se <code>[uglaste]</code> zagrade</li>
+            <li>za prenos <strong>izlaznih</strong> podataka u komponentu koriste se <code>(obične)</code> zagrade</li>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>app.component.html</h2>
+          <div style="font-size:30pt;"><pre><code class="html">
+&lt;div class=&quot;inventory-app&quot;&gt;
+  &lt;products-list
+    [productList]=&quot;products&quot;
+    (onProductSelected)=&quot;productWasSelected($event)&quot;&gt;
+  &lt;/products-list&gt;
+&lt;/div&gt;
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>products-list.component.ts</h2>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+export class ProductsListComponent {
+
+  @Input() productList: Product[];  // ulaz
+
+  @Output() onProductSelected: EventEmitter&lt;Product&gt;;  // izlaz
+
+  clicked(product: Product): void {
+    this.currentProduct = product;
+    this.onProductSelected.emit(product); // emitujemo na izlaz
+  }
+
+  isSelected(product: Product): boolean {
+    if (!product || !this.currentProduct) {
+      return false;
+    }
+    return product.sku === this.currentProduct.sku;
+  }
+  ...
+}
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>EventEmitter je observer pattern</h2>
+          <ul>
+            <li>održava listu "pretplatnika" na događaj</li>
+            <li>publikuje događaj</li>
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+let ee = new EventEmitter();
+ee.subscribe((name:string) => console.log(`Hello ${name}`));
+ee.emit("Žika");
+// -> "Hello Žika"
+          </code></pre></div>
+          <ul>
+            <li>kada vežemo <code>EventEmitter</code> za izlaz, Angular će ga automatski pretplatiti</li>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>products-list.component.html</h2>
+          <div style="font-size:30pt;"><pre><code class="html">
+&lt;div class=&quot;ui items&quot;&gt;
+  &lt;product-row
+
+    &lt;!-- iteracija kroz niz --&gt;
+    *ngFor=&quot;let myProduct of productList&quot;
+
+    &lt;!-- prenos ulaznog parametra --&gt;
+    [product]=&quot;myProduct&quot;
+
+    &lt;!-- pretplata na događaj (klik mi&scaron;em) --&gt;
+    (click)='clicked(myProduct)'
+
+    &lt;!-- uključi/isključi CSS klasu selected zavisno od uslova --&gt;
+    [class.selected]=&quot;isSelected(myProduct)&quot;&gt;
+  &lt;/product-row&gt;
+&lt;/div&gt;
+          </code></pre></div>
+        </section>
+
+        <section>
+          <h1>#7: ugrađene direktive</h1>
+        </section>
+
+        <section class="valigntop left">
+          <h2>ngIf</h2>
+          <div style="font-size:30pt;"><pre><code class="html">
+&lt;div *ngIf=&quot;false&quot;&gt;&lt;/div&gt;
+
+&lt;div *ngIf=&quot;a &gt; b&quot;&gt;&lt;/div&gt;
+
+&lt;div *ngIf=&quot;str == 'yes'&quot;&gt;&lt;/div&gt;
+
+&lt;div *ngIf=&quot;myFunc()&quot;&gt;&lt;/div&gt;
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>ngSwitch</h2>
+          <div style="font-size:30pt;"><pre><code class="html">
+&lt;div class=&quot;container&quot; [ngSwitch]=&quot;myVar&quot;&gt;
+  &lt;div *ngSwitchCase=&quot;'A'&quot;&gt;Var is A&lt;/div&gt;
+  &lt;div *ngSwitchCase=&quot;'B'&quot;&gt;Var is B&lt;/div&gt;
+  &lt;div *ngSwitchCase=&quot;'C'&quot;&gt;Var is C&lt;/div&gt;
+  &lt;div *ngSwitchDefault&gt;Var is something else&lt;/div&gt;
+&lt;/div&gt;
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>ngStyle</h2>
+          <div style="font-size:30pt;"><pre><code class="html">
+&lt;div [style.background-color]=&quot;'yellow'&quot;&gt; ...
+&lt;/div&gt;
+          </code></pre></div>
+          ili
+          <div style="font-size:30pt;"><pre><code class="html">
+&lt;div [ngStyle]=&quot;{color: 'white', 'background-color': 'blue'}&quot;&gt; ...
+&lt;/div&gt;
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>ngClass</h2>
+          <div style="font-size:30pt;"><pre><code class="css">
+.bordered {
+  border: 1px dashed black; background-color: #eee; 
+}
+          </code></pre></div>
+
+          <div style="font-size:30pt;"><pre><code class="html">
+&lt;div [ngClass]=&quot;{bordered: false}&quot;&gt;This is never bordered&lt;/div&gt; 
+&lt;div [ngClass]=&quot;{bordered: true}&quot;&gt;This is always bordered&lt;/div&gt;
+          </code></pre></div>
+        </section>
 
 
 
