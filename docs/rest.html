@@ -1,0 +1,588 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>REST</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/branko.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <section class="vcenter">
+          <h1>REST</h1>
+          <h3>REpresentational State Transfer</h3>
+          <p>
+            <small><a href="http://mbranko.github.io/webkurs">http://mbranko.github.io/webkurs</a></small>
+          </p>
+          <p>
+            <small>Ovo je deo <a href="index.html#/1">web kursa</a></small>
+          </p>
+        </section>
+
+        <section class="valigntop">
+          <h2>Literatura</h2>
+          <ul>
+            <!--<li>TODO</li>-->
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>REST: REpresentational State Transfer</h2>
+          <ul>
+            <li>Roy Fielding: "Architectural Styles and the Design of Network-based Software Architectures"
+              <ul>
+                <li>PhD rad sa University of California, Irvine, 2000.</li>
+              </ul>
+            </li>
+            <li>definiše principe softverske arhitekture za web</li>
+            <li>alternativa za razvoj web servisa u odnosu na standardni SOAP+WSDL+...</li>
+            <li>autor je učestvovao u razvoju:
+              <ul>
+                <li>HTTP (RFC 1945, RFC 2616, RFC 2145, RFC 2068)</li>
+                <li>URI (RFC 2396, RFC 1808)</li>
+                <li>Apache HTTP Server</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>REST principi</h2>
+          <ul>
+            <li>pojam <strong>resursa</strong>: svaki entitet na webu je resurs. Npr. web sajt, HTML strana, XML fajl, web servis, fizički uređaj, ...</li>
+            <li><strong>adresa</strong> resursa: svaki resurs je identifikovan svojim URI-jem</li>
+            <li>nad resursima se obavljaju jednostavne <strong>operacije</strong></li>
+          </ul>
+          <img src="img/rest/slika2.png" width="30%" class="whiteborder5"/>
+        </section>
+
+        <section class="valigntop">
+          <h2>REST principi</h2>
+          <ul>
+            <li>jednostavne operacije nad resursima kao HTTP metode:
+            <ul>
+              <li>GET -- čitanje</li>
+              <li>POST -- kreiranje</li>
+              <li>PUT -- ažuriranje</li>
+              <li>DELETE -- brisanje</li>
+            </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Primer: kupovina avionskih karata</h2>
+          <ul>
+            <li>resurs = avionska karta</li>
+            <li>HTTP metoda jasno označava operaciju:</li>
+          </ul>
+          <p></p>
+          <img src="img/rest/slika3.png" width="35%" class="clean"/>
+        </section>
+
+        <section class="valigntop">
+          <h2>Šta znači "representational state transfer"?</h2>
+          <ul>
+            <li>klijent se obraća resursu putem URI-ja</li>
+            <li>dobija <em>reprezentaciju</em> resursa</li>
+            <li>ta reprezentacija pomera klijenta u novo <em>stanje</em></li>
+            <li>klijent se zatim obraća drugom resursu, itd.</li>
+            <li>seoba klijenta iz stanja u stanje = <em>transfer</em></li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Motiv za razvoj RESTa</h2>
+          <ul>
+            <li>definisanje dizajn šablona koji opisuje kako bi web trebalo da radi</li>
+            <li>tako da predstavlja okvir za razne web standarde</li>
+            <li>i dizajn web servisa</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>REST nije standard</h2>
+          <ul>
+            <li>W3C ga neće propisati kao standard</li>
+            <li>IBM/Oracle/Microsoft/itd neće prodavati REST razvojne alate</li>
+            <li>REST stimuliše <em>upotrebu</em> standarda:
+              <ul>
+                <li>HTTP</li>
+                <li>URI</li>
+                <li>XML/HTML/JSON/GIF/JPEG/itd. (formati za reprezentaciju resursa)</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>REST + XML/JSON</h2>
+          <ul>
+            <li>nije obavezno koristiti HTML za podatke</li>
+            <li>možemo koristiti i HTML, ...</li>
+            <li>ali ako nam trebaju <em>machine-readable</em> podaci, XML ili JSON su najzgodniji</li>
+            <li>pri tome, niko ne nameće neku posebnu šemu za podatke, niti format poruka!</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Povezivanje podataka</h2>
+          <ul>
+            <li>podaci koje vraća web servis treba da sadrže linkove ka drugim podacima</li>
+            <li>→ dizajn podataka kao mreže informacija</li>
+            <li>nasuprot tome, OO dizajn promoviše enkapsulaciju</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Primer RESTful servisa: studentska služba</h2>
+          <ul>
+            <li>neka je naš web servis dostupan na adresi <code>http://www.ftn.uns.ac.rs</code></li>
+            <li>neka je opis jednog studenta u JSON-u ovakav:</li><br/>
+          </ul>
+          <div style="font-size: 30pt;width:60%;margin-left:15%"><pre><code class="json">
+{
+  "name": "Žika",
+  "age": 20
+}          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Lista studenata kao XML resurs</h2>
+          <div style="font-size: 30pt;"><pre><code class="json">
+[
+  {
+    "name": "Žika",
+    "age": 20
+  },
+  {
+      "name": "Laza",
+      "age": 21
+  }
+]
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Pristup podacima</h2>
+          <ul>
+            <li>na adresi <code>http://www.ftn.uns.ac.rs/students</code> je lista studenata</li>
+            <li>na adresi <code>http://www.ftn.uns.ac.rs/students/&lt;ime&gt;</code> je konkretan student</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Čitanje podataka o studentu: zahtev</h2>
+          <div style="font-size: 30pt;"><pre><code class="http">
+GET /students/Žika HTTP/1.1
+Host: www.ftn.uns.ac.rs
+Date: Fri, 20 May 2011 12:00:00 GMT
+Accept: application/json
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Čitanje podataka o studentu: odgovor</h2>
+          <div style="font-size: 30pt;"><pre><code class="http">
+HTTP/1.1 200 OK
+Date: Fri, 20 May 2011
+Server: Apache 2.2.0
+Content-Length: 123
+Connection: close
+Content-Type: application/json
+
+{
+  "name": "Žika",
+  "age": 20
+}
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Dodavanje novog studenta: zahtev</h2>
+          <div style="font-size: 30pt;"><pre><code class="http">
+POST /students HTTP/1.1
+Host: www.ftn.uns.ac.rs
+Date: Fri, 20 May 2011 12:00:00 GMT
+Accept: text/xml
+Content-Length: 123
+Content-Type: application/json
+
+{
+  "name": "Pera",
+  "age": 20
+}
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Dodavanje novog studenta: odgovor</h2>
+          <div style="font-size: 30pt;"><pre><code class="http">
+HTTP/1.1 201 Created
+Date: Fri, 20 May 2011 12:00:00 GMT
+Location: http://www.ftn.uns.ac.rs/students/Pera
+Content-Length: nnn
+Content-Type: application/json
+
+{
+  "name": "Pera",
+  "age": 20
+}
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Pojedinačni resursi i kolekcije resursa</h2>
+          <ul>
+            <li>URI za kolekciju:<br/> 
+            <code>http://www.ftn.uns.ac.rs/students</code></li>
+            <li>URI za pojedinačni resurs:<br/> 
+            <code>http://www.ftn.uns.ac.rs/students/&lt;ime&gt;</code></li>
+            <li>operacije nad različitim vrstama URI-ja imaju različito značenje!</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Pojedinačni resursi i kolekcije resursa</h2>
+          <table>
+            <tr>
+              <th>&nbsp;</th>
+              <th>Collection URI</th>
+              <th>Element URI</th>
+            </tr>
+            <tr>
+              <td>GET</td>
+              <td>izlista URI-je i eventualno druge podatke o elementima kolekcije</td>
+              <td>dobija reprezentaciju elementa kolekcije u obliku odgovarajućeg MIME tipa</td>
+            </tr>
+            <tr>
+              <td>POST</td>
+              <td>kreira novi element kolekcije; URL novog elementa se vraća u odgovoru</td>
+              <td>tretira dati element kao kolekciju i kreira novi element u njoj</td>
+            </tr>
+            <tr>
+              <td>PUT</td>
+              <td>zameni celu kolekciju novom</td>
+              <td>Zameni element novim; ako ne postoji, kreira ga</td>
+            </tr>
+            <tr>
+              <td>DELETE</td>
+              <td>uklanja celu kolekciju</td>
+              <td>uklanja dati element kolekcije</td>
+            </tr>
+          </table>
+        </section>
+
+        <section class="valigntop">
+          <h2>Java klijent za RESTful web servis</h2>
+          <ul>
+            <li>potrebni sastojci:
+            <ol>
+              <li>rukovanje HTTP konekcijama</li>
+              <li>parsiranje XML-a</li><br/>
+            </ol>
+            </li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Twitter klijent</h2>
+          <div style="font-size: 30pt;"><pre><code class="java">
+URL twitter = new URL(
+  "http://twitter.com/statuses/public_timeline.xml");
+URLConnection tc = twitter.openConnection();
+BufferedReader in = new BufferedReader(
+  new InputStreamReader(tc.getInputStream(), "UTF8"));
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Odgovor Twittera</h2>
+          <div style="font-size: 30pt;"><pre><code class="xml">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;statuses type=&quot;array&quot;&gt;
+&lt;status&gt;
+  &lt;created_at&gt;Fri May 20 18:49:46 +0000 2011&lt;/created_at&gt;
+  &lt;id&gt;71648829237248000&lt;/id&gt;
+  &lt;text&gt;So high school is done. LET THE PARTY BEGIN&lt;/text&gt;
+  &lt;truncated&gt;false&lt;/truncated&gt;
+  &lt;favorited&gt;false&lt;/favorited&gt;
+  &lt;in_reply_to_status_id&gt;&lt;/in_reply_to_status_id&gt;
+  &lt;in_reply_to_user_id&gt;&lt;/in_reply_to_user_id&gt;
+  &lt;in_reply_to_screen_name&gt;&lt;/in_reply_to_screen_name&gt;
+  &lt;retweet_count&gt;0&lt;/retweet_count&gt;
+  &lt;retweeted&gt;false&lt;/retweeted&gt;
+
+  &lt;user&gt;
+    &lt;id&gt;250394499&lt;/id&gt;
+    &lt;name&gt;Taylor Stricklin&lt;/name&gt;
+    &lt;screen_name&gt;TaylorStricklin&lt;/screen_name&gt;
+...
+&lt;/statuses&gt;
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Odgovor Twittera u raznim formatima</h2>
+          <ul>
+            <li>XML:<br/> 
+            <code>http://twitter.com/statuses/public_timeline.xml</code></li>
+            <li>JSON:<br/> 
+            <code>http://twitter.com/statuses/public_timeline.json</code></li>
+            <li>RSS:<br/> 
+            <code>http://twitter.com/statuses/public_timeline.rss</code></li>
+            <li>ATOM:<br/> 
+            <code>http://twitter.com/statuses/public_timeline.atom</code></li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Korisne biblioteke</h2>
+          <ul>
+            <li><em>Apache HttpComponents</em>:<br/> precizna i detaljna implementacija HTTP protokola sa klijentske strane</li>
+            <li><em>Apache Commons Codec</em>:<br/> konverzija različitih formata</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Klijent sa Apache bibliotekama</h2>
+          <div style="font-size: 30pt;"><pre><code class="java">
+HttpClient client = new HttpClient();
+
+GetMethod get = new GetMethod(
+  "http://twitter.com/statuses/public_timeline.json");
+
+int statusCode = client.executeMethod(get);
+
+if (statusCode == HttpStatus.SC_OK) {
+  ... method.getResponseBody() ...
+}
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>RESTful servisi i Java</h2>
+          <ul>
+            <li><em>JAX-RS</em>: Java API for RESTful Web Services</li>
+            <li>implementacije:
+            <ul>
+              <li>Jersey</li>
+              <li>Apache CXF</li>
+              <li>RESTEasy</li>
+              <li>Restlet</li>
+              <li>Apache Wink</li>
+            </ul>
+            </li>
+            <li>pisanje servisa pomoću anotiranih Java klasa</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Resurs</h2>
+          <ul>
+            <li>resurs = anotirana POJO klasa</li>
+          </ul>
+          <div style="font-size: 30pt;"><pre><code class="java">
+@Path("/students")
+public class Students {
+...
+
+@Path("/students/{username}")
+public class Student {
+...
+
+@Path("/teachers/{username: [a-zA-Z]}")
+public class Teacher {
+...
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Operacije</h2>
+          <ul>
+            <li>operacije = anotirane metode u resurs klasi</li>
+          </ul>
+          <div style="font-size: 30pt;"><pre><code class="java">
+@Path("/students")
+public class Students {
+
+  @GET
+  public String handleGet() { ... }
+  
+  @POST
+  public String handlePost(String payload) { ... }  
+  
+  @PUT
+  public String handlePut(String payload) { ... }  
+
+  @DELETE
+  public String handleDelete() { ... }
+...
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>URI promenljive</h2>
+          <ul>
+            <li>prijem parametara iz URI-ja</li>
+          </ul>
+          <div style="font-size: 30pt;"><pre><code class="java">
+@Path("/student/{username}")
+public class Student {
+
+  @GET
+  public String handleGet(@PathParam("username") String username) { ... }
+  
+...
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Različiti formati podataka</h2>
+          <ul>
+            <li>ista operacija može <em>primiti</em> podatke u različitim formatima</li>
+          </ul>
+          <div style="font-size: 30pt;"><pre><code class="java">
+@Path("/student/{username}")
+public class Student {
+
+  @PUT
+  @Consumes("application/xml")
+  public String updateXML(String payload) { ... }
+  
+  @PUT
+  @Consumes("application/json")
+  public String updateJSON(String payload) { ... }
+  
+...
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Različiti formati podataka</h2>
+          <ul>
+            <li>ista operacija može <em>vratiti</em> podatke u različitim formatima</li>
+          </ul>
+          <div style="font-size: 30pt;"><pre><code class="java">
+@Path("/student/{username}")
+public class Student {
+
+  @GET
+  @Produces("application/xml")
+  public String getXML() { ... }
+  
+  @GET
+  @Produces("application/json")
+  public String getJSON() { ... }
+  
+...
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Prijem podataka iz HTML formi</h2>
+          <ul>
+            <li>primer HTML forme:</li>
+          </ul>
+          <div style="font-size: 30pt;"><pre><code class="html">
+&lt;form action=&quot;users&quot; method=&quot;POST&quot;&gt;
+  Name: &lt;input type=&quot;text&quot; name=&quot;name&quot;/&gt;
+  Age: &lt;input type=&quot;text&quot; name=&quot;age&quot;/&gt;
+  Address: &lt;input type=&quot;text&quot; name=&quot;address&quot;/&gt;
+&lt;/form&gt;
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Prijem podataka iz HTML formi</h2>
+          <div style="font-size: 30pt;"><pre><code class="java">
+@Path("/students")
+public class Students {
+
+  @POST
+  @Consumes("application/x-www-form-urlencoded")
+  public void addUser(
+      @FormParam("name") String name,
+      @FormParam("age") String age,
+      @FormParam("address") String address) { ... }
+  
+...
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Karakteristike operacija</h2>
+          <ul>
+            <li><strong>PUT</strong> i <strong>DELETE</strong>: idempotentne<br/> 
+            više identičnih zahteva daje isti rezultat</li><br/>
+            <li><strong>GET</strong>: bezbedna (safe method)<br/> 
+            samo za čitanje; ne sme da menja stanje na serveru</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Karakteristike operacija</h2>
+          <ul>
+            <li>RESTful servisi su <strong>stateless</strong>:<br/> stanje je isključivo na klijentu<br/>
+            <li>transakcije su u nadležnosti klijenta</li>
+          </ul>
+        </section>
+
+
+
+
+
+
+        <section>
+          <h3>Kraj dela</h3>
+          <p><a href="#/">← Početak dela</a></p>
+          <p><a href="index.html#/1">⇐ Početak kursa</a></p>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        history: true,
+
+        // 16:9 aspect ratio
+        width: 1280,
+        height: 720,
+        margin: 0.02,
+
+        // don't piss people off
+        transition: 'none',
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+    </script>
+  </body>
+</html>
