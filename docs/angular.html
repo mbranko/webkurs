@@ -38,7 +38,7 @@
         <section class="valigntop">
           <h2>Literatura</h2>
           <ul>
-            <li>TODO</li>
+            <li>Nate Murray, Felipe Coury, Ari Lerner, Carlos Taborda.<br/> <i>ng-book: The Complete Book on Angular 4</i>.<br/> <a href="https://www.ng-book.com/2n/" target="_blank">https://www.ng-book.com</a></li>
           </ul>
         </section>
 
@@ -923,6 +923,7 @@ export class AppComponent {
           <ul>
             <li><a href="https://github.com/mbranko/webkurs/tree/master/primeri/angular-reddit" target="_blank">angular-reddit</a></li>
             <li><a href="https://github.com/mbranko/webkurs/tree/master/primeri/inventory-app" target="_blank">inventory-app</a></li>
+            <li><a href="https://github.com/mbranko/webkurs/tree/master/primeri/forms" target="_blank">forms</a></li>
           </ul>
         </section>
 
@@ -1066,18 +1067,6 @@ ee.emit("Žika");
           </code></pre></div>
         </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
         <section class="valigntop left">
           <h2>Model</h2>
           <ul>
@@ -1147,9 +1136,60 @@ export class InstitutionsListComponent implements OnInit {
         </section>
 
         <section>
-          <h1>#4: rutiranje</h1>
+          <h1>#8: forme</h1>
         </section>
 
+        <section class="valigntop left">
+          <h2>FormControl</h2>
+          <ul>
+            <li>predstavlja jedno polje na formi, sa svojim osobinama</li>
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+// create a new FormControl with the value "Nate"
+let nameControl = new FormControl("Nate");
+
+let name = nameControl.value; // -&gt; Nate
+
+// now we can query this control for certain values:
+nameControl.errors // -&gt; StringMap&lt;string, any&gt; of errors
+nameControl.dirty  // -&gt; false
+nameControl.valid  // -&gt; true  
+          </code></pre></div>
+          <ul>
+            <li>povezivanje sa DOM stablom</li>
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+&lt;input type=&quot;text&quot; [formControl]=&quot;name&quot; /&gt;
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>FormGroup</h2>
+          <ul>
+            <li>skup polja na formi</li>
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+let personInfo = new FormGroup({ 
+  firstName: new FormControl("Zika"), 
+  lastName: new FormControl("Zikic"), 
+  zip: new FormControl("90210")
+})
+
+personInfo.value; // -&gt; {
+// firstName: &quot;Zika&quot;,
+// lastName: &quot;Zikic&quot;,
+// zip: &quot;90210&quot;
+//}
+
+personInfo.errors // -&gt; StringMap&lt;string, any&gt; of errors
+personInfo.dirty  // -&gt; false
+personInfo.valid  // -&gt; true
+          </code></pre></div>
+        </section>
+
+
+
+<!--
         <section>
           <h1>#5: prenos parametara</h1>
         </section>
@@ -1158,7 +1198,7 @@ export class InstitutionsListComponent implements OnInit {
           <h1>#6: templejti</h1>
         </section>
 
-<!--
+
 -->
 
         <section>
