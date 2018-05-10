@@ -38,7 +38,7 @@
         <section class="valigntop">
           <h2>Literatura</h2>
           <ul>
-            <li>Nate Murray, Felipe Coury, Ari Lerner, Carlos Taborda.<br/> <i>ng-book: The Complete Book on Angular 4</i>.<br/> <a href="https://www.ng-book.com/2n/" target="_blank">https://www.ng-book.com</a></li>
+            <li>Nate Murray, Felipe Coury, Ari Lerner, Carlos Taborda.<br/> <i>ng-book: The Complete Book on Angular</i>.<br/> <a href="https://www.ng-book.com/2n/" target="_blank">https://www.ng-book.com</a></li>
           </ul>
         </section>
 
@@ -49,7 +49,25 @@
         <section class="valigntop">
           <h2>Single page applications</h2>
           <ul>
-            <li>opis koncepta</li>
+            <li>koncept: MVC arhitektura unutar web čitača</li>
+            <li>sličan kao okruženja za desktop aplikacije</li>
+            <li>Java Swing, .NET WPF, Qt...</li>
+            <li>web čitač kao univerzalna platforma za korisnički interfejs</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Šta je Angular</h2>
+          <ul>
+            <li>framework za razvoj klijentskih web aplikacija</li>
+            <li>nastao u Google, sada open source projekat</li>
+            <li>verzije:</li>
+            <ul>
+              <li>verzija 1: AngularJS <a href="https://angularjs.org" target="_blank">https://angularjs.org</a></li>
+              <li>verzija 2 i više: Angular <a href="https://angular.io" target="_blank">https://angular.io</a></li>
+            </ul>
+            <li>drastične izmene između v1 i v2</li>
+            <li>kasnije izmene evolutivne</li>
           </ul>
         </section>
 
@@ -60,11 +78,19 @@
         <section class="valigntop left">
           <h2>Angular CLI</h2>
           <ul>
-            <li>alat za razvoj</li>
-            <li>komandna linija</li>
+            <li><a href="https://cli.angular.io" target="_blank">https://cli.angular.io</a></li>
+            <li>alat za razvoj Angular aplikacija</li>
+            <li>koristi se iz komandne linije</li>
+            <li>olakšava:</li>
+            <ul>
+              <li>kreiranje projekta</li>
+              <li>dodavanje novih fajlova</li>
+              <li>testiranje u web čitaču</li>
+              <li>izvršavanje razvojnih zadataka: testiranje, deployment...</li>
+            </ul>
           </ul>
           <div style="font-size:30pt;"><pre><code class="bash">
-npm install -g @angular/cli
+sudo npm install -g @angular/cli
 ng new hello-world
 cd hello-world
 ng serve
@@ -72,6 +98,74 @@ ng serve
           </code></pre></div>
         </section>
 
+        <section class="valigntop left">
+          <h2>Angular CLI</h2>
+          <ul>
+            <li>omogućava efikasan rad</li>
+            <li>forsira stilske preporuke Angular tima:</li>
+            <ul>
+              <li>sintaksne konvencije, organizacija aplikacije (struktura foldera...)</li>
+              <li>unifikovana i pregledna struktura aplikacije</li>
+              <li>veoma važno kod kompleksnih aplikacija</li>
+              <li><a href="https://angular.io/guide/styleguide" target="_blank">Angular Style Guide</a></li>
+            </ul>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Instalacija Angular CLI</h2>
+          <ul>
+            <li>preduslov je instaliran <a href="https://nodejs.org" target="_blank">Node.js</a></li>
+            <li>instalacija Angular CLI:</li>
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="bash">
+sudo npm install -g @angular/cli
+          </code></pre></div>
+          <ul>
+            <li>možda je potreban restart komandne linije</li>
+            <li>sve komande počinju sa <code>ng</code></li>
+            <li><code>ng help</code> za početak</li>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Kreiranje nove aplikacije</h2>
+          <ul>
+            <li>pozicionirati se u folder gde će se kreirati nova aplikacija</li>
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="bash">
+ng new moja-aplikacija
+          </code></pre></div>
+          <ul>
+            <li>kreira se podfolder <code>moja-aplikacija</code> sa fajlovima</li>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Pokretanje nove aplikacije</h2>
+          <ul>
+            <li>pozicionirati se u folder gde će je kreirana aplikacija</li>
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="bash">
+cd moja-aplikacija
+ng serve
+          </code></pre></div>
+          <ul>
+            <li>aplikacija je dostupna na <a href-"http://localhost:4200" target="_blank">http://localhost:4200</a></li>
+            <li>izmene u kodu će se automatski kompajlirati i prikazati u web čitaču</li>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Editor za TypeScript</h2>
+          <ul>
+            <li><a href="https://www.sublimetext.com/3" target="_blank">Sublime Text 3</a> sa TypeScript paketom</li>
+            <li><a href="https://code.visualstudio.com" target="_blank">Visual Studio Code</a> sa TypeScript paketom</li>
+            <li><a href="http://www.jetbrains.com/webstorm/" target="_blank">JetBrains WebStorm</a></li>
+          </ul>
+        </section>
+
+<!--
         <section class="valigntop left">
           <h2>Kreiranje projekta</h2>
           <div style="font-size:30pt;"><pre><code class="bash">
@@ -149,13 +243,28 @@ ng build --target=production --base-href '/'
           </code></pre></div>
           <p>Rezultat je u <code>dist</code> folderu.</p>
         </section>
-
+-->
         <section>
           <h1>#3: komponente</h1>
         </section>
 
         <section class="valigntop left">
-          <h2>HTML fajl</h2>
+          <h2>Pojam komponente</h2>
+          <ul>
+            <li>Angular aplikacije se sastoje iz komponenti</li>
+            <ul>
+              <li>komponenta je odgovorna za deo korisničkog interfejsa - "deo ekrana"</li>
+              <li>prikaz i funkcionalnost dela UI-ja za koji je zadužena</li>
+            </ul>
+            <li><code>AppComponent</code> - korenska komponenta koja sadrži sve ostale</li>
+          </ul>
+          <center>
+            <img src="img/angular/ang01.svg" width="60%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Osnovni HTML fajl projekta</h2>
           <div style="font-size:28pt;"><pre><code class="html">
 &lt;!-- src/index.html --&gt;
 
@@ -182,12 +291,21 @@ ng build --target=production --base-href '/'
         <section class="valigntop left">
           <h2>Kreiranje komponente</h2>
           <div style="font-size:30pt;"><pre><code class="bash">
-$ ng generate component hello-world
+$ ng generate component moja-komponenta
 installing component
-  create src/app/hello-world/hello-world.component.css
-  create src/app/hello-world/hello-world.component.html
-  create src/app/hello-world/hello-world.component.spec.ts
-  create src/app/hello-world/hello-world.component.ts
+  create src/app/moja-komponenta/moja-komponenta.component.css
+  create src/app/moja-komponenta/moja-komponenta.component.html
+  create src/app/moja-komponenta/moja-komponenta.component.spec.ts
+  create src/app/moja-komponenta/moja-komponenta.component.ts
+          </code></pre></div>
+
+          <div style="font-size:30pt;"><pre><code class="bash">
+$ ng generate component folder/komponenta
+installing component
+  create src/app/folder/komponenta/komponenta.component.css
+  create src/app/folder/komponenta/komponenta.component.html
+  create src/app/folder/komponenta/komponenta.component.spec.ts
+  create src/app/folder/komponenta/komponenta.component.ts
           </code></pre></div>
         </section>
 
@@ -305,10 +423,272 @@ export class UserItemComponent implements OnInit {
           <img src="img/angular/angular03.png" width="50%" class="clean"/>
         </section>
 
+        <section class="valigntop">
+          <h2>Primer: YouTube</h2>
+          <img src="img/angular/ang02.svg" width="70%"/>
+        </section>
+
+        <section class="valigntop">
+          <h2>Primer: GMail</h2>
+          <img src="img/angular/ang03.svg" width="80%"/>
+        </section>
+
+        <section class="valigntop">
+          <h2>Primer: GMail</h2>
+          <img src="img/angular/ang04.svg" width="70%"/>
+        </section>
+
+        <section class="valigntop">
+          <h2>Primer: Twitter</h2>
+          <img src="img/angular/ang05.svg" width="60%"/>
+        </section>
+
+        <section class="valigntop">
+          <h2>Zadatak: podeliti na komponente</h2>
+          <img src="img/angular/ang06.svg" width="90%"/>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer: Wine Cellar</h2>
+          <ul>
+            <li>kreiramo novu aplikaciju</li>
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="bash">
+$ ng new wine-cellar
+$ cd wine-cellar
+          </code></pre></div>
+          <ul>
+            <li>komponente koje se pojavljuju u svakom prikazu ćemo staviti u folder <code>core</code></li>
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="bash">
+$ ng g component core/header
+$ ng g component core/navbar
+          </code></pre></div>
+          <ul>
+            <li>komponente za manipulaciju vinima u folder <code>wine</code></li>
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="bash">
+$ ng g component wine/wine-list
+$ ng g component wine/edit-wine
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer: Wine Cellar</h2>
+          <ul>
+            <li><code>WineListComponent</code> se deli na</li>
+            <ul>
+              <li><code>SearchFormComponent</code></li>
+              <li><code>TableComponent</code></li>
+              <li><code>PaginationComponent</code></li>
+            </ul>
+            <li>treba kreirati ove komponente u folderu <code>wine</code></li>
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="bash">
+$ ng g component wine/search-form
+$ ng g component wine/table
+$ ng g component wine/pagination
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop">
+          <h2>Struktura projekta</h2>
+          <img src="img/angular/ang07.svg" width="70%"/>
+        </section>
+
+        <section class="valigntop">
+          <h2>node_modules folder</h2>
+          <img src="img/angular/ang09.jpg" width="60%"/>
+        </section>
+
+        <section class="valigntop">
+          <h2>Struktura komponente</h2>
+          <img src="img/angular/ang08.svg" width="70%"/>
+        </section>
+
+        <section class="valigntop">
+          <h2>Struktura komponente</h2>
+          <img src="img/angular/ang10.svg" width="70%"/>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Zadatak</h2>
+          <ul>
+            <li>prefiks <code>app-</code> u selektoru promeniti u <code>wc-</code></li>
+            <li>templejt za <code>AppComponent</code> preraditi tako da </li>
+            <ul>
+              <li>prvim redom upravlja <code>HeaderComponent</code></li>
+              <li>drugim redom upravlja <code>NavbarComponent</code></li>
+              <li>trećim redom upravlja <code>WineListComponent</code></li>
+            </ul>
+          </ul>
+          <p/>
+          <img src="img/angular/ang11.svg" width="90%"/>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Zadatak</h2>
+          <ul>
+            <li><code>WineListComponent</code> preraditi tako da prikaže <code>h1</code> naslov sa tekstom "WineListComponent" a ostatak podeliti na tri reda:</li>
+            <li>templejt za <code>AppComponent</code> preraditi tako da </li>
+            <ul>
+              <li>prvim redom upravlja <code>SearchFormComponent</code></li>
+              <li>drugim redom upravlja <code>TableComponent</code></li>
+              <li>trećim redom upravlja <code>PaginationComponent</code></li>
+            </ul>
+          </ul>
+          <center>
+            <img src="img/angular/ang12.svg" width="60%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Bootstrap</h2>
+          <ul>
+            <li>koristićemo <a href="http://getbootstrap.com" target="_blank">Bootstrap v4</a> kao CSS biblioteku</li>
+            <li>iskopirati <code>bootstrap.css</code> i <code>bootstrap.css.map</code> u <code>src/assets/css</code></li>
+            <li>izmeniti <code>.angular-cli.json</code> tako da <code>styles</code> sadrži i Bootstrap-ov CSS:
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="json">
+"styles": [
+  "styles.css",
+  "assets/css/bootstrap.css"
+]
+          </code></pre></div>
+          <ul>
+            <li>restartovati Angular CLI</li>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Bootstrap grid sistem i Wine Cellar</h2>
+          <img src="img/angular/ang13.svg" width="80%"/>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Zadatak</h2>
+          <ul>
+            <li>dodati Bootstrap u Wine Cellar</li>
+            <li>dodati Bootstrap klase kojima ćemo definisati grid sistem u templejtu <code>AppComponent</code></li>
+            <ul>
+              <li>u korenski <code>div</code> dodati klasu <code>container-fluid</code></li>
+              <li>svaka od sadržanih komponenti se prostire u 1 redu i svih 12 kolona</li>
+            </ul>
+            <li>dodati Bootstrap klase kojima ćemo definisati grid sistem u templejtu <code>WineListComponent</code></li>
+            <ul>
+              <li>ne treba stavljati <code>container-fluid</code> (već je u korenskoj komponenti)</li>
+              <li>svaka od sadržanih komponenti se prostire u 1 redu i svih 12 kolona</li>
+            </ul>
+            <li>zameniti templejte za header, navbar i table komponente - <a href="files/angular/zadatak4.zip">download</a></li>
+            <ul>
+              <li><code>wine.jpg</code> staviti u <code>src/assets/images</code></li>
+            </ul>
+          </ul>
+        </section>
+
+        <section class="valigntop">
+          <h2>Željeni izgled</h2>
+          <img src="img/angular/ang14.svg" width="70%"/>
+        </section>
+
+        <section>
+          <h1>#4: Moduli</h1>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Pojam modula</h2>
+          <ul>
+            <li>svi delovi neophodni za funkcionisanje aplikacije se stavljaju u modul</li>
+            <li>modul može da sadrži i druge module</li>
+            <li>aplikacija se može oslanjati i na druge module</li>
+          </ul>
+          <p/>
+          <center>
+            <img src="img/angular/ang15.svg" width="60%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Pojam modula</h2>
+          <ul>
+            <li>moduli su hijerarhijski organizovani</li>
+            <li>na vrhu je <em>root module</em></li>
+            <li>tipično se korenski modul zove <code>AppModule</code></li>
+          </ul>
+          <p/>
+          <center>
+            <img src="img/angular/ang16.svg" width="45%"/>
+          </center>
+        </section>
+
+        <section class="valigntop">
+          <h2>Wine Cellar: definicija AppModule</h2>
+          <img src="img/angular/ang17.svg" width="70%"/>
+        </section>
+
+        <section class="valigntop">
+          <h2>Trenutna struktura Wine Cellar aplikacije</h2>
+          <img src="img/angular/ang18.svg" width="80%"/>
+        </section>
+
+        <section>
+          <h1>#5: Interpolacija</h1>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Interpolacija: dinamičko izračunavanje izraza</h2>
+          <ul>
+            <li>vrednost izraza se izračunava prilikom prikazivanja</li>
+            </ul>
+          <div style="font-size:30pt;"><pre><code class="html">
+<p>Vrednost izraza 2+2: {{2+2}}</p>
+          </code></pre></div>
+          <ul>
+            <li>atributi komponente</li>
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+private title: string = "primer";
+private a: number = 5;
+private b: number = 3;
+          </code></pre></div>
+          <div style="font-size:30pt;"><pre><code class="html">
+<h1>{{title}}</h1>
+<p> {{a}} + {{b}} = {{a+b}}</p>
+<p>Naslov sadrži {{title.length}} znakova.</p>
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Interpolacija</h2>
+          <ul>
+            <li>ternarni operator</li>
+            </ul>
+          <div style="font-size:30pt;"><pre><code class="html">
+<p>{{ a > 0 ? 'positive' : 'negative' }}</p>
+          </code></pre></div>
+          <ul>
+            <li>poziv metode komponente</li>
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+subtract(x: number, y: number): number {
+  return x - y;
+}
+          </code></pre></div>
+          <div style="font-size:30pt;"><pre><code class="html">
+<p>{{a}} - {{b}} = {{subtract(a, b)}}</p>
+          </code></pre></div>
+        </section>
+
+        <section>
+          <h1>#6: Kolekcije podataka</h1>
+        </section>
+
         <section class="valigntop left">
           <h2>Kolekcije podataka</h2>
           <div style="font-size:30pt;"><pre><code class="bash">
-ng generate component user-list
+ng new hello-world
+cd hello world
+ng g component user-list
           </code></pre></div>
           <div style="font-size:30pt;"><pre><code class="html">
 &lt;!-- src/app/app.component.html --&gt;
@@ -364,6 +744,9 @@ export class UserListComponent implements OnInit {
 
         <section class="valigntop left">
           <h2>Jedna komponenta poziva drugu</h2>
+          <div style="font-size:30pt;"><pre><code class="bash">
+ng g component user-item
+          </code></pre></div>
           <div style="font-size:30pt;"><pre><code class="html">
 &lt;!-- src/app/user-list/user-list.component.html --&gt;
 
@@ -442,7 +825,7 @@ export class AppModule { }
         </section>
 
         <section>
-          <h1>#4: obrada događaja</h1>
+          <h1>#7: obrada događaja</h1>
         </section>
 
         <section class="valigntop left">
@@ -455,7 +838,7 @@ ng new angular-reddit
 
         <section class="valigntop">
           <h2>Proba</h2>
-          <img src="img/angular/angular06.png" width="50%" class="clean"/>
+          <img src="img/angular/angular06.png" width="70%" class="clean"/>
         </section>
 
         <section class="valigntop left">
@@ -477,7 +860,7 @@ ng new angular-reddit
 
         <section class="valigntop">
           <h2>app.component.html</h2>
-          <img src="img/angular/angular07.png" width="50%" class="clean"/>
+          <img src="img/angular/angular07.png" width="70%" class="clean"/>
         </section>
 
         <section class="valigntop left">
@@ -543,7 +926,7 @@ export class AppComponent {
 
         <section class="valigntop">
           <h2>Reakcija na događaj</h2>
-          <img src="img/angular/angular08.png" width="50%" class="clean"/>
+          <img src="img/angular/angular08.png" width="60%" class="clean"/>
         </section>
 
         <section class="valigntop left">
@@ -671,7 +1054,7 @@ voteDown() {
         </section>
 
         <section>
-          <h1>#5: model podataka</h1>
+          <h1>#8: model podataka</h1>
         </section>
 
         <section class="valigntop left">
@@ -766,7 +1149,7 @@ export class ArticleComponent implements OnInit {
 
         <section class="valigntop">
           <h2>Novo stanje</h2>
-          <img src="img/angular/angular10.png" width="50%" class="clean"/>
+          <img src="img/angular/angular10.png" width="65%" class="clean"/>
         </section>
 
         <section class="valigntop left">
@@ -825,7 +1208,7 @@ export class ArticleComponent implements OnInit {
         </section>
 
         <section class="valigntop left">
-          <h2>article.component.html</h2>
+          <h2>app.component.html</h2>
           <div style="font-size:30pt;"><pre><code class="html">
 &lt;div class=&quot;ui grid posts&quot;&gt;
   &lt;app-article *ngFor=&quot;let article of articles&quot; [article]=&quot;article&quot;&gt;
@@ -915,7 +1298,7 @@ export class AppComponent {
         </section>
 
         <section>
-          <h1>#6: ulazi i izlazi komponente</h1>
+          <h1>#9: ulazi i izlazi komponente</h1>
         </section>
 
         <section class="valigntop left">
@@ -930,8 +1313,8 @@ export class AppComponent {
         <section class="valigntop left">
           <h2>[ulaz] i (izlaz)</h2>
           <ul>
-            <li>za prenos <strong>ulaznih</strong> podataka u komponentu koriste se <code>[uglaste]</code> zagrade</li>
-            <li>za prenos <strong>izlaznih</strong> podataka u komponentu koriste se <code>(obične)</code> zagrade</li>
+            <li>za prenos <strong>ulaza</strong> u komponentu koriste se <code>[uglaste]</code> zagrade</li>
+            <li>za prenos <strong>izlaza</strong> u komponentu koriste se <code>(obične)</code> zagrade</li>
           </ul>
         </section>
 
@@ -1012,7 +1395,7 @@ ee.emit("Žika");
         </section>
 
         <section>
-          <h1>#7: ugrađene direktive</h1>
+          <h1>#10: ugrađene direktive</h1>
         </section>
 
         <section class="valigntop left">
@@ -1136,7 +1519,7 @@ export class InstitutionsListComponent implements OnInit {
         </section>
 
         <section>
-          <h1>#8: forme</h1>
+          <h1>#11: forme</h1>
         </section>
 
         <section class="valigntop left">
