@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 1845 620" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:10;">
+    <g transform="matrix(1,0,0,1,-2196.58,-3839.05)">
+        <g id="Page-20" serif:id="Page 20" transform="matrix(2.66667,0,0,2.66667,2160,3240)">
+            <rect x="0" y="0" width="720" height="540" style="fill:none;"/>
+            <clipPath id="_clip1">
+                <rect x="0" y="0" width="720" height="540"/>
+            </clipPath>
+            <g clip-path="url(#_clip1)">
+                <g transform="matrix(1,0,0,1,0,-1.2208e-05)">
+                    <rect x="0" y="0" width="720" height="540" style="fill:white;"/>
+                </g>
+                <g transform="matrix(1,0,0,1,0,141.77)">
+                    <rect x="14.843" y="84" width="187.71" height="230.23" style="fill:none;stroke:rgb(68,114,196);stroke-width:2.25px;"/>
+                </g>
+                <g transform="matrix(1,0,0,1,0,-42.025)">
+                    <rect x="21.301" y="275.26" width="174.8" height="31.505" style="fill:none;stroke:rgb(68,114,196);stroke-width:2.25px;"/>
+                </g>
+                <g transform="matrix(1,0,0,1,0,29.975)">
+                    <rect x="20.575" y="239.26" width="176.25" height="31.505" style="fill:none;stroke:rgb(68,114,196);stroke-width:2.25px;"/>
+                </g>
+                <g transform="matrix(1,0,0,1,0,174.67)">
+                    <rect x="29.298" y="130.56" width="158.8" height="104.21" style="fill:rgb(31,78,121);stroke:rgb(68,114,196);stroke-width:0.75px;"/>
+                </g>
+                <g transform="matrix(1,0,0,1,0,101.975)">
+                    <rect x="210.64" y="203.26" width="183.92" height="31.505" style="fill:none;stroke:rgb(68,114,196);stroke-width:2.25px;"/>
+                </g>
+                <g transform="matrix(1,0,0,1,0,232.835)">
+                    <rect x="210.64" y="137.83" width="189.92" height="31.505" style="fill:none;stroke:rgb(68,114,196);stroke-width:2.25px;"/>
+                </g>
+                <g transform="matrix(1,0,0,1,0,137.74)">
+                    <path d="M209.68,182.66L188.32,217.11L190.23,218.3L211.6,183.84L209.68,182.66ZM188.36,209.87L188.1,219.6L196.71,215.04C197.26,214.75 197.46,214.07 197.17,213.52C196.88,212.97 196.2,212.76 195.65,213.05L188.75,216.71L190.4,217.74L190.61,209.93C190.63,209.3 190.14,208.79 189.52,208.77C188.9,208.75 188.38,209.24 188.36,209.87Z" style="fill:rgb(68,114,196);fill-rule:nonzero;"/>
+                </g>
+                <g transform="matrix(1,0,0,1,0,204.45)">
+                    <path d="M209.75,182.66L188.58,155.34L190.36,153.96L211.53,181.28L209.75,182.66ZM189.37,162.55L188.1,152.89L197.13,156.53C197.71,156.76 197.99,157.42 197.76,158C197.52,158.57 196.87,158.85 196.29,158.62L189.05,155.69L190.58,154.5L191.6,162.25C191.69,162.87 191.25,163.43 190.64,163.51C190.02,163.6 189.45,163.16 189.37,162.55Z" style="fill:rgb(68,114,196);fill-rule:nonzero;"/>
+                </g>
+                <g transform="matrix(1,0,0,1,0,141.76)">
+                    <rect x="422.27" y="122.78" width="282.89" height="152.68" style="fill:none;stroke:rgb(68,114,196);stroke-width:0.75px;"/>
+                </g>
+                <text x="66.696px" y="444.984px" style="font-family:'Calibri', sans-serif;font-size:20.04px;fill:rgb(68,114,196);">AppComponen<tspan x="188.551px " y="444.984px ">t</tspan></text>
+                <g>
+                    <text x="31.032px" y="255.6px" style="font-family:'Calibri', sans-serif;font-size:20.04px;fill:rgb(68,114,196);">HeaderCom</text>
+                    <text x="127.837px" y="255.6px" style="font-family:'Calibri', sans-serif;font-size:20.04px;fill:rgb(68,114,196);">p</text>
+                    <text x="138.265px" y="255.6px" style="font-family:'Calibri', sans-serif;font-size:20.04px;fill:rgb(68,114,196);">onen<tspan x="179.676px " y="255.6px ">t</tspan></text>
+                    <text x="31.56px" y="291.62px" style="font-family:'Calibri', sans-serif;font-size:20.064px;fill:rgb(68,114,196);">Na<tspan x="53.789px " y="291.62px ">v</tspan></text>
+                    <text x="62.851px" y="291.62px" style="font-family:'Calibri', sans-serif;font-size:20.064px;fill:rgb(68,114,196);">b</text>
+                    <text x="73.293px" y="291.62px" style="font-family:'Calibri', sans-serif;font-size:20.064px;fill:rgb(68,114,196);">arCo</text>
+                    <text x="111.177px" y="291.62px" style="font-family:'Calibri', sans-serif;font-size:20.064px;fill:rgb(68,114,196);">m</text>
+                    <text x="127.105px" y="291.62px" style="font-family:'Calibri', sans-serif;font-size:20.064px;fill:rgb(68,114,196);">ponen<tspan x="179.107px " y="291.62px ">t</tspan></text>
+                </g>
+                <g>
+                    <path d="M124.297,342.314C124.493,342.314 124.626,342.358 124.698,342.446C124.77,342.534 124.806,342.663 124.806,342.833L124.806,351.375C124.806,351.428 124.793,351.472 124.767,351.507C124.74,351.543 124.696,351.574 124.634,351.6C124.572,351.627 124.489,351.646 124.385,351.659C124.281,351.672 124.153,351.679 124.003,351.679C123.84,351.679 123.706,351.672 123.602,351.659C123.498,351.646 123.415,351.627 123.353,351.6C123.291,351.574 123.247,351.543 123.22,351.507C123.194,351.472 123.181,351.428 123.181,351.375L123.181,343.655L118.631,343.655L118.631,348.567C118.631,349.174 118.721,349.632 118.9,349.942C119.08,350.252 119.401,350.407 119.864,350.407C120.014,350.407 120.148,350.392 120.265,350.363C120.383,350.333 120.487,350.302 120.578,350.27C120.67,350.237 120.748,350.206 120.813,350.177C120.879,350.147 120.937,350.133 120.989,350.133C121.022,350.133 121.053,350.141 121.082,350.157C121.112,350.173 121.135,350.204 121.151,350.25C121.167,350.296 121.182,350.358 121.195,350.436C121.208,350.514 121.215,350.612 121.215,350.73C121.215,350.919 121.201,351.067 121.175,351.175C121.149,351.282 121.11,351.364 121.058,351.419C121.006,351.475 120.927,351.525 120.823,351.571C120.719,351.617 120.6,351.654 120.466,351.684C120.332,351.713 120.19,351.737 120.04,351.757C119.89,351.777 119.74,351.786 119.59,351.786C119.134,351.786 118.742,351.726 118.416,351.605C118.09,351.485 117.822,351.302 117.614,351.057C117.405,350.813 117.253,350.503 117.159,350.128C117.064,349.753 117.017,349.311 117.017,348.802L117.017,343.655L115.784,343.655C115.686,343.655 115.608,343.603 115.549,343.498C115.49,343.394 115.461,343.224 115.461,342.989C115.461,342.866 115.469,342.761 115.485,342.676C115.502,342.592 115.523,342.521 115.549,342.466C115.575,342.411 115.609,342.371 115.652,342.349C115.694,342.326 115.741,342.314 115.794,342.314L117.017,342.314L117.017,340.22C117.017,340.175 117.028,340.132 117.051,340.093C117.074,340.054 117.116,340.02 117.178,339.99C117.24,339.961 117.323,339.94 117.428,339.927C117.532,339.914 117.662,339.907 117.819,339.907C117.982,339.907 118.116,339.914 118.22,339.927C118.325,339.94 118.406,339.961 118.465,339.99C118.524,340.02 118.566,340.054 118.592,340.093C118.618,340.132 118.631,340.175 118.631,340.22L118.631,342.314L124.297,342.314ZM124.992,339.594C124.992,339.972 124.92,340.23 124.776,340.367C124.633,340.504 124.369,340.573 123.984,340.573C123.605,340.573 123.346,340.506 123.206,340.372C123.066,340.238 122.995,339.985 122.995,339.614C122.995,339.235 123.067,338.978 123.211,338.841C123.354,338.704 123.618,338.635 124.003,338.635C124.382,338.635 124.641,338.702 124.781,338.836C124.921,338.969 124.992,339.222 124.992,339.594Z" style="fill:white;"/>
+                    <text x="72.504px" y="351.62px" style="font-family:'Calibri', sans-serif;font-size:20.04px;fill:white;">Dir<tspan x="96.155px 106.126px 126.303px 135.061px " y="351.62px 351.62px 351.62px 351.62px ">ekva</tspan></text>
+                    <text x="55.584px" y="375.62px" style="font-family:'Calibri', sans-serif;font-size:20.04px;fill:white;">r<tspan x="62.248px 72.816px 83.344px 89.842px " y="375.62px 375.62px 375.62px 375.62px ">oute</tspan></text>
+                    <text x="99.813px" y="375.62px" style="font-family:'Calibri', sans-serif;font-size:20.04px;fill:white;">r</text>
+                    <text x="106.712px" y="375.62px" style="font-family:'Calibri', sans-serif;font-size:20.04px;fill:white;">-outle<tspan x="155.12px " y="375.62px ">t</tspan></text>
+                </g>
+                <g>
+                    <text x="219.55px" y="327.62px" style="font-family:'Calibri', sans-serif;font-size:20.04px;fill:rgb(68,114,196);">WineLis<tspan x="283.114px 289.827px " y="327.62px 327.62px ">tC</tspan>ompo</text>
+                    <text x="348.186px" y="327.62px" style="font-family:'Calibri', sans-serif;font-size:20.04px;fill:rgb(68,114,196);">n</text>
+                    <text x="358.864px" y="327.62px" style="font-family:'Calibri', sans-serif;font-size:20.04px;fill:rgb(68,114,196);">en<tspan x="379.178px " y="327.62px ">t</tspan></text>
+                    <text x="220.51px" y="393.07px" style="font-family:'Calibri', sans-serif;font-size:20.04px;fill:rgb(68,114,196);">E</text>
+                    <text x="230.152px" y="393.07px" style="font-family:'Calibri', sans-serif;font-size:20.04px;fill:rgb(68,114,196);">ditWineCom</text>
+                    <text x="332.181px" y="393.07px" style="font-family:'Calibri', sans-serif;font-size:20.04px;fill:rgb(68,114,196);">p</text>
+                    <text x="342.81px" y="393.07px" style="font-family:'Calibri', sans-serif;font-size:20.04px;fill:rgb(68,114,196);">onen<tspan x="384.221px " y="393.07px ">t</tspan></text>
+                </g>
+                <g>
+                    <text x="429.53px" y="286.92px" style="font-family:'Calibri', sans-serif;font-size:20.04px;">&lt;</text>
+                    <text x="439.511px" y="286.92px" style="font-family:'Calibri', sans-serif;font-size:20.04px;">w</text>
+                    <text x="453.541px" y="286.92px" style="font-family:'Calibri', sans-serif;font-size:20.04px;">c-header&gt;&lt;/w<tspan x="567.567px 576.041px " y="286.92px 286.92px ">c-</tspan>header&gt;</text>
+                    <text x="429.53px" y="310.92px" style="font-family:'Calibri', sans-serif;font-size:20.04px;">&lt;</text>
+                    <text x="439.511px" y="310.92px" style="font-family:'Calibri', sans-serif;font-size:20.04px;">w</text>
+                    <text x="453.541px" y="310.92px" style="font-family:'Calibri', sans-serif;font-size:20.04px;">c-na<tspan x="487.945px 496.997px " y="310.92px 310.92px ">vb</tspan>ar&gt;&lt;/w<tspan x="565.943px 574.417px " y="310.92px 310.92px ">c-</tspan>na<tspan x="600.347px 609.399px " y="310.92px 310.92px ">vb</tspan>ar&gt;</text>
+                    <text x="429.53px" y="358.94px" style="font-family:'Calibri', sans-serif;font-size:20.04px;">&lt;r</text>
+                    <text x="446.175px" y="358.94px" style="font-family:'Calibri', sans-serif;font-size:20.04px;">o</text>
+                    <text x="456.643px" y="358.94px" style="font-family:'Calibri', sans-serif;font-size:20.04px;">ut<tspan x="473.669px " y="358.94px ">e</tspan></text>
+                    <text x="483.64px" y="358.94px" style="font-family:'Calibri', sans-serif;font-size:20.04px;">r</text>
+                    <text x="490.639px" y="358.94px" style="font-family:'Calibri', sans-serif;font-size:20.04px;">-outle<tspan x="539.046px 545.759px " y="358.94px 358.94px ">t&gt;</tspan>&lt;/r</text>
+                    <text x="580.125px" y="358.94px" style="font-family:'Calibri', sans-serif;font-size:20.04px;">o</text>
+                    <text x="590.592px" y="358.94px" style="font-family:'Calibri', sans-serif;font-size:20.04px;">ut<tspan x="607.619px " y="358.94px ">e</tspan></text>
+                    <text x="617.59px" y="358.94px" style="font-family:'Calibri', sans-serif;font-size:20.04px;">r</text>
+                    <text x="624.589px" y="358.94px" style="font-family:'Calibri', sans-serif;font-size:20.04px;">-outle<tspan x="672.996px 679.709px " y="358.94px 358.94px ">t&gt;</tspan></text>
+                    <text x="526.03px" y="406.94px" style="font-family:'Calibri', sans-serif;font-size:20.04px;fill:rgb(68,114,196);">app.</text>
+                    <text x="561.746px" y="406.94px" style="font-family:'Calibri', sans-serif;font-size:20.04px;fill:rgb(68,114,196);">c</text>
+                    <text x="570.203px" y="406.94px" style="font-family:'Calibri', sans-serif;font-size:20.04px;fill:rgb(68,114,196);">omponen<tspan x="648.72px 655.432px 660.491px 670.834px 677.547px " y="406.94px 406.94px 406.94px 406.94px 406.94px ">t.htm</tspan>l</text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

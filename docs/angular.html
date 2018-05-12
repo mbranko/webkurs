@@ -39,6 +39,8 @@
           <h2>Literatura</h2>
           <ul>
             <li>Nate Murray, Felipe Coury, Ari Lerner, Carlos Taborda.<br/> <i>ng-book: The Complete Book on Angular</i>.<br/> <a href="https://www.ng-book.com/2n/" target="_blank">https://www.ng-book.com</a></li>
+            <li>Single Page Apps in Depth. <a href="http://singlepageappbook.com" target="_blank">http://singlepageappbook.com</a></li>
+            <li>SPA and the Single Page Myth. <a href="https://johnpapa.net/pageinspa/" target="_blank">https://johnpapa.net/pageinspa/</a></li>
           </ul>
         </section>
 
@@ -1519,8 +1521,349 @@ export class InstitutionsListComponent implements OnInit {
         </section>
 
         <section>
+          <h1>#11: rutiranje</h1>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Pojam rutiranja</h2>
+          <ul>
+            <li>rutiranje omogućava</li>
+            <ul>
+              <li>navigacij između različitih prikaza</li>
+              <li>back i forward u web čitaču</li>
+              <li>razmenu parametara između komponenti koje se prikazuju</li>
+            </ul>
+            <li>primer:</li>
+          </ul>
+          <center>
+            <img src="img/angular/ang19.svg" width="75%" class="clean"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Rutiranje i SPA</h2>
+          <ul>
+            <li>single page apps: stalno smo na istoj stranici</li>
+            <li>menjamo elemente korisničkog interfejsa</li>
+            <li>na primer, u Wine Cellar aplikaciji</li>
+            <ul>
+              <li>uvek stoje <code>HeaderComponent</code> i <code>NavbarComponent</code></li>
+              <li>ispod njih se smenjuju <code>WineListComponent</code> i <code>EditWineComponent</code></li>
+            </ul>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Mesto gde se smenjuju komponente</h2>
+          <div style="font-size:30pt;"><pre><code class="html">
+<router-outlet></router-outlet>
+          </code></pre></div>
+          <center>
+            <img src="img/angular/ang20.svg" width="75%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Rutiranje i URL</h2>
+          <ul>
+            <li>kako znamo u kom delu aplikacije se nalazi korisnik, tj. šta treba da mu se prikaže?</li>
+            <li>URL je jedinstven - na osnovu njega možemo odrediti šta se prikazuje</li>
+            <li>primer:</li>
+            <ul>
+              <li><a href="http://localhost:4200/wines" target="_blank">http://localhost:4200/wines</a> - prikazuje tabelu sa vinima, odnosno <code>WineListComponent</code></li>
+              <li><a href="http://localhost:4200/wines/add" target="_blank">http://localhost:4200/wines/add</a> - prikazuje formu za dodavanje vina, odnosno <code>EditWineComponent</code></li>
+            </ul>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Tradicionalne aplikacije vs SPA</h2>
+          <ul>
+            <li>u tradicionalnim aplikacijama:</li>
+            <ul>
+              <li>promena URL-a automatski izaziva <em>refresh</em> stranice</li>
+              <li>web čitač šalje zahtev za novom stranicom</li>
+            </ul>
+            <br/>
+            <li>u SPA:</li>
+            <ul>
+              <li>ne moramo osvežiti celu stranicu</li>
+              <li>menjamo samo delove stranice tako što menjamo DOM stablo (pomoću Angulara)</li>
+              <li>menjamo URL u web čitaču bez osvežavanja stranice</li>
+            </ul>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>HTML5 History API</h2>
+          <ul>
+            <li>Angular se oslanja na HTML5 History API</li>
+            <ul>
+              <li>URL sajta se može menjati bez osvežavanja stranice</li>
+              <li>isto važi i za <em>back</em> i <em>forward</em></li>
+            </ul>
+            <br/>
+            <li>moramo u <code>index.html</code> dodati <code>&lt;base href="/"&gt;</code></li>
+            <br/>
+            <li>URL se formira tako što se nešto doda na koren</li>
+            <ul>
+              <li>neće izazvati refresh stranice</li>
+              <li>sve iza korena tretira se kao pravilo navigacije koje će Angular koristiti</li>
+            </ul>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Definisanje pravila rutiranja</h2>
+          <ul>
+            <li><a href="http://localhost:4200" target="_blank">http://localhost:4200</a> - koren naše aplikacije</li>
+            <ul>
+              <li><a href="http://localhost:4200/wines" target="_blank">http://localhost:4200/wines</a> - <code>WineListComponent</code></li>
+              <li><a href="http://localhost:4200/wines/add" target="_blank">http://localhost:4200/wines/add</a> - <code>EditWineComponent</code></li>
+            </ul>
+            <br/>
+            <li>na osovu ovoga definišemo pravila rutiranja:</li>
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+const routes: Routes = [
+  {path: 'wines', component: WineListComponent},
+  {path: 'wines/add', component: EditWineComponent}
+]
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Angularov Router modul</h2>
+          <ul>
+            <li>moramo uključiti <code>RouterModule</code></li>
+            <ul>
+              <li>u njemu je definisana direktiva <code>&lt;router-outlet&gt;</code></li>
+              <li>u njemu je definisana klasa <code>Routes</code></li>
+            </ul>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Uključivanje RouterModule u projekat</h2>
+          <ul>
+            <li>u definiciji modula naše aplikacije - <code>app.module.ts</code>:</li>
+          </ul>
+          <center>
+            <img src="img/angular/ang21.svg" width="85%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Izazivanje prelaska između stranica</h2>
+          <ul>
+            <li>u templejtu - klik na link koji ima atribut <code>routerLink</code></li>
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="html">
+<a [routerLink]="['/wines/add']">Add new wine</a>
+          </code></pre></div>
+          <ul>
+            <li>u klasi komponente - injekcijom dobijamo router servis</li>
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+import { Router } from '@angular/router';
+@Component({
+  selector: 'app-edit-wine',
+  templateUrl: './edit-wine.component.html',
+  styleUrls: ['./edit-wine.component.css']
+})
+export class EditWineComponent implements OnInit {
+  constructor(private router: Router) { ... }
+}
+...
+this.router.navigate(['wines/'])
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer rutiranja</h2>
+          <ul>
+            <li>primer u projektu <a href="files/angular/winecellar-routing.zip">winecellar-routing.zip</a></li>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Izdvajanje rutiranja u poseban modul</h2>
+          <ul>
+            <li>u praksi se pravi poseban modul čiji zadatak je rutiranje u aplikaciji</li>
+            <li>nazvaćemo ga <code>AppRoutingModule</code></li>
+          </ul>
+          <center>
+            <img src="img/angular/ang22.svg" width="60%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Pravljenje AppRoutingModule</h2>
+          <ol>
+            <li>kreirati novi modul u <code>app-routing.module.ts</code>
+          <div style="font-size:30pt;"><pre><code class="bash">$ ng g module app-routing</code></pre></div>
+            </li>
+            <li>u <code>AppRoutingModule</code> importovati <code>RouterModule</code></li>
+            <li><coder>RouterModule</coder> dodati u exports <code>AppRoutingModule</code>-a</li>
+          </ol>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+import { RouterModule } from '@angular/router'; // ovde
+
+@NgModule({
+  imports: [
+    CommonModule,
+    RouterModule   // ovde
+  ], 
+  exports: [
+    RouterModule   // ovde
+  ], 
+  declarations: []
+})
+export class AppRoutingModule { }
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Definisanje rutiranja - koraci</h2>
+          <ul>
+            <li>radi bolje organizacije koda, pravila rutiranja ćemo staviti u poseban fajl</li>
+            <li><code>src/app/app-routing/routes.ts</code></li>
+          </ul>
+          <center>
+            <img src="img/angular/ang23.svg" width="80%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Definisanje rutiranja - koraci</h2>
+          <ul>
+            <li>proslediti definisanje putanje u <code>RouterModule</code></li>
+            <li>u <code>AppRoutingModule</code></li>
+            <ul>
+              <li>importovati <code>routes</code> konstantu</li>
+              <li>proslediti je <code>RouterModule</code>-u kao parametar <code>forRoot</code> funkcije</li>
+            </ul>
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+import { RouterModule } from '@angular/router';
+import { routes } from './routes';  // ovde
+
+@NgModule({
+  imports: [
+    CommonModule,
+    RouterModule.forRoot(routes)  // ovde
+  ], 
+  exports: [
+    RouterModule
+  ], 
+  declarations: []
+})
+export class AppRoutingModule { }
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer rutiranja</h2>
+          <ul>
+            <li>primer u projektu <a href="files/angular/winecellar-routing2.zip">winecellar-routing2.zip</a></li>
+          </ul>
+        </section>
+
+        <section>
           <h1>#11: forme</h1>
         </section>
+
+        <section class="valigntop left">
+          <h2>Podsetnik: forme u HTML-u</h2>
+          <ul>
+            <li>forme su predstavljene elementom <code>&lt;form&gt;...&lt;/form&gt;</code></li>
+            <li>unutar njega možemo smestiti elemente</li>
+            <ul>
+              <li><code>&lt;input&gt;</code></li>
+              <li><code>&lt;textarea&gt;</code></li>
+              <li><code>&lt;button&gt;</code></li>
+              <li><code>&lt;select&gt;</code></li>
+              <li>...</li>
+            </ul>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer forme za unos</h2>
+          <div style="width: 65%; font-size: 22pt; float: left">
+            <pre><code class="html">
+<form>
+  <div class="form-group row">
+    <label for="name" class="col-2 col-form-label">Name</label>
+    <div class="col-10">
+      <input class="form-control" type="text" id="name" placeholder="Name">
+      <small>Notification about name</small>
+    </div>
+  </div>
+  ...
+  <div class="form-group row float-right">
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+  </div>
+</form>
+            </code></pre>
+          </div>
+          <div style="float: left; width: 35%">
+            <img src="img/angular/ang24.svg"/>
+          </div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Template-driven forms</h2>
+          <ul>
+            <li>vezujemo TypeScript objekte za elemente forme pomoću <em>two-way data binding</em>
+          <div style="font-size:30pt;"><pre><code class="html">
+&lt;element [(ngModel)]="objekat"/&gt;
+          </code></pre></div>
+            </li>
+            <li>element mora imati atribut <code>name</code></li>
+            <li>sve promene nad elementom rezultuju izmenom TypeScript objekta</li>
+            <li>i obrnuto: sve izmene nad objektom vide se u elementu forme</li>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>FormsModule</h2>
+          <ul>
+            <li>radi korišćenja <code>ngModel</code> direktive mora se importovati <code>FormsModule</code></em></li>
+            <li>u naš <code>AppModule</code> dodamo:</li>
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+import { FormsModule } from '@angular/forms';
+...
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    RegisterUserComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,   // ovde
+  ], 
+  providers: [], 
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+          </code></pre></div>
+        </section>
+
+
+
+
+
+
+
+
+
+
+
 
         <section class="valigntop left">
           <h2>FormControl</h2>
