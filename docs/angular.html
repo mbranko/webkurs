@@ -1854,6 +1854,194 @@ export class AppModule { }
           </code></pre></div>
         </section>
 
+        <section class="valigntop left">
+          <h2>Primer forme</h2>
+          <center>
+            <img src="img/angular/ang25.svg" width="60%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer forme</h2>
+          <center>
+            <img src="img/angular/ang26.svg" width="80%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer forme</h2>
+          <ul>
+            <li>u <code>form</code> element dodati direktivu <code>ngSubmit</code></li>
+            <li>funkcija koja se poziva mora biti definisana u komponenti kojoj pripada taj templejt</li>
+          </ul>
+          <center>
+            <img src="img/angular/ang27.svg" width="80%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Validacija forme</h2>
+          <ul>
+            <li>na klijentskoj strani možemo proveriti korisnički unos</li>
+            <ul>
+              <li>obavezna polja, ispravan format, ...</li>
+              <li>isključiti submit dugme dok svi unosi nisu validni</li>
+              <li>ispisati upozorenje za unose koji nisu validni</li>
+            </ul>
+            <li>koristimo iste atribute kao i za HTML5 validaciju</li>
+            <ul>
+              <li>required, min, max, ...</li>
+              <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/Constraint_validation" target="_blank">https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/Constraint_validation</a></li>
+            </ul>
+            <li>treba dodati atribut <code>novalidate</code> da bi se isključila HTML5 validacija - da ne ulazi u koliziju sa Angularom!</li>
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="html">
+&lt;form novalidate&gt;
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Validacija forme - direktiva ngModel</h2>
+          <ul>
+            <li>stanje elementa forme možemo proveriti tako što eksportujemo ngModel u lokalnu promenljivu u templejtu
+          <div style="font-size:30pt;"><pre><code class="html">
+&lt;input #varijabla="ngModel"&gt;
+          </code></pre></div>
+            </li>
+            <li>putem ove promenljive možemo pratiti stanje elementa</li>
+            <li>na primer, sledeća polja definisana na ovakvoj promenljivoj su nam interesantna:</li>
+            <ul>
+              <li><code>touched</code> - ako je element imao fokus</li>
+              <li><code>valid</code> - ako je sadržaj validan</li>
+              <li><code>errors</code> - null ako nema grešaka, inače objekat koji opisuje greške</li>
+            </ul>
+            <li>kompletna lista polja: <a href="https://angular.io/api/forms/AbstractControl" target="_blank">https://angular.io/api/forms/AbstractControl</a></li>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer forme - dodavanje ograničenja</h2>
+          <div style="float: left; width: 35%">
+            <img src="img/angular/ang24.svg"/>
+          </div>
+          <div style="width: 65%; float: left">
+            <ul>
+              <li>username je obavezan</li>
+              <li>email je obavezan</li>
+              <li>provera formata emaila (username@domen)</li>
+              <li>password je obavezan</li>
+              <li>password mora imati najmanje 8 znakova</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer forme - dodavanje ograničenja</h2>
+          <center>
+            <img src="img/angular/ang28.svg" width="80%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer forme - dodavanje ograničenja</h2>
+          <center>
+            <img src="img/angular/ang29.svg" width="70%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer forme - dodavanje ograničenja</h2>
+          <center>
+            <img src="img/angular/ang30.svg" width="80%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Validacija cele forme - ngForm</h2>
+          <ul>
+            <li>u <code>form</code> elementu eksportujemo <code>ngForm</code> direktivu u lokalnu promenljivu
+          <div style="font-size:30pt;"><pre><code class="html">
+&lt;form #varijabla="ngForm"&gt;
+          </code></pre></div>
+            </li>
+            <li>putem ove promenljive možemo pratiti stanje cele forme</li>
+            <ul>
+              <li>sadrži <code>pristine</code>, <code>errors</code>... - polja koja se odnose na celu formu</li>
+              <li>sadrži sve elemente forme kojima smo dodali <code>ngModel</code> i <code>name</code></li>
+              <li>elemente forme referenciramo po imenu (<code>name</code>)</li>
+              <li>možemo pojedinačno proveravati stanje elemenata</li>
+            </ul>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Validacija cele forme - ngForm</h2>
+          <center>
+            <img src="img/angular/ang31.svg" width="80%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer forme</h2>
+          <ul>
+            <li>primer u projektu <a href="files/angular/winecellar-form1.zip">winecellar-form1.zip</a></li>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Prednosti template-driven formi</h2>
+          <ul>
+            <li>veoma jednostavne za implementaciju</li>
+            <li>primenljive na širok spektar problema</li>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Nedostaci template-driven formi</h2>
+          <ul>
+            <li>validacija i povezivanje sa modelom podataka vrši se u templejtu</li>
+            <li>validacija u templejtu postaje nečitka u složenim slučajevima</li>
+            <li>neprikladne za automatizovano testiranje</li>
+            <li>teško je održavati konzistentnost podataka - da li polja sadrže validne vrednosti</li>
+            <br/><br/>
+            <li>=&gt; <em>reactive forms</em></li>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer reactive forme</h2>
+          <center>
+            <img src="img/angular/ang32.svg" width="60%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>ReactiveFormsModule</h2>
+          <ul>
+            <li>moramo importovati <code>FormsModule</code> i <code>ReactiveFormsModule</code></li>
+            <li>u naš <code>AppModule</code> dodamo:</li>
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';  // ovde
+...
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    RegisterUserComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,         // ovde
+    ReactiveFormsModule  // ovde
+  ], 
+  providers: [], 
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+          </code></pre></div>
+        </section>
+
 
 
 
