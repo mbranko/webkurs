@@ -2250,21 +2250,88 @@ export class RegisterUserComponent implements OnInit {
           </center>
         </section>
 
+        <section class="valigntop left">
+          <h2>Provera stanja kontrola u formi</h2>
+          <ul>
+            <li>ispitivanje stanja kontrole na formi:<br/>
+              <pre><code class="typescript">forma.controls.ime_kontrole.errors?.ime_greske</code></pre>
+            </li>
+            <li>za svaku kontrolu i celu formu dostupna su polja:</li>
+          </ul>
+          <table>
+            <thead>
+              <tr>
+                <td>polje</td>
+                <td>opis</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>value</code></td>
+                <td>vrednost unesena u kontrolu</td>
+              </tr>
+              <tr>
+                <td><code>valid</code></td>
+                <td>true ako je kontrola validna</td>
+              </tr>
+              <tr>
+                <td><code>status</code></td>
+                <td><code>VALID</code>, <code>INVALID</code>, <code>PENDING</code>, <code>DISABLED</code></td>
+              </tr>
+              <tr>
+                <td><code>pristine</code> <code>dirty</code></td>
+                <td><code>pristine</code> je <code>true</code> ako korisnik nije menjao vrednost kontrole, <code>dirty</code> obrnuto</td>
+              </tr>
+              <tr>
+                <td><code>touched</code> <code>untouched</code></td>
+                <td><code>untouched</code> je <code>true</code> ako korisnik nije nijednom fokusirao kontrolu, <code>touched</code> obrnuto</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
 
+        <section class="valigntop left">
+          <h2>Primer provere stanja</h2>
+          <center>
+            <img src="img/angular/ang45.svg" width="85%"/>
+          </center>
+        </section>
 
+        <section class="valigntop left">
+          <h2>Primer reactive forme</h2>
+          <ul>
+            <li><a href="files/angular/reactive-02.zip">files/angular/reactive-02.zip</a></li>
+          </ul>
+        </section>
 
+        <section class="valigntop left">
+          <h2>Prednosti i nedostaci reactive formi</h2>
+          <ul>
+            <li>prednost: većina logike je u TypeScript kodu</li>
+            <ul>
+              <li>možemo praviti custom validatore</li>
+              <li>jednostavnije za automatsko testiranje</li>
+            </ul>
+            <li>mana: nešto složenije od template-driven formi</li>
+            <br/>
+            <li>gotovo sve se može postići pomoću obe vrste formi, ali</li>
+            <ul>
+              <li>dosta funkcionalnosti se lakše implementira pomoću reactive formi</li>
+              <li>kompleksnija validacija je lakša pomoću reactive formi</li>
+            </ul>
+          </ul>
+        </section>
 
-
-
-
-
-
-
-
-
-
-
-
+        <section class="valigntop left">
+          <h2>Dodatni materijali</h2>
+          <ul>
+            <li>template-driven forms: <a href="https://angular.io/guide/forms" target="_blank">https://angular.io/guide/forms</a></li>
+            <li>reactive forms: <a href="https://angular.io/guide/reactive-forms" target="_blank">https://angular.io/guide/reactive-forms</a></li>
+            <li>validacija forme: <a href="https://angular.io/guide/form-validation" target="_blank">https://angular.io/guide/form-validation</a></li>
+            <li><a href="https://blog.angular-university.io/introduction-to-angular-2-forms-template-driven-vs-model-driven/" target="_blank">https://blog.angular-university.io/introduction-to-angular-2-forms-template-driven-vs-model-driven/</a></li>
+          </ul>
+        </section>
+<!--
         <section class="valigntop left">
           <h2>FormControl</h2>
           <ul>
@@ -2313,9 +2380,6 @@ personInfo.valid  // -&gt; true
           </code></pre></div>
         </section>
 
-
-
-<!--
         <section>
           <h1>#5: prenos parametara</h1>
         </section>
@@ -2323,9 +2387,13 @@ personInfo.valid  // -&gt; true
         <section>
           <h1>#6: templejti</h1>
         </section>
-
-
 -->
+
+        <section>
+          <h1>#12: servisi</h1>
+        </section>
+
+
 
         <section>
           <h3>Kraj dela</h3>
