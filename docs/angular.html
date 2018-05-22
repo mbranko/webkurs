@@ -2042,6 +2042,218 @@ export class AppModule { }
           </code></pre></div>
         </section>
 
+        <section class="valigntop left">
+          <h2>FormGroup</h2>
+          <ul>
+            <li>u klasu komponente <code>RegisterUserComponent</code> dodajemo polje <code>registerUserForm</code> koje predstavlja <em>model forme</em></li>
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+import { FormsGroup, FormBuilder } from '@angular/forms';  // ovde
+...
+
+@Component({
+  selector: 'app-register-user',
+  templateUrl: './register-user.component.html',
+  styleUrls: ['./register-user.component.css']
+})
+export class RegisterUserComponent implements OnInit { 
+  registerUserForm: FormGroup;  // ovde
+  ...
+}
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>FormBuilder</h2>
+          <ul>
+            <li>model forme gradi se pomoću <code>FormBuilder</code></li>
+          </ul>
+          <center>
+            <img src="img/angular/ang33.svg" width="70%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Templejt forme</h2>
+          <ul>
+            <li>vezujemo <code>&lt;form&gt;</code> element za <em>model forme</em></li>
+            <li>vezujemo elemente forme za odgovarajuće kontrole u okviru modela forme</li>
+          </ul>
+          <center>
+            <img src="img/angular/ang34.svg" width="80%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer forme</h2>
+          <ul>
+            <li>sada možemo menjati vrednosti inputa i posmatrati kako se menja model forme (<code>registerUserForm.value</code>)</li>
+            <li>vezujemo elemente forme za odgovarajuće kontrole u okviru modela forme</li>
+          </ul>
+          <center>
+            <img src="img/angular/ang35.svg" width="50%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Submit: slanje popunjene forme</h2>
+          <center>
+            <img src="img/angular/ang36.svg" width="80%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer forme</h2>
+          <ul>
+            <li><a href="files/angular/reactive-01.zip">files/angular/reactive-01.zip</a></li>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Složenije forme</h2>
+          <ul>
+            <li>u jednostavnim slučajevima (npr. <i>register user</i>, <i>search box</i>) dovoljan je model forme</li><br/>
+            <li>za unos složenijih objekata korisno je razdvojiti:</li>
+            <ul>
+              <li><em>model forme</em>: kontrole u formi, validacija...</li>
+              <li><em>model podataka</em>: konzistentnost podataka u objektu: obavezna polja, odgovarajući tip, ograničenja...</li>
+            </ul>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer: ažuriranje zaposlenog</h2>
+          <ul>
+            <li>model zaposlenog: klasa <code>Employee</code></li>
+            <li>sadrži polja:</li>
+            <ul>
+              <li><code>_id</code>, <code>name</code>, <code>surname</code>, <code>jmbg</code>, <code>email</code></li>
+            </ul>
+          </ul>
+          <center>
+            <img src="img/angular/ang37.svg" width="50%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer: ažuriranje zaposlenog</h2>
+          <ul>
+            <li>u klasu komponente <code>EditEmployeeComponent</code> dodajemo dva atributa</li>
+            <ul>
+              <li><code>employee</code> - model podataka</li>
+              <li><code>employeeForm</code> - model forme</li>
+            </ul>
+          </ul>
+          <center>
+            <img src="img/angular/ang38.svg" width="80%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer: ažuriranje zaposlenog</h2>
+          <ul>
+            <li>submit forme</li>
+          </ul>
+          <center>
+            <img src="img/angular/ang39.svg" width="75%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Popunjavanje forme prema modelu</h2>
+          <ul>
+            <li>želimo da popunimo formu prema modelu podataka</li>
+            <li>početno stanje forme treba da predstavlja objekat koji želimo da menjamo</li>
+            <li>dve metode:</li>
+            <ul>
+              <li><code>setValue</code> - dodeli vrednosti svim kontrolama forme odjednom</li>
+              <li><code>patchValue</code> - ažuriraj podskup kontrola forme</li>
+            </ul>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Popunjavanje forme prema modelu</h2>
+          <center>
+            <img src="img/angular/ang40.svg" width="85%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Revert forme</h2>
+          <ul>
+            <li>recimo da je korisnik menjao podatke u formi pa hoće da ih vrati u početno stanje</li>
+            <li>model podataka je odvojen od forme pa je ovo jednostavno:</li>
+          </ul>
+          <center>
+            <img src="img/angular/ang41.svg" width="85%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Reaktivni stil</h2>
+          <ul>
+            <li>eksplicitno se vodi računa o toku podataka</li>
+          </ul>
+          <center>
+            <img src="img/angular/ang42.svg" width="80%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Reaktivni stil</h2>
+          <ul>
+            <li>klasa komponente</li>
+            <ul>
+              <li>kreira i manipuliše kontrolama forme</li>
+              <li>neposredno pristupa modelu podataka i strukturi forme</li>
+              <li>kontroliše tok podataka</li>
+            </ul>
+            <br/>
+            <li>kontrola toka ne ažurira model direktno</li>
+            <ul>
+              <li>izvlači promene koje je korisnik napravio</li>
+              <li>prosleđuje ih spoljnim komponentama ili servisima i vraća novi model podataka</li>
+              <li>komponenta reflektuje promene na formi</li>
+            </ul>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer forme</h2>
+          <ul>
+            <li>dodajemo ograničenja</li>
+            <ul>
+              <li>sve kontrole moraju biti popunjene</li>
+              <li>JMBG mora imati 13 karaktera</li>
+              <li>email mora biti u formatu ime@domen</li>
+            </ul>
+          </ul>
+          <center>
+            <img src="img/angular/ang43.svg" width="50%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Validacija forme</h2>
+          <ul>
+            <li>dodajemo je u komponenti a ne u templejtu</li>
+            <ul>
+              <li>importovati <code>Validators</code> iz <code>@angular/forms</code></li>
+              <li>validatore zakačiti za kontrolu pomoću <code>FormBuildera</code></li>
+              <li>Angular će pozivati ove funkcije kad se promeni vrednost u kontroli</li>
+              <li>ugrađeni validatori: <a href="https://angular.io/api/forms/Validators" target="_blank">https://angular.io/api/forms/Validators</a></li>
+            </ul>
+          </ul>
+          <center>
+            <img src="img/angular/ang44.svg" width="90%"/>
+          </center>
+        </section>
+
+
+
+
+
 
 
 
