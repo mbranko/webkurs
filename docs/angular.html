@@ -1,4 +1,4 @@
-<!doctype html>
+<!-- <!doctype html> -->
 <html>
   <head>
     <meta charset="utf-8">
@@ -2393,6 +2393,243 @@ personInfo.valid  // -&gt; true
           <h1>#12: servisi</h1>
         </section>
 
+        <section class="valigntop left">
+          <h2>Servisi</h2>
+          <ul>
+            <li>osnovni zadatak komponente je da bude posrednik između UI-ja i poslovne logike</li>
+            <ul>
+              <li>klasa komponenta treba da bude "mršava"</li>
+              <li>samo atribute i metode za regulisanje prikaza</li>
+              <li>složenije poslove delegiramo <em>servisima</em></li>
+            </ul>
+          </ul>
+          <center>
+            <img src="img/angular/ang46.svg" width="80%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Servisi</h2>
+          <ul>
+            <li>implementraju funkcionalnosti koje komponente mogu da pozivaju kako bi izvršile svoje zadatke</li><br/>
+            <li>primeri:</li>
+            <ul>
+              <li>dobavljanje podataka (npr. sa servera)</li>
+              <li>logovanje</li>
+              <li>računanje poreza</li>
+              <li>konfiguracija aplikacije</li>
+            </ul>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer: Wine Cellar</h2>
+          <ul>
+            <li>primer: <a href="files/angular/winecellar-services.zip" target="_blank">files/angular/winecellar-services.zip</a></li><br/>
+            <li>listu vina čuvamo u <code>WineListComponent</code></li>
+            <li>toj listi treba da pristupimo iz <code>EditWineComponent</code> da bismo dodali novo vino u listu</li>
+            <li>kako da razmenjujemo podatke između komponenti koje nisu u parent/child odnosu?</li>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer: Wine Cellar</h2>
+          <ul>
+            <li>napravićemo servis <code>WineService</code></li>
+            <ul>
+              <li>unutar njega ćemo čuvati listu vina</li>
+              <li>napravićemo metode za manipulaciju listom</li>
+              <ul>
+                <li><code>getAll()</code> - vraća celu listu vina</li>
+                <li><code>add(newWine: Wine)</code> - dodaje novo vino u listu</li>
+              </ul>
+            </ul>
+            <li>u <code>WineListComponent</code>:</li>
+            <ul>
+              <li>pozvaćemo getAll() da dobavimo vina za prikaz u tabeli</li>
+            </ul>
+            <li>u <code>WineEditComponent</code>:</li>
+            <ul>
+              <li>pozvaćemo add() da dodamo novo vino u listu</li>
+            </ul>
+          </ul>
+          <center>
+            <img src="img/angular/ang47.svg" width="50%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer: Wine Cellar</h2>
+          <ul>
+            <li>generisanje servisa:</li>
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="bash">
+ng g service wine/services/wine
+          </code></pre></div>
+          <ul>
+            <li>dobije se klasa <code>WineService</code> u fajlu <code>wine/services/wine.service.ts</code></li>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer: Wine Cellar</h2>
+          <ul>
+            <li>moramo registrovati servis u modulu naše aplikacije</li>
+          </ul>
+          <center>
+            <img src="img/angular/ang48.svg" width="70%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer: Wine Cellar</h2>
+          <ul>
+            <li>u <code>WineService</code> čuvamo listu vina i dodajemo metode za manipulaciju listom</li>
+          </ul>
+          <center>
+            <img src="img/angular/ang49.svg" width="40%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer: Wine Cellar</h2>
+          <ul>
+            <li>u <code>WineListComponent</code>:</li>
+            <ul>
+              <li>injektujemo <code>WineService</code></li>
+              <li>pozivamo <code>getAll</code> za dobavljanje liste vina</li>
+            </ul>
+          </ul>
+          <center>
+            <img src="img/angular/ang50.svg" width="80%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Dependency Injection</h2>
+          <ul>
+            <li><em>zavisnost</em> (dependency)</li>
+            <ul>
+              <li>objekat treba da koristi drugi objekat</li>
+              <li>npr. komponenta poziva servis - komponenta je zavisna od servisa</li>
+              <li>zavisnost je objekat koji može da se koristi iz drugog objekta</li>
+            </ul>
+            <br/>
+            <li><em>injekcija</em> je mehanizam prosleđivanja reference na drugi objekat (zavisnost)</li>
+            <ul>
+              <li>npr. prosleđivanje servisa komponenti</li>
+            </ul>
+            <br/>
+            <li>Angular inicijalizuje zavisnosti na osnovu parametara konstruktora</li>
+          </ul>
+          <center>
+            <img src="img/angular/ang51.svg" width="30%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Dependency Injection</h2>
+          <ul>
+            <li>kada Angular kreira komponentu, on traži od <em>injektora</em> servis koji je komponenti potreban</li>
+            <ul>
+              <li>injektor ima listu napravljenih servisa</li>
+              <li>ako zatraženi servis nije već napravljen, injektor će ga napraviti i dodati u svoju listu</li>
+              <li>kada se ovo razreši, Angular šalje servis komponenti kao parametar konstruktora</li>
+            </ul>
+          </ul>
+          <center>
+            <img src="img/angular/ang52.svg" width="50%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Dependency Injection</h2>
+          <ul>
+            <li>kod ubrizgavanja zavisnosti ne moramo sami da instanciramo objekat</li>
+            <ul>
+              <li>Angular instancira servis i upisuje referencu u atribut komponente</li>
+            </ul>
+            <br/>
+            <li>lista servisa dostupnih u aplikaciji</li>
+            <ul>
+              <li>u <code>providers</code> deklaraciji modula</li>
+            </ul>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Životni ciklus komponente</h2>
+          <ul>
+            <li>Angular upravlja životnim ciklusom komponente</li>
+            <ul>
+              <li>kreira je, kreira njenu decu i uništava je pre nego što je ukloni iz
+DOM stabla</li>
+            </ul>
+            <br/>
+            <li>komponenta se kreira tako što Angular pozove njen konstruktor</li>
+            <ul>
+              <li>ovo je blokirajuća akcija – pre nego što se komponenta prikaže, konstruktor mora biti izvršen</li>
+              <li>zato bi kod u konstruktoru trebao biti „jeftin“ po pitanju brzine izvršavanja i siguran</li>
+              <li>nije dobra ideja npr. dobavljati podatke sa servera unutar konstruktora</li>
+              <li>najviše što bi konstruktor trebalo da radi jeste da postavlja lokalne varijable na jednostavne inicijalne vrednosti</li>
+            </ul>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>ngOnInit()</h2>
+          <ul>
+            <li>Angular izvršava <code>ngOnInit()</code> metodu definisanu u <code>OnInit</code> interfejsu nakon što prvi put prikaže templejt komponente</li>
+            <li>koristiti ovu metodu za „teže“ inicijalizacije - npr. dobavljanje podataka sa servera</li>
+          </ul>
+          <center>
+            <img src="img/angular/ang53.svg" width="70%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Dodatni materijali</h2>
+          <ul>
+            <li>servisi:<br/> <a href="https://angular.io/guide/architecture" target="_blank">https://angular.io/guide/architecture</a></li><br/>
+            <li>ubrizgavanje zavisnosti:<br/> <a href="https://angular.io/guide/dependency-injection" target="_blank">https://angular.io/guide/dependency-injection</a></li><br/>
+            <li>životni ciklus i redosled pozivanja metoda:<br/> <a href="https://angular.io/guide/lifecycle-hooks" target="_blank">https://angular.io/guide/lifecycle-hooks</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>#13: rutiranje sa parametrima</h1>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Rutiranje sa parametrima</h2>
+          <ul>
+            <li>kada kliknemo na dugme za ažuriranje vina treba</li>
+            <ul>
+              <li>da pređemo na prikaz <code>EditWineComponent</code></li>
+              <li>ova komponenta treba da prikaže trenutne vrednosti odabranog vina</li>
+            </ul>
+            <br/>
+            <li>treba dojaviti <code>EditWineComponent</code>-i koje vino je izabrano u <code>WineListComponent</code>-i</li>
+            <ul>
+              <li><code>Router</code> servis može da prenosi parametre između komponenti</li>
+            </ul>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Angular Router</h2>
+          <ul>
+            <li>jedini način komunikacije među komponentama koje se prikazuju na mestu <code>&lt;router-outlet&gt;</code> je putem URL-a</li>
+            <li>možemo iskoristiti URL da prenesemo parametre</li>
+            <br/>
+            <li>definisaćemo putanju <code>/wines/:id</code></li>
+            <ul>
+              <li><code>:id</code> će biti zamenjen konkretnom vrednošću</li>
+              <li>npr. URL može biti <code>/wines/1</code> gde <code>1</code> predstavlja <em>route parametar</em></li>
+              <li><code>EditWineComponent</code> će preuzeti vrednost <code>id</code> parametra direktno iz putanje i znaće da treba da prikaže vino sa tom vrednošću polja <code>_id</code></li>
+            </ul>
+          </ul>
+        </section>
 
 
         <section>
