@@ -1,4 +1,4 @@
-<!-- <!doctype html> -->
+<!doctype html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -2562,8 +2562,7 @@ ng g service wine/services/wine
           <ul>
             <li>Angular upravlja životnim ciklusom komponente</li>
             <ul>
-              <li>kreira je, kreira njenu decu i uništava je pre nego što je ukloni iz
-DOM stabla</li>
+              <li>kreira je, kreira njenu decu i uništava je pre nego što je ukloni iz DOM stabla</li>
             </ul>
             <br/>
             <li>komponenta se kreira tako što Angular pozove njen konstruktor</li>
@@ -2629,6 +2628,50 @@ DOM stabla</li>
               <li><code>EditWineComponent</code> će preuzeti vrednost <code>id</code> parametra direktno iz putanje i znaće da treba da prikaže vino sa tom vrednošću polja <code>_id</code></li>
             </ul>
           </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Definisanje putanje</h2>
+          <ul>
+            <li>u definiciji pravila rutiranja (<code>src/app/app-routing/routes.ts</code>)</li>
+          </ul>
+          <center>
+            <img src="img/angular/ang54.svg" width="80%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Aktivacija pravila rutiranja uz prosleđivanje parametara</h2>
+          <ul>
+            <li>direktno unešenje URL-a u address bar</li>
+            <li>pomoću <code>routerLink</code> direktive:</li>
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+[routerLink]="['/wines/', wine._id]"
+          </code></pre></div>
+          <ul>
+            <li>pomoću <code>navigate</code> metode:</li>
+          </ul>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+this.router.navigate(['wines/', wine._id]);
+          </code></pre></div>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Preuzimanje parametra iz URL-a</h2>
+          <ul>
+            <li>pomoću servisa <code>ActivatedRoute</code> definisanog u <code>@angular/router</code></li>
+            <li>daje informacije o aktivnoj putanji</li>
+          </ul>
+          <br/>
+          <ol>
+            <li>importovati servis <code>ActivatedRoute</code> iz <code>@angular/router</code></li>
+            <li>ubrizgati ga u komponentu i saćuvati u nekom polju</li>
+            <li>preuzeti parametar iz URL-a:
+          </ol>
+          <div style="font-size:30pt;"><pre><code class="typescript">
+this.route.snapshot.paramMap.get('id');
+          </code></pre></div>
         </section>
 
 
