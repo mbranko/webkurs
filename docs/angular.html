@@ -2663,10 +2663,10 @@ this.router.navigate(['wines/', wine._id]);
             <li>pomoću servisa <code>ActivatedRoute</code> definisanog u <code>@angular/router</code></li>
             <li>daje informacije o aktivnoj putanji</li>
           </ul>
-          <br/>
+          <br/><br/>
           <ol>
             <li>importovati servis <code>ActivatedRoute</code> iz <code>@angular/router</code></li>
-            <li>ubrizgati ga u komponentu i saćuvati u nekom polju</li>
+            <li>ubrizgati ga u komponentu i sačuvati u nekom polju</li>
             <li>preuzeti parametar iz URL-a:
           </ol>
           <div style="font-size:30pt;"><pre><code class="typescript">
@@ -2674,6 +2674,421 @@ this.route.snapshot.paramMap.get('id');
           </code></pre></div>
         </section>
 
+        <section>
+          <h1>#14: observables</h1>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Klijent-server komunikacija</h2>
+          <ul>
+            <li>u opštem slučaju <em>front-end</em> aplikacija poziva <em>back-end</em> server radi autentifikacije, dobavljanja i čuvanja podataka, validacije, itd.</li>
+          </ul>
+          <center>
+            <img src="img/angular/ang55.svg" width="80%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Instaliranje i pokretanje servera</h2>
+          <ol>
+            <li>instalirati <a href="https://nodejs.org" target="_blank">Node.js</a></li>
+            <li>raspakovati <a href="files/angular/server.zip" target="_blank">files/angular/server.zip</a></li>
+            <li>instalirati potrebne biblioteke: u raspakovanom folderu pokrenuti
+              <div style="font-size:30pt;"><pre><code class="bash">
+npm install
+          </code></pre></div></li>
+            <li>pokrenuti server:
+              <div style="font-size:30pt;"><pre><code class="bash">
+npm start
+          </code></pre></div></li>
+          </ol>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Klijent-server komunikacija</h2>
+          <ul>
+            <li>slanje HTTP zahteva i prijem odgovora sa servera</li>
+            <li>zahtev sadrži</li>
+            <ul>
+              <li>metodu (GET, POST, PUT, DELETE)</li>
+              <li>URL</li>
+            </ul>
+          </ul>
+          <center>
+            <img src="img/angular/ang56.svg" width="80%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>REST podsetnik</h2>
+          <ul>
+            <li>REST (REpresentational State Transfer) – arhitektura koja komponente sistema definiše kao resurse</li>
+            <ul>
+              <li>resursi su identifikovani putem URL-a</li>
+              <li>nad resursima se obavljaju jednostavne operacije</li>
+              <li>jednostavne operacije nad resursima kao HTTP metode:</li>
+              <ul>
+                <li>GET - čitanje resursa</li>
+                <li>POST - kreiranje resursa</li>
+                <li>PUT - ažuriranje resursa</li>
+                <li>DELETE - brisanje resursa</li>
+              </ul>
+            </ul>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer REST API-ja</h2>
+          <ul>
+            <li><a href="http://localhost:3000/api/wines" target="_blank">http://localhost:3000/api/wines</a></li>
+            <ul>
+              <li><em>GET</em>: dobija se lista vina kao JSON objekat sa dva atributa:</li>
+              <ul>
+                <li><code>count</code>: broj vina</li>
+                <li><code>results</code>: niz vina</li>
+              </ul>
+              <li><em>POST</em>: dodaje novo vino (kao JSON objekat) u kolekciju</li>
+            </ul>
+            <br/>
+            <li><a href="http://localhost:3000/api/wines/:id" target="_blank">http://localhost:3000/api/wines/:id</a></li>
+            <ul>
+              <li><em>GET</em>: dobija se vino sa datim <code>id</code>-jem</li>
+              <li><em>PUT</em>: ažurira vino prema datom JSON objektu</li>
+              <li><em>DELETE</em>: briše vino u kolekciji</li>
+            </ul>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>GET se lako testira u web čitaču</h2>
+          <center>
+            <img src="img/angular/ang57.svg" width="55%"/>
+            <img src="img/angular/ang58.svg" width="55%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Asinhrono slanje zahteva</h2>
+          <ul>
+            <li>Operacije na mreži mogu potrajati dugo</li>
+            <ul>
+              <li>zahtevu treba vreme da stigne do servera, odgovoru isto tako</li>
+              <li>funkcija koju pozivamo na serveru može raditi nešto složenije pa njeno izvršavanje može da potraje</li>
+              <li>mogu se desiti greške: server može da ne radi ili ne zna da interpretira zahtev koji smo poslali, konekcija može da se prekine, odgovor da se izgubi,...</li>
+            </ul>
+            <br/>
+            <li>Moramo da pišemo aplikacije koje asinhrono šalju HTTP zahteve</li>
+            <ul>
+              <li>podaci koje tražimo od servera neće biti dostupni odmah</li>
+              <li>ne želimo da aplikacija bude blokirana sve dok oni ne stignu</li>
+            </ul>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Angularov HttpClient servis</h2>
+          <ul>
+            <li>komunikacija putem HTTP protokola</li>
+            <li>pruža metode <code>get</code>, <code>post</code>, <code>put</code>, <code>delete</code></li>
+            <li>metode su asinhrone</li>
+            <ul>
+              <li>ne vraćaju podatke odmah</li>
+              <li>tip rezultata ovih metoda je <code>Observable</code></li>
+            </ul>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Observable šablon</h2>
+          <ul>
+            <li><em>observable</em> objekti - njihove promene se mogu pratiti od strane posmatrača (observers)</li>
+            <li>posmatrač se registruje (<em>subscribe</em>) da želi da prati ponašanje objekta</li>
+            <ul>
+              <li>observable zna ko je sve zainteresovan za promene njegovog stanja</li>
+            </ul>
+            <li>kada se stanje objekta promeni, on će obavestiti svoje posmatrače</li>
+            <ul>
+              <li>observable emituje svoju vrednost</li>
+              <li>posmatrači su spremi da „uhvate“ tu vrednost i preduzmu odgovarajuće akcije</li>
+              <li>ne znamo kada stanje observable objekta može biti promenjeno – zato je ovo asinhrono</li>
+            </ul>
+          </ul>
+          <center>
+            <img src="img/angular/ang59.svg" width="70%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer korišćenja HttpClient servisa</h2>
+          <ul>
+            <li>podatke o picama ćemo dobaviti sa servera</li>
+            <li>slanjem GET zahteva na <a href="http://localhost:3000/api/pizzas" target="_blank">http://localhost:3000/api/pizzas</a> dobijamo JSON sa dva atributa</li>
+            <ul>
+              <li><code>count</code> - ukupan broj pica</li>
+              <li><code>results</code> - niz pica</li>
+            </ul>
+          </ul>
+          <center>
+            <img src="img/angular/ang60.svg" width="25%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer: model podataka</h2>
+          <ul>
+            <li>napravićemo model - klasu <code>Pizza</code></li>
+            <li>sa atributima koji opisuju jednu picu</li>
+          </ul>
+          <center>
+            <img src="img/angular/ang61.svg" width="50%"/>
+          </center>
+          <ul>
+            <li>napravićemo model koji opisuje odgovor sa servera - klasu <code>PizzaSearchResult</code></li>
+            <li>sa atributima <code>count</code> i <code>pizza</code> (odgovara atributu <code>results</code>)</li>
+          </ul>
+          <center>
+            <img src="img/angular/ang62.svg" width="50%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer: model podataka</h2>
+          <ul>
+            <li>u konstruktoru <code>PizzaSearchResult</code>:</li>
+            <ul>
+              <li><code>pizzas</code> je niz <code>Pizza</code> objekata</li>
+              <li><code>obj.results</code> je niz JavaScript objekata</li>
+            </ul>
+            <br/>
+            <li>JavaScript nizovi imaju funkciju <code>map</code> koju ćemo upotrebiti za konverziju</li>
+          </ul>
+          <center>
+            <img src="img/angular/ang63.svg" width="80%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>HttpClientModule</h2>
+          <ul>
+            <li>moramo u modul naše aplikacije dodati <code>HttpClientModule</code></li>
+          </ul>
+          <center>
+            <img src="img/angular/ang64.svg" width="60%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer: servis</h2>
+          <ul>
+            <li>komunikaciju sa serverom ćemo smestiti u <code>PizzaService</code></li>
+            <ul>
+              <li>komponenta treba da se bavi prikazom</li>
+              <li>metode servisa će slati zahteve serveru</li>
+              <li>komponenta će pozivati metode servisa</li>
+            </ul>
+            <br/>
+            <li>moramo napraviti servis <div style="font-size:30pt;"><pre><code class="bash">
+ng g service pizza/services/pizza
+            </code></pre></div></li>
+            <li>moramo ga dodati u <code>providers</code> našeg modula <code>AppModule</code></li>
+            <li>nakon toga servis se može ubrizgati u komponente</li>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>PizzaService</h2>
+          <center>
+            <img src="img/angular/ang65.svg" width="70%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>PizzaService</h2>
+          <center>
+            <img src="img/angular/ang66.svg" width="70%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>PizzaService</h2>
+          <center>
+            <img src="img/angular/ang67.svg" width="70%"/>
+          </center>
+          <ul>
+            <li>ponaša se slično <code>map</code> funkciji kod JavaScript niza</li>
+            <br/>
+            <li>observable objekat se može posmatrati kao niz vrednosti</li>
+            <ul>
+              <li>npr. <code>Observable&lt;Response&gt;</code> je niz vrednosti tipa <code>Response</code></li>
+            </ul>
+            <br/>
+            <li><code>map</code> će konvertovati <code>Observable&lt;Response&gt;</code> u <code>Observable&lt;PizzaSearchResult&gt;</code></li>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>map operator Observable objekta</h2>
+          <center>
+            <img src="img/angular/ang68.svg" width="80%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Konzumacija servisa</h2>
+          <ul>
+            <li>napravićemo komponentu <code>PizzaListComponent</code></li>
+            <ul>
+              <li>treba da prikaže pice sa servera</li>
+              <li>pozvaće <code>PizzaService.getAll()</code></li>
+              <li>taj poziv treba smestiti u <code>ngOnInit</code></li>
+            </ul>
+          </ul>
+          <center>
+            <img src="img/angular/ang69.svg" width="80%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Debagovanje</h2>
+          <center>
+            <img src="img/angular/ang70.svg" width="80%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Debagovanje</h2>
+          <center>
+            <img src="img/angular/ang71.svg" width="80%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Zadatak</h2>
+          <ul>
+            <li>iskoristiti API servera da se dopuni <a href="files/angular/pizzas-01.zip">pizzas-01.zip</a></li>
+            <ul>
+              <li>dodavanje, brisanje i ažuriranje pice</li>
+              <li>klikom na <em>Edit</em> dugme prelazi se na <code>EditPizzaComponent</code> koja je napunjenja trenutno izabranom picom</li>
+            </ul>
+            <br/>
+            <li><a href="http://localhost:3000/api/pizzas" target="_blank">http://localhost:3000/api/pizzas</a></li>
+            <ul>
+              <li>POST + pizza JSON objekat: dodaće poslatu picu u kolekciju; kao rezultat vraća dodatu picu</li>
+            </ul>
+            <br/>
+            <li><a href="http://localhost:3000/api/pizzas/:id" target="_blank">http://localhost:3000/api/pizzas/:id</a></li>
+            <ul>
+              <li>GET: vraća traženu picu</li>
+              <li>PUT + pizza JSON objekat: ažurira picu; vraća novu vrednost pice</li>
+              <li>DELETE: briše picu i vraća obrisanu picu</li>
+            </ul>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Zadatak</h2>
+          <ul>
+            <li>metode <code>HttpClient</code>-a koje treba iskoristiti su</li>
+            <ul>
+              <li><code>.post(url, newPizza)</code></li>
+              <li><code>.put(url, editedPizza)</code></li>
+              <li><code>.delete(url)</code></li>
+            </ul>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Rukovanje greškama</h2>
+          <ul>
+            <li>ako se poslati zahtev ne obradi korektno, možemo korisniku prikazati poruku o grešci:</li>
+          </ul>
+          <center>
+            <img src="img/angular/ang72.svg" width="70%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Rukovanje greškama: primer</h2>
+          <ul>
+            <li>zaustavimo back-end server i u konzoli vidimo:</li>
+          </ul>
+          <center>
+            <img src="img/angular/ang73.svg" width="70%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Slanje parametara serveru</h2>
+          <ul>
+            <li>č̌esto smo u situaciji da možemo poslati neke parametre serveru koji dodatno specificiraju šta server treba da vrati</li>
+            <li>na primer, server <a href="files/angular/server.zip">server.zip</a> može da primi sledeće parametre:</li>
+            <br/>
+            <li><em>sortiranje</em>:</li>
+            <ul>
+              <li><code>sort=property_name</code>: ime polja po kome se sortira</li>
+              <li><code>sortDirection=desc</code>: desc - opadajuće; sve drugo - rastuće</li>
+              <br/>
+              <li>sortiranje pica prema oceni:<br/> <code>http://localhost:3000/api/pizzas?sort=grade</code></li>
+              <li>sortiranje pica prema oceni u opadajućem redosledu:<br/> <code>http://localhost:3000/api/pizzas?sort=grade&sortDirection=desc</code></li>
+            </ul>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Slanje parametara serveru</h2>
+          <ul>
+            <li><em>filtriranje</em>: <code>filter[property_name]=value</code></li>
+            <ul>
+              <li>vraća samo one objekte koji za vrednost atributa <code>property_name</code> imaju <code>value</code></li>
+              <li><code>http://localhost:3000/api/pizzas?filter[name]=mar</code></li>
+            </ul>
+            <br/>
+            <li><em>paginacija</em>: </li>
+            <ul>
+              <li><code>page=page_no</code> - koju stranicu tabele prikazujemo</li>
+              <li><code>pageSize=max_entities</code> - max broj redova u tabeli</li>
+              <br/>
+              <li>tražimo stranicu br 2, sa max 5 pica<br/>
+              <code>http://localhost:3000/api/wines?page=2&pageSize=5</code></li>
+            </ul>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Slanje parametara serveru</h2>
+          <ul>
+            <li>parametri se mogu kombinovati, npr.<br/>
+              <code>http://localhost:3000/api/pizzas?filter[name]=mar&sort=name&page=2&pageSize=5</code></li>
+            <br/>
+            <li>svi parametri su opcioni</li>
+            <li>za svaki zahtev vraća se JSON odgovor sa atributima</li>
+            <ul>
+              <li><code>count</code> - ukupan broj pica koje odgovaraju kriterijumu</li>
+              <li><code>results</code> - pice koje treba prikazati na stranici</li>
+            </ul>
+          </ul>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Slanje parametara serveru: servis</h2>
+          <center>
+            <img src="img/angular/ang74.svg" width="80%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Slanje parametara serveru: komponenta</h2>
+          <center>
+            <img src="img/angular/ang75.svg" width="55%"/>
+          </center>
+        </section>
+
+        <section class="valigntop left">
+          <h2>Primer</h2>
+          <ul>
+            <li><a href="files/angular/pizzas-02.zip">files/angular/pizzas-02.zip</a></li>
+          </ul>
+        </section>
 
         <section>
           <h3>Kraj dela</h3>
