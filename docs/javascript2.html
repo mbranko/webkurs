@@ -1277,7 +1277,7 @@ alert(myOtherNewVar); // will alert 2
         <section class="valigntop">
           <h2>Deklaracija promenljive sa i bez var</h2>
           <p>Deklaracija u globalnom opsegu</p>
-          <div style="width:50%;margin-left:25%;"><pre><code class="javascript">
+          <div style="width:70%;margin-left:15%;"><pre><code class="javascript">
 function testScope() {
     myTest = true; // now myTest is global.
     alert(myTest);
@@ -1286,7 +1286,7 @@ testScope();  // will alert "true"
 alert(myTest); // will alert "true" as well, because now myTest is global.
           </code></pre></div>
           <p>Ograničavanje opsega sa <code>var</code></p>
-          <div style="width:50%;margin-left:25%;"><pre><code class="javascript">
+          <div style="width:70%;margin-left:15%;"><pre><code class="javascript">
 function testScope() {
     var myTest = true;
     function testNestedScope() {
@@ -1507,17 +1507,17 @@ var f1 = f.bind(null, 1);
         <section class="valigntop">
           <h2>Kviz #3: parametri funkcija</h2>
           <p>Ugrađena funkcija <code>parseInt</code> u globalnom objektu pretvara string u broj. Na primer: </p>
-          <div style="width:40%;margin-left:30%;font-size:25pt;"><pre><code class="javascript">parseInt('31')</code></pre></div>
+          <div style="width:60%;margin-left:20%;font-size:25pt;"><pre><code class="javascript">parseInt('31')</code></pre></div>
           <p>To radi i za različite osnove:</p>
-          <div style="width:40%;margin-left:30%;font-size:25pt;"><pre><code class="javascript">parseInt('A', 16); // 10
+          <div style="width:60%;margin-left:20%;font-size:25pt;"><pre><code class="javascript">parseInt('A', 16); // 10
 parseInt('11', 8); // 9</code></pre></div>
           <p>Za dati niz i wrapper funkciju:</p>
-          <div style="width:40%;margin-left:30%;font-size:25pt;"><pre><code class="javascript">var arr = ['3', '4', '5', '6'];
+          <div style="width:60%;margin-left:20%;font-size:25pt;"><pre><code class="javascript">var arr = ['3', '4', '5', '6'];
 var myParseInt = function (n) {
   return parseInt(n);
 };</code></pre></div>
           <p>Rezultat ovih poziva je neočekivan:</p>
-          <div style="width:40%;margin-left:30%;font-size:25pt;"><pre><code class="javascript">arr.map(myParseInt); // [3, 4, 5, 6]
+          <div style="width:60%;margin-left:20%;font-size:25pt;"><pre><code class="javascript">arr.map(myParseInt); // [3, 4, 5, 6]
 arr.map(parseInt);   // [3, NaN, NaN, NaN]</code></pre></div>
           <p>Objasni zašto.</p>
         </section>
@@ -1561,11 +1561,11 @@ arr.map(parseInt);   // [3, NaN, NaN, NaN]</code></pre></div>
         <section class="valigntop">
           <h2>Kviz #6: prototipovi, nasleđivanje i this</h2>
           <p>Jedan način da podelimo string u niz karaktera je da pozovemo <code>Array.prototype.slice</code> za string objekat:</p>
-          <div style="width:60%;margin-left:20%;font-size:30pt;"><pre><code class="javascript">String.prototype.sliceAsAnArray = Array.prototype.slice;
+          <div style="width:80%;margin-left:10%;font-size:30pt;"><pre><code class="javascript">String.prototype.sliceAsAnArray = Array.prototype.slice;
 ('hello').sliceAsAnArray(); // [ 'h', 'e', 'l', 'l', 'o' ]
 ('world').sliceAsAnArray(); // [ 'w', 'o', 'r', 'l', 'd' ]</code></pre></div>
           <p>Prilikom poziva <code>sliceAsAnArray</code>, <code>this</code> pokazuje na anonimni string objekat. <code>Array.prototype.slice</code> će to iseći na delove</p> 
-          <div style="width:60%;margin-left:20%;font-size:30pt;"><pre><code class="javascript">this[0], this[1], this[2], ..., this[this.length - 1]</code></pre></div>
+          <div style="width:80%;margin-left:10%;font-size:30pt;"><pre><code class="javascript">this[0], this[1], this[2], ..., this[this.length - 1]</code></pre></div>
           <p>Zašto ovo radi kako treba? Napomena: proveri svrhu <code>call</code> i <code>apply</code> metoda za funkcije.</p>
         </section>
 
