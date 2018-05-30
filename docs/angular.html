@@ -972,7 +972,9 @@ ng generate component article
 
         <section class="valigntop left">
           <h2>article.component.ts</h2>
-          <div style="font-size:30pt;"><pre><code class="typescript">export class ArticleComponent implements OnInit {
+          <div style="font-size:25pt;"><pre><code class="typescript">import { Component, OnInit, HostBinding } from '@angular/core';
+
+export class ArticleComponent implements OnInit {
   // dodajemo atribut na host element, tj. element koji
   // predstavlja ovu komponentu u templejtima
   @HostBinding('attr.class') cssClass = 'row';
@@ -1097,8 +1099,8 @@ export class Article {
 
         <section class="valigntop left">
           <h2>article.component.ts</h2>
-          <div style="font-size:30pt;"><pre><code class="typescript">import { Article } from './article';
-
+          <div style="font-size:30pt;"><pre><code class="typescript">import { Component, OnInit, HostBinding } from '@angular/core';
+import { Article } from './article';
 export class ArticleComponent implements OnInit {
   @HostBinding('attr.class') cssClass = 'row'; 
   article: Article;
@@ -1451,7 +1453,7 @@ ee.emit("Žika");
 &lt;div [ngClass]=&quot;{bordered: true}&quot;&gt;This is always bordered&lt;/div&gt;
           </code></pre></div>
         </section>
-
+<!--
         <section class="valigntop left">
           <h2>Model</h2>
           <ul>
@@ -1519,7 +1521,7 @@ export class InstitutionsListComponent implements OnInit {
 }            
           </code></pre></div>
         </section>
-
+-->
         <section>
           <h1>#11: rutiranje</h1>
         </section>
